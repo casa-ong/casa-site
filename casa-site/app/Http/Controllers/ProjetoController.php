@@ -31,14 +31,14 @@ class ProjetoController extends Controller
             $dados['publicado'] = false;
         }
 
-        if($request->hasFile('anexos')) {
-            $anexo = $request->file('anexos');
+        if($request->hasFile('anexo')) {
+            $anexo = $request->file('anexo');
             $num = rand(1111,9999);
             $dir = 'img/cursos/';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
-            $dados['anexos'] = $dir.'/'.$nomeAnexo;
+            $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
         Projeto::create($dados);
@@ -64,14 +64,14 @@ class ProjetoController extends Controller
             $dados['publicado'] = false;
         }
 
-        if($request->hasFile('anexos')) {
-            $anexo = $request->file('anexos');
+        if($request->hasFile('anexo')) {
+            $anexo = $request->file('anexo');
             $num = rand(1111,9999);
-            $dir = 'img/cursos/';
+            $dir = 'img/cursos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
-            $dados['anexos'] = $dir.'/'.$nomeAnexo;
+            $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
         Projeto::find($id)->update($dados);

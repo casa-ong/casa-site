@@ -8,12 +8,12 @@
 </div>
 <div class="input-field">
     <label for="nome">Anexo</label>
-    <input type="file" name="anexos">
+    <input type="file" name="anexo">
 </div>
 
-@if(@isset($registro->anexos))
+@if(@isset($registro->anexo))
     <div class="input-field">
-        <img src="{{ asset($registro->anexos) }}" alt="">
+        <img src="{{ asset($registro->anexo) }}" alt="">
     </div>    
 @endisset
 
