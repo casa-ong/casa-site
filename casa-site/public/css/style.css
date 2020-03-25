@@ -1,0 +1,230 @@
+body {
+    margin: 0px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+nav.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 180, 255, 255);
+    padding: 1.5em;
+}
+
+
+.nav-links a {
+    /*border: 5px solid rgba(0,0,0,0);*/
+    border-radius: 5px;
+	background-color: rgba(40, 80, 255, 0);
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 20px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+	padding: 10px;
+}
+
+.nav-links a:hover {
+    color: rgba(255,255,255,1);
+    font-weight: bold;
+}
+
+.nav-links a:active {
+	color: white;
+	background-color: rgba(0,160,200,1)
+}
+
+table {
+    min-width: 800px;
+    border: 1px solid rgba(0,180,255,1);
+    border-radius: 5px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+table th{
+    border-left: 0px;
+    border-right: 0px;
+    padding: 10px;
+    margin: 0px;
+}
+
+table td {
+    border-top: 1px solid rgba(0,180,255,1);
+    padding: 10px;
+}
+
+
+table a.btn {
+    border-radius: 5px;
+    background-color: rgba(0, 180, 255, 1);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding: 8px;
+    margin: 2px;
+}
+
+
+table a:hover.btn {
+    border-radius: 5px;
+    background-color: rgba(0, 160, 200, 1);
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding: 8px;
+    margin: 2px;
+}
+
+table a.btn.btn-danger {
+    border-radius: 5px;
+    background-color: rgb(255, 0, 0);
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding: 8px;
+    margin: 2px;
+}
+
+table a:hover.btn.btn-danger {
+    border-radius: 5px;
+    background-color: rgb(200, 0, 0);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding: 8px;
+    margin: 2px;
+}
+
+a.btn {
+    border-radius: 5px;
+    background-color: rgba(0, 180, 255, 1);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding: 10px;
+}
+
+a:hover.btn {
+    border-radius: 5px;
+    background-color: rgba(0, 150, 200, 1);
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding: 10px;
+}
+
+button.btn {
+    border: 0px;
+    border-radius: 5px;
+    background-color: rgba(0, 180, 255, 1);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding: 10px;
+}
+
+button:hover.btn {
+    border: 0px;
+    border-radius: 5px;
+    background-color: rgba(0, 150, 200, 1);
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding: 10px;
+}
+
+form {
+    width: 800px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field label {
+    color: rgba(0,0,0,0.85);
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 2px;
+}
+
+.input-field input, .input-field textarea  {
+    color: rgba(0,0,0,0.85);
+    border: 1px solid rgba(0, 180, 255, 1);
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    width: 100%;
+    padding: 10px;
+}
+
+.input-checkbox {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    font-size: 18px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.input-btn {
+    display: flex;
+    justify-content: center;
+}
