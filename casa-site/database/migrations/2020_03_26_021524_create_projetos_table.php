@@ -14,11 +14,16 @@ class CreateProjetosTable extends Migration
     public function up()
     {
         Schema::create('projetos', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('nome');
-            $table->string('descricao');
-            $table->string('anexo');
+            $table->longText('descricao');
+            $table->string('anexo')->nullable();
             $table->boolean('publicado');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

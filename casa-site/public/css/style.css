@@ -2,6 +2,10 @@ body {
     margin: 0px;
 }
 
+i {
+    font-size: 0.8em;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -10,19 +14,34 @@ body {
     margin-right: 80px;
 }
 
-nav.navbar {
+hr {
+    border: 1px solid rgba(0, 180, 255, 1);
+}
+
+nav {
+    color: rgba(255,255,255,1);
+    background-color: rgba(0, 180, 255, 1);
+}
+
+nav div.nav-links {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 180, 255, 255);
-    padding: 1.5em;
+    background-color: rgba(0, 160, 200, 1);
+}
+
+nav div.logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 
-.nav-links a {
+nav a {
     /*border: 5px solid rgba(0,0,0,0);*/
-    border-radius: 5px;
+    /*border-radius: 5px;*/
 	background-color: rgba(40, 80, 255, 0);
     color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
@@ -31,17 +50,88 @@ nav.navbar {
 	font-variant: normal;
 	font-style: normal;
 	font-weight: bold;
-	padding: 10px;
+	padding: 0.7em;
 }
 
-.nav-links a:hover {
+nav a:hover {
     color: rgba(255,255,255,1);
+    background-color: rgba(0,180,255,1);
     font-weight: bold;
 }
 
-.nav-links a:active {
+nav a:active {
 	color: white;
-	background-color: rgba(0,160,200,1)
+	background-color: rgba(0,160,200,1);
+}
+
+nav div.logo h1 {
+    padding-top: 0.5em;
+    margin: 0em;
+}
+
+/* Dropdown Button */
+nav button {
+    background-color: rgba(0,160,200,1);
+    color: rgba(255,255,255,0.85);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 20px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+    font-weight: bold;
+    padding: 0.7em;
+}
+
+/* Dropdown button on hover & focus */
+nav button:hover, nav button:focus {
+    background-color: rgba(0,180,255,1);
+    color: rgba(255,255,255,1);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 180, 255, 1);
+    min-width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 0px 0px 5px 5px;
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: rgba(255,255,255,1);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: rgba(0,160,200,1);
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+nav div.logo h2 {
+    text-decoration: none;
+    /*font-size: 20px;*/
+	font-family: times;
+	font-variant: normal;
+	font-style: italic;
+	font-weight: normal;
+    padding-bottom: 0.5em;
+    margin: 0em;
 }
 
 table {
@@ -62,6 +152,10 @@ table th{
 table td {
     border-top: 1px solid rgba(0,180,255,1);
     padding: 10px;
+}
+
+table td.action-cell {
+    text-align: center;
 }
 
 
@@ -227,4 +321,84 @@ form {
 .input-btn {
     display: flex;
     justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+div.list-projetos {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+}
+
+div.img-projetos {
+    min-width: 20em;
+    padding-right: 5em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+div.list-projetos img {
+    max-width: 20em;
+    max-height: 20em;
+}
+
+div.text-projeto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: bottom;
+    text-align: justify;
+}
+
+.admin-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-card {
+    border: 1px solid rgba(0, 180, 255, 1);
+    border-radius: 5px;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    color: rgba(0,0,0,0.85);
+    text-decoration: none;
+    font-size: 16px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.admin-card:hover {
+    background-color: rgba(0,180,255,1);
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(0, 180, 255, 1);
+    border-radius: 5px;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    text-decoration: none;
+    font-size: 16px;
+	font-family: times;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.admin-card:visited {
+    color: rgba(0,0,0,0.85)
+}
+
+.admin-card:visited:hover {
+    color: rgba(255,255,255,1)
 }
