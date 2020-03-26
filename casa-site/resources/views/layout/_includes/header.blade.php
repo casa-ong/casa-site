@@ -17,8 +17,10 @@
             <div class="nav-links">
                 <a class="nav-link" href="#">Início</a>
                 <a class="nav-link" href="#">Notícias</a>
-                <a href="#" class="nav-link" href="#">Eventos</a>
+                <a class="nav-link" href="{{ route('admin.eventos') }}">Eventos</a>
                 <a class="nav-link" href="{{ route('admin.projetos') }}">Projetos</a>
+                <a class="nav-link" href="#">Sugestões</a>
+                <a class="nav-link" href="#">Sobre</a>
             </div>
         </nav>
     </header>
