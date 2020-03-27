@@ -15,11 +15,17 @@
             <a class="admin-card" href="{{ route('admin.projetos') }}">
                 <h2>Projetos</h2>
             </a>
-            <a class="admin-card">
+            <a class="admin-card" href="{{ route('admin.voluntarios') }}">
                 <h2>Voluntários</h2>
             </a>
             <a class="admin-card">
+                <h2>Sugestões</h2>
+            </a>
+            <a class="admin-card">
                 <h2>Sobre</h2>
+            </a>
+            <a class="admin-card" href="{{ route('admin.dados_site') }}">
+                <h2>Configurações</h2>
             </a>
         </div>
 @endsection

@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
+Route::get('/voluntarios', ['as' => 'site.voluntarios', 'uses' => 'UserController@voluntarios']);
+Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
+Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
 
 Route::get('/login',['as' => 'login', 'uses' => 'LoginController@index']);
 Route::get('/login/sair', ['as' => 'login.sair', 'uses' => 'LoginController@sair']);
 Route::post('/login/entrar',['as' => 'login.entrar', 'uses' => 'LoginController@entrar']);
+
 
 
 Route::group(['middleware' => 'auth'], function() {
@@ -36,4 +40,17 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/admin/evento/atualizar/{id}',['as' => 'admin.evento.atualizar', 'uses' => 'EventoController@atualizar']);
     Route::get('/admin/evento/deletar/{id}',['as' => 'admin.evento.deletar', 'uses' => 'EventoController@deletar']);
     
+    Route::get('/admin/voluntarios', ['as' => 'admin.voluntarios', 'uses' => 'UserController@index']);
+    Route::get('/admin/voluntatio/adicionar',['as' => 'admin.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
+    Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
+    Route::get('/admin/voluntario/editar/{id}',['as' => 'admin.voluntario.editar', 'uses' => 'UserController@editar']);
+    Route::put('/admin/voluntario/atualizar/{id}',['as' => 'admin.voluntario.atualizar', 'uses' => 'UserController@atualizar']);
+    Route::get('/admin/voluntario/deletar/{id}',['as' => 'admin.voluntario.deletar', 'uses' => 'UserController@deletar']);
+
+    Route::get('/admin/dados_site', ['as' => 'admin.dados_site', 'uses' => 'DadosSiteController@index']);
+    Route::get('/admin/dados_site/adicionar',['as' => 'admin.dados_site.adicionar', 'uses' => 'DadosSiteController@adicionar']);
+    Route::post('/admin/dados_site/salvar',['as' => 'admin.dados_site.salvar', 'uses' => 'DadosSiteController@salvar']);
+    Route::get('/admin/dados_site/editar/{id}',['as' => 'admin.dados_site.editar', 'uses' => 'DadosSiteController@editar']);
+    Route::put('/admin/dados_site/atualizar/{id}',['as' => 'admin.dados_site.atualizar', 'uses' => 'DadosSiteController@atualizar']);
+    Route::get('/admin/dados_site/deletar/{id}',['as' => 'admin.dados_site.deletar', 'uses' => 'DadosSiteController@deletar']);
 });

@@ -14,35 +14,6 @@
 
 <body>
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <h1>Centro de Apoio Social e Ambiental</h1>
-                <h2>Para todo rio, há uma nascente</h2>
-            </div>
-            <div class="nav-links">
-                <a class="nav-link" href="{{ route('site.home') }}">Início</a>
-                <a class="nav-link" href="#">Notícias</a>
-                <a class="nav-link" href="#">Eventos</a>
-                <a class="nav-link" href="#">Projetos</a>
-                @if(Auth::guest())
-                    <a class="nav-link" href="{{ route('login') }}">Acesso</a>
-                @else
-                    @php($user = Auth::user())
-                    <div class="dropdown">
-                        <button onclick="dropdownClick()" class="dropbtn nav-link" href="{{ route('login') }}">{{ $user['name'] }}(Admin)
-                            <i class="fas fa-caret-down"></i>
-                        </button>
-                        <div id="dropdownLinks" class="dropdown-content">
-                            <a href="{{ route('admin.index') }}">Painel de Controle
-                                <i class="fas fa-user-cog"></i>
-                            </a>
-                            <a href="{{ route('login.sair') }}">Sair
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                @endif
-            </div>
-        </nav>
+        @include('layout._includes.navbar')
     </header>
     <div class="container">

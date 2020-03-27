@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Evento extends Model
+class DadosSite extends Model
 {
     protected $fillable = [
-        'nome', 'descricao', 'anexo', 'data', 'publicado', 'user_id',
+        'logo', 'titulo', 'slogan', 'banner', 'user_id',
     ];
 }

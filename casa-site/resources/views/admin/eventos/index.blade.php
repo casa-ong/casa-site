@@ -25,7 +25,7 @@
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td>
                                 <a class="btn" href="{{ route('admin.evento.editar',$registro->id) }}">Editar</a>
-                                <a class="btn btn-danger" href="{{ route('admin.evento.deletar',$registro->id) }}">Deletar</a>
+                                <a class="btn btn-danger" href="{{ route('admin.evento.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar o evento?');">Deletar</a>
                             </td>
                         </tr>
                     @endforeach

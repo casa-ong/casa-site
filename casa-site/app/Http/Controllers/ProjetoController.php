@@ -7,6 +7,12 @@ use App\Projeto;
 
 class ProjetoController extends Controller
 {
+
+    public function projetos() 
+    {
+        $registros = Projeto::all()->reverse();
+        return view('projetos', compact('registros'));
+    }
     
     // Metodo responsavel por abrir a pagina inicial dos projetos
     public function index()
@@ -34,7 +40,7 @@ class ProjetoController extends Controller
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
-            $dir = 'img/cursos/';
+            $dir = 'img/projetos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
@@ -67,7 +73,7 @@ class ProjetoController extends Controller
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
-            $dir = 'img/cursos';
+            $dir = 'img/projetos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);

@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Lista de Projetos')
+@section('titulo', 'Adicionar projeto')
 
 @section('conteudo')
     <div class="form-title">

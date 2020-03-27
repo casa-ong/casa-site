@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Inicio - CASA')
+@section('titulo', 'Lista de Projetos')
 
 @section('conteudo')
 
@@ -12,6 +12,7 @@
                         </div>
                         <div class="text-projeto">
                             <h1>{{ $registro->nome }}</h1>
+                            <p>Dia: {{ $registro->data }}</p>
                             <p>{{ $registro->descricao }}</p>
                         </div>
                     </div>
