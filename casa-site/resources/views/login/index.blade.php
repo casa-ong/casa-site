@@ -3,21 +3,23 @@
 
 @section('conteudo')
     <div class="form-title">
-        <h3>Login</h3>
+        <h1>Login</h1>
     </div>
     <div class="form">
-        <form action="{{ route('site.login.entrar') }}" method="POST">
+        <form action="{{ route('login.entrar') }}" method="POST">
             {{ csrf_field() }}
 
             <div class="input-field">
-                <input type="text" name="email"> 
                 <label for="email">Email</label>
+                <input type="text" name="email"> 
             </div>
             <div class="input-field">
-                <input type="password" name="senha">
                 <label for="senha">Senha</label>
+                <input type="password" name="senha">
             </div>
-            <button class="btn">Entrar</button>
+            <div class="input-btn">
+                <button class="btn">Entrar</button>
+            </div>
         </form>
 
     </div>

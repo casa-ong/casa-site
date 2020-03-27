@@ -1,3 +1,5 @@
+<input type="hidden" name="user_id" value="{{ Auth::id() }}">
+
 <div class="input-field">
     <label for="nome">Nome</label>
     <input type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : '' }}" placeholder="Digite aqui o nome do projeto">
