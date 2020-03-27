@@ -2,8 +2,9 @@
 @php($titulo = $dadosSite->titulo)
 @php($slogan = $dadosSite->slogan)
 @php($logo = $dadosSite->logo)
+@php($banner = $dadosSite->banner)
 
-<nav class="navbar">
+<nav class="navbar" style="background-image: linear-gradient( rgba(162,194,90,0.5), rgba(162,194,90,0.5) ), url({{ asset($dadosSite->banner) }}); background-position: center; background-size: 100%;">
     <div class="nav-dados">
         <div class="img-logo">
             <img src="{{ asset($logo) }}" alt="">
