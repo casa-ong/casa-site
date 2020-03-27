@@ -59,7 +59,6 @@ class DadosSiteController extends Controller
     public function atualizar(Request $request, $id) 
     {
         $dados = $request->all();
-        
         if($request->hasFile('logo')) {
             $anexo = $request->file('logo');
             $num = rand(1111,9999);
@@ -80,7 +79,9 @@ class DadosSiteController extends Controller
             $dados['banner'] = $dir.'/'.$nomeAnexo;
         }
 
-        DadosSite::find($id)->update($dados);
+        $dadoSite = DadosSite::find($id);
+        $dadoSite->touch();
+        $dadoSite->update($dados);
 
         return redirect()->route('admin.dados_site');
     }
