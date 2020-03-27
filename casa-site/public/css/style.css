@@ -23,6 +23,23 @@ nav {
     background-color: rgba(0, 180, 255, 1);
 }
 
+nav div.nav-dados {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+nav div.img-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 1em;
+}
+
+nav div.img-logo img {
+    width: 8em;
+}
+
 nav div.nav-links {
     display: flex;
     flex-direction: row;
@@ -216,6 +233,10 @@ table a:hover.btn.btn-danger {
     margin: 2px;
 }
 
+table img {
+    width: 3em;
+}
+
 a.btn {
     border-radius: 5px;
     background-color: rgba(0, 180, 255, 1);
@@ -349,6 +370,42 @@ div.text-projeto {
     align-items: center;
     vertical-align: bottom;
     text-align: justify;
+}
+
+div.cards-voluntarios {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.card-voluntario {
+    width: 15em;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: bottom;
+    text-align: justify;
+    flex-wrap: wrap;
+    border: 1px solid rgba(0, 180, 255, 1);
+    border-radius: 5px;
+}
+
+div.card-voluntario img {
+    max-width: 5em;
+    max-height: 5em;
+    border-radius: 5em;    
+    padding-bottom: 1em;
+}
+
+div.card-voluntario p, h1 {
+    margin: 0px;
+    padding: 0px;
+    padding-bottom: 1em;
 }
 
 .admin-container {

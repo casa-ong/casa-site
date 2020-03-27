@@ -7,6 +7,13 @@ use App\Evento;
 
 class EventoController extends Controller
 {
+
+    public function eventos() 
+    {
+        $registros = Evento::all()->reverse();
+        return view('eventos', compact('registros'));
+    }
+
     // Metodo responsavel por abrir a pagina de index dos eventos
     public function index()
     {
@@ -34,7 +41,7 @@ class EventoController extends Controller
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
-            $dir = 'img/cursos/';
+            $dir = 'img/eventos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
@@ -67,7 +74,7 @@ class EventoController extends Controller
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
             $num = rand(1111,9999);
-            $dir = 'img/cursos';
+            $dir = 'img/eventos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
