@@ -3,19 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DadosSite;
+use App\Sobre;
  
-class DadosSiteController extends Controller
+class SobreController extends Controller
 {
+
+    public function sobre() 
+    {
+        $registro = Sobre::latest('updated_at')->first();
+        return view('sobre', compact('registro'));
+    }
+
     public function index() 
     {
-        $registros = DadosSite::all()->reverse();
-        return view('admin.dados_site.index', compact('registros'));
+        $registros = Sobre::all()->reverse();
+        return view('admin.sobre.index', compact('registros'));
     }
 
     public function adicionar() 
     {
-        return view('admin.dados_site.adicionar');
+        return view('admin.sobre.adicionar');
     }
     
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
@@ -43,16 +50,26 @@ class DadosSiteController extends Controller
             $dados['banner'] = $dir.'/'.$nomeAnexo;
         }
 
-        DadosSite::create($dados);
+        if($request->hasFile('anexo_sobre')) {
+            $anexo = $request->file('anexo_sobre');
+            $num = rand(1111,9999);
+            $dir = 'img/anexo_sobre';
+            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+            $nomeAnexo = 'anexo_sobre_'.$num.'.'.$ex;
+            $anexo->move($dir, $nomeAnexo);
+            $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
+        }
 
-        return redirect()->route('admin.dados_site');
+        Sobre::create($dados);
+
+        return redirect()->route('admin.sobre');
     }
 
     // Método responsavel por abrir a pagina de editar um evento
     public function editar($id) 
     {
-        $registro = DadosSite::find($id);
-        return view('admin.dados_site.editar', compact('registro'));
+        $registro = Sobre::find($id);
+        return view('admin.sobre.editar', compact('registro'));
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
@@ -79,10 +96,20 @@ class DadosSiteController extends Controller
             $dados['banner'] = $dir.'/'.$nomeAnexo;
         }
 
-        $dadoSite = DadosSite::find($id);
+        if($request->hasFile('anexo_sobre')) {
+            $anexo = $request->file('anexo_sobre');
+            $num = rand(1111,9999);
+            $dir = 'img/anexo_sobre';
+            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+            $nomeAnexo = 'anexo_sobre_'.$num.'.'.$ex;
+            $anexo->move($dir, $nomeAnexo);
+            $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
+        }
+
+        $dadoSite = Sobre::find($id);
         $dadoSite->touch();
         $dadoSite->update($dados);
 
-        return redirect()->route('admin.dados_site');
+        return redirect()->route('admin.sobre');
     }
 }

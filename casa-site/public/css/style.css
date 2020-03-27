@@ -459,3 +459,16 @@ div.card-voluntario p, h1 {
 .admin-card:visited:hover {
     color: rgba(255,255,255,1)
 }
+
+.sobre-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.sobre-layout img {
+    max-width: 10em;
+    max-height: 10em;
+    margin: 1em;
+}

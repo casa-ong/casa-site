@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
             'foto' => 'oi.png',
             'profissao' => 'Estudante',
             'admin' => '1',
+            'aprovado' => '1',
         ];
 
         if(User::where('email', '=', $dados['email'])->count()) {
