@@ -9,7 +9,7 @@
             <a class="admin-card">
                 <h2>Feed do site</h2>
             </a>
-            <a class="admin-card">
+            <a class="admin-card" href="{{ route('admin.eventos') }}">
                 <h2>Eventos</h2>
             </a>
             <a class="admin-card" href="{{ route('admin.projetos') }}">
