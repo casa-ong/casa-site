@@ -23,6 +23,9 @@ Route::get('/login',['as' => 'login', 'uses' => 'LoginController@index']);
 Route::get('/login/sair', ['as' => 'login.sair', 'uses' => 'LoginController@sair']);
 Route::post('/login/entrar',['as' => 'login.entrar', 'uses' => 'LoginController@entrar']);
 
+Route::get('/sugestao/adicionar',['as' => 'sugestao.adicionar', 'uses' => 'SugestaoController@adicionar']);
+Route::post('/sugestao/salvar',['as' => 'sugestao.salvar', 'uses' => 'SugestaoController@salvar']);
+
 
 
 Route::group(['middleware' => 'auth'], function() {
@@ -54,4 +57,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/sobre/editar/{id}',['as' => 'admin.sobre.editar', 'uses' => 'SobreController@editar']);
     Route::put('/admin/sobre/atualizar/{id}',['as' => 'admin.sobre.atualizar', 'uses' => 'SobreController@atualizar']);
     Route::get('/admin/sobre/deletar/{id}',['as' => 'admin.sobre.deletar', 'uses' => 'SobreController@deletar']);
+
+    Route::get('/admin/sugestoes',['as' => 'admin.sugestoes', 'uses' => 'SugestaoController@index']);
+    Route::get('/admin/sugestao/editar/{id}',['as' => 'admin.sugestao.editar', 'uses' => 'SugestaoController@editar']);
+    Route::put('/admin/sugestao/atualizar/{id}',['as' => 'admin.sugestao.atualizar', 'uses' => 'SugestaoController@atualizar']);
+    Route::get('/admin/sugestao/deletar/{id}',['as' => 'admin.sugestao.deletar', 'uses' => 'SugestaoController@deletar']);
+
+
 });

@@ -2,7 +2,7 @@
 @section('titulo', 'Lista de Eventos')
 
 @section('conteudo')
-        <h1 class="">Lista de eventos</h1>
+        <h1 class="">Lista de Eventos</h1>
 
         <div>
             <table class="table">
