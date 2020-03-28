@@ -30,23 +30,37 @@ class SugestaoController extends Controller
     public function salvar(Request $request) 
     {
         $dados = $request->all();
+
+        if(isset($dados['lida'])) {
+            $dados['lida'] = true;
+        } else {
+            $dados['lida'] = false;
+        }
+
         Sugestao::create($dados);
 
         return redirect()->route('admin.sugestoes');
     }
 
-    // Método responsavel por abrir a pagina de editar uma sugestao
+    /*Método responsavel por marcar a sugestao como lida 
     public function editar($id) 
     {
-        $registro = Sugestao::find($id);
-        return view('admin.sugestao.editar', compact('registro'));
-    }
+        $dados = $request->all();
+        $dados['lida'] = true;
+        Sugestao::find($id)->update($dados);
+
+        return redirect()->route('admin.sugestoes');
+    } */
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-    public function atualizar(Request $request, $id) 
+    public function atualizar($id) 
     {
-        $dados = $request->all();
-        Sugestao::find($id)->update($dados);
+        $dados = Sugestao::find($id);
+        if($dados['lida']) {
+            Sugestao::find($id)->update(['lida' => '0']);
+        } else {
+            Sugestao::find($id)->update(['lida' => '1']);
+        }
 
         return redirect()->route('admin.sugestoes');
     }
