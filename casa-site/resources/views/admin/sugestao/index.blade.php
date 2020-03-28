@@ -10,8 +10,10 @@
                     <tr class="table-header">
                         <th>Assunto</th>
                         <th>Mensagem</th>
+                        <th>Data de envio</th>
                         <th>Email</th>
                         <th>Telefone</th>
+                        <th>Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -20,10 +22,12 @@
                         <tr>
                             <td>{{ $registro->assunto }}</td>
                             <td>{{ $registro->mensagem }}</td>
+                            <td>{{ $registro->created_at }}</td>
                             <td>{{ $registro->email }}</td>
                             <td>{{ $registro->telefone }}</td>
+                            <td>{{ $registro->lida ? 'Lida' : 'Não lida' }}</td>
                             <td class="action-cell">
-                                <a class="btn" href="{{ route('admin.sugestao.editar',$registro->id) }}">Editar</a>
+                                <a class="btn" href="{{ route('admin.sugestao.atualizar', $registro->id) }}">Marcar como {{ $registro->lida ? 'não lida' : 'lida' }}</a>
                                 <a class="btn btn-danger" href="{{ route('admin.sugestao.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar essa sugestão?');">Deletar</a>
                             </td>
                         </tr>
