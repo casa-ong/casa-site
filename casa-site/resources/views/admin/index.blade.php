@@ -18,7 +18,7 @@
             <a class="admin-card" href="{{ route('admin.voluntarios') }}">
                 <h2>Voluntários</h2>
             </a>
-            <a class="admin-card">
+            <a class="admin-card" href="{{ route('admin.sugestoes') }}">
                 <h2>Sugestões</h2>
             </a>
             <a class="admin-card" href="{{ route('admin.sobre') }}">
