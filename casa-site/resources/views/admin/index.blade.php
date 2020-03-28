@@ -21,10 +21,7 @@
             <a class="admin-card">
                 <h2>Sugestões</h2>
             </a>
-            <a class="admin-card">
-                <h2>Sobre</h2>
-            </a>
-            <a class="admin-card" href="{{ route('admin.dados_site') }}">
+            <a class="admin-card" href="{{ route('admin.sobre') }}">
                 <h2>Configurações</h2>
             </a>
         </div>

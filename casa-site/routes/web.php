@@ -17,6 +17,7 @@ Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
 Route::get('/voluntarios', ['as' => 'site.voluntarios', 'uses' => 'UserController@voluntarios']);
 Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
 Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
+Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
 
 Route::get('/login',['as' => 'login', 'uses' => 'LoginController@index']);
 Route::get('/login/sair', ['as' => 'login.sair', 'uses' => 'LoginController@sair']);
@@ -47,10 +48,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::put('/admin/voluntario/atualizar/{id}',['as' => 'admin.voluntario.atualizar', 'uses' => 'UserController@atualizar']);
     Route::get('/admin/voluntario/deletar/{id}',['as' => 'admin.voluntario.deletar', 'uses' => 'UserController@deletar']);
 
-    Route::get('/admin/dados_site', ['as' => 'admin.dados_site', 'uses' => 'DadosSiteController@index']);
-    Route::get('/admin/dados_site/adicionar',['as' => 'admin.dados_site.adicionar', 'uses' => 'DadosSiteController@adicionar']);
-    Route::post('/admin/dados_site/salvar',['as' => 'admin.dados_site.salvar', 'uses' => 'DadosSiteController@salvar']);
-    Route::get('/admin/dados_site/editar/{id}',['as' => 'admin.dados_site.editar', 'uses' => 'DadosSiteController@editar']);
-    Route::put('/admin/dados_site/atualizar/{id}',['as' => 'admin.dados_site.atualizar', 'uses' => 'DadosSiteController@atualizar']);
-    Route::get('/admin/dados_site/deletar/{id}',['as' => 'admin.dados_site.deletar', 'uses' => 'DadosSiteController@deletar']);
+    Route::get('/admin/sobre', ['as' => 'admin.sobre', 'uses' => 'SobreController@index']);
+    Route::get('/admin/sobre/adicionar',['as' => 'admin.sobre.adicionar', 'uses' => 'SobreController@adicionar']);
+    Route::post('/admin/sobre/salvar',['as' => 'admin.sobre.salvar', 'uses' => 'SobreController@salvar']);
+    Route::get('/admin/sobre/editar/{id}',['as' => 'admin.sobre.editar', 'uses' => 'SobreController@editar']);
+    Route::put('/admin/sobre/atualizar/{id}',['as' => 'admin.sobre.atualizar', 'uses' => 'SobreController@atualizar']);
+    Route::get('/admin/sobre/deletar/{id}',['as' => 'admin.sobre.deletar', 'uses' => 'SobreController@deletar']);
 });

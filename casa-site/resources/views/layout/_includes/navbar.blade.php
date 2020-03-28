@@ -1,16 +1,19 @@
-@php($dadosSite = App\DadosSite::latest('updated_at')->first())
-@php($titulo = $dadosSite->titulo)
+@php($dadosSite = App\Sobre::latest('updated_at')->first())
+@if($dadosSite != null)
+@php($titulo = $dadosSite->titulo_site)
 @php($slogan = $dadosSite->slogan)
 @php($logo = $dadosSite->logo)
+@php($banner = $dadosSite->banner)
+@endif
 
-<nav class="navbar">
+<nav class="navbar" style="background-image: linear-gradient( rgba(162,194,90,0.5), rgba(162,194,90,0.5) ), url({{ isset($banner) ? asset($dadosSite->banner) : '' }}); background-position: center; background-size: 100%;">
     <div class="nav-dados">
         <div class="img-logo">
-            <img src="{{ asset($logo) }}" alt="">
+            <img src="{{ isset($logo) ? asset($logo) : '' }}" alt="">
         </div>
         <div class="logo">
-            <h1>{{ $titulo }}</h1>
-            <h2>{{ $slogan }}</h2>
+            <h1>{{ isset($titulo) ? $titulo : '' }}</h1>
+            <h2>{{ isset($slogan) ? $slogan : '' }}</h2>
         </div>
     </div>
     <div class="nav-links">
@@ -20,6 +23,7 @@
         <a class="nav-link" href="{{ route('site.projetos') }}">Projetos</a>
         <a class="nav-link" href="{{ route('site.voluntarios') }}">Voluntarios</a>
         <a class="nav-link" href="#">Contato</a>
+        <a class="nav-link" href="{{ route('site.sobre') }}">Sobre</a>
         @if(Auth::guest())
             <a class="nav-link" href="{{ route('login') }}">Acesso</a>
         @else
