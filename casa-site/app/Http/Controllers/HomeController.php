@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index() 
     {
-        $registros = Projeto::all();
+        $registros = Projeto::all()->reverse();
         return view('home', compact('registros'));
     }
 
