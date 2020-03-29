@@ -3,7 +3,7 @@
 
 @section('conteudo')
     <div class="form-title">
-        <h1>Adicionar voluntário</h1>
+        <h1>Seja voluntário</h1>
     </div>
     <div class="form">
         <form action="{{ route('admin.voluntario.salvar') }}" method="POST" enctype="multipart/form-data">

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
 Route::get('/voluntarios', ['as' => 'site.voluntarios', 'uses' => 'UserController@voluntarios']);
+Route::get('/voluntario/adicionar', ['as' => 'site.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
+Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
 Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
 Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
 Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
@@ -46,7 +48,7 @@ Route::group(['middleware' => 'auth'], function() {
     
     Route::get('/admin/voluntarios', ['as' => 'admin.voluntarios', 'uses' => 'UserController@index']);
     Route::get('/admin/voluntatio/adicionar',['as' => 'admin.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
-    Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
+    //Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
     Route::get('/admin/voluntario/editar/{id}',['as' => 'admin.voluntario.editar', 'uses' => 'UserController@editar']);
     Route::put('/admin/voluntario/atualizar/{id}',['as' => 'admin.voluntario.atualizar', 'uses' => 'UserController@atualizar']);
     Route::get('/admin/voluntario/deletar/{id}',['as' => 'admin.voluntario.deletar', 'uses' => 'UserController@deletar']);

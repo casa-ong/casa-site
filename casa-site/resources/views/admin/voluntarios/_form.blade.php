@@ -31,6 +31,8 @@
     <label for="email">Telefone/Celular</label>
     <input type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : '' }}" placeholder="Digite aqui o telefone do voluntario">
 </div>
+
+@if(!Auth::guest()) <!-- Garantir por validation que essa parte do codigo nao seja enviada sem autenticação -->
 <div class="input-field">
     <label for="password">Senha de acesso</label>
     <input type="password" name="password" value="" placeholder="Digite aqui a senha do voluntario">
@@ -43,4 +45,5 @@
     <input type="checkbox" name="admin" {{ isset($registro->admin) && $registro->admin == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>
 </label>
+@endif
 
