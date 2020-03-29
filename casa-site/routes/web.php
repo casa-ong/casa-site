@@ -18,7 +18,7 @@ Route::get('/voluntarios', ['as' => 'site.voluntarios', 'uses' => 'UserControlle
 Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
 Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
 Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
-Route::get('/noticias', ['as' => 'site.noticias', 'uses' => 'NoticiaController@sobre']);
+Route::get('/noticias', ['as' => 'site.noticias', 'uses' => 'NoticiaController@noticias']);
 
 Route::get('/login',['as' => 'login', 'uses' => 'LoginController@index']);
 Route::get('/login/sair', ['as' => 'login.sair', 'uses' => 'LoginController@sair']);

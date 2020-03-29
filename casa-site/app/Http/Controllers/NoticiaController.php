@@ -92,13 +92,6 @@ class NoticiaController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-         
-        if(isset($dados['curtir'])) {
-            $dados['curtir'] = true;
-        } else {
-            $dados['curtir'] = false;
-        }
-
         Noticia::find($id)->update($dados);
         return redirect()->route('admin.noticias');
     }

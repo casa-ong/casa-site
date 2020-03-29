@@ -18,7 +18,7 @@
     </div>
     <div class="nav-links">
         <a class="nav-link" href="{{ route('site.home') }}">Início</a>
-        <a class="nav-link" href="#">Notícias</a>
+        <a class="nav-link" href="{{ route('site.noticias') }}">Notícias</a>
         <a class="nav-link" href="{{ route('site.eventos') }}">Eventos</a>
         <a class="nav-link" href="{{ route('site.projetos') }}">Projetos</a>
         <a class="nav-link" href="{{ route('site.voluntarios') }}">Voluntarios</a>
