@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Auth;
 use App\User;
 
 class UserController extends Controller
@@ -30,6 +32,14 @@ class UserController extends Controller
     public function salvar(Request $request) 
     {
         $dados = $request->all();
+        
+        if(Auth::guest() && (isset($dados['admin']) || isset($dados['aprovado']))) {
+            return redirect()->route('site.voluntario.adicionar');
+        }
+        
+        if(!isset($dados['password'])) {
+            $dados['password'] = 'admin';
+        }
         $dados['password'] = bcrypt($dados['password']);
         
         if(isset($dados['admin'])) {
@@ -56,7 +66,7 @@ class UserController extends Controller
 
         User::create($dados);
 
-        return redirect()->route('admin.voluntarios');
+        return redirect()->route('site.voluntarios');
     }
 
     // Método responsavel por abrir a pagina de editar um projeto
