@@ -12,6 +12,7 @@ i {
     align-items: center;
     margin-left: 80px;
     margin-right: 80px;
+    padding-top: 2em;
 }
 
 hr {
@@ -248,6 +249,7 @@ a.btn {
 	font-style: normal;
 	font-weight: bold;
     padding: 10px;
+    
 }
 
 a:hover.btn {
@@ -398,7 +400,6 @@ div.card-voluntario {
 div.card-voluntario img {
     max-width: 5em;
     max-height: 5em;
-    border-radius: 5em;    
     padding-bottom: 1em;
 }
 

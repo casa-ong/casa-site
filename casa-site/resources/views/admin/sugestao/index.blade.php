@@ -35,7 +35,4 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            <a class="btn" href="{{ route('sugestao.adicionar') }}">Adicionar</a>
-        </div>
 @endsection
