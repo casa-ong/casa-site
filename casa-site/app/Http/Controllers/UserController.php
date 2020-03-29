@@ -31,10 +31,11 @@ class UserController extends Controller
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
     public function salvar(Request $request) 
     {
-        if(Auth::guest() && (!isset($dados['admin']) || !isset($dados['aprovado']))) {
+        $dados = $request->all();
+        
+        if(Auth::guest() && (isset($dados['admin']) || isset($dados['aprovado']))) {
             return redirect()->route('site.voluntario.adicionar');
         }
-        $dados = $request->all();
         
         if(!isset($dados['password'])) {
             $dados['password'] = 'admin';
