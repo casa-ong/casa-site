@@ -30,18 +30,6 @@ class NoticiaController extends Controller
     public function salvar(Request $request) 
     {
         $dados = $request->all();
-       
-
-        if($request->hasFile('anexo')) {
-            $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
-            $dir = 'img/noticias';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_'.$num.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['anexo'] = $dir.'/'.$nomeAnexo;
-        }
-
          
         if(isset($dados['publicado'])) {
             $dados['publicado'] = true;
@@ -54,8 +42,19 @@ class NoticiaController extends Controller
         } else {
             $dados['curtir'] = false;
         }
-        Noticia::create($dados);
 
+        if($request->hasFile('anexo')) {
+            $anexo = $request->file('anexo');
+            $num = rand(1111,9999);
+            $dir = 'img/noticias';
+            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+            $nomeAnexo = 'anexo_'.$num.'.'.$ex;
+            $anexo->move($dir, $nomeAnexo);
+            $dados['anexo'] = $dir.'/'.$nomeAnexo;
+        }
+
+        
+        Noticia::create($dados);
         return redirect()->route('admin.noticias');
     }
 
@@ -70,6 +69,18 @@ class NoticiaController extends Controller
     public function atualizar(Request $request, $id) 
     {
         $dados = $request->all();
+
+        if(isset($dados['publicado'])) {
+            $dados['publicado'] = true;
+        } else {
+            $dados['publicado'] = false;
+        }
+
+        if(isset($dados['curtir'])) {
+            $dados['curtir'] = true;
+        } else {
+            $dados['curtir'] = false;
+        }
        
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
@@ -89,7 +100,6 @@ class NoticiaController extends Controller
         }
 
         Noticia::find($id)->update($dados);
-
         return redirect()->route('admin.noticias');
     }
 
