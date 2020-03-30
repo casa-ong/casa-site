@@ -2,8 +2,11 @@
 @section('titulo', 'Lista de Eventos')
 
 @section('conteudo')
-        <h1 class="">Lista de Eventos</h1>
-
+    <div class="content">
+        <h1>Lista de Eventos</h1>
+        <div>
+            <a style="float: right;" class="btn" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
+        </div>
         <div>
             <table class="table">
                 <thead>
@@ -32,7 +35,5 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            <a class="btn" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
-        </div>
+    </div>
 @endsection

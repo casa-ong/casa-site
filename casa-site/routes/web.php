@@ -17,9 +17,9 @@ Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
 Route::get('/voluntarios', ['as' => 'site.voluntarios', 'uses' => 'UserController@voluntarios']);
 Route::get('/voluntario/adicionar', ['as' => 'site.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
 Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
-Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
+// Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
 Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
-Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
+// Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
 Route::get('/noticias', ['as' => 'site.noticias', 'uses' => 'NoticiaController@noticias']);
 
 Route::get('/login',['as' => 'login', 'uses' => 'LoginController@index']);

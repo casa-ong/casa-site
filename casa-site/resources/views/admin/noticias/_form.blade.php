@@ -1,4 +1,5 @@
-<input type="hidden" name="user_id" value="{{ Auth::id() }}">
+@php($user = Auth::user())
+<input type="hidden" name="user_id" value="{{ $user->id }}">
 
 <div class="input-field">
     <label for="titulo">Título</label>
@@ -12,8 +13,9 @@
 
 <div class="input-field">
     <label for="autor">Autor</label>
-    <input type="text" name="autor" value="{{ isset($registro->autor) ? $registro->autor : '' }}" placeholder="Digite aqui o nome do autor da notícia">
+    <input disabled type="text" value="{{ isset($user->name) ? $user->name : '' }}" placeholder="Digite aqui o nome do autor da notícia">
 </div>
+
 <div class="input-field">
     <label for="nome">Anexo</label>
     <input type="file" name="anexo">

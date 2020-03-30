@@ -2,8 +2,11 @@
 @section('titulo', 'Lista de Voluntários')
 
 @section('conteudo')
+<div class="content">
         <h1 class="">Lista de Voluntários</h1>
-
+        <div>
+            <a class="btn" href="{{ route('admin.voluntario.adicionar') }}">Adicionar</a>
+        </div>
         <div>
             <table class="table">
                 <thead>
@@ -41,7 +44,5 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            <a class="btn" href="{{ route('admin.voluntario.adicionar') }}">Adicionar</a>
-        </div>
+    </div>
 @endsection

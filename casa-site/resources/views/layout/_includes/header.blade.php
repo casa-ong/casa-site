@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <!-- JavaScript da pagina -->
     <script src="{{ asset('js/dropdown_on_click.js') }}" crossorigin="anonymous"></script>
+
     <!-- Icones do Font Awesome -->
     <script src="https://kit.fontawesome.com/8eafe50798.js" crossorigin="anonymous"></script>
     <!-- CSS for BootstrapCDN -->
@@ -14,6 +15,24 @@
 
 <body>
     <header>
-        @include('layout._includes.navbar')
+        @php($sobre = App\Sobre::latest('updated_at')->first())
+        @if($sobre != null)
+        @php($titulo = $sobre->titulo_site)
+        @php($slogan = $sobre->slogan)
+        @php($logo = $sobre->logo)
+        @php($banner = $sobre->banner)
+        @endif
+
+        <div class="header">
+            <div class="nav-dados">
+                <!--div class="img-logo">
+                    <img src="{{ isset($logo) ? asset($logo) : '' }}" alt="">
+                </div-->
+                <div class="logo">
+                    <h1>{{ isset($titulo) ? $titulo : '' }}</h1>
+                    <h2>{{ isset($slogan) ? $slogan : '' }}</h2>
+                </div>
+            </div>
+        </div>
     </header>
-    <div class="container">
+    @include('layout._includes.navbar')

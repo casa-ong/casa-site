@@ -1,111 +1,128 @@
 body {
     margin: 0px;
+    text-decoration: none;
+	font-family: sans-serif;
+	font-variant: normal;
+	font-style: normal;
+	font-weight: normal;
 }
 
-i {
-    font-size: 0.8em;
+.banner {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 400px;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-left: 80px;
-    margin-right: 80px;
-    padding-top: 2em;
+    align-items: stretch;
 }
 
-hr {
-    border: 1px solid #A2C25AFF;
+
+/* Header com titulo e slogan */
+div.header {
+    color: #000000;
+    background-color: #BEF0B8;
 }
 
-nav {
-    color: rgba(255,255,255,1);
-    background-color: #A2C25AFF;
-}
-
-nav div.nav-dados {
+div.header div.nav-dados {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-nav div.img-logo {
+div.header div.img-logo {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 1em;
 }
 
-nav div.img-logo img {
+div.header div.img-logo img {
     width: 8em;
 }
 
-nav div.nav-links {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: #7B9B31FF;
-}
-
-nav div.logo {
+div.header div.logo {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
 }
 
+div.header div.logo h1 {
+    font-size: 50px;
+    padding-top: 0.5em;
+    padding-bottom: 0.4em;
+    margin: 0em;
+}
 
-nav a {
-    /*border: 5px solid rgba(0,0,0,0);*/
-    /*border-radius: 5px;*/
-	background-color: rgba(40, 80, 255, 0);
-    color: rgba(255, 255, 255, 0.85);
+div.header div.logo h2 {
+    text-transform: uppercase;
     text-decoration: none;
-    font-size: 20px;
-	font-family: times;
+	font-family: sans-serif;
 	font-variant: normal;
 	font-style: normal;
+	font-weight: normal;
+    padding-bottom: 2em;
+    margin: 0em;
+}
+/* Fim Header com titulo e slogan */
+
+/* Navbar com links do site */
+nav.nav-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    align-self: flex-start; 
+    position: sticky;
+    position: -webkit-sticky; /* Safari */
+    top: 0;
+}
+
+nav a {
+	background-color: rgba(40, 80, 255, 0);
+    color: rgba(255, 255, 255, 0.85);
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 20px;
 	font-weight: bold;
 	padding: 0.7em;
 }
 
 nav a:hover {
-    color: rgba(255,255,255,1);
-    background-color: #A2C25AFF;
+    transition: 0.5s;
+    color: #000000;
+    background-color: #BEF0B8;
     font-weight: bold;
 }
 
 nav a:active {
-	color: white;
-	background-color: #7B9B31FF;
-}
-
-nav div.logo h1 {
-    padding-top: 0.5em;
-    margin: 0em;
+	color: #000000;
+	background-color: #BEF0B8;
 }
 
 /* Dropdown Button */
 nav button {
-    background-color: #7B9B31FF;
+    background-color: #000000;
     color: rgba(255,255,255,0.85);
     border: none;
     cursor: pointer;
+    text-transform: uppercase;
     text-decoration: none;
     font-size: 20px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
     font-weight: bold;
     padding: 0.7em;
 }
 
 /* Dropdown button on hover & focus */
 nav button:hover, nav button:focus {
-    background-color: #A2C25AFF;
-    color: rgba(255,255,255,1);
+    transition: 0.5s;
+    background-color: #BEF0B8;
+    color: #000000;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -118,7 +135,7 @@ nav button:hover, nav button:focus {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #A2C25AFF;
+    background-color: #BEF0B8;
     min-width: 220px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border-radius: 0px 0px 5px 5px;
@@ -127,7 +144,7 @@ nav button:hover, nav button:focus {
 
 /* Links inside the dropdown */
 .dropdown-content a {
-    color: rgba(255,255,255,1);
+    color: #000000;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -135,26 +152,28 @@ nav button:hover, nav button:focus {
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {
-    background-color: #7B9B31FF;
+    transition: 0.5s;
+    background-color: #000000;
+    color: #FFFFFF;
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
-
-nav div.logo h2 {
-    text-decoration: none;
-    /*font-size: 20px;*/
-	font-family: times;
-	font-variant: normal;
-	font-style: italic;
-	font-weight: normal;
-    padding-bottom: 0.5em;
-    margin: 0em;
+.show {
+    display:block;
 }
 
+/* Tamanho dos icones de botoes */
+i {
+    font-size: 0.8em;
+}
+
+/* Navbar com links do site */
+
+
+/* Inicio de Estilo das tabelas */
 table {
     min-width: 800px;
-    border: 1px solid #A2C25AFF;
+    border: 1px solid #000000;
     border-radius: 5px;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -168,7 +187,7 @@ table th{
 }
 
 table td {
-    border-top: 1px solid #A2C25AFF;
+    border-top: 1px solid #000000;
     padding: 10px;
 }
 
@@ -176,91 +195,54 @@ table td.action-cell {
     text-align: center;
 }
 
-
-table a.btn {
-    border-radius: 5px;
-    background-color: #A2C25AFF;
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    font-size: 18px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
-	font-weight: bold;
-    padding: 8px;
-    margin: 2px;
-}
-
-
-table a:hover.btn {
-    border-radius: 5px;
-    background-color: #7B9B31FF;
-    color: rgba(255, 255, 255, 1);
-    text-decoration: none;
-    font-size: 18px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
-	font-weight: bold;
-    padding: 8px;
-    margin: 2px;
-}
-
-table a.btn.btn-danger {
-    border-radius: 5px;
-    background-color: rgb(255, 0, 0);
-    color: rgba(255, 255, 255, 1);
-    text-decoration: none;
-    font-size: 18px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
-	font-weight: bold;
-    padding: 8px;
-    margin: 2px;
-}
-
-table a:hover.btn.btn-danger {
-    border-radius: 5px;
-    background-color: rgb(200, 0, 0);
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    font-size: 18px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
-	font-weight: bold;
-    padding: 8px;
-    margin: 2px;
-}
-
 table img {
     width: 3em;
 }
+/* Fim de Estilo das tabelas */
 
 a.btn {
     border-radius: 5px;
-    background-color: #A2C25AFF;
-    color: rgba(255, 255, 255, 0.9);
+    color: #FFFFFF;
+    background-color: #000000;
+    border: 1px solid #000000;
     text-decoration: none;
     font-size: 18px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
 	font-weight: bold;
     padding: 10px;
     
 }
 
 a:hover.btn {
+    transition: 0.5s;
     border-radius: 5px;
-    background-color: #7B9B31FF;
-    color: rgba(255, 255, 255, 1);
+    background-color: #BEF0B8;
+    color: #000000;
+    border: 1px solid #000000;
     text-decoration: none;
     font-size: 18px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
+	font-weight: bold;
+    padding: 10px;
+}
+
+a.btn.btn-danger {
+    border-radius: 5px;
+    background-color: #FF0000;
+    color: #FFFFFF;
+    border: 1px solid #000000;
+    text-decoration: none;
+    font-size: 18px;
+	font-weight: bold;
+    padding: 10px;
+}
+
+a:hover.btn.btn-danger {
+    transition: 0.5s;
+    border-radius: 5px;
+    background-color: #AA0000;
+    color: #FFFFFF;
+    border: 1px solid #000000;
+    text-decoration: none;
+    font-size: 18px;
 	font-weight: bold;
     padding: 10px;
 }
@@ -268,30 +250,38 @@ a:hover.btn {
 button.btn {
     border: 0px;
     border-radius: 5px;
-    background-color: #A2C25AFF;
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
+    border: 1px solid #000000;
+    background-color: #000000;
+    color: #FFFFFF;
     font-size: 18px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
+    text-decoration: none;
 	font-weight: bold;
     padding: 10px;
 }
 
 button:hover.btn {
+    transition: 0.5s;
     border: 0px;
     border-radius: 5px;
-    background-color: #7B9B31FF;
-    color: rgba(255, 255, 255, 1);
+    border: 1px solid #000000;
+    background-color: #BEF0B8;
+    color: #000000;
     text-decoration: none;
     font-size: 18px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
 	font-weight: bold;
     padding: 10px;
 }
+
+div.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2em;
+    
+}
+
+/* Layout okay até aqui */
 
 form {
     width: 800px;
@@ -316,7 +306,7 @@ form {
 
 .input-field input, .input-field textarea  {
     color: rgba(0,0,0,0.85);
-    border: 1px solid #A2C25AFF;
+    border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
     text-decoration: none;
     font-size: 16px;
@@ -348,64 +338,126 @@ form {
     margin-bottom: 1em;
 }
 
-div.list-projetos {
-    padding: 1em;
-    display: flex;
-    flex-direction: row;
-}
 
-div.img-projetos {
-    min-width: 20em;
-    padding-right: 5em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-}
-
-div.list-projetos img {
-    max-width: 20em;
-    max-height: 20em;
-}
-
-div.text-projeto {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    vertical-align: bottom;
-    text-align: justify;
-}
-
+/* tela voluntarios */
 div.cards-voluntarios {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-div.card-voluntario {
-    width: 15em;
+
+/* Layout okay a partir daqui */
+div.card {
+    width: 18em;
+    height: 15em;
     padding: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
     margin-left: 0.5em;
     margin-right: 0.5em;
     display: flex;
+    color: #FFFFFF;
     flex-direction: column;
     align-items: center;
-    vertical-align: bottom;
-    text-align: justify;
+    justify-content: flex-end;
+    text-align: center;
     flex-wrap: wrap;
-    border: 1px solid #A2C25AFF;
-    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-position: center; 
+    background-size: 100%;
 }
 
-div.card-voluntario img {
-    max-width: 5em;
-    max-height: 5em;
+div.card-big {
+    width: 40em;
+    height: 33em;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: flex;
+    color: #FFFFFF;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    flex-wrap: wrap;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-position: center; 
+    background-size: 100%;
+}
+
+div.card:hover, div.card-big:hover {
+    justify-content: flex-start;
+}
+
+div.card:hover .card-description, div.card-big:hover .card-description, div.card-person:hover p {
+    display: block;
+}
+
+div.card:hover h1, div.card:hover p, div.card-big:hover h1, div.card-big:hover p, div.card-person:hover img {
+    display: none;
+}
+
+.card-description {
+    display: none;
+    overflow: hidden;
+}
+
+div.card p, div.card h1 {
+    margin: 0px;
+    padding: 0px;
     padding-bottom: 1em;
 }
 
-div.card-voluntario p, h1 {
-    margin: 0px;
-    padding: 0px;
+div.card-person {
+    width: 18em;
+    height: 15em;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: flex;
+    color: #000000;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-position: center; 
+    background-size: 100%;
+}
+
+div.card-person:hover {
+    transition: 0.5s;
+    width: 18em;
+    height: 15em;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    display: flex;
+    color: #000000;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #BEF0B8;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+div.card-person p {
+    display: none;
+}
+
+div.card-person img {
+    max-width: 5em;
+    max-height: 5em;
     padding-bottom: 1em;
 }
 
@@ -428,13 +480,11 @@ div.card-voluntario p, h1 {
     color: rgba(0,0,0,0.85);
     text-decoration: none;
     font-size: 16px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
 	font-weight: bold;
 }
 
 .admin-card:hover {
+    transition: 0.5s;
     background-color: #A2C25AFF;
     color: rgba(255, 255, 255, 1);
     border: 1px solid #A2C25AFF;
@@ -447,9 +497,6 @@ div.card-voluntario p, h1 {
     padding-right: 1em;
     text-decoration: none;
     font-size: 16px;
-	font-family: times;
-	font-variant: normal;
-	font-style: normal;
 	font-weight: bold;
 }
 
@@ -458,18 +505,70 @@ div.card-voluntario p, h1 {
 }
 
 .admin-card:visited:hover {
+    transition: 0.5s;
     color: rgba(255,255,255,1)
 }
 
-.sobre-layout {
+/* Layout organizado */
+
+.container div.item {
+    background-color: #BEF0B8;
+    border-bottom: 1px solid #000000;
+    padding: 30px 80px 30px 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
-.sobre-layout img {
-    max-width: 10em;
-    max-height: 10em;
-    margin: 1em;
+.container div.item-title {
+    background-color: #BEF0B8;
+    padding: 50px 80px 0px 80px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.container div.item-title h1 {
+    padding: 0px;
+}
+
+.container div.item div.input-field {
+    display: flex; 
+    flex-direction:row;
+    justify-content: center;
+}
+
+.container div.item label {
+    text-decoration: none;
+    font-size: 30px;
+	font-weight: bold;
+    padding: 0 1em 0 0;
+    align-self: center;
+}
+
+.container div.item input {
+    text-decoration: none;
+    padding-right: 2em;
+    width: 300px;
+}
+
+.container div.item div.sobre-card {
+    width: 39em;
+    height: 20em;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    text-align: center;
+    font-size:25px;
+    color: #000000;
+    flex-wrap: wrap;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-position: center; 
+    background-repeat: no-repeat;
+    background-color: #FFFFFF;
+    background-size: 50%;
 }
