@@ -3,8 +3,8 @@
 @php($user = Auth::user())
 
 @section('conteudo')
-    <h1 class="">Bem-vindo ao seu painel de controle, {{ $user['name'] }}!</h1>
-
+<div class="content">
+		    <h1 class="">Bem-vindo ao seu painel de controle, {{ $user['name'] }}!</h1>
         <div class="admin-container">
             <a class="admin-card" href="{{ route('admin.noticias') }}">
                 <h2>Notícias</h2>
@@ -25,4 +25,5 @@
                 <h2>Configurações</h2>
             </a>
         </div>
+</div>
 @endsection
