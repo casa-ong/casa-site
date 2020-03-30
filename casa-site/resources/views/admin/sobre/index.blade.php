@@ -2,8 +2,11 @@
 @section('titulo', 'Historico de configurações')
 
 @section('conteudo')
+    <div class="content">
         <h1 class="">Historico de configurações e sobre do site</h1>
-
+        <div>
+            <a class="btn" href="{{ route('admin.sobre.adicionar') }}">Nova configuração e sobre</a>
+        </div>
         <div>
             <table class="table">
                 <thead>
@@ -39,7 +42,5 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            <a class="btn" href="{{ route('admin.sobre.adicionar') }}">Nova configuração e sobre</a>
-        </div>
+    </div>
 @endsection

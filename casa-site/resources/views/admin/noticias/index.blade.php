@@ -2,8 +2,11 @@
 @section('titulo', 'Lista de Notícias')
 
 @section('conteudo')
+    <div class="content">
         <h1 class="">Lista de noticias</h1>
-
+        <div>
+            <a class="btn" href="{{ route('admin.noticia.adicionar') }}">Adicionar</a>
+        </div>
         <div>
             <table class="table">
                 <thead>
@@ -29,7 +32,5 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            <a class="btn" href="{{ route('admin.noticia.adicionar') }}">Adicionar</a>
-        </div>
+    </div>
 @endsection

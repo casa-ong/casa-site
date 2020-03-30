@@ -1,22 +1,20 @@
 @extends('layout.site')
 @section('titulo', 'Inicio - CASA')
 
-@section('conteudo')
-
-        <div>
-            @foreach ($registros as $registro)
-                @if($registro->publicado)
-                    <div class="list-projetos">
-                        <div class="img-projetos">
-                            <img src="{{ $registro->anexo }}" alt="">
-                        </div>
-                        <div class="text-projeto">
-                            <h1>{{ $registro->nome }}</h1>
-                            <p>{{ $registro->descricao }}</p>
-                        </div>
-                    </div>
-                    <hr>
-                @endif
-            @endforeach
+@section('banner')
+        <div class="banner" style="background-image: url({{ asset($sobre->banner) }});">
+            <!--img src="{{ asset($sobre->banner) }}" alt=""-->
         </div>
+@endsection
+
+@section('conteudo')
+        <div class="item">
+            <div class="input-field">
+                <label for="email">Quer ser um voluntário?</label>
+                <input name="email" type="text" placeholder="Digite seu email para se cadastrar">
+                <a href="{{ route('site.voluntario.adicionar') }}" class="btn" style="margin-left:0.5em;">Enviar</a>
+            </div>
+        </div>
+        @include('projetos')
+        @include('sobre')
 @endsection

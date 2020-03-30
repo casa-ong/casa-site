@@ -2,8 +2,8 @@
 @section('titulo', 'Lista de Sugestões')
 
 @section('conteudo')
+    <div class="content">
         <h1 class="">Lista de Sugestões</h1>
-
         <div>
             <table class="table">
                 <thead>
@@ -35,4 +35,5 @@
                 </tbody>
             </table>
         </div>
+    </div>
 @endsection

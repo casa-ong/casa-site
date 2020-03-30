@@ -2,8 +2,9 @@
 @section('titulo', 'Adicionar sugestão')
 
 @section('conteudo')
+<div class="content">
     <div class="form-title">
-        <h1>Adicionar sugestão </h1>
+        <h1>Envie uma sugestão</h1>
     </div>
     <div class="form">
         <form action="{{ route('sugestao.salvar') }}" method="POST" enctype="multipart/form-data">
@@ -14,6 +15,6 @@
                 <button class="btn">Salvar</button>
             </div>
         </form>
-
     </div>
+</div>
 @endsection

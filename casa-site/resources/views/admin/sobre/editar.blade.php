@@ -2,6 +2,7 @@
 @section('titulo', 'Editar configuração e sobre')
 
 @section('conteudo')
+<div class="content">
     <div class="form-title">
         <h1>Editar configuração e sobre</h1>
     </div>
@@ -14,6 +15,6 @@
                 <button class="btn">Salvar alterações</button>
             </div>
         </form>
-
     </div>
+</div>
 @endsection

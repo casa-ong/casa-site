@@ -2,8 +2,10 @@
 @section('titulo', 'Lista de Eventos')
 
 @section('conteudo')
-
-        <div>
+        <div class="item-title">
+            <h1>Eventos</h1>
+        </div>
+        <div class="item">
             @foreach ($registros as $registro)
                 @if($registro->publicado)
                     <div class="list-eventos">

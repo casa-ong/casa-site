@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Projeto;
+use App\Sobre;
 
 class HomeController extends Controller
 {
     public function index() 
     {
         $registros = Projeto::all()->reverse();
-        return view('home', compact('registros'));
+        $sobre = Sobre::latest('updated_at')->first();
+        return view('home', compact('registros', 'sobre'));
     }
 
     public function adminIndex()

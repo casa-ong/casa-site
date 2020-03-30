@@ -4,7 +4,7 @@
 
 @section('conteudo')
 
-        <div>
+        <div class="item">
             @foreach ($registros as $registro)
                     <div class="list-projetos">
                         <div class="img-projetos">
