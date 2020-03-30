@@ -19,7 +19,7 @@ class LoginController extends Controller
         $dados = $request->all();
         $user = User::where('email', $dados['email'])->first();
 
-        if($user->admin == true && Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['senha']]))
+        if($user != null && $user['admin'] == true && Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['senha']]))
         {
             return redirect()->route('admin.index');
         }
