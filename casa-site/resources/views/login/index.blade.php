@@ -2,6 +2,7 @@
 @section('titulo', 'Lista de Projetos')
 
 @section('conteudo')
+<div class="content">
     <div class="form-title">
         <h1>Login</h1>
     </div>
@@ -21,6 +22,6 @@
                 <button class="btn">Entrar</button>
             </div>
         </form>
-
     </div>
+</div>
 @endsection

@@ -17,4 +17,5 @@
         </div>
         @include('projetos')
         @include('sobre')
+        @include('noticias')
 @endsection

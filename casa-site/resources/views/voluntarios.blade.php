@@ -2,11 +2,9 @@
 @section('titulo', 'Nossos voluntários')
 
 @section('conteudo')
-<div class="content">
-        <div>
-            <a class="btn" href="{{ route('site.voluntario.adicionar') }}">Seja um voluntário</a>
-        </div>
-        <div>
+    <div class="content">
+        <a class="btn" href="{{ route('site.voluntario.adicionar') }}">Seja um voluntário</a>
+        <div style="display: flex; ">
             @foreach ($registros as $registro)
                 @if($registro->aprovado)
                     <div class="card-person">

@@ -13,7 +13,7 @@
 
 <div class="input-field">
     <label for="autor">Autor</label>
-    <input disabled type="text" value="{{ isset($user->name) ? $user->name : '' }}" placeholder="Digite aqui o nome do autor da notícia">
+    <input readonly type="text" name="autor" value="{{ isset($user->name) ? $user->name : '' }}" placeholder="Digite aqui o nome do autor da notícia">
 </div>
 
 <div class="input-field">

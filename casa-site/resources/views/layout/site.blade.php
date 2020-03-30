@@ -6,5 +6,6 @@
 @yield('conteudo')
 </div>
 
+<footer>
 @include('layout._includes.footer')
-
+</footer>
