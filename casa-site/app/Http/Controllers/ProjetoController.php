@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Projeto;
+use Validator;
 
 class ProjetoController extends Controller
 {
@@ -29,7 +30,24 @@ class ProjetoController extends Controller
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
     public function salvar(Request $request) 
     {
+
         $dados = $request->all();
+
+        // Validar campos ao salvar
+        $validarDados = Validator::make($dados, [
+            'user_id' => 'required|exists:users,id',
+            'nome' => 'required|min:3',
+            'descricao' => 'required|min:3',
+        ],[
+            'nome.required' => 'O campo nome deve ser preenchido',
+            'nome.min' => 'O campo nome deve ter no mínimo 3 letras',
+            'descricao.required' => 'O texto da descrição deve ser preenchido',
+            'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
+        ]);
+
+        if($validarDados->fails()) {
+            return redirect()->back()->withErrors($validarDados->errors())->withInput();
+        }
         
         if(isset($dados['publicado'])) {
             $dados['publicado'] = true;
@@ -63,6 +81,22 @@ class ProjetoController extends Controller
     public function atualizar(Request $request, $id) 
     {
         $dados = $request->all();
+
+        // Validar campos ao salvar
+        $validarDados = Validator::make($dados, [
+            'user_id' => 'required',
+            'nome' => 'required|min:3',
+            'descricao' => 'required|min:3',
+        ],[
+            'nome.required' => 'O campo nome deve ser preenchido',
+            'nome.min' => 'O campo nome deve ter no mínimo 3 letras',
+            'descricao.required' => 'O texto da descrição deve ser preenchido',
+            'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
+        ]);
+
+        if($validarDados->fails()) {
+            return redirect()->back()->withErrors($validarDados->errors())->withInput();
+        }
         
         if(isset($dados['publicado'])) {
             $dados['publicado'] = true;
