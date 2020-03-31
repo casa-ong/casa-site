@@ -317,6 +317,14 @@ form {
     padding: 10px;
 }
 
+.input-field input.error, .input-field textarea.error {
+    border: 2px solid rgba(255, 0, 0, 1);
+}
+
+p.error {
+    color: #FF0000;
+}
+
 .input-checkbox {
     display: flex;
     flex-direction: row;
@@ -359,7 +367,7 @@ div.card {
     justify-content: flex-end;
     text-align: center;
     flex-wrap: wrap;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    /*border: 2px solid rgba(0, 0, 0, 0.3);*/
     border-radius: 10px;
     background-position: center; 
     background-size: 100%;
@@ -380,7 +388,7 @@ div.card-big {
     justify-content: flex-end;
     text-align: center;
     flex-wrap: wrap;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    /*border: 2px solid rgba(0, 0, 0, 0.3);*/
     border-radius: 10px;
     background-position: center; 
     background-size: 100%;
@@ -549,17 +557,16 @@ div.item input {
 
 div.item div.sobre-card {
     width: 39em;
-    height: 20em;
+    height: fit-content;
     padding: 1em;
     margin-top: 1em;
     margin-bottom: 1em;
     margin-left: 0.5em;
     margin-right: 0.5em;
-    text-align: center;
     font-size:25px;
     color: #000000;
     flex-wrap: wrap;
-    border: 2px solid rgba(0, 0, 0, 0.3);
+    /*border: 2px solid rgba(0, 0, 0, 0.3);*/
     border-radius: 10px;
     background-position: center; 
     background-repeat: no-repeat;
@@ -673,6 +680,7 @@ a.social-icon {
     padding: 0.5em;
     text-decoration: none;
     font-size: 40px;
+    color: #000000;
 }
 
 a:visited.social-icon {
