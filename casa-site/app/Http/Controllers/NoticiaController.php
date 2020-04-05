@@ -9,8 +9,13 @@ class NoticiaController extends Controller
 {
     public function noticias() 
     {
-        $registros = Noticia::all()->reverse();
-        return view('noticias', compact('registros'));
+        $noticias = Noticia::latest()->paginate(6);
+        return view('noticias', compact('noticias'));
+    }
+
+    public function noticia($id) {
+        $noticia = Noticia::find($id);
+        return view('noticia', compact('noticia'));
     }
     
     // Metodo responsavel por abrir a pagina inicial das noticias

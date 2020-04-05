@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         $registros = Projeto::all()->reverse();
         $sobre = Sobre::latest('updated_at')->first();
-        $noticias = Noticia::all()->reverse();
+        $noticias = Noticia::latest()->paginate(3);
         return view('home', compact('registros', 'sobre', 'noticias'));
     }
 

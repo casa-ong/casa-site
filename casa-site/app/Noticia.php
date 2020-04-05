@@ -10,4 +10,8 @@ class Noticia extends Model
         'titulo', 'texto', 'autor', 'anexo', 'publicado', 'curtir', 'user_id',
     ];
 
+    public function user() {
+        return $this->belongTo('App\User');
+    }
+
 }
