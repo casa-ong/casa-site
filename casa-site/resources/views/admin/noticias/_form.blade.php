@@ -8,7 +8,7 @@
 
 <div class="input-field">
     <label for="texto">Texto</label>
-    <input type="text" name="texto" value="{{ isset($registro->texto) ? $registro->texto : '' }}" placeholder="Digite aqui o texto da notícia">
+    <textarea type="text" name="texto" placeholder="Digite aqui o texto da notícia">{{ isset($registro->texto) ? $registro->texto : '' }}</textarea>
 </div>
 
 <div class="input-field">

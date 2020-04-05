@@ -82,9 +82,10 @@ nav.nav-links {
     position: sticky;
     position: -webkit-sticky; /* Safari */
     top: 0;
+    z-index: 999;
 }
 
-nav a {
+nav.nav-links a {
 	background-color: rgba(40, 80, 255, 0);
     color: rgba(255, 255, 255, 0.85);
     text-transform: uppercase;
@@ -94,20 +95,20 @@ nav a {
 	padding: 0.7em;
 }
 
-nav a:hover {
+nav.nav-links a:hover {
     transition: 0.5s;
     color: #000000;
     background-color: #BEF0B8;
     font-weight: bold;
 }
 
-nav a:active {
+nav.nav-links a:active {
 	color: #000000;
 	background-color: #BEF0B8;
 }
 
 /* Dropdown Button */
-nav button {
+nav.nav-links button {
     background-color: #000000;
     color: rgba(255,255,255,0.85);
     border: none;
@@ -120,7 +121,7 @@ nav button {
 }
 
 /* Dropdown button on hover & focus */
-nav button:hover, nav button:focus {
+nav.nav-links button:hover, nav.nav-links button:focus {
     transition: 0.5s;
     background-color: #BEF0B8;
     color: #000000;
@@ -144,7 +145,7 @@ nav button:hover, nav button:focus {
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+div.dropdown-content a {
     color: #000000;
     padding: 12px 16px;
     text-decoration: none;
@@ -152,7 +153,7 @@ nav button:hover, nav button:focus {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
+div.dropdown-content a:hover {
     transition: 0.5s;
     background-color: #000000;
     color: #FFFFFF;
@@ -595,18 +596,49 @@ div.item div.news-card {
 
 div.item div.news-card img {
     width: 13em;
-    max-height: 10em;
+    height: 10em;
     border-radius: 10px 10px 0 0;
     align-self: center;
 }
 
+div.item div.news-card img:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 div.item div.news-card div.news-card-text {
-    padding: 1em;
+    padding: 0 1em 1em 1em;
+    height: 20em;
 }
 
 div.item div.news-card div.news-card-text p {
     color: #000000AA;
+    font-size: 15px;
+    margin: 0.5em 0;
+}
+
+div.item div.news-card div.news-card-text p.news-card-p {
+    color: #000000BB;
     font-size: 18px;
+    max-height: 6.5em;
+    overflow: hidden;
+}
+
+div.item div.news-card div.news-card-text h4 {
+    margin: 0;
+    height: 2.5em;
+    overflow: hidden;
+}
+
+div.item div.news-card div.news-card-text h4 a {
+    color: #000000;
+    text-decoration: none;
+    padding: 0 1em 0 0;
+    align-self: center;
+}
+
+div.item div.news-card div.news-card-text h4 a:hover {
+    text-decoration: underline;
 }
 
 div.item-black {
@@ -695,4 +727,100 @@ a:hover.social-icon {
     text-decoration: none;
     font-size: 42px;
     text-shadow: 2px 2px 5px #FFFFFF;
+}
+
+div.page-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2em;
+    background-color: #BEF0B8;
+}
+
+/* Paginação */
+div.page-nav nav {
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+div.page-nav nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+}
+
+div.page-nav nav ul li {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+div.page-nav nav ul li.disabled,  div.page-nav nav ul li.active {
+    color: #000000AA;
+    padding: 1em;
+}
+
+div.page-nav nav ul li.active {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+div.page-nav nav ul li a.previous {
+    border-right: 1px solid #000000;
+    border-left: 0px;
+} 
+
+div.page-nav nav ul li a.next {
+    border-left: 1px solid #000000;
+    border-right: 0px;
+}
+
+div.page-nav nav ul li a {
+    color: #000000;
+    padding: 1em;
+    text-decoration: none;
+}
+
+div.page-nav nav ul li a:hover {
+    transition: 0.5s;
+    background-color: #000000;
+    color: #FFFFFF;
+}
+/* Fim de paginação */
+
+div.news-page {
+    background-color: #BEF0B8;
+    padding: 2em 80px;
+}
+
+div.news-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    padding: 2em 7.5em 7.5em;
+    border-radius: 10px;
+}
+
+div.news-item div.news-title {
+    padding: 0 80px 50px 80px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+div.news-item div.news-item-text {
+    padding: 0 1em 1em 1em;
+}
+
+div.news-item div.news-item-text p {
+    color: #000000AA;
+    font-size: 15px;
+    margin: 0.5em 0;
+}
+
+div.news-item div.news-item-text p.news-item-p {
+    color: #000000BB;
+    font-size: 18px;
 }
