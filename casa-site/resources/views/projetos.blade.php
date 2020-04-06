@@ -22,7 +22,7 @@
             @endfor
         </div>
     </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+    {{--<div style="display: flex; flex-direction: row; flex-wrap: wrap;">
         @for ($i = 3; $i < count($registros); $i++)
             @if($registros[$i]->publicado)
                 <div class="card" style="background-image: linear-gradient( rgba(0,0,0,0.9), rgba(0,0,0,0.6) ), url({{ isset($registros[$i]->anexo) ? asset($registros[$i]->anexo) : '' }});">
@@ -32,5 +32,5 @@
                 </div>
             @endif
         @endfor
-    </div>
+    </div>--}}
 </div>

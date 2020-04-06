@@ -2,15 +2,19 @@
 <html>
 <head>
     <title>@yield('titulo')</title>
+    
     <!-- Estilo da pagina -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
     <!-- JavaScript da pagina -->
     <script src="{{ asset('js/dropdown_on_click.js') }}" crossorigin="anonymous"></script>
-
+    
     <!-- Icones do Font Awesome -->
     <script src="https://kit.fontawesome.com/8eafe50798.js" crossorigin="anonymous"></script>
-    <!-- CSS for BootstrapCDN -->
-    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"-->
+    
+    <!-- include summernote css/js -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
 </head>
 
 <body>

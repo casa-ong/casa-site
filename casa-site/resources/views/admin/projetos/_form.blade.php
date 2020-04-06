@@ -9,7 +9,7 @@
 </div>
 <div class="input-field">
     <label for="nome">Descrição*</label>
-    <textarea class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva o projeto">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea id="summernote" class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva o projeto">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     <p class="error">{{ $errors->first('descricao') }}</p>
 </div>
 <div class="input-field">

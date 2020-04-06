@@ -594,6 +594,10 @@ div.item div.news-card {
     border-radius: 10px;
 }
 
+div.item div.news-card div.news-card-img {
+    min-height: 10em;
+}
+
 div.item div.news-card img {
     width: 13em;
     height: 10em;
@@ -804,23 +808,28 @@ div.news-item {
     border-radius: 10px;
 }
 
+div.news-item img {
+    width: 60em;
+}
+
 div.news-item div.news-title {
-    padding: 0 80px 50px 80px;
     text-align: center;
     text-transform: uppercase;
 }
 
-div.news-item div.news-item-text {
-    padding: 0 1em 1em 1em;
+div.news-item div.news-title p {
+    text-transform: none;
+    font-size: 22px;
 }
 
-div.news-item div.news-item-text p {
+div.news-item div.news-title p.news-date {
     color: #000000AA;
     font-size: 15px;
     margin: 0.5em 0;
 }
 
-div.news-item div.news-item-text p.news-item-p {
+div.news-item div.news-item-text {
+    padding-top: 1em;
     color: #000000BB;
     font-size: 18px;
 }

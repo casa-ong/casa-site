@@ -9,19 +9,19 @@ class NoticiaController extends Controller
 {
     public function noticias() 
     {
-        $noticias = Noticia::latest()->paginate(6);
-        return view('noticias', compact('noticias'));
+        $noticias = Noticia::where('publicado', 1)->latest()->paginate(6);
+        return view('site.noticias.noticias', compact('noticias'));
     }
 
     public function noticia($id) {
         $noticia = Noticia::find($id);
-        return view('noticia', compact('noticia'));
+        return view('site.noticias.noticia', compact('noticia'));
     }
     
     // Metodo responsavel por abrir a pagina inicial das noticias
     public function index()
     {
-        $registros = Noticia::all();
+        $registros = Noticia::all()->reverse();
         return view('admin.noticias.index', compact('registros'));
     }
 
