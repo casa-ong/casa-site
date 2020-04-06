@@ -59,7 +59,7 @@ class User extends Authenticatable
         'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
         'foto.image' => 'A imagem deve ser no formato jpeg, png, bmp, gif, svg ou webp',
         'email.required' => 'O campo de email é obrigatório',
-        'email.email' => 'Digite um endereço de email',
+        'email.email' => 'Digite um endereço de email válido',
         'email.unique' => 'O email digitado já foi cadastrado',
         'telefone.regex' => 'O número deve ser no formato (81)99999-9999',
         'password.regex' => 'Senha deve conter ao menos uma letra e um número e no mínimo 8 digitos',
@@ -68,5 +68,9 @@ class User extends Authenticatable
 
     public function noticia() {
         return $this->hasMany('App\Noticia');
+    }
+
+    public function sobre() {
+        return $this->hasMany('App\Sobre');
     }
 }

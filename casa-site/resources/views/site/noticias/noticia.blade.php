@@ -3,6 +3,7 @@
 
 @section('conteudo')
 <div class="news-page">
+    <p><a href="{{ route('site.home') }}">Início</a> / <a href="{{ route('site.noticias') }}">Notícias</a> / {{ $noticia->titulo }}</p>
     <div class="news-item">
         <div id="noticias" class="news-title">
             <h1>{{ $noticia->titulo }}</h1>

@@ -8,13 +8,13 @@
     </div>
     <div class="item" style="flex-direction: column">
         <div class="social-icons">
-            <a class="social-icon" href="#" target="_blank">
+            <a class="social-icon" href="{{ isset($sobre->twitter) ? $sobre->twitter : '#' }}" target="_blank">
                 <i class="fab fa-twitter"></i>
             </a>
-            <a class="social-icon" href="https://instagram.com/casa.ong" target="_blank">
+            <a class="social-icon" href="{{ isset($sobre->instagram) ? $sobre->instagram : '#' }}" target="_blank">
                 <i class="fab fa-instagram"></i>
             </a>
-            <a class="social-icon" href="#" target="_blank">
+            <a class="social-icon" href="{{ isset($sobre->facebook) ? $sobre->facebook : '#' }}" target="_blank">
                 <i class="fab fa-facebook"></i>
             </a>
         </div>

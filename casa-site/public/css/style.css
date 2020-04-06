@@ -532,6 +532,11 @@ div.item-title {
     text-transform: uppercase;
 }
 
+div.breadcrumbs {
+    background-color: #BEF0B8;
+    padding: 50px 80px 0px 80px;
+}
+
 div.item-title h1 {
     padding: 0px;
 }
