@@ -73,4 +73,12 @@ class User extends Authenticatable
     public function sobre() {
         return $this->hasMany('App\Sobre');
     }
+
+    public function projeto() {
+        return $this->hasMany('App\Projeto');
+    }
+
+    public function evento() {
+        return $this->hasMany('App\Evento');
+    }
 }

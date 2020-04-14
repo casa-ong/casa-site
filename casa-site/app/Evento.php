@@ -9,4 +9,9 @@ class Evento extends Model
     protected $fillable = [
         'nome', 'descricao', 'anexo', 'data', 'publicado', 'user_id'
     ];
+
+    public function user() 
+    {
+        return $this->belongsTo('App\User');
+    }
 }

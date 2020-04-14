@@ -11,10 +11,10 @@ class HomeController extends Controller
 {
     public function index() 
     {
-        $registros = Projeto::where('publicado', 1)->latest()->paginate(3);
+        $projetos = Projeto::where('publicado', 1)->latest()->paginate(3);
         $sobre = Sobre::latest('updated_at')->first();
         $noticias = Noticia::where('publicado', 1)->latest()->paginate(3);
-        return view('home', compact('registros', 'sobre', 'noticias'));
+        return view('home', compact('projetos', 'sobre', 'noticias'));
     }
 
     public function adminIndex()

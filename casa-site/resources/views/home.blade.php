@@ -2,9 +2,7 @@
 @section('titulo', 'Inicio - CASA')
 
 @section('banner')
-        <div class="banner" style="background-image: url({{ asset($sobre->banner) }});">
-            <!--img src="{{ asset($sobre->banner) }}" alt=""-->
-        </div>
+        <div class="banner" style="background-image: url({{ isset($sobre->banner) ? asset($sobre->banner) : '' }});"></div>
 @endsection
 
 @section('conteudo')
@@ -16,17 +14,43 @@
             </div>
         </div>
 
-        <div id="noticias" class="item-title">
-            <h1>Últimas Notícias</h1>
-        </div>
-        <div class="item">
-            @foreach ($noticias as $noticia)
-                @include('site.noticias._card')
-            @endforeach
-            <!--a title="Ver todas as notícias" href="{{ route('site.noticias').'#noticias' }}" class="btn">
-                <i class="fas fa-chevron-right"></i>
-            </a-->
-        </div>
+        @if(isset($noticias) && count($noticias) > 0)
+            <div id="noticias" class="item-title">
+                <h1>Últimas Notícias</h1>
+            </div>
+            <div class="item">
+                @foreach ($noticias as $noticia)
+                    @include('site.noticias._card')
+                @endforeach
+                <!--a title="Ver todas as notícias" href="{{ route('site.noticias').'#noticias' }}" class="btn">
+                    <i class="fas fa-chevron-right"></i>
+                </a-->
+            </div>
+        @endif
         @include('sobre')
-        @include('projetos')
+        @if(isset($projetos) && count($projetos) > 0)
+            <div id="projetos" class="item-title">
+                <h1>Nossos projetos</h1>
+            </div>
+            <div class="item">
+                <div style="display: flex; flex-direction: row">
+                    <div class="card-big" style="background-image: linear-gradient( rgba(0,0,0,0.9), rgba(0,0,0,0.6) ), url({{ isset($projetos[0]->anexo) ? asset($projetos[0]->anexo) : '' }});">
+                        <h1>{{ $projetos[0]->nome }}</h1>
+                        <p>{{ $projetos[0]->user->name }}</p>
+                        <p class="card-description">{{ $projetos[0]->descricao }}</p>
+                    </div>
+                    <div>
+                        @for ($i = 1; $i < (count($projetos) > 3 ? 3 : count($projetos)); $i++)
+                            @if($projetos[$i]->publicado)
+                                <div class="card" style="background-image: linear-gradient( rgba(0,0,0,0.9), rgba(0,0,0,0.6) ), url({{ isset($projetos[$i]->anexo) ? asset($projetos[$i]->anexo) : '' }});">
+                                    <h1>{{ $projetos[$i]->nome }}</h1>
+                                    <p>{{ $projetos[$i]->user->name }}</p>
+                                    <p class="card-description">{{ $projetos[$i]->descricao }}</p>
+                                </div>
+                            @endif
+                        @endfor
+                    </div>
+                </div>
+            </div>
+        @endif
 @endsection

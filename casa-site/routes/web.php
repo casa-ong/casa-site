@@ -17,9 +17,13 @@ Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
 Route::get('/voluntarios', ['as' => 'site.voluntarios', 'uses' => 'UserController@voluntarios']);
 Route::get('/voluntario/adicionar', ['as' => 'site.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
 Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
-// Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
-Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
 // Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
+
+Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
+Route::get('/evento/{id}', ['as' => 'site.evento', 'uses' => 'EventoController@evento']);
+
+Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
+Route::get('/projeto/{id}', ['as' => 'site.projeto', 'uses' => 'ProjetoController@projeto']);
 
 Route::get('/noticias', ['as' => 'site.noticias', 'uses' => 'NoticiaController@noticias']);
 Route::get('/noticia/{id}', ['as' => 'site.noticia', 'uses' => 'NoticiaController@noticia']);

@@ -1,8 +1,8 @@
 <nav class="nav-links">
     <a class="nav-link" href="{{ route('site.home') }}">Início</a>
     <a class="nav-link" href="{{ route('site.noticias').'#noticias' }}">Notícias</a>
-    <a class="nav-link" href="{{ route('site.eventos') }}">Eventos</a>
-    <a class="nav-link" href="{{ route('site.home').'#projetos' }}">Projetos</a>
+    <a class="nav-link" href="{{ route('site.eventos').'#eventos' }}">Eventos</a>
+    <a class="nav-link" href="{{ route('site.projetos').'#projetos' }}">Projetos</a>
     <a class="nav-link" href="{{ route('site.voluntarios') }}">Voluntarios</a>
     <a class="nav-link" href="{{ route('sugestao.adicionar') }}">Sugestões</a>
     <a class="nav-link" href="{{ route('site.home').'#sobre' }}">Sobre</a>

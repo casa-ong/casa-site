@@ -17,8 +17,13 @@ class ProjetoController extends Controller
 
     public function projetos() 
     {
-        $registros = $this->projeto->all()->reverse();
-        return view('projetos', compact('registros'));
+        $projetos = $this->projeto->where('publicado', 1)->latest()->paginate(6);
+        return view('site.projetos.projetos', compact('projetos'));
+    }
+
+    public function projeto($id) {
+        $projeto = $this->projeto->find($id);
+        return view('site.projetos.projeto', compact('projeto'));
     }
     
     // Metodo responsavel por abrir a pagina inicial dos projetos

@@ -8,16 +8,28 @@ use App\Evento;
 class EventoController extends Controller
 {
 
+    protected $evento;
+
+    public function __construct(Evento $evento) 
+    {
+        $this->evento = $evento;
+    }
+
     public function eventos() 
     {
-        $registros = Evento::all()->reverse();
-        return view('eventos', compact('registros'));
+        $eventos = $this->evento->all()->reverse();
+        return view('site.eventos.eventos', compact('eventos'));
+    }
+
+    public function evento($id) {
+        $evento = $this->evento->find($id);
+        return view('site.eventos.evento', compact('evento'));
     }
 
     // Metodo responsavel por abrir a pagina de index dos eventos
     public function index()
     {
-        $registros = Evento::all();
+        $registros = $this->evento->all();
         return view('admin.eventos.index', compact('registros'));
     }
 
@@ -48,7 +60,7 @@ class EventoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        Evento::create($dados);
+        $this->evento->create($dados);
 
         return redirect()->route('admin.eventos');
     }
@@ -56,7 +68,7 @@ class EventoController extends Controller
     // Método responsavel por abrir a pagina de editar um evento
     public function editar($id) 
     {
-        $registro = Evento::find($id);
+        $registro = $this->evento->find($id);
         return view('admin.eventos.editar', compact('registro'));
     }
 
@@ -81,7 +93,7 @@ class EventoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        Evento::find($id)->update($dados);
+        $this->evento->find($id)->update($dados);
 
         return redirect()->route('admin.eventos');
     }
@@ -89,7 +101,7 @@ class EventoController extends Controller
     // Metodo da acao de apagar um evento
     public function deletar($id) 
     {
-        Evento::find($id)->delete();
+        $this->evento->find($id)->delete();
         return redirect()->route('admin.eventos');
     }
 

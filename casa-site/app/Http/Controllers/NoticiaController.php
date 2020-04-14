@@ -7,21 +7,28 @@ use App\Noticia;
 
 class NoticiaController extends Controller
 {
+
+    protected $noticia;
+
+    public function __construct(Noticia $noticia) {
+        $this->noticia = $noticia;
+    }
+
     public function noticias() 
     {
-        $noticias = Noticia::where('publicado', 1)->latest()->paginate(6);
+        $noticias = $this->noticia->where('publicado', 1)->latest()->paginate(6);
         return view('site.noticias.noticias', compact('noticias'));
     }
 
     public function noticia($id) {
-        $noticia = Noticia::find($id);
+        $noticia = $this->noticia->find($id);
         return view('site.noticias.noticia', compact('noticia'));
     }
     
     // Metodo responsavel por abrir a pagina inicial das noticias
     public function index()
     {
-        $registros = Noticia::all()->reverse();
+        $registros = $this->noticia->all()->reverse();
         return view('admin.noticias.index', compact('registros'));
     }
 
@@ -59,14 +66,14 @@ class NoticiaController extends Controller
         }
 
         
-        Noticia::create($dados);
+        $this->noticia->create($dados);
         return redirect()->route('admin.noticias');
     }
 
     // Método responsavel por abrir a pagina de editar uma noticia
     public function editar($id) 
     {
-        $registro = Noticia::find($id);
+        $registro = $this->noticia->find($id);
         return view('admin.noticias.editar', compact('registro'));
     }
 
@@ -97,14 +104,14 @@ class NoticiaController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        Noticia::find($id)->update($dados);
+        $this->noticia->find($id)->update($dados);
         return redirect()->route('admin.noticias');
     }
 
     // Metodo da acao de apagar uma noticia
     public function deletar($id) 
     {
-        Noticia::find($id)->delete();
+        $this->noticia->find($id)->delete();
         return redirect()->route('admin.noticias');
     }
 
