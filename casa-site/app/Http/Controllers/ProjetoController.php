@@ -9,16 +9,27 @@ use Validator;
 class ProjetoController extends Controller
 {
 
+    protected $projeto;
+
+    public function __construct(Projeto $projeto) {
+        $this->projeto = $projeto;
+    }
+
     public function projetos() 
     {
-        $registros = Projeto::all()->reverse();
-        return view('projetos', compact('registros'));
+        $projetos = $this->projeto->where('publicado', 1)->latest()->paginate(6);
+        return view('site.projetos.projetos', compact('projetos'));
+    }
+
+    public function projeto($id) {
+        $projeto = $this->projeto->find($id);
+        return view('site.projetos.projeto', compact('projeto'));
     }
     
     // Metodo responsavel por abrir a pagina inicial dos projetos
     public function index()
     {
-        $registros = Projeto::all();
+        $registros = $this->projeto->all()->reverse();
         return view('admin.projetos.index', compact('registros'));
     }
 
@@ -34,16 +45,9 @@ class ProjetoController extends Controller
         $dados = $request->all();
 
         // Validar campos ao salvar
-        $validarDados = Validator::make($dados, [
-            'user_id' => 'required|exists:users,id',
-            'nome' => 'required|min:3',
-            'descricao' => 'required|min:3',
-        ],[
-            'nome.required' => 'O campo nome deve ser preenchido',
-            'nome.min' => 'O campo nome deve ter no mínimo 3 letras',
-            'descricao.required' => 'O texto da descrição deve ser preenchido',
-            'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
-        ]);
+        $validarDados = Validator::make($dados, 
+                                    $this->projeto::$rules,
+                                    $this->projeto::$messages);
 
         if($validarDados->fails()) {
             return redirect()->back()->withErrors($validarDados->errors())->withInput();
@@ -65,7 +69,7 @@ class ProjetoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        Projeto::create($dados);
+        $this->projeto->create($dados);
 
         return redirect()->route('admin.projetos');
     }
@@ -73,7 +77,7 @@ class ProjetoController extends Controller
     // Método responsavel por abrir a pagina de editar um projeto
     public function editar($id) 
     {
-        $registro = Projeto::find($id);
+        $registro = $this->projeto->find($id);
         return view('admin.projetos.editar', compact('registro'));
     }
 
@@ -83,16 +87,9 @@ class ProjetoController extends Controller
         $dados = $request->all();
 
         // Validar campos ao salvar
-        $validarDados = Validator::make($dados, [
-            'user_id' => 'required',
-            'nome' => 'required|min:3',
-            'descricao' => 'required|min:3',
-        ],[
-            'nome.required' => 'O campo nome deve ser preenchido',
-            'nome.min' => 'O campo nome deve ter no mínimo 3 letras',
-            'descricao.required' => 'O texto da descrição deve ser preenchido',
-            'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
-        ]);
+        $validarDados = Validator::make($dados, 
+                                    $this->projeto::$rules,
+                                    $this->projeto::$messages);
 
         if($validarDados->fails()) {
             return redirect()->back()->withErrors($validarDados->errors())->withInput();
@@ -114,7 +111,7 @@ class ProjetoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        Projeto::find($id)->update($dados);
+        $this->projeto->find($id)->update($dados);
 
         return redirect()->route('admin.projetos');
     }
@@ -122,7 +119,7 @@ class ProjetoController extends Controller
     // Metodo da acao de apagar um projeto
     public function deletar($id) 
     {
-        Projeto::find($id)->delete();
+        $this->projeto->find($id)->delete();
         return redirect()->route('admin.projetos');
     }
 

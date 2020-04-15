@@ -7,8 +7,13 @@
 </div>
 
 <div class="input-field">
+    <label for="texto">Manchete</label>
+    <textarea name="manchete" type="text" placeholder="Digite aqui a manchete da notícia, ela aparecerá nos cards das notícias">{{ isset($registro->manchete) ? $registro->manchete : '' }}</textarea>
+</div>
+
+<div class="input-field">
     <label for="texto">Texto</label>
-    <textarea type="text" name="texto" placeholder="Digite aqui o texto da notícia">{{ isset($registro->texto) ? $registro->texto : '' }}</textarea>
+    <textarea id="summernote" name="texto" type="text" placeholder="Digite aqui o texto da notícia">{{ isset($registro->texto) ? $registro->texto : '' }}</textarea>
 </div>
 
 <div class="input-field">

@@ -11,16 +11,22 @@ use Validator;
 class UserController extends Controller
 {
 
+    protected $user;
+
+    public function __construct(User $user) {
+        $this->user = $user;
+    }
+
     public function voluntarios() 
     {
-        $registros = User::all()->reverse();
+        $registros = $this->user->all()->reverse();
         return view('voluntarios', compact('registros'));
     }
 
     
     public function index() 
     {
-        $registros = User::all()->reverse();
+        $registros = $this->user->all()->reverse();
         return view('admin.voluntarios.index', compact('registros'));
     }
 
@@ -35,33 +41,9 @@ class UserController extends Controller
         $dados = $request->all();
         
         // Validar campos ao salvar
-        $validarDados = Validator::make($dados, [
-            'name' => 'required|min:3', //Definir os campos que são obrigatórios com required
-            'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/', //Definir o mínimo de letras no campo com min:x
-            'descricao' => 'required|min:3',
-            'profissao' => 'required|min:3',
-            'foto' => 'image',
-            'email' => 'required|email|unique:users',
-            'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
-            'password' => 'nullable|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
-
-        ],[
-            'name.required' => 'O campo nome é obrigatório', //Definir a mensagem de erro para cada tipo de erro de cada campo
-            'name.min' => 'O campo nome deve ter no mínimo 3 letras',
-            'cpf.required' => 'O campo de cpf é obrigatório',
-            'cpf.regex' => 'CPF inválido',
-            'profissao.required' => 'O campo profissão deve ser preenchido',
-            'profissao.min' => 'O campo profissão deve ter no mínimo 3 letras',
-            'descricao.required' => 'O texto da descrição deve ser preenchido',
-            'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
-            'foto.image' => 'A imagem deve ser no formato jpeg, png, bmp, gif, svg ou webp',
-            'email.required' => 'O campo de email é obrigatório',
-            'email.email' => 'Digite um endereço de email',
-            'email.unique' => 'O email digitado já foi cadastrado',
-            'telefone.regex' => 'O número deve ser no formato (81)99999-9999',
-            'password.regex' => 'Senha deve conter ao menos uma letra e um número e no mínimo 8 digitos',
-            'password.confirmed' => 'As senhas não conferem'
-        ]);
+        $validarDados = Validator::make($dados, 
+                                $this->user::$rules, 
+                                $this->user::$messages);
             
         if($validarDados->fails()) { //Isso retorna o erro com mensagem para view
             return redirect()->back()->withErrors($validarDados->errors())->withInput();
@@ -100,7 +82,7 @@ class UserController extends Controller
             $dados['foto'] = $dir.'/'.$nomeAnexo;
         }
 
-        User::create($dados);
+        $this->user->create($dados);
 
         return redirect()->route('site.voluntarios');
     }
@@ -108,7 +90,7 @@ class UserController extends Controller
     // Método responsavel por abrir a pagina de editar um projeto
     public function editar($id) 
     {
-        $registro = User::find($id);
+        $registro = $this->user->find($id);
         return view('admin.voluntarios.editar', compact('registro'));
     }
 
@@ -141,7 +123,7 @@ class UserController extends Controller
             $dados['foto'] = $dir.'/'.$nomeAnexo;
         }
 
-        User::find($id)->update($dados);
+        $this->user->find($id)->update($dados);
 
         return redirect()->route('admin.voluntarios');
     }
@@ -149,7 +131,7 @@ class UserController extends Controller
     // Metodo da acao de apagar um projeto
     public function deletar($id) 
     {
-        User::find($id)->delete();
+        $this->user->find($id)->delete();
         return redirect()->route('admin.voluntarios');
     }
 }

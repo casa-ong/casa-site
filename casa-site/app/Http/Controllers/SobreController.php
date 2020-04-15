@@ -4,19 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sobre;
+use Validator;
  
 class SobreController extends Controller
 {
 
+    protected $sobre;
+
+    public function __construct(Sobre $sobre)
+    {
+        $this->sobre = $sobre;
+    } 
+
     public function sobre() 
     {
-        $registro = Sobre::latest('updated_at')->first();
+        $registro = $this->sobre->latest('updated_at')->first();
         return view('sobre', compact('registro'));
     }
 
     public function index() 
     {
-        $registros = Sobre::all()->reverse();
+        $registros = $this->sobre->all()->reverse();
         return view('admin.sobre.index', compact('registros'));
     }
 
@@ -29,6 +37,15 @@ class SobreController extends Controller
     public function salvar(Request $request) 
     {
         $dados = $request->all();
+
+        // Validar campos ao salvar
+        $validarDados = Validator::make($dados, 
+                                    $this->sobre::$rules,
+                                    $this->sobre::$messages);
+
+        if($validarDados->fails()) {
+            return redirect()->back()->withErrors($validarDados->errors())->withInput();
+        }
     
         if($request->hasFile('logo')) {
             $anexo = $request->file('logo');
@@ -60,7 +77,7 @@ class SobreController extends Controller
             $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
         }
 
-        Sobre::create($dados);
+        $this->sobre->create($dados);
 
         return redirect()->route('admin.sobre');
     }
@@ -68,7 +85,7 @@ class SobreController extends Controller
     // Método responsavel por abrir a pagina de editar um evento
     public function editar($id) 
     {
-        $registro = Sobre::find($id);
+        $registro = $this->sobre->find($id);
         return view('admin.sobre.editar', compact('registro'));
     }
 
@@ -106,7 +123,7 @@ class SobreController extends Controller
             $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
         }
 
-        $dadoSite = Sobre::find($id);
+        $dadoSite = $this->sobre->find($id);
         $dadoSite->touch();
         $dadoSite->update($dados);
 
