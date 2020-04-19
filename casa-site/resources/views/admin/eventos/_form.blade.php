@@ -1,11 +1,24 @@
+@if ($errors->any())
+    <p class="error">Campos com * são obrigatórios!</p>
+@endif
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 <div class="input-field">
-    <label for="nome">Nome</label>
-    <input type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : '' }}" placeholder="Digite aqui o nome do evento">
+    <label for="nome">Nome*</label>
+    <input class="{{ $errors->has('nome') ? 'error' : '' }}" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o nome do evento">
+    @error('nome')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
 </div>
 <div class="input-field">
-    <label for="nome">Descrição</label>
-    <textarea type="text" name="descricao" placeholder="Descreva aqui como será o evento">{{ isset($registro->descricao) ? $registro->descricao : '' }}</textarea>
+    <label for="nome">Descrição*</label>
+    <textarea class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva aqui como será o evento">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    @error('descricao')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
 </div>
 <div class="input-field">
     <label for="nome">Anexo</label>

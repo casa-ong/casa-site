@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Evento;
+use Validator;
+use App\Http\Requests\EventoRequest;
 
 class EventoController extends Controller
 {
@@ -40,8 +42,9 @@ class EventoController extends Controller
     }
     
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
-    public function salvar(Request $request) 
+    public function salvar(EventoRequest $request) 
     {
+        $request->validated();
         $dados = $request->all();
         
         if(isset($dados['publicado'])) {
@@ -73,8 +76,9 @@ class EventoController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-    public function atualizar(Request $request, $id) 
+    public function atualizar(EventoRequest $request, $id) 
     {
+        $request->validated();
         $dados = $request->all();
         
         if(isset($dados['publicado'])) {

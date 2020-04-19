@@ -10,8 +10,7 @@ class Evento extends Model
         'nome', 'descricao', 'anexo', 'data', 'publicado', 'user_id'
     ];
 
-    public function user() 
-    {
+    public function user(){
         return $this->belongsTo('App\User');
     }
 }
