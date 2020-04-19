@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\User;
 use Validator;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -36,8 +37,9 @@ class UserController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
-    public function salvar(Request $request) 
+    public function salvar(UserRequest $request) 
     {
+        $request->validated();
         $dados = $request->all();
         
         // Validar campos ao salvar
@@ -95,8 +97,9 @@ class UserController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-    public function atualizar(Request $request, $id) 
+    public function atualizar(UserRequest $request, $id) 
     {
+        $request->validated();
         $dados = $request->all();
 
         $dados['password'] = bcrypt($dados['password']);
