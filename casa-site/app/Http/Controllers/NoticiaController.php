@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Noticia;
+use Validator;
+use App\Http\Requests\NoticiaRequest;
 
 class NoticiaController extends Controller
 {
@@ -39,8 +41,9 @@ class NoticiaController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
-    public function salvar(Request $request) 
+    public function salvar(NoticiaRequest $request) 
     {
+        $request->validated();
         $dados = $request->all();
          
         if(isset($dados['publicado'])) {
@@ -78,8 +81,9 @@ class NoticiaController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-    public function atualizar(Request $request, $id) 
+    public function atualizar(NoticiaRequest $request, $id) 
     {
+        $request->validated();
         $dados = $request->all();
 
         if(isset($dados['publicado'])) {
