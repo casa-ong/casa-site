@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sobre;
 use Validator;
+use App\Http\Requests\SobreRequest;
  
 class SobreController extends Controller
 {
@@ -34,18 +35,11 @@ class SobreController extends Controller
     }
     
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
-    public function salvar(Request $request) 
+    public function salvar(SobreRequest $request) 
     {
+
+        $request->validated();
         $dados = $request->all();
-
-        // Validar campos ao salvar
-        $validarDados = Validator::make($dados, 
-                                    $this->sobre::$rules,
-                                    $this->sobre::$messages);
-
-        if($validarDados->fails()) {
-            return redirect()->back()->withErrors($validarDados->errors())->withInput();
-        }
     
         if($request->hasFile('logo')) {
             $anexo = $request->file('logo');
@@ -90,8 +84,9 @@ class SobreController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-    public function atualizar(Request $request, $id) 
+    public function atualizar(SobreRequest $request, $id) 
     {
+        $request->validated();
         $dados = $request->all();
         if($request->hasFile('logo')) {
             $anexo = $request->file('logo');

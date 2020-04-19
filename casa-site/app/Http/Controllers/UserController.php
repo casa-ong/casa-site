@@ -42,15 +42,6 @@ class UserController extends Controller
         $request->validated();
         $dados = $request->all();
         
-        // Validar campos ao salvar
-        $validarDados = Validator::make($dados, 
-                                $this->user::$rules, 
-                                $this->user::$messages);
-            
-        if($validarDados->fails()) { //Isso retorna o erro com mensagem para view
-            return redirect()->back()->withErrors($validarDados->errors())->withInput();
-        }
-
         if(Auth::guest() && (isset($dados['admin']) || isset($dados['aprovado']))) {
             return redirect()->route('site.voluntario.adicionar');
         }
