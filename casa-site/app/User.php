@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'cpf', 'descricao', 'foto', 'profissao', 'admin', 'telefone', 'aprovado',
+        'name', 'email', 'password', 'cpf', 'descricao', 'foto', 'profissao', 'admin', 'telefone', 'aprovado', 'estado',
     ];
 
     /**
@@ -44,8 +44,9 @@ class User extends Authenticatable
         'profissao' => 'required|min:3',
         'foto' => 'image',
         'email' => 'required|email|unique:users',
-        'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
+        'telefone' => 'nullable|regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
         'password' => 'nullable|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
+        'estado' => 'required|min:2|max:2',
     ];
 
     public static $messages = [
@@ -63,7 +64,39 @@ class User extends Authenticatable
         'email.unique' => 'O email digitado já foi cadastrado',
         'telefone.regex' => 'O número deve ser no formato (81)99999-9999',
         'password.regex' => 'Senha deve conter ao menos uma letra e um número e no mínimo 8 digitos',
-        'password.confirmed' => 'As senhas não conferem'
+        'password.confirmed' => 'As senhas não conferem',
+        'estado.required' => 'O estado é obrigatório',
+        'estado.min|estado.max' => 'O estado deve ser selecionado',
+    ];
+
+    public static $estadosBrasileiros = [
+        ['AC','Acre'],
+        ['AL','Alagoas'],
+        ['AP','Amapá'],
+        ['AM','Amazonas'],
+        ['BA','Bahia'],
+        ['CE','Ceará'],
+        ['DF','Distrito Federal'],
+        ['ES','Espírito Santo'],
+        ['GO','Goiás'],
+        ['MA','Maranhão'],
+        ['MT','Mato Grosso'],
+        ['MS','Mato Grosso do Sul'],
+        ['MG','Minas Gerais'],
+        ['PA','Pará'],
+        ['PB','Paraíba'],
+        ['PR','Paraná'],
+        ['PE','Pernambuco'],
+        ['PI','Piauí'],
+        ['RJ','Rio de Janeiro'],
+        ['RN','Rio Grande do Norte'],
+        ['RS','Rio Grande do Sul'],
+        ['RO','Rondônia'],
+        ['RR','Roraima'],
+        ['SC','Santa Catarina'],
+        ['SP','São Paulo'],
+        ['SE','Sergipe'],
+        ['TO','Tocantins'],
     ];
 
     public function noticia() {

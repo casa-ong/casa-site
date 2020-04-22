@@ -11,8 +11,9 @@
         @include('site.noticias._card')
     @endforeach
 </div>
-<div class="page-nav">
-    {{ $noticias->links() }}
+<div class="content-footer">
+    <div class="page-nav">
+        {{ $noticias->links() }}
+    </div>
 </div>
-
 @endsection

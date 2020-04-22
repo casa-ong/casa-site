@@ -3,12 +3,12 @@
 
 @section('conteudo')
     <div class="content">
-        <h1>Lista de Eventos</h1>
-        <div>
-            <a style="float: right;" class="btn" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
+        <div class="item-title">
+            <h1>Lista de Eventos</h1>
+            <a class="btn" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
         </div>
-        <div>
-            <table class="table">
+        <div class="table">
+            <table>
                 <thead>
                     <tr class="table-header">
                         <th>Id</th>
@@ -27,8 +27,12 @@
                             <td>{{ $registro->data}}</td>
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td>
-                                <a class="btn" href="{{ route('admin.evento.editar',$registro->id) }}">Editar</a>
-                                <a class="btn btn-danger" href="{{ route('admin.evento.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar o evento?');">Deletar</a>
+                                <a class="btn" href="{{ route('admin.evento.editar',$registro->id) }}" title="Editar">
+                                    <span class="fas fa-pencil-alt"></span>
+                                </a>
+                                <a class="btn btn-danger" href="{{ route('admin.evento.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar o evento?');" title="Deletar">
+                                    <span class="fas fa-trash-alt"></span>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
