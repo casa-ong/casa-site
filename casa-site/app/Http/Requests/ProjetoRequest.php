@@ -30,11 +30,13 @@ class ProjetoRequest extends FormRequest
         ];
     }
 
-    public static $messages = [
-        'nome.required' => 'O campo nome deve ser preenchido',
-        'nome.min' => 'O campo nome deve ter no mínimo 3 letras',
-        'descricao.required' => 'O texto da descrição deve ser preenchido',
-        'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
-    ];
-
+    public function messages() 
+    {
+        return  [
+            'nome.required' => 'O campo nome deve ser preenchido',
+            'nome.min' => 'O campo nome deve ter no mínimo 3 letras',
+            'descricao.required' => 'O texto da descrição deve ser preenchido',
+            'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
+        ];
+    }
 }

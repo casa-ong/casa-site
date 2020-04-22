@@ -30,15 +30,17 @@ class SugestaoRequest extends FormRequest
         'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
         ];
     }
-    public static $messages = [
-
-        'assunto.required' => 'O campo assunto é obrigatório',
-        'assunto.min' => 'O campo assunto deve ter no mínimo 3 letras',
-        'mensagem.required' => 'O texto da mensagem deve ser preenchido',
-        'mensagem.min' => 'O texto da mensagem deve ter no mínimo 3 letras',
-        'email.required' => 'O campo de email é obrigatório',
-        'email.email' => 'Digite um endereço de email válido',
-        'telefone.regex' => 'O número deve ser no formato (81)99999-9999',
-        
-    ];
+    public function messages() 
+    {
+        return  [
+            'assunto.required' => 'O campo assunto é obrigatório',
+            'assunto.min' => 'O campo assunto deve ter no mínimo 3 letras',
+            'mensagem.required' => 'O texto da mensagem deve ser preenchido',
+            'mensagem.min' => 'O texto da mensagem deve ter no mínimo 3 letras',
+            'email.required' => 'O campo de email é obrigatório',
+            'email.email' => 'Digite um endereço de email válido',
+            'telefone.regex' => 'O número deve ser no formato (81)99999-9999',
+            
+        ];
+    }   
 }

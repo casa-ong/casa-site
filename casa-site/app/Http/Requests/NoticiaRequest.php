@@ -31,12 +31,15 @@ class NoticiaRequest extends FormRequest
         ];
     }
 
-    public static $messages = [
-        'titulo.required' => 'O campo titulo deve ser preenchido',
-        'titulo.min' => 'O campo titulo deve ter no mínimo 3 letras',
-        'manchete.required' => 'O campo manchete deve ser preenchido',
-        'manchete.min' => 'O campo manchete deve ter no mínimo 3 letras',
-        'texto.required' => 'O texto da notícia deve ser preenchido',
-        'texto.min' => 'O texto da notícia deve ter no mínimo 3 letras',
-    ];
+    public function messages() 
+    {
+        return [
+            'titulo.required' => 'O campo titulo deve ser preenchido',
+            'titulo.min' => 'O campo titulo deve ter no mínimo 3 letras',
+            'manchete.required' => 'O campo manchete deve ser preenchido',
+            'manchete.min' => 'O campo manchete deve ter no mínimo 3 letras',
+            'texto.required' => 'O texto da notícia deve ser preenchido',
+            'texto.min' => 'O texto da notícia deve ter no mínimo 3 letras',
+        ];
+    }
 }
