@@ -4,10 +4,12 @@
 <div class="input-field">
     <label for="nome">Nome*</label>
     <input class="{{ $errors->has('name') ? 'error' : '' }}" type="text" name="name" value="{{ isset($registro->name) ? $registro->name : old('name') }}" placeholder="Digite aqui seu nome">
+
     @error('nome')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
+
     @enderror
 </div>
 <div class="input-field">
@@ -25,7 +27,21 @@
     @error('profissao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
-        </span>
+        </span>       
+    @enderror
+</div>
+<div class="input-field">
+    <label for="estado">Estado*</label>
+    <select class="{{ $errors->has('estado') ? 'error' : '' }}" name="estado" id="estados">
+        @foreach ($estados as $estado)
+            @if( isset($registro->estado) && $estado[0] == $registro->estado)
+                <option selected value="{{ $estado[0] }}">{{ $estado[1] }}</option>
+            @endif
+            <option value="{{ $estado[0] }}">{{ $estado[1] }}</option>
+        @endforeach
+    </select>
+    @error('estado')
+        <p class="error">{{ $message }}</p>
     @enderror
 </div>
 <div class="input-field">
@@ -59,6 +75,7 @@
             <strong>{{ $message }}</strong>
         </span>
     @enderror
+
 </div>
 <div class="input-field">
     <label for="telefone">Telefone/Celular</label>

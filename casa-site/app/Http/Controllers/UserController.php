@@ -20,8 +20,55 @@ class UserController extends Controller
 
     public function voluntarios() 
     {
-        $registros = $this->user->all()->reverse();
-        return view('voluntarios', compact('registros'));
+        $nordeste = $this->user->where('aprovado', 1)
+        ->where('estado', '=', 'AL')
+        ->orWhere('estado', '=', 'BA')
+        ->orWhere('estado', '=', 'CE')
+        ->orWhere('estado', '=', 'PB')
+        ->orWhere('estado', '=', 'MA')
+        ->orWhere('estado', '=', 'PE')
+        ->orWhere('estado', '=', 'PI')
+        ->orWhere('estado', '=', 'RN')
+        ->orWhere('estado', '=', 'SE')
+        ->orderBy('name')->get();
+
+        $centro = $this->user->where('aprovado', 1)
+        ->where('estado', '=', 'DF')
+        ->orWhere('estado', '=', 'GO')
+        ->orWhere('estado', '=', 'MT')
+        ->orWhere('estado', '=', 'MS')
+        ->orderBy('name')->get();
+
+        $sudeste = $this->user->where('aprovado', 1)
+        ->where('estado', '=', 'ES')
+        ->orWhere('estado', '=', 'MG')
+        ->orWhere('estado', '=', 'RJ')
+        ->orWhere('estado', '=', 'SP')
+        ->orderBy('name')->get();
+
+        $sul = $this->user->where('aprovado', 1)
+        ->where('estado', '=', 'PR')
+        ->orWhere('estado', '=', 'RS')
+        ->orWhere('estado', '=', 'SC')
+        ->orderBy('name')->get();
+
+        return view('site.voluntarios.voluntarios', compact('nordeste', 'centro', 'sudeste', 'sul'));
+    }
+
+    public function voluntariosNorte() {
+        $registros = $this->user->where('aprovado', '=', 1)
+        ->where('estado', '=', 'AC')
+        ->orWhere('estado', '=', 'AP')
+        ->orWhere('estado', '=', 'AM')
+        ->orWhere('estado', '=', 'PA')
+        ->orWhere('estado', '=', 'RR')
+        ->orWhere('estado', '=', 'RO')
+        ->orWhere('estado', '=', 'TO')
+        ->orderBy('name')->get();
+
+        $estado = 'Norte';
+
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
     }
 
     
@@ -33,7 +80,8 @@ class UserController extends Controller
 
     public function adicionar() 
     {
-        return view('admin.voluntarios.adicionar');
+        $estados = $this->user::$estadosBrasileiros;
+        return view('admin.voluntarios.adicionar', compact('estados'));
     }
 
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
@@ -84,7 +132,8 @@ class UserController extends Controller
     public function editar($id) 
     {
         $registro = $this->user->find($id);
-        return view('admin.voluntarios.editar', compact('registro'));
+        $estados = $this->user::$estadosBrasileiros;
+        return view('admin.voluntarios.editar', compact('registro', 'estados'));
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados

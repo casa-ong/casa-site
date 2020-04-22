@@ -12,7 +12,7 @@
     @enderror
 </div>
 <div class="input-field">
-    <label for="nome">Descrição*</label>
+    <label for="descricao">Descrição*</label>
     <textarea id="summernote" class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva o projeto">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">

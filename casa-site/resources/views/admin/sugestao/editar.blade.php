@@ -3,10 +3,10 @@
 
 @section('conteudo')
 <div class="content">
-    <div class="form-title">
+    <div class="item-title">
         <h1>Editar sugestão</h1>
     </div>
-    <div class="form">
+    <div class="item-form">
         <form action="{{ route('admin.sugestao.atualizar', $registro->id) }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <input type="hidden" name="_method" value="put">

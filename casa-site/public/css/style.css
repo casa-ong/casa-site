@@ -304,7 +304,7 @@ form {
     padding-bottom: 2px;
 }
 
-.input-field input, .input-field textarea  {
+.input-field input, .input-field textarea, .input-field select {
     color: rgba(0,0,0,0.85);
     border: 2px solid rgba(0, 0, 0, 0.3);
     border-radius: 5px;
@@ -318,7 +318,7 @@ form {
     padding: 10px;
 }
 
-.input-field input.error, .input-field textarea.error {
+.input-field input.error, .input-field textarea.error, .input-field select.error {
     border: 2px solid rgba(255, 0, 0, 1);
 }
 

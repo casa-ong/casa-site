@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'cpf', 'descricao', 'foto', 'profissao', 'admin', 'telefone', 'aprovado',
+        'name', 'email', 'password', 'cpf', 'descricao', 'foto', 'profissao', 'admin', 'telefone', 'aprovado', 'estado',
     ];
 
     /**
@@ -36,7 +36,38 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
+
+    public static $estadosBrasileiros = [
+        ['AC','Acre'],
+        ['AL','Alagoas'],
+        ['AP','Amapá'],
+        ['AM','Amazonas'],
+        ['BA','Bahia'],
+        ['CE','Ceará'],
+        ['DF','Distrito Federal'],
+        ['ES','Espírito Santo'],
+        ['GO','Goiás'],
+        ['MA','Maranhão'],
+        ['MT','Mato Grosso'],
+        ['MS','Mato Grosso do Sul'],
+        ['MG','Minas Gerais'],
+        ['PA','Pará'],
+        ['PB','Paraíba'],
+        ['PR','Paraná'],
+        ['PE','Pernambuco'],
+        ['PI','Piauí'],
+        ['RJ','Rio de Janeiro'],
+        ['RN','Rio Grande do Norte'],
+        ['RS','Rio Grande do Sul'],
+        ['RO','Rondônia'],
+        ['RR','Roraima'],
+        ['SC','Santa Catarina'],
+        ['SP','São Paulo'],
+        ['SE','Sergipe'],
+        ['TO','Tocantins'],
+    ];
+
     public function noticia() {
         return $this->hasMany('App\Noticia');
     }

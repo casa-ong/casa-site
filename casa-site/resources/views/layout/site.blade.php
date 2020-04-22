@@ -8,4 +8,3 @@
 
 <footer>
 @include('layout._includes.footer')
-</footer>

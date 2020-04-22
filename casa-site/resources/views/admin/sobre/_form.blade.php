@@ -39,7 +39,7 @@
 @endisset
 
 <div class="input-field">
-    <label for="logo">Banner do site</label>
+    <label for="banner">Banner do site</label>
     <input class="{{ $errors->has('banner') ? 'error' : '' }}" type="file" name="banner">
     @error('banner')
         <span class="invalid-feedback" role="alert">
@@ -65,7 +65,7 @@
     @enderror
 </div>
 <div class="input-field">
-    <label for="email">Email da organização</label>
+    <label for="email">Email da organização*</label>
     <input class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui o email da organização">
     @error('email')
         <span class="invalid-feedback" role="alert">
@@ -88,7 +88,6 @@
     @error('anexo_sobre')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
-        </span>
     @enderror
 </div>
 
