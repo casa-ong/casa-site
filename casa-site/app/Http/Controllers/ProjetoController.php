@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Projeto;
 use Validator;
+use App\Http\Requests\ProjetoRequest;
 
 class ProjetoController extends Controller
 {
@@ -39,20 +40,11 @@ class ProjetoController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
-    public function salvar(Request $request) 
+    public function salvar(ProjetoRequest $request) 
     {
-
+        $request->validated();
         $dados = $request->all();
-
-        // Validar campos ao salvar
-        $validarDados = Validator::make($dados, 
-                                    $this->projeto::$rules,
-                                    $this->projeto::$messages);
-
-        if($validarDados->fails()) {
-            return redirect()->back()->withErrors($validarDados->errors())->withInput();
-        }
-        
+       
         if(isset($dados['publicado'])) {
             $dados['publicado'] = true;
         } else {
@@ -82,18 +74,11 @@ class ProjetoController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-    public function atualizar(Request $request, $id) 
+    public function atualizar(ProjetoRequest $request, $id) 
     {
+        $request->validated();
         $dados = $request->all();
-
-        // Validar campos ao salvar
-        $validarDados = Validator::make($dados, 
-                                    $this->projeto::$rules,
-                                    $this->projeto::$messages);
-
-        if($validarDados->fails()) {
-            return redirect()->back()->withErrors($validarDados->errors())->withInput();
-        }
+        
         
         if(isset($dados['publicado'])) {
             $dados['publicado'] = true;

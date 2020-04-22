@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sugestao;
+use Validator;
+use App\Http\Requests\SugestaoRequest;
 
 class SugestaoController extends Controller
 {
@@ -27,8 +29,9 @@ class SugestaoController extends Controller
     }
     
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
-    public function salvar(Request $request) 
+    public function salvar(SugestaoRequest $request) 
     {
+        $request->validated();
         $dados = $request->all();
 
         if(isset($dados['lida'])) {
@@ -55,7 +58,9 @@ class SugestaoController extends Controller
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
     public function atualizar($id) 
     {
+      
         $dados = Sugestao::find($id);
+
         if($dados['lida']) {
             Sugestao::find($id)->update(['lida' => '0']);
         } else {
@@ -65,7 +70,7 @@ class SugestaoController extends Controller
         return redirect()->route('admin.sugestoes');
     }
 
-    // Metodo da acao de apagar um evento
+    // Metodo da acao de apagar uma sugestao
     public function deletar($id) 
     {
         Sugestao::find($id)->delete();

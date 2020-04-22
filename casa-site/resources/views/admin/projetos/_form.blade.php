@@ -6,14 +6,18 @@
     <label for="nome">Nome*</label>
     <input class="{{ $errors->has('nome') ? 'error' : '' }}" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o nome do projeto">
     @error('nome')
-        <p class="error">{{ $message }}</p>
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
     @enderror
 </div>
 <div class="input-field">
     <label for="descricao">Descrição*</label>
     <textarea id="summernote" class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva o projeto">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
-        <p class="error">{{ $message }}</p>
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
     @enderror
 </div>
 <div class="input-field">
