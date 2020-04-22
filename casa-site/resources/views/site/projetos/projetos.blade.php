@@ -11,7 +11,9 @@
         @include('site.projetos._card')
     @endforeach
 </div>
-<div class="page-nav">
-    {{ $projetos->links() }}
+<div class="content-footer">
+    <div class="page-nav">
+        {{ $projetos->links() }}
+    </div>
 </div>
 @endsection

@@ -3,10 +3,10 @@
 
 @section('conteudo')
 <div class="content">
-    <div class="form-title">
+    <div class="item-title">
         <h1>Login</h1>
     </div>
-    <div class="form">
+    <div class="item-form">
         <form action="{{ route('login.entrar') }}" method="POST">
             {{ csrf_field() }}
 

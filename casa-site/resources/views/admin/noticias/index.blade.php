@@ -3,12 +3,12 @@
 
 @section('conteudo')
     <div class="content">
-        <h1 class="">Lista de noticias</h1>
-        <div>
+        <div class="item-title">
+            <h1 class="">Lista de notícias</h1>
             <a class="btn" href="{{ route('admin.noticia.adicionar') }}">Adicionar</a>
         </div>
-        <div>
-            <table class="table">
+        <div class="table">
+            <table>
                 <thead>
                     <tr class="table-header">
                         <th>Id</th>
@@ -24,8 +24,12 @@
                             <td>{{ $registro->titulo }}</td>
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td class="action-cell">
-                                <a class="btn" href="{{ route('admin.noticia.editar',$registro->id) }}">Editar</a>
-                                <a class="btn btn-danger" href="{{ route('admin.noticia.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar o projeto?');">Deletar</a>
+                                <a class="btn" href="{{ route('admin.noticia.editar',$registro->id) }}" title="Editar">
+                                    <span class="fas fa-pencil-alt"></span>
+                                </a>
+                                <a class="btn btn-danger" href="{{ route('admin.noticia.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar o projeto?');" title="Deletar">
+                                    <span class="fas fa-trash-alt"></span>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

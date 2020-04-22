@@ -24,8 +24,13 @@ class SobreController extends Controller
 
     public function index() 
     {
-        $registros = $this->sobre->all()->reverse();
-        return view('admin.sobre.index', compact('registros'));
+        $registro = $this->sobre->latest('updated_at')->first();
+        // $registros = $this->sobre->all()->reverse();
+        if(!isset($registro)) {
+            return view('admin.sobre.adicionar');
+        }
+
+        return view('admin.sobre.editar', compact('registro'));
     }
 
     public function adicionar() 
@@ -127,6 +132,6 @@ class SobreController extends Controller
         $dadoSite->touch();
         $dadoSite->update($dados);
 
-        return redirect()->route('admin.sobre');
+        return redirect()->route('admin.index');
     }
 }

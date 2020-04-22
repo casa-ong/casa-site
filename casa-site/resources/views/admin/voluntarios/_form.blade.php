@@ -4,27 +4,51 @@
 <div class="input-field">
     <label for="nome">Nome*</label>
     <input class="{{ $errors->has('name') ? 'error' : '' }}" type="text" name="name" value="{{ isset($registro->name) ? $registro->name : old('name') }}" placeholder="Digite aqui seu nome">
-    <p class="error">{{ $errors->first('name') }}</p>
+    @error('name')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 <div class="input-field">
     <label for="cpf">CPF*</label>
     <input class="{{ $errors->has('cpf') ? 'error' : '' }}" type="text" name="cpf" value="{{ isset($registro->cpf) ? $registro->cpf : old('cpf') }}" placeholder="Digite aqui seu cpf">
-    <p class="error">{{ $errors->first('cpf') }}</p> 
+    @error('cpf')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 <div class="input-field">
     <label for="profissao">Profissão*</label>
     <input class="{{ $errors->has('profissao') ? 'error' : '' }}" type="text" name="profissao" value="{{ isset($registro->profissao) ? $registro->profissao : old('profissao') }}" placeholder="Digite aqui sua profissão">
-    <p class="error">{{ $errors->first('profissao') }}</p>
+    @error('profissao')
+        <p class="error">{{ $message }}</p>
+    @enderror
+</div>
+<div class="input-field">
+    <label for="estado">Estado*</label>
+    <select class="{{ $errors->has('estado') ? 'error' : '' }}" name="estado" id="estados">
+        @foreach ($estados as $estado)
+            @if( isset($registro->estado) && $estado[0] == $registro->estado)
+                <option selected value="{{ $estado[0] }}">{{ $estado[1] }}</option>
+            @endif
+            <option value="{{ $estado[0] }}">{{ $estado[1] }}</option>
+        @endforeach
+    </select>
+    @error('estado')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 <div class="input-field">
     <label for="descricao">Descrição*</label>
     <textarea class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva você mesmo">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
-    <p class="error">{{ $errors->first('descricao') }}</p>
+    @error('descricao')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 <div class="input-field">
     <label for="foto">Foto do voluntario</label>
     <input class="{{ $errors->has('foto') ? 'error' : '' }}" type="file" name="foto">
-    <p class="error">{{ $errors->first('foto') }}</p>
+    @error('foto')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 @if(@isset($registro->foto))
     <div class="input-field">
@@ -34,24 +58,32 @@
 <div class="input-field">
     <label for="email">Email*</label>
     <input class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui seu email">
-    <p class="error">{{ $errors->first('email') }}</p>
+    @error('email')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 <div class="input-field">
     <label for="telefone">Telefone/Celular</label>
     <input class="{{ $errors->has('telefone') ? 'error' : '' }}" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite aqui seu telefone">
-    <p class="error">{{ $errors->first('telefone') }}</p>
+    @error('telefone')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 
 @if(!Auth::guest()) <!-- Garantir por validation que essa parte do codigo nao seja enviada sem autenticação -->
 <div class="input-field">
     <label for="password">Senha de acesso*</label>
     <input class="{{ $errors->has('password') ? 'error' : '' }}" type="password" name="password" value="" placeholder="Digite aqui sua nova senha de acesso">
-    <p class="error">{{ $errors->first('password') }}</p>
+    @error('password')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 <div class="input-field">
     <label for="password_confirmation">Confirmação de senha de acesso*</label>
     <input class="{{ $errors->has('password_confirmation') ? 'error' : '' }}" type="password" name="password_confirmation" value="" placeholder="Digite a senha novamente para confirmar">
-    <p class="error">{{ $errors->first('password_confirmation') }}</p>
+    @error('password_confirmation')
+        <p class="error">{{ $message }}</p>
+    @enderror
 </div>
 <label class="input-checkbox" for="aprovado">Aprovar esse voluntário da ONG?
     <input type="checkbox" name="aprovado" {{ isset($registro->aprovado) && $registro->aprovado == true ? 'checked' : ''}} value="true">

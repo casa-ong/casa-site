@@ -3,21 +3,17 @@
 
 @section('conteudo')
     <div class="content">
-        <h1 class="">Historico de configurações e sobre do site</h1>
-        <div>
-            <a class="btn" href="{{ route('admin.sobre.adicionar') }}">Nova configuração e sobre</a>
+        <div class="item-title">
+            <h1 class="">Historico de configurações e sobre do site</h1>
+            <a class="btn" href="{{ route('admin.sobre.adicionar') }}">Nova config.</a>
         </div>
-        <div>
-            <table class="table">
+        <div class="table">
+            <table>
                 <thead>
                     <tr class="table-header">
-                        <th>Logo</th>
                         <th>Titulo do site</th>
-                        <th>Slogan</th>
-                        <th>Email</th>
-                        <th>Telefone</th>
-                        <th>Sobre</th>
                         <th>Autor</th>
+                        <th>Ult. alteração</th>
                         <th>Ações</th>
                         
                     </tr>
@@ -25,17 +21,13 @@
                 <tbody class="table-body">
                     @foreach ($registros as $registro)
                         <tr>
-                            <td>
-                                <img src="{{ asset($registro->logo) }}" alt="">
-                            </td>
                             <td>{{ $registro->titulo_site }}</td>
-                            <td>{{ $registro->slogan }}</td>
-                            <td>{{ $registro->email }}</td>
-                            <td>{{ $registro->telefone }}</td>
-                            <td>{{ $registro->titulo_sobre }}</td>
                             <td>{{ $registro->user_id }}</td>
+                            <td>{{ date('d/m/Y h:i', strtotime($registro->updated_at)) }}</td>
                             <td>
-                                <a class="btn" href="{{ route('admin.sobre.editar',$registro->id) }}">Editar</a>
+                                <a class="btn" href="{{ route('admin.sobre.editar',$registro->id) }}" title="Editar">
+                                    <span class="fas fa-pencil-alt"></span>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

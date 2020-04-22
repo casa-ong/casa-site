@@ -14,10 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
+// Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
+
+
 Route::get('/voluntarios', ['as' => 'site.voluntarios', 'uses' => 'UserController@voluntarios']);
+Route::get('/voluntarios/norte', ['as' => 'site.voluntarios.norte', 'uses' => 'UserController@voluntariosNorte']);
+Route::get('/voluntarios/nordeste', ['as' => 'site.voluntarios.nordeste', 'uses' => 'UserController@voluntariosNordeste']);
+Route::get('/voluntarios/centro', ['as' => 'site.voluntarios.centro', 'uses' => 'UserController@voluntariosCentro']);
+Route::get('/voluntarios/sudeste', ['as' => 'site.voluntarios.sudeste', 'uses' => 'UserController@voluntariosSudeste']);
+Route::get('/voluntarios/sul', ['as' => 'site.voluntarios.sul', 'uses' => 'UserController@voluntariosSul']);
 Route::get('/voluntario/adicionar', ['as' => 'site.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
 Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
-// Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
 
 Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
 Route::get('/evento/{id}', ['as' => 'site.evento', 'uses' => 'EventoController@evento']);
@@ -68,7 +75,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/sobre/deletar/{id}',['as' => 'admin.sobre.deletar', 'uses' => 'SobreController@deletar']);
 
     Route::get('/admin/sugestoes',['as' => 'admin.sugestoes', 'uses' => 'SugestaoController@index']);
-    // Route::get('/admin/sugestao/editar/{id}',['as' => 'admin.sugestao.editar', 'uses' => 'SugestaoController@editar']);
+    Route::get('/admin/sugestao/editar/{id}',['as' => 'admin.sugestao.editar', 'uses' => 'SugestaoController@editar']);
     Route::get('/admin/sugestao/atualizar/{id}',['as' => 'admin.sugestao.atualizar', 'uses' => 'SugestaoController@atualizar']);
     Route::get('/admin/sugestao/deletar/{id}',['as' => 'admin.sugestao.deletar', 'uses' => 'SugestaoController@deletar']);
 

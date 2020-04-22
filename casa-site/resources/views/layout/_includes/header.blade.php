@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo')</title>
     
     <!-- Estilo da pagina -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <!-- JavaScript da pagina -->
     <script src="{{ asset('js/dropdown_on_click.js') }}" crossorigin="anonymous"></script>
     
     <!-- Icones do Font Awesome -->
-    <script src="https://kit.fontawesome.com/8eafe50798.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/8eafe50798.js" defer crossorigin="anonymous"></script>
     
     <!-- include summernote css/js -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -28,15 +29,8 @@
         @endif
 
         <div class="header">
-            <div class="nav-dados">
-                <!--div class="img-logo">
-                    <img src="{{ isset($logo) ? asset($logo) : '' }}" alt="">
-                </div-->
-                <div class="logo">
-                    <h1>{{ isset($titulo) ? $titulo : '' }}</h1>
-                    <h2>{{ isset($slogan) ? $slogan : '' }}</h2>
-                </div>
-            </div>
+            <h1>{{ isset($titulo) ? $titulo : '' }}</h1>
+            <h2>{{ isset($slogan) ? $slogan : '' }}</h2>
         </div>
     </header>
     @include('layout._includes.navbar')

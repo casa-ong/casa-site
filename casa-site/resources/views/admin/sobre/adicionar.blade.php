@@ -3,10 +3,10 @@
 
 @section('conteudo')
 <div class="content">
-    <div class="form-title">
+    <div class="item-title">
         <h1>Nova configuração e sobre</h1>
     </div>
-    <div class="form">
+    <div class="item-form">
         <form action="{{ route('admin.sobre.salvar') }}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             @include('admin.sobre._form')
