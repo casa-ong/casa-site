@@ -14,7 +14,8 @@
                         <th>Nome</th>
                         <th>Email</th>
                         <th>CPF</th>
-                        <th>Aprovação pendente</th>
+                        <th>Projeto</th>
+                        <th>Aprovado</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -24,6 +25,7 @@
                             <td>{{ $registro->name }}</td>
                             <td>{{ $registro->email }}</td>
                             <td>{{ $registro->cpf }}</td>
+                            <td>{{ isset($registro->projeto_id) ? $registro->projeto->nome : "Nenhum" }}</td>
                             <td>{{ $registro->aprovado ? "Não" : "Sim" }}</td>
                             <td class="action-cell">
                                 <a class="btn" href="{{ route('admin.voluntario.editar',$registro->id) }}" title="Editar">
