@@ -526,7 +526,8 @@ div.page-nav nav ul li a:hover {
     -moz-outline-radius: 5px;
 }
 
-p.error {
+span.invalid-feedback {
+    margin: 0.5em 0;
     color: #FF0000;
 }
 

@@ -2,10 +2,10 @@
     <p class="error">Campos com * são obrigatórios!</p>
 @endif
 <div class="input-field">
-    <label for="nome">Nome*</label>
+    <label for="name">Nome*</label>
     <input class="{{ $errors->has('name') ? 'error' : '' }}" type="text" name="name" value="{{ isset($registro->name) ? $registro->name : old('name') }}" placeholder="Digite aqui seu nome">
 
-    @error('nome')
+    @error('name')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
@@ -33,6 +33,7 @@
 <div class="input-field">
     <label for="estado">Estado*</label>
     <select class="{{ $errors->has('estado') ? 'error' : '' }}" name="estado" id="estados">
+        <option selected value>{{ __('Selecione um estado') }}</option>
         @foreach ($estados as $estado)
             @if( isset($registro->estado) && $estado[0] == $registro->estado)
                 <option selected value="{{ $estado[0] }}">{{ $estado[1] }}</option>
@@ -41,7 +42,9 @@
         @endforeach
     </select>
     @error('estado')
-        <p class="error">{{ $message }}</p>
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>    
     @enderror
 </div>
 <div class="input-field">
