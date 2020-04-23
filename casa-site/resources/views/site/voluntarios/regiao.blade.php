@@ -3,7 +3,7 @@
 
 @section('conteudo')
 <div id="titulo" class="item-title">
-    <h1>Nossos voluntários do {{ isset($estado) ? $estado : '' }}</h1>
+    <h1>Nossos voluntários</h1>
 </div>
 <p class="breadcrumbs"><a href="{{ route('site.home') }}">Início</a> / <a href="{{ route('site.voluntarios') }}">Voluntários</a> / {{ $estado }}</p>
 <div class="row">

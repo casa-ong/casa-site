@@ -5,11 +5,10 @@
     <div class="content">
         <div id="voluntarios" class="item-title">
             <h1>Voluntários</h1>
-            {{-- <a class="btn" href="{{ route('site.voluntario.adicionar') }}">Seja um voluntário</a> --}}
         </div>
-        <div class="title">
+        <div class="title row">
             <p>
-                Temos voluntários espalhados por todo o Brasil, venha ser um de nós! <br>
+                Temos voluntários espalhados por todo o Brasil, <a href="{{ route('site.voluntario.adicionar') }}">venha ser um de nós</a>!<br>
                 Conheça nossos voluntários por região.
             </p>
         </div>

@@ -221,10 +221,6 @@ div.container div.content h1 {
     margin: 0;
 }
 
-#voluntarios h1 {
-    margin-bottom: 1em;
-}
-
 div.container div.content img {
     width: 100%;
 }
@@ -251,6 +247,10 @@ div.container div.item-title {
     font-weight: bold;
     /* text-transform: uppercase; */
     text-align: center;
+}
+
+div.container div.item-title h1 {
+    margin: 0;
 }
 
 div.container div.card {
@@ -394,7 +394,7 @@ a.btn::after, a.btn.btn-dark::after, button.btn::after, a.btn.btn-danger::after 
     top: 0;
     left: 0;
     width: 100%;
-    height: 2.7em;
+    height: 100%;
     border-radius: 5px;
     opacity: 0;
     transition: opacity 250ms ease-in-out;
