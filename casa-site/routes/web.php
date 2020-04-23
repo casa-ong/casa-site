@@ -24,6 +24,7 @@ Route::get('/voluntarios/centro', ['as' => 'site.voluntarios.centro', 'uses' => 
 Route::get('/voluntarios/sudeste', ['as' => 'site.voluntarios.sudeste', 'uses' => 'UserController@voluntariosSudeste']);
 Route::get('/voluntarios/sul', ['as' => 'site.voluntarios.sul', 'uses' => 'UserController@voluntariosSul']);
 Route::get('/voluntario/adicionar', ['as' => 'site.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
+Route::post('/voluntario/adicionar', ['as' => 'site.home.voluntario.adicionar', 'uses' => 'UserController@homeAdicionar']);
 Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
 
 Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);

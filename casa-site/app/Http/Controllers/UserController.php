@@ -23,39 +23,7 @@ class UserController extends Controller
 
     public function voluntarios() 
     {
-        $nordeste = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'AL')
-        ->orWhere('estado', '=', 'BA')
-        ->orWhere('estado', '=', 'CE')
-        ->orWhere('estado', '=', 'PB')
-        ->orWhere('estado', '=', 'MA')
-        ->orWhere('estado', '=', 'PE')
-        ->orWhere('estado', '=', 'PI')
-        ->orWhere('estado', '=', 'RN')
-        ->orWhere('estado', '=', 'SE')
-        ->orderBy('name')->get();
-
-        $centro = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'DF')
-        ->orWhere('estado', '=', 'GO')
-        ->orWhere('estado', '=', 'MT')
-        ->orWhere('estado', '=', 'MS')
-        ->orderBy('name')->get();
-
-        $sudeste = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'ES')
-        ->orWhere('estado', '=', 'MG')
-        ->orWhere('estado', '=', 'RJ')
-        ->orWhere('estado', '=', 'SP')
-        ->orderBy('name')->get();
-
-        $sul = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'PR')
-        ->orWhere('estado', '=', 'RS')
-        ->orWhere('estado', '=', 'SC')
-        ->orderBy('name')->get();
-
-        return view('site.voluntarios.voluntarios', compact('nordeste', 'centro', 'sudeste', 'sul'));
+        return view('site.voluntarios.voluntarios');
     }
 
     public function voluntariosNorte() {
@@ -141,6 +109,23 @@ class UserController extends Controller
         $estados = $this->user::$estadosBrasileiros;
         $projetos = $this->projeto->all();
         return view('admin.voluntarios.adicionar', compact('estados', 'projetos'));
+    }
+
+    public function homeAdicionar(Request $request) 
+    {
+        $registro = new User();
+        $registro->email = $request['email'];
+
+        $request->validate([
+            'email' => 'email|unique:users',
+        ], [
+            'email.email' => 'Endereço de email digitado inválido',
+            'email.unique' => 'Endereço de email digitado já tem cadastro',
+        ]);
+
+        $estados = $this->user::$estadosBrasileiros;
+        $projetos = $this->projeto->all();
+        return view('admin.voluntarios.adicionar', compact('estados', 'projetos', 'registro'));
     }
 
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados

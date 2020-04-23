@@ -7,11 +7,17 @@
 
 @section('conteudo')
         <div class="item">
-            <div class="input-field">
-                <label for="email">Quer ser um voluntário?</label>
-                <input name="email" type="text" placeholder="Digite seu email para se cadastrar">
-                <a href="{{ route('site.voluntario.adicionar') }}" class="btn">Enviar</a>
-            </div>
+            <form action="{{ route('site.home.voluntario.adicionar') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="input-field">
+                    <label for="email">Quer ser um voluntário?</label>
+                    <input name="email" type="text" placeholder="Digite seu email para se cadastrar" value="{{ old('email') }}">
+                    @error('email')
+                        <p class="error">{{ $message }}</p>
+                    @enderror
+                    <button class="btn">Enviar</button>
+                </div>
+            </form>
         </div>
 
     @if(isset($noticias) && count($noticias) > 0)
