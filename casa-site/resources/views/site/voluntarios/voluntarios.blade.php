@@ -24,10 +24,10 @@
         </div>
         <div class="mapa-mobile">
             <a href="{{ route('site.voluntarios.norte').'#titulo' }}" title="Norte">Norte</a>
-            <a href="#nordeste" title="Nordeste">Nordeste</a>
-            <a href="#centro" title="Centro-Oeste">Centro-oeste</a>
-            <a href="#sudeste" title="Sudeste">Sudeste</a>
-            <a href="#sul"title="Sul">Sul</a>
+            <a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" title="Nordeste">Nordeste</a>
+            <a href="{{ route('site.voluntarios.centro').'#titulo' }}" title="Centro-Oeste">Centro-oeste</a>
+            <a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" title="Sudeste">Sudeste</a>
+            <a href="{{ route('site.voluntarios.sul').'#titulo' }}"title="Sul">Sul</a>
         </div>
     </div>
 @endsection

@@ -15,7 +15,7 @@ class UpdateNoticiasTable extends Migration
     {
         Schema::table('noticias', function (Blueprint $table) {
             $table->dropColumn('autor');
-            $table->integer('curtir')->nullable()->change();
+            $table->dropColumn('curtir');
         });
     }
 
