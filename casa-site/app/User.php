@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'cpf', 'descricao', 'foto', 'profissao', 'admin', 'telefone', 'aprovado', 'estado',
+        'name', 'email', 'password', 'cpf', 'descricao', 'foto', 'profissao', 'admin', 'telefone', 'aprovado', 'estado', 'projeto_id', 'nascimento', 'cidade'
     ];
 
     /**
@@ -68,6 +68,10 @@ class User extends Authenticatable
         ['TO','Tocantins'],
     ];
 
+    public function projeto() {
+        return $this->belongsTo('App\Projeto');
+    }
+
     public function noticia() {
         return $this->hasMany('App\Noticia');
     }
@@ -76,11 +80,8 @@ class User extends Authenticatable
         return $this->hasMany('App\Sobre');
     }
 
-    public function projeto() {
-        return $this->hasMany('App\Projeto');
-    }
-
     public function evento() {
         return $this->hasMany('App\Evento');
     }
+
 }

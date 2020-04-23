@@ -24,6 +24,8 @@ class UsersTableSeeder extends Seeder
             'admin' => '1',
             'aprovado' => '1',
             'estado' => 'PE',
+            'cidade' => 'São Bento do Una',
+            'nascimento' => '1998-06-04',
         ];
 
         if(User::where('email', '=', $dados['email'])->count()) {

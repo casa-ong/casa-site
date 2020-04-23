@@ -27,17 +27,11 @@
 <div class="input-field">
     <label for="texto">Texto</label>
     <textarea class="{{ $errors->has('texto') ? 'error' : old('texto') }}" id="summernote" name="texto" type="text" placeholder="Digite aqui o texto da notícia">{{ isset($registro->texto) ? $registro->texto : '' }}</textarea>
-    @error('descricao')
+    @error('texto')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
-</div>
-
-
-<div class="input-field">
-    <label for="autor">Autor</label>
-    <input readonly type="text" name="autor" value="{{ isset($user->name) ? $user->name : '' }}" placeholder="Digite aqui o nome do autor da notícia">
 </div>
 
 <div class="input-field">
@@ -53,10 +47,5 @@
 
 <label class="input-checkbox" for="publicado">Publicar agora?
     <input type="checkbox" name="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
-
-<label class="input-checkbox" for="curtir">Curtir esta notícia?
-    <input type="checkbox" name="curtir" {{ isset($registro->curtir) && $registro->curtir == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>
 </label>

@@ -24,7 +24,6 @@ class ProjetoRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:users,id',
             'nome' => 'required|min:3',
             'descricao' => 'required|min:3',
         ];

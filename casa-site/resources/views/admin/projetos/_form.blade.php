@@ -1,7 +1,6 @@
 @if ($errors->any())
     <p class="error">Campos com * são obrigatórios!</p>
 @endif
-<input type="hidden" name="user_id" value="{{ Auth::id() }}">
 <div class="input-field">
     <label for="nome">Nome*</label>
     <input class="{{ $errors->has('nome') ? 'error' : '' }}" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o nome do projeto">

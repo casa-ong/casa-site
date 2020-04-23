@@ -516,6 +516,10 @@ div.page-nav nav ul li a:hover {
     padding: 1em 0.5em;
 }
 
+.item-form div.input-field input[readonly=""] {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
 .item-form div.input-field input:focus, .item-form div.input-field textarea:focus, .item-form div.input-field select:focus {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
@@ -526,7 +530,7 @@ div.page-nav nav ul li a:hover {
     -moz-outline-radius: 5px;
 }
 
-span.invalid-feedback {
+span.invalid-feedback, p.error {
     margin: 0.5em 0;
     color: #FF0000;
 }

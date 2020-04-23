@@ -6,16 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\User;
+use App\Projeto;
 use Validator;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
 
     protected $user;
 
-    public function __construct(User $user) {
+    public function __construct(User $user, Projeto $projeto) {
         $this->user = $user;
+        $this->projeto = $projeto;
     }
 
     public function voluntarios() 
@@ -81,11 +84,12 @@ class UserController extends Controller
     public function adicionar() 
     {
         $estados = $this->user::$estadosBrasileiros;
-        return view('admin.voluntarios.adicionar', compact('estados'));
+        $projetos = $this->projeto->all();
+        return view('admin.voluntarios.adicionar', compact('estados', 'projetos'));
     }
 
     // Método responsavel por salvar as informacoes do formulario de criacao no banco de dados
-    public function salvar(UserRequest $request) 
+    public function salvar(CreateUserRequest $request) 
     {
         $request->validated();
         $dados = $request->all();
@@ -125,7 +129,12 @@ class UserController extends Controller
 
         $this->user->create($dados);
 
-        return redirect()->route('site.voluntarios');
+        if(Auth::guest()) {
+            return redirect()->route('site.voluntarios');
+        }
+
+        return redirect()->route('admin.voluntarios');
+
     }
 
     // Método responsavel por abrir a pagina de editar um projeto
@@ -133,11 +142,12 @@ class UserController extends Controller
     {
         $registro = $this->user->find($id);
         $estados = $this->user::$estadosBrasileiros;
-        return view('admin.voluntarios.editar', compact('registro', 'estados'));
+        $projetos = $this->projeto->all();
+        return view('admin.voluntarios.editar', compact('registro', 'estados', 'projetos'));
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-    public function atualizar(UserRequest $request, $id) 
+    public function atualizar(UpdateUserRequest $request, $id) 
     {
         $request->validated();
         $dados = $request->all();
@@ -166,7 +176,13 @@ class UserController extends Controller
             $dados['foto'] = $dir.'/'.$nomeAnexo;
         }
 
-        $this->user->find($id)->update($dados);
+        $user = $this->user->find($id);
+
+        if ($user->cpf != $dados['cpf']) {
+            return redirect()->back()->withErrors(['cpf' => 'Você não pode alterar o cpf']);
+        }
+        
+        $user->update($dados);
 
         return redirect()->route('admin.voluntarios');
     }

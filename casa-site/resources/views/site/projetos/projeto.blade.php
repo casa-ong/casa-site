@@ -6,7 +6,7 @@
     <div class="content">
         <div id="noticias" class="title">
             <h1>{{ $projeto->nome }}</h1>
-            <p>{{ date('d/m/Y', strtotime($projeto->created_at)) }} por <a href="#">{{ $projeto->user->name }}</a></p>
+            <p>{{ date('d/m/Y', strtotime($projeto->created_at)) }}</p>
         </div>
         <div class="img">
             <img src="{{ asset($projeto->anexo) }}" alt="">
