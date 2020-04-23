@@ -74,7 +74,62 @@ class UserController extends Controller
         return view('site.voluntarios.regiao', compact('registros', 'estado'));
     }
 
-    
+    public function voluntariosNordeste() {
+        $registros = $this->user->where('aprovado', 1)
+        ->where('estado', '=', 'AL')
+        ->orWhere('estado', '=', 'BA')
+        ->orWhere('estado', '=', 'CE')
+        ->orWhere('estado', '=', 'PB')
+        ->orWhere('estado', '=', 'MA')
+        ->orWhere('estado', '=', 'PE')
+        ->orWhere('estado', '=', 'PI')
+        ->orWhere('estado', '=', 'RN')
+        ->orWhere('estado', '=', 'SE')
+        ->orderBy('name')->get();
+
+        $estado = 'Nordeste';
+
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
+    }
+
+    public function voluntariosCentro() {
+        $registros = $this->user->where('aprovado', 1)
+        ->where('estado', '=', 'DF')
+        ->orWhere('estado', '=', 'GO')
+        ->orWhere('estado', '=', 'MT')
+        ->orWhere('estado', '=', 'MS')
+        ->orderBy('name')->get();
+
+        $estado = 'Centro';
+
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
+    }
+
+    public function voluntariosSudeste() {
+        $registros = $this->user->where('aprovado', 1)
+        ->where('estado', '=', 'ES')
+        ->orWhere('estado', '=', 'MG')
+        ->orWhere('estado', '=', 'RJ')
+        ->orWhere('estado', '=', 'SP')
+        ->orderBy('name')->get();
+
+        $estado = 'Sudeste';
+
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
+    }
+
+    public function voluntariosSul() {
+        $registros = $this->user->where('aprovado', 1)
+        ->where('estado', '=', 'PR')
+        ->orWhere('estado', '=', 'RS')
+        ->orWhere('estado', '=', 'SC')
+        ->orderBy('name')->get();
+
+        $estado = 'Sul';
+
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
+    }
+
     public function index() 
     {
         $registros = $this->user->all()->reverse();
@@ -180,6 +235,8 @@ class UserController extends Controller
 
         if ($user->cpf != $dados['cpf']) {
             return redirect()->back()->withErrors(['cpf' => 'Você não pode alterar o cpf']);
+        } else if($user->email != $dados['email']) {
+            return redirect()->back()->withErrors(['email' => 'Você não pode alterar o email']);
         }
         
         $user->update($dados);

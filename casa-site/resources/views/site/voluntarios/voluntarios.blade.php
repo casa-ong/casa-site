@@ -16,10 +16,10 @@
         <div class="mapa">
             <ul id="map">
                 <li id="cno" estado="no"><a href="{{ route('site.voluntarios.norte').'#titulo' }}" id="no" title="Norte"><img src="{{ asset('img/user_map/null.gif') }}" alt="Norte" /></a></li>
-                <li id="cne" estado="ne"><a href="#nordeste" id="ne" title="Nordeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Nordeste" /></a></li>
-                <li id="cco" estado="co"><a href="#centro" id="co" title="Centro-Oeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Centro-Oeste" /></a></li>
-                <li id="cse" estado="se"><a href="#sudeste" id="se" title="Sudeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sudeste" /></a></li>
-                <li id="csu" estado="su"><a href="#sul"id="su" title="Sul"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sul" /></a></li>
+                <li id="cne" estado="ne"><a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" id="ne" title="Nordeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Nordeste" /></a></li>
+                <li id="cco" estado="co"><a href="{{ route('site.voluntarios.centro').'#titulo' }}" id="co" title="Centro-Oeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Centro-Oeste" /></a></li>
+                <li id="cse" estado="se"><a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" id="se" title="Sudeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sudeste" /></a></li>
+                <li id="csu" estado="su"><a href="{{ route('site.voluntarios.sul').'#titulo' }}"id="su" title="Sul"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sul" /></a></li>
             </ul>
         </div>
         <div class="mapa-mobile">

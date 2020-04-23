@@ -657,6 +657,53 @@ table a.btn {
 /* Fim de Estilo das tabelas */
 
 
+/* Cards de voluntarios */
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.user-card {
+    background-color: #fff;
+    border-radius: 5px;
+    width: 95%;
+    max-width: 400px;
+    min-width: 300px;
+    margin: 0.5em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-card div.card-img {
+    width: 25%;
+    height: 5em;
+    max-width: 5em;
+}
+
+.user-card div.card-img img {
+    height: 100%;
+    border-radius: 5px;
+}
+
+.user-card div.card-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+}
+
+.user-card div.card-data h4 {
+    margin: 0;
+}
+
+.user-card div.card-data p {
+    margin: 0;
+}
+
+/* Fim de Cards de voluntarios */
+
 @media only screen and (min-width: 940px) {
     
     #nav-inicio {
