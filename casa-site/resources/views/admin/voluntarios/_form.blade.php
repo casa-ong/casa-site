@@ -108,7 +108,7 @@
 @endisset
 <div class="input-field">
     <label for="email">Email*</label>
-    <input class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui seu email">
+    <input {{ isset($registro->email) ? "readonly" : ""  }} class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui seu email">
     @error('email')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

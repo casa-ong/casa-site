@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -82,6 +83,11 @@ class User extends Authenticatable
 
     public function evento() {
         return $this->hasMany('App\Evento');
+    }
+
+    public function getAge()
+    {
+        return Carbon::parse($this->attributes['nascimento'])->age;
     }
 
 }
