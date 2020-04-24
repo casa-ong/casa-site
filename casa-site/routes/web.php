@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
 // Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
 
