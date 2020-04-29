@@ -78,7 +78,7 @@ class SobreController extends Controller
 
         $this->sobre->create($dados);
 
-        return redirect()->route('admin.sobre');
+        return redirect()->route('admin.sobre')->with('success', 'Informações do Sobre adicionadas com sucesso!');
     }
 
     // Método responsavel por abrir a pagina de editar um evento
@@ -127,6 +127,6 @@ class SobreController extends Controller
         $dadoSite->touch();
         $dadoSite->update($dados);
 
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index')->with('success', 'Informações atualizadas com sucesso!');
     }
 }

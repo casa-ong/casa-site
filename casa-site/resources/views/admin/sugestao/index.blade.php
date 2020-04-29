@@ -5,6 +5,11 @@
     <div class="content">
         <div class="item-title">
             <h1 class="">Lista de Sugestões</h1>
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
         </div>
         <div class="table">
             <table>

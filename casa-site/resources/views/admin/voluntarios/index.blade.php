@@ -6,6 +6,11 @@
         <div class="item-title">
             <h1 class="">Lista de Voluntários</h1>
             <a class="btn" href="{{ route('admin.voluntario.adicionar') }}">Adicionar</a>
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
         </div>
         <div class="table">
             <table>

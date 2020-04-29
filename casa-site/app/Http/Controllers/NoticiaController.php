@@ -70,7 +70,7 @@ class NoticiaController extends Controller
 
         
         $this->noticia->create($dados);
-        return redirect()->route('admin.noticias');
+        return redirect()->route('admin.noticias')->with('success', 'Notícia adicionada com sucesso!');
     }
 
     // Método responsavel por abrir a pagina de editar uma noticia
@@ -109,14 +109,14 @@ class NoticiaController extends Controller
         }
 
         $this->noticia->find($id)->update($dados);
-        return redirect()->route('admin.noticias');
+        return redirect()->route('admin.noticias')->with('success', 'Notícia atualizada com sucesso!');
     }
 
     // Metodo da acao de apagar uma noticia
     public function deletar($id) 
     {
         $this->noticia->find($id)->delete();
-        return redirect()->route('admin.noticias');
+        return redirect()->route('admin.noticias')->with('success', 'Notícia deletada com sucesso!');
     }
 
 }

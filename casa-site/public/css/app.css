@@ -535,6 +535,10 @@ span.invalid-feedback, p.error {
     color: #FF0000;
 }
 
+.alert.alert-sucess {
+    color: rgb(28, 236, 28); /* cor da fonte*/
+}
+
 .input-checkbox {
     display: flex;
     flex-direction: row;

@@ -22,7 +22,7 @@ class SugestaoController extends Controller
         return view('admin.sugestao.index', compact('registros'));
     }
 
-    // Metodo que vai servir para adiconar uma sugestao que nao esta ligado ao admin
+    // Metodo que vai servir para adicionar uma sugestao que nao esta ligado ao admin
     public function adicionar() 
     {
         return view('adicionarSugestao');
@@ -74,7 +74,7 @@ class SugestaoController extends Controller
     public function deletar($id) 
     {
         Sugestao::find($id)->delete();
-        return redirect()->route('admin.sugestoes');
+        return redirect()->route('admin.sugestoes')->with('success', 'Sugestão deletada com sucesso!');
     }
 
 

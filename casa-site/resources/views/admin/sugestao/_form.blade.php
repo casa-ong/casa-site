@@ -33,7 +33,7 @@
 </div>
 <div class="input-field">
     <label for="telefone">Celular/whatsapp*</label>
-    <input class="{{ $errors->has('telefone') ? 'error' : '' }}" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite aqui o seu número do celular">
+    <input class="{{ $errors->has('telefone') ? 'error' : '' }} telefone" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite aqui o seu número do celular">
     @error('telefone')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
