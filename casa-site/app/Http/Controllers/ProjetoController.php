@@ -63,7 +63,7 @@ class ProjetoController extends Controller
 
         $this->projeto->create($dados);
 
-        return redirect()->route('admin.projetos');
+        return redirect()->route('admin.projetos')->with('success', 'Projeto adicionado com sucesso!');
     }
 
     // Método responsavel por abrir a pagina de editar um projeto
@@ -98,14 +98,14 @@ class ProjetoController extends Controller
 
         $this->projeto->find($id)->update($dados);
 
-        return redirect()->route('admin.projetos');
+        return redirect()->route('admin.projetos')->with('success', 'Projeto atualizado com sucesso!');
     }
 
     // Metodo da acao de apagar um projeto
     public function deletar($id) 
     {
         $this->projeto->find($id)->delete();
-        return redirect()->route('admin.projetos');
+        return redirect()->route('admin.projetos')->with('success', 'Projeto deletado com sucesso!');
     }
 
 

@@ -188,7 +188,7 @@ class UserController extends Controller
             return redirect()->route('site.voluntarios');
         }
 
-        return redirect()->route('admin.voluntarios');
+        return redirect()->route('admin.voluntarios')->with('success', 'Voluntário adicionado com sucesso!');
 
     }
 
@@ -241,13 +241,13 @@ class UserController extends Controller
         
         $user->update($dados);
 
-        return redirect()->route('admin.voluntarios');
+        return redirect()->route('admin.voluntarios')->with('success', 'Voluntário atualizado com sucesso!');
     }
 
     // Metodo da acao de apagar um projeto
     public function deletar($id) 
     {
         $this->user->find($id)->delete();
-        return redirect()->route('admin.voluntarios');
+        return redirect()->route('admin.voluntarios')->with('success', 'Voluntário deletado com sucesso!');
     }
 }
