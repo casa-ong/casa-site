@@ -6,6 +6,11 @@
         <div class="item-title">
             <h1 class="">Historico de configurações e sobre do site</h1>
             <a class="btn" href="{{ route('admin.sobre.adicionar') }}">Nova config.</a>
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
         </div>
         <div class="table">
             <table>

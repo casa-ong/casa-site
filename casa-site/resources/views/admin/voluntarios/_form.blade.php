@@ -14,7 +14,7 @@
 </div>
 <div class="input-field">
     <label for="cpf">CPF*</label>
-    <input {{ isset($registro->cpf) ? "readonly" : ""  }} class="{{ $errors->has('cpf') ? 'error' : '' }}" type="text" name="cpf" value="{{ isset($registro->cpf) ? $registro->cpf : old('cpf') }}" placeholder="Digite aqui seu cpf">
+    <input {{ isset($registro->cpf) ? "readonly" : ""  }} class="{{ $errors->has('cpf') ? 'error' : '' }} cpf " type="text" name="cpf" value="{{ isset($registro->cpf) ? $registro->cpf : old('cpf') }}" placeholder="Digite aqui seu cpf">
     @error('cpf')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -118,7 +118,7 @@
 </div>
 <div class="input-field">
     <label for="telefone">Telefone/Celular*</label>
-    <input class="{{ $errors->has('telefone') ? 'error' : '' }}" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite aqui seu telefone">
+    <input class="{{ $errors->has('telefone') ? 'error' : '' }} telefone" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite aqui seu telefone">
     @error('telefone')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

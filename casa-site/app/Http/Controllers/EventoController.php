@@ -65,7 +65,7 @@ class EventoController extends Controller
 
         $this->evento->create($dados);
 
-        return redirect()->route('admin.eventos');
+        return redirect()->route('admin.eventos')->with('success', 'Evento adicionado com sucesso!');
     }
 
     // Método responsavel por abrir a pagina de editar um evento
@@ -99,14 +99,14 @@ class EventoController extends Controller
 
         $this->evento->find($id)->update($dados);
 
-        return redirect()->route('admin.eventos');
+        return redirect()->route('admin.eventos')->with('success', 'Evento atualizado com sucesso!');
     }
 
     // Metodo da acao de apagar um evento
     public function deletar($id) 
     {
         $this->evento->find($id)->delete();
-        return redirect()->route('admin.eventos');
+        return redirect()->route('admin.eventos')->with('success', 'Evento deletado com sucesso!');
     }
 
 
