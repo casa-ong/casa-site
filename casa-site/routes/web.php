@@ -77,7 +77,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/sobre/deletar/{id}',['as' => 'admin.sobre.deletar', 'uses' => 'SobreController@deletar']);
 
     Route::get('/admin/sugestoes',['as' => 'admin.sugestoes', 'uses' => 'SugestaoController@index']);
-    Route::get('/admin/sugestao/editar/{id}',['as' => 'admin.sugestao.editar', 'uses' => 'SugestaoController@editar']);
+    Route::get('/admin/sugestao/ver/{id}',['as' => 'admin.sugestao.ver', 'uses' => 'SugestaoController@ver']);
     Route::get('/admin/sugestao/atualizar/{id}',['as' => 'admin.sugestao.atualizar', 'uses' => 'SugestaoController@atualizar']);
     Route::get('/admin/sugestao/deletar/{id}',['as' => 'admin.sugestao.deletar', 'uses' => 'SugestaoController@deletar']);
 

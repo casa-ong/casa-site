@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Sugestao;
 use Validator;
 use App\Http\Requests\SugestaoRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SugestaoController extends Controller
 {
@@ -45,15 +46,23 @@ class SugestaoController extends Controller
         return redirect()->route('admin.sugestoes');
     }
 
-    /*Método responsavel por marcar a sugestao como lida 
-    public function editar($id) 
+    // Método responsavel por ver a sugestao como lida 
+    public function ver($id) 
     {
-        $dados = $request->all();
-        $dados['lida'] = true;
-        Sugestao::find($id)->update($dados);
+        $dados = [
+            'lida' => true
+        ];
 
-        return redirect()->route('admin.sugestoes');
-    } */
+        $registro = Sugestao::find($id);
+        
+        if($registro == null) {
+            throw new ModelNotFoundException;
+        }
+
+        $registro->update($dados);
+
+        return view('admin.sugestao.ver', compact('registro'));
+    }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
     public function atualizar($id) 

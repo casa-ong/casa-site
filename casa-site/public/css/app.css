@@ -66,23 +66,11 @@ nav .nav-fluid {
     z-index: 999;
     transform: scale(1, 0);
     transform-origin: top;
-    /* transition: transform 400ms ease-in-out; */
 }
 
 .nav-toggle:checked ~ .nav-fluid {
     transform: scale(1, 1);
-    /* transition: transform 400ms ease-in-out; */
 }
-
-/* nav .nav-fluid a {
-    opacity: 0;
-    transition: opacity 250ms ease-in-out 250ms;    
-}
-
-.nav-toggle:checked ~ .nav-fluid a {
-    opacity: 1;
-    transition: opacity 150ms;    
-} */
 
 nav .nav-link {
     margin: 0 auto;
@@ -107,24 +95,6 @@ nav .nav-link:hover {
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
-/* nav a::after, .nav-toggle-label::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background-color: var(--main-hover-color);
-    width: 100%;
-    height: 3.2em;
-    opacity: 0;
-    transition: opacity 250ms ease-in-out;
-    z-index: -1;
-}
-
-nav a:hover::after, .nav-toggle-label:hover::after {
-    opacity: 1;
-    transition: opacity 250ms ease-in-out;
-} */
-
 .nav-toggle {
     display: none;
 }
@@ -139,16 +109,10 @@ nav a:hover::after, .nav-toggle-label:hover::after {
 
 .nav-toggle-label span.fa-times, .nav-toggle:checked ~ label.nav-toggle-label span.fa-bars {
     display: none;
-    /* position: absolute;
-    transform: scale(0);
-    transition: transform 150ms ease-in-out; */
 }
 
 .nav-toggle:checked ~ label.nav-toggle-label span.fa-times, .nav-toggle-label span.fa-bars {
     display: block;
-    /* position: absolute;
-    transform: scale(1);
-    transition: transform 150ms ease-in-out; */
 }
 
 .nav-toggle-label:hover {
@@ -250,7 +214,7 @@ div.container div.item-title {
 }
 
 div.container div.item-title h1 {
-    margin: 0;
+    margin: 1em 0 0 0;
 }
 
 div.container div.card {
@@ -516,7 +480,7 @@ div.page-nav nav ul li a:hover {
     padding: 1em 0.5em;
 }
 
-.item-form div.input-field input[readonly=""] {
+.item-form div.input-field input[readonly=""], .item-form div.input-field textarea[readonly=""] {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -557,6 +521,16 @@ span.invalid-feedback, p.error {
     justify-content: center;
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.input-field textarea {
+    height: 100px;
+    transition: height 250ms ease-in-out;
+}
+
+.input-field textarea:focus {
+    height: 300px;
+    transition: height 250ms ease-in-out;
 }
 
 /* Fim de formulários */
@@ -662,6 +636,11 @@ table a.btn {
 
 
 /* Cards de voluntarios */
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
 
 .row {
     display: flex;
