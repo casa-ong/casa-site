@@ -34,7 +34,7 @@
                                 </a>
                             </td>
                             <td class="action-cell">
-                                <a class="btn" href="#">
+                                <a class="btn" href="{{ route('admin.sugestao.ver',$registro->id) }}" title="Ver">
                                     <span class="fas fa-eye"></span>
                                 </a>
                                 <a class="btn btn-danger" href="{{ route('admin.sugestao.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar essa sugestão?');" title="Deletar">

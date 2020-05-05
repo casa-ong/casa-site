@@ -5,11 +5,10 @@
     <div class="content">
         <div id="voluntarios" class="item-title">
             <h1>Voluntários</h1>
-            {{-- <a class="btn" href="{{ route('site.voluntario.adicionar') }}">Seja um voluntário</a> --}}
         </div>
-        <div class="title">
+        <div class="title row">
             <p>
-                Temos voluntários espalhados por todo o Brasil, venha ser um de nós! <br>
+                Temos voluntários espalhados por todo o Brasil, <a href="{{ route('site.voluntario.adicionar') }}">venha ser um de nós</a>!<br>
                 Conheça nossos voluntários por região.
             </p>
         </div>
@@ -24,10 +23,10 @@
         </div>
         <div class="mapa-mobile">
             <a href="{{ route('site.voluntarios.norte').'#titulo' }}" title="Norte">Norte</a>
-            <a href="#nordeste" title="Nordeste">Nordeste</a>
-            <a href="#centro" title="Centro-Oeste">Centro-oeste</a>
-            <a href="#sudeste" title="Sudeste">Sudeste</a>
-            <a href="#sul"title="Sul">Sul</a>
+            <a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" title="Nordeste">Nordeste</a>
+            <a href="{{ route('site.voluntarios.centro').'#titulo' }}" title="Centro-Oeste">Centro-oeste</a>
+            <a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" title="Sudeste">Sudeste</a>
+            <a href="{{ route('site.voluntarios.sul').'#titulo' }}"title="Sul">Sul</a>
         </div>
     </div>
 @endsection

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class LoginController extends Controller
 {
+    
     public function index() 
     {
         return view('login.index');
@@ -15,6 +16,7 @@ class LoginController extends Controller
     
     public function entrar(Request $request)
     {
+        // Auth::logoutOtherDevices(request('password');
         // Pegar dados do usuario para verificar se eh admin
         $dados = $request->all();
         $user = User::where('email', $dados['email'])->first();
