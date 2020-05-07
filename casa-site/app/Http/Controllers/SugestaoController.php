@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sugestao;
 use App\User;
+use Auth;
 use Validator;
 use App\Http\Requests\SugestaoRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -63,7 +64,11 @@ class SugestaoController extends Controller
         Notification::send($users, new NovaSugestaoNotification($sugestao));
         $sugestao->notify(new SugestaoEnviadaNotification($sugestao));
 
-        return redirect()->route('admin.sugestoes');
+        if (Auth::user()) {
+            return redirect()->route('admin.sugestoes')->with('success', 'Sugestão feita com sucesso!');
+        } else {
+            return redirect()->route('sugestao.adicionar')->with('success', 'Sugestão feita com sucesso!');
+        }
     }
 
     // Método responsavel por ver a sugestao como lida 

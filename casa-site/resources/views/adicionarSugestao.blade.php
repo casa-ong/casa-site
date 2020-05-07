@@ -5,6 +5,13 @@
 <div class="content">
     <div class="item-title">
         <h1>Envie uma sugestão</h1>
+
+        @if(Session::has('success'))
+            <div class="alert alert-success">
+                <p>{{ Session::get('success') }}</p>
+            </div>
+        @endif
+        
     </div>
     <div class="item-form">
         <form action="{{ route('sugestao.salvar') }}" method="POST" enctype="multipart/form-data">

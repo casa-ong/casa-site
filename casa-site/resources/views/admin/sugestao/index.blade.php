@@ -7,7 +7,7 @@
             <h1 class="">Lista de Sugestões</h1>
             @if(Session::has('success'))
                 <div class="alert alert-success">
-                    {{ Session::get('success') }}
+                    <p>{{ Session::get('success') }}</p>
                 </div>
             @endif
         </div>
