@@ -14,7 +14,7 @@
 
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 img {
@@ -26,10 +26,18 @@ button:focus, a:focus {
     -moz-outline-radius: 5px;
 }
 
+/* Banner */
+
 header {
+    position: relative;
     padding: 1em;
     background-color: var(--main-bg-color);
     text-align: center;
+    max-height: 300px;
+}
+
+.banner {
+    max-width: 800px;
 }
 
 header h1 {
@@ -40,6 +48,9 @@ header h2 {
     font-weight: lighter;
     text-transform: uppercase;
 }
+
+/* Fim de banner */
+
 
 nav {
     background-color: #000;
@@ -463,7 +474,6 @@ div.page-nav nav ul li a:hover {
     color: rgba(0,0,0,0.85);
     text-decoration: none;
     font-size: 18px;
-	font-family: times;
 	font-variant: normal;
 	font-style: normal;
 	font-weight: bold;
@@ -473,7 +483,6 @@ div.page-nav nav ul li a:hover {
 
 .item-form div.input-field input, .item-form div.input-field textarea, .item-form div.input-field select {
     font-size: 16px;
-    font-family: sans-serif;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     width: 100%;
@@ -508,7 +517,6 @@ span.invalid-feedback, p.error {
     flex-direction: row;
     text-decoration: none;
     font-size: 18px;
-	font-family: times;
 	font-variant: normal;
 	font-style: normal;
 	font-weight: bold;
@@ -686,6 +694,7 @@ table a.btn {
 }
 
 /* Fim de Cards de voluntarios */
+
 
 @media only screen and (min-width: 940px) {
     

@@ -8,9 +8,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     <!-- JavaScript da pagina -->
     <script src="{{ asset('js/dropdown_on_click.js') }}" crossorigin="anonymous"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ isset($sobre->logo) ? asset($sobre->logo) : asset('img/logos/casa-marca.png') }}">
     
     <!-- Icones do Font Awesome -->
     <script src="https://kit.fontawesome.com/8eafe50798.js" defer crossorigin="anonymous"></script>
+
+    <!-- Font monterrat regular -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> 
     
     <!-- include summernote css/js -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -35,8 +41,7 @@
         @endif
 
         <div class="header">
-            <h1>{{ isset($titulo) ? $titulo : '' }}</h1>
-            <h2>{{ isset($slogan) ? $slogan : '' }}</h2>
+            <img class="banner" src="{{ isset($banner) ? asset($banner) : asset('img/banner/casa-banner.png') }}" alt="{{ $titulo ?? 'Centro de Apoio Social e Ambiental' }}">
         </div>
     </header>
     @include('layout._includes.navbar')
