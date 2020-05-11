@@ -44,7 +44,7 @@
 @if (! empty($salutation))
 {{ $salutation }}
 @else
-@lang('Regards'),<br>
+Com carinho,<br>
 {{ config('app.name') }}
 @endif
 
