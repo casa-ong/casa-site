@@ -44,9 +44,9 @@ Route::post('/login/entrar',['as' => 'login.entrar', 'uses' => 'LoginController@
 Route::get('/sugestao/adicionar',['as' => 'sugestao.adicionar', 'uses' => 'SugestaoController@adicionar']);
 Route::post('/sugestao/salvar',['as' => 'sugestao.salvar', 'uses' => 'SugestaoController@salvar']);
 
+Auth::routes(['verify' => true]);
 
-
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
     Route::get('/admin/index',['as' => 'admin.index', 'uses' => 'HomeController@adminIndex']);
     Route::get('/admin/projetos',['as' => 'admin.projetos', 'uses' => 'ProjetoController@index']);
     Route::get('/admin/projeto/adicionar',['as' => 'admin.projeto.adicionar', 'uses' => 'ProjetoController@adicionar']);
@@ -91,3 +91,7 @@ Route::group(['middleware' => 'auth'], function() {
    
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
