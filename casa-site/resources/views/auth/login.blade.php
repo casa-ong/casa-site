@@ -7,7 +7,7 @@
         <h1>{{ __('Login') }}</h1>
     </div>
     <div class="item-form">
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('login.entrar') }}" method="POST">
             {{ csrf_field() }}
 
             <div class="input-field">

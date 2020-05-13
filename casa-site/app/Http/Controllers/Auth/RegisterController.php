@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Projeto;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -30,15 +31,19 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    protected $user;
+    protected $projeto;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user, Projeto $projeto)
     {
         $this->middleware('guest');
+        $this->user = $user;
+        $this->projeto = $projeto;
     }
 
     /**
@@ -69,5 +74,19 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        $estados = $this->user::$estadosBrasileiros;
+        $projetos = $this->projeto->all();
+        return view('admin.voluntarios.adicionar', compact('estados', 'projetos'));
+    }
+
+    public function register()
+    {
+        $estados = $this->user::$estadosBrasileiros;
+        $projetos = $this->projeto->all();
+        return view('admin.voluntarios.adicionar', compact('estados', 'projetos'));
     }
 }

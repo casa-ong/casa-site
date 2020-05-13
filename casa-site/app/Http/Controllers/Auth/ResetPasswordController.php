@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use App\Notifications\SenhaAlteradaComSucessoNotification;
 use Validator;
 use DB;
+use Hash;
+use Auth;
+use App\User;
 
 
 class ResetPasswordController extends Controller
@@ -54,27 +58,37 @@ class ResetPasswordController extends Controller
 
         $password = $request->password;// Validate the token
         $tokenData = DB::table('password_resets')
-        ->where('token', $request->token)->first();// Redirect the user back to the password reset request form if the token is invalid
-        if (!$tokenData) return view('auth.passwords.email');
-
-        $user = User::where('email', $tokenData->email)->first();
+            ->where('email', $request->email)->first();
+        
         // Redirect the user back if the email is invalid
-        if (!$user) return redirect()->back()->withErrors(['email' => 'Email não encontrado']);//Hash and update the new password
-        $user->password = \Hash::make($password);
-        $user->update(); //or $user->save();
+        if(!$tokenData) {
+            return redirect()->back()->withErrors(['email' => 'Email não encontrado']);//Hash and update the new password
+        }
 
-        //login the user immediately they change password successfully
-        Auth::login($user);
+        // Redirect the user back to the password reset request form if the token is invalid
+        if (!Hash::check($request->token, $tokenData->token)) {
+            return redirect()->route('password.request')->withErrors(['email' => 'Token inválido, faça uma nova solicitação']);
+        }
+
+        $user = User::where('email', $request->email)->first();
+        $user->password = \Hash::make($password);
+        $user->update();
+
+        // //login the user immediately they change password successfully
+        // Auth::login($user);
 
         //Delete the token
         DB::table('password_resets')->where('email', $user->email)
         ->delete();
 
         //Send Email Reset Success Email
-        if ($this->sendSuccessEmail($tokenData->email)) {
-            return view('index');
-        } else {
-            return redirect()->back()->withErrors(['email' => trans('A Network Error occurred. Please try again.')]);
-        }
+        $this->sendSuccessEmail($user);
+
+        return redirect()->route('password.request')->with('success', 'Senha alterada com sucesso');
+    }
+
+    public function sendSuccessEmail(User $user) 
+    {
+        $user->notify(new SenhaAlteradaComSucessoNotification($user));
     }
 }

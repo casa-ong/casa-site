@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
-// Route::get('/sobre', ['as' => 'site.sobre', 'uses' => 'SobreController@sobre']);
-
 
 Route::get('/voluntarios', ['as' => 'site.voluntarios', 'uses' => 'UserController@voluntarios']);
 Route::get('/voluntarios/norte', ['as' => 'site.voluntarios.norte', 'uses' => 'UserController@voluntariosNorte']);

@@ -10,6 +10,8 @@ use App\Projeto;
 use Validator;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Notifications\UserRegisteredSuccessfully;
+use Notification;
 
 class UserController extends Controller
 {
@@ -82,7 +84,6 @@ class UserController extends Controller
         ->orderBy('name')->get();
 
         $estado = 'Sudeste';
-
         return view('site.voluntarios.regiao', compact('registros', 'estado'));
     }
 
@@ -169,8 +170,11 @@ class UserController extends Controller
 
         $this->user->create($dados);
 
+        $user = $this->user->where('email', $dados['email'])->first();
+        Notification::send($user, new UserRegisteredSuccessfully($user));
+
         if(Auth::guest()) {
-            return redirect()->route('site.voluntarios');
+            return redirect()->route('site.voluntarios')->with('success', 'Inscrição feita com sucesso! Verifique seu email e aguarde a aprovação por nossos representantes.');;
         }
 
         return redirect()->route('admin.voluntarios')->with('success', 'Voluntário adicionado com sucesso!');

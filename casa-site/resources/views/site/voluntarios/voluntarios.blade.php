@@ -5,6 +5,13 @@
     <div class="content">
         <div id="voluntarios" class="item-title">
             <h1>Voluntários</h1>
+
+            @if(Session::has('success'))
+                <div class="alert alert-success">
+                    <p>{{ Session::get('success') }}</p>
+                </div>
+            @endif
+
         </div>
         <div class="title row">
             <p>

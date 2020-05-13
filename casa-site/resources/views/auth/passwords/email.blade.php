@@ -5,9 +5,9 @@
 <div class="content">
     <div class="item-title">
         <h1>{{ __('Reset Password') }}</h1>
-        @if (session('status'))
+        @if (session('success'))
             <div class="alert alert-success" role="alert">
-                <p>{{ session('status') }}</p>
+                <p>{{ session('success') }}</p>
             </div>
         @endif
     </div>
