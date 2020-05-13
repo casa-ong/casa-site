@@ -30,13 +30,15 @@ class UserController extends Controller
 
     public function voluntariosNorte() {
         $registros = $this->user->where('aprovado', '=', 1)
-        ->where('estado', '=', 'AC')
-        ->orWhere('estado', '=', 'AP')
-        ->orWhere('estado', '=', 'AM')
-        ->orWhere('estado', '=', 'PA')
-        ->orWhere('estado', '=', 'RR')
-        ->orWhere('estado', '=', 'RO')
-        ->orWhere('estado', '=', 'TO')
+        ->where(function($query) {
+            $query->where('estado', '=', 'AC')
+            ->orWhere('estado', '=', 'AP')
+            ->orWhere('estado', '=', 'AM')
+            ->orWhere('estado', '=', 'PA')
+            ->orWhere('estado', '=', 'RR')
+            ->orWhere('estado', '=', 'RO')
+            ->orWhere('estado', '=', 'TO');
+        })
         ->orderBy('name')->get();
 
         $estado = 'Norte';
@@ -45,29 +47,33 @@ class UserController extends Controller
     }
 
     public function voluntariosNordeste() {
-        $registros = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'AL')
-        ->orWhere('estado', '=', 'BA')
-        ->orWhere('estado', '=', 'CE')
-        ->orWhere('estado', '=', 'PB')
-        ->orWhere('estado', '=', 'MA')
-        ->orWhere('estado', '=', 'PE')
-        ->orWhere('estado', '=', 'PI')
-        ->orWhere('estado', '=', 'RN')
-        ->orWhere('estado', '=', 'SE')
-        ->orderBy('name')->get();
+        $registros = $this->user
+            ->where('aprovado', '=', 1)
+            ->where(function($query) {
+                $query->where('estado', '=', 'AL')
+                    ->orWhere('estado', '=', 'BA')
+                    ->orWhere('estado', '=', 'CE')
+                    ->orWhere('estado', '=', 'PB')
+                    ->orWhere('estado', '=', 'MA')
+                    ->orWhere('estado', '=', 'PE')
+                    ->orWhere('estado', '=', 'PI')
+                    ->orWhere('estado', '=', 'RN')
+                    ->orWhere('estado', '=', 'SE');
+            })
+            ->orderBy('name')->get();
 
         $estado = 'Nordeste';
-
         return view('site.voluntarios.regiao', compact('registros', 'estado'));
     }
 
     public function voluntariosCentro() {
         $registros = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'DF')
-        ->orWhere('estado', '=', 'GO')
-        ->orWhere('estado', '=', 'MT')
-        ->orWhere('estado', '=', 'MS')
+        ->where(function($query) {
+            $query->where('estado', '=', 'DF')
+            ->orWhere('estado', '=', 'GO')
+            ->orWhere('estado', '=', 'MT')
+            ->orWhere('estado', '=', 'MS');
+        })
         ->orderBy('name')->get();
 
         $estado = 'Centro';
@@ -77,10 +83,12 @@ class UserController extends Controller
 
     public function voluntariosSudeste() {
         $registros = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'ES')
-        ->orWhere('estado', '=', 'MG')
-        ->orWhere('estado', '=', 'RJ')
-        ->orWhere('estado', '=', 'SP')
+        ->where(function($query) {
+            $query->where('estado', '=', 'ES')
+            ->orWhere('estado', '=', 'MG')
+            ->orWhere('estado', '=', 'RJ')
+            ->orWhere('estado', '=', 'SP');
+        })
         ->orderBy('name')->get();
 
         $estado = 'Sudeste';
@@ -89,9 +97,11 @@ class UserController extends Controller
 
     public function voluntariosSul() {
         $registros = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'PR')
-        ->orWhere('estado', '=', 'RS')
-        ->orWhere('estado', '=', 'SC')
+        ->where(function($query) {
+            $query->where('estado', '=', 'PR')
+            ->orWhere('estado', '=', 'RS')
+            ->orWhere('estado', '=', 'SC');
+        })
         ->orderBy('name')->get();
 
         $estado = 'Sul';
