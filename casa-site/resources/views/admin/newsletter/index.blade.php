@@ -25,7 +25,7 @@
                 <tbody class="table-body">
                     @foreach ($registros as $registro)
                         <tr>
-                            <td>{{ $registro->email }}</td>
+                            <td>{{ $registro->email_newsletter }}</td>
                             <td>{{ $registro->receber_eventos ? "Sim" : "Não" }}</td>
                             <td>{{ $registro->receber_projetos ? "Sim" : "Não" }}</td>
                             <td>{{ $registro->receber_noticias ? "Sim" : "Não" }}</td>

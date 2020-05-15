@@ -24,15 +24,15 @@ class NewsletterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'email|unique:users',
+            'email_newsletter' => 'email|unique:newsletters',
         ];
     }
     
     public function messages() 
     {
         return [
-            'email.email' => 'Endereço de email digitado inválido',
-            'email.unique' => 'Endereço de email digitado já tem cadastro',
+            'email_newsletter.email' => 'Endereço de email digitado inválido',
+            'email_newsletter.unique' => 'Endereço de email digitado já tem cadastro',
             
         ];
     }

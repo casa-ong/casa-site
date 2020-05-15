@@ -1,7 +1,7 @@
 <div class="input-field">
     <label for="nome">Email</label>
-    <input class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : '' }}">
-    @error('email')
+    <input type="text" name="email_newsletter" value="{{ isset($registro->email_newsletter) ? $registro->email_newsletter : '' }}">
+    @error('email_newsletter')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>

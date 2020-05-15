@@ -12,10 +12,10 @@ class CreateNewslettersTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
         Schema::create('newsletters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('email');
+            $table->string('email_newsletter')->unique();
             $table->boolean('receber_eventos');
             $table->boolean('receber_projetos');
             $table->boolean('receber_noticias');
@@ -26,7 +26,6 @@ class CreateNewslettersTable extends Migration
                 ->onDelete('set null');
             $table->timestamps();
         });
-        
     }
 
     /**

@@ -48,9 +48,8 @@ class NewsletterController extends Controller
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-    public function atualizar(NewsletterRequest $request, $id) 
+    public function atualizar(Request $request,$id) 
     {
-        $request->validated();
         $dados = $request->all();
 
         
@@ -83,5 +82,4 @@ class NewsletterController extends Controller
         return redirect()->route('admin.newsletters')->with('success', 'Newsletter deletada com sucesso!');
     }
 }
-
 

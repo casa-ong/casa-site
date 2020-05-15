@@ -4,8 +4,8 @@
                 <form id="form-btn"  action="{{ route('newsletter.salvar') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <label for="item-title">Receba novidades</label>
-                        <input name="email" class="{{ $errors->has('email') ? 'error' : '' }}" type="text" value="{{ isset($registro->email) ? $registro->email : '' }}" placeholder="Digite seu email para se cadastrar">
-                        @error('email')
+                        <input name="email_newsletter" class="{{ $errors->has('email_newsletter') ? 'error' : '' }}" type="text" placeholder="Digite seu email para se cadastrar">
+                        @error('email_newsletter')
                             <p class="error" style="color: #D3D3D3;">{{ $message }}</p>
                         @enderror
                     <div class="input-btn">
