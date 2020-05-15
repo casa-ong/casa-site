@@ -44,6 +44,8 @@ Route::post('/login/entrar',['as' => 'login.entrar', 'uses' => 'LoginController@
 Route::get('/sugestao/adicionar',['as' => 'sugestao.adicionar', 'uses' => 'SugestaoController@adicionar']);
 Route::post('/sugestao/salvar',['as' => 'sugestao.salvar', 'uses' => 'SugestaoController@salvar']);
 
+Route::get('/newsletter/adicionar',['as' => 'newsletter.adicionar', 'uses' => 'NewsletterController@adicionar']);
+Route::post('/newsletter/salvar',['as' => 'newsletter.salvar', 'uses' => 'NewsletterController@salvar']);
 
 
 Route::group(['middleware' => 'auth'], function() {
@@ -88,6 +90,11 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/admin/noticia/editar/{id}',['as' => 'admin.noticia.editar', 'uses' => 'NoticiaController@editar']);
     Route::put('/admin/noticia/atualizar/{id}',['as' => 'admin.noticia.atualizar', 'uses' => 'NoticiaController@atualizar']);
     Route::get('/admin/noticia/deletar/{id}',['as' => 'admin.noticia.deletar', 'uses' => 'NoticiaController@deletar']);
+
+    Route::get('/admin/newsletters', ['as' => 'admin.newsletters', 'uses' => 'NewsletterController@index']);
+    Route::get('/admin/newsletter/editar/{id}',['as' => 'admin.newsletter.editar', 'uses' => 'NewsletterController@editar']);
+    Route::put('/admin/newsletter/atualizar/{id}',['as' => 'admin.newsletter.atualizar', 'uses' => 'NewsletterController@atualizar']);
+    Route::get('/admin/newsletter/deletar/{id}',['as' => 'admin.newsletter.deletar', 'uses' => 'NewsletterController@deletar']);
    
 
 });

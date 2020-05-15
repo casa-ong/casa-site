@@ -28,6 +28,10 @@
                 <span class="fas fa-comments"></span>
                 <h2>Sugestões</h2>
             </a>
+            <a class="admin-card" href="{{ route('admin.newsletters') }}">
+                <span class="fas fa-envelope-open-text"></span>
+                <h2>NewsLetters</h2>
+            </a>
             <a class="admin-card" href="{{ route('admin.sobre') }}">
                 <span class="fas fa-cog"></span>
                 <h2>Configurações</h2>

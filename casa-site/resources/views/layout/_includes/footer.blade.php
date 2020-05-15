@@ -1,9 +1,17 @@
 
         <div class="item-black">
             <div class="input-field">
-                <label for="item-title">Receba novidades</label>
-                <input name="email" type="text" placeholder="Digite seu email para se cadastrar">
-                <a href="#noticias" class="btn btn-dark">Enviar</a>
+                <form id="form-btn"  action="{{ route('newsletter.salvar') }}" method="POST" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                        <label for="item-title">Receba novidades</label>
+                        <input name="email" class="{{ $errors->has('email') ? 'error' : '' }}" type="text" value="{{ isset($registro->email) ? $registro->email : '' }}" placeholder="Digite seu email para se cadastrar">
+                        @error('email')
+                            <p class="error" style="color: #D3D3D3;">{{ $message }}</p>
+                        @enderror
+                    <div class="input-btn">
+                        <button form="form-btn" type="submit" class="btn">Enviar</button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="item">
