@@ -90,4 +90,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return Carbon::parse($this->attributes['nascimento'])->age;
     }
 
+    public function newsletter() {
+        return $this->oneToOne('App\Newsletter');
+    }
+
 }
