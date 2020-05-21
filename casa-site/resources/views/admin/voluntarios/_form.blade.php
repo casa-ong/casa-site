@@ -94,18 +94,17 @@
 </div>
 <div class="input-field">
     <label for="foto">Foto do voluntario</label>
-    <input class="{{ $errors->has('foto') ? 'error' : '' }}" type="file" name="foto">
+    <div class="input-field row">
+        <input class="{{ $errors->has('foto') ? 'error' : '' }}" type="file" name="foto" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
+        <img id="img-foto" src="{{ isset($registro->foto) ? asset($registro->foto) : '' }}" alt="" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px;">
+    </div>    
     @error('foto')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
         </span>
     @enderror
 </div>
-@if(@isset($registro->foto))
-    <div class="input-field">
-        <img src="{{ asset($registro->foto) }}" alt="">
-    </div>    
-@endisset
+
 <div class="input-field">
     <label for="email">Email*</label>
     <input {{ isset($registro->email) ? "readonly" : ""  }} class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui seu email">

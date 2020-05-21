@@ -712,6 +712,25 @@ table a.btn {
     margin: 0;
 }
 
+div.input-field.align-center {
+    align-items: center;
+}
+
+div.input-field.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div.input-field.row input {
+    width: 80%;
+}
+
+div.container div.content div.input-field.row img {
+    width: 63px;
+}
+
 @media only screen and (min-width: 940px) {
     
     #nav-inicio {

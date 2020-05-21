@@ -16,15 +16,24 @@
         </div>
         <div class="item">
             <div class="social-icons">
-                <a class="social-icon" href="{{ isset($sobre->twitter) ? $sobre->twitter : '#' }}" target="_blank">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a class="social-icon" href="{{ isset($sobre->instagram) ? $sobre->instagram : '#' }}" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a class="social-icon" href="{{ isset($sobre->facebook) ? $sobre->facebook : '#' }}" target="_blank">
-                    <i class="fab fa-facebook"></i>
-                </a>
+                @php($sobre = App\Sobre::latest('updated_at')->first())
+                @if(isset($sobre->twitter))
+                    <a class="social-icon" href="{{ isset($sobre->twitter) ? $sobre->twitter : '#' }}" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                @endif
+
+                @if(isset($sobre->instagram))
+                    <a class="social-icon" href="{{ isset($sobre->instagram) ? $sobre->instagram : '#' }}" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                @endif
+
+                @if(isset($sobre->facebook))
+                    <a class="social-icon" href="{{ isset($sobre->facebook) ? $sobre->facebook : '#' }}" target="_blank">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                @endif
             </div>
             <p>© 2020 Todos os direitos reservados.</p>
         </div>
