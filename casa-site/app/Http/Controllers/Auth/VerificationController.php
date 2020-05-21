@@ -7,7 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Auth\Events\Verified;
+use App\Notifications\NovaSugestaoNotification;
+use App\Notifications\SugestaoEnviadaNotification;
+use \Illuminate\Notifications\Notifiable;
+use Notification;
 use App\User;
+use App\Sugestao;
 
 class VerificationController extends Controller
 {
@@ -54,5 +59,23 @@ class VerificationController extends Controller
             event(new Verified($user));
 
         return redirect()->route('site.voluntarios')->with('success', 'Email verificado com sucesso!');
+    }
+
+    public function verifySugestao(Request $request)
+    {
+        $sugestao = Sugestao::find($request->route('id'));
+
+        if (!hash_equals((string) $request->route('hash'), sha1($sugestao->getEmailForVerification()))) {
+            throw new AuthorizationException;
+        }
+
+        if ($sugestao->markEmailAsVerified())
+            event(new Verified($sugestao));
+
+        $users = User::where('admin', true)->get();
+        Notification::send($users, new NovaSugestaoNotification($sugestao));
+        $sugestao->notify(new SugestaoEnviadaNotification($sugestao));
+
+        return redirect()->route('sugestao.adicionar')->with('success', 'Email verificado com sucesso!');
     }
 }

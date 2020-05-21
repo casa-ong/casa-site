@@ -145,10 +145,6 @@
         </span>
     @enderror
 </div>
-<label class="input-checkbox" for="aprovado">Aprovar esse voluntário da ONG?
-    <input type="checkbox" name="aprovado" {{ isset($registro->aprovado) && $registro->aprovado == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
 <label class="input-checkbox" for="admin">Ele deve ser administrador do site?
     <input type="checkbox" name="admin" {{ isset($registro->admin) && $registro->admin == true ? 'checked' : ''}} value="true">
     <span class="checkmark"></span>

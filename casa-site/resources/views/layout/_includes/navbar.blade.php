@@ -1,6 +1,6 @@
 <nav class="nav-links">
     <a id="nav-inicio" class="nav-link" href="{{ route('site.home') }}">Início</a>
-    <input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <input tabindex="0" type="checkbox" id="nav-toggle" class="nav-toggle">
     <div class="nav-fluid">
         <a class="nav-link" href="{{ route('site.noticias').'#noticias' }}">Notícias</a>
         <a class="nav-link" href="{{ route('site.eventos').'#eventos' }}">Eventos</a>

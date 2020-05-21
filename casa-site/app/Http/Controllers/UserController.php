@@ -11,6 +11,7 @@ use Validator;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Notifications\UserRegisteredSuccessfully;
+use App\Notifications\VoluntarioAprovadoNotification;
 use Notification;
 
 class UserController extends Controller
@@ -111,7 +112,7 @@ class UserController extends Controller
 
     public function index() 
     {
-        $registros = $this->user->all()->reverse();
+        $registros = $this->user->whereNotNull('email_verified_at')->get()->reverse();
         return view('admin.voluntarios.index', compact('registros'));
     }
 
@@ -192,9 +193,9 @@ class UserController extends Controller
     }
 
     // Método responsavel por abrir a pagina de editar um projeto
-    public function editar($id) 
+    public function editar() 
     {
-        $registro = $this->user->find($id);
+        $registro = Auth::user();
         $estados = $this->user::$estadosBrasileiros;
         $projetos = $this->projeto->all();
         return view('admin.voluntarios.editar', compact('registro', 'estados', 'projetos'));
@@ -241,6 +242,25 @@ class UserController extends Controller
         $user->update($dados);
 
         return redirect()->route('admin.voluntarios')->with('success', 'Voluntário atualizado com sucesso!');
+    }
+
+    public function aprovarVoluntario($id)
+    {
+        $user = $this->user->find($id);
+
+        if($user->aprovado) {
+            $user->aprovado = false;
+        } else {
+            $user->aprovado = true;
+        }
+
+        $user->update();
+
+        if($user->aprovado) {
+            $user->notify(new VoluntarioAprovadoNotification());
+        }
+
+        return redirect()->route('admin.voluntarios')->with('success', 'Voluntário aprovado com sucesso!');
     }
 
     // Metodo da acao de apagar um projeto

@@ -22,7 +22,7 @@ img {
     width: 100%;
 }
 
-button:focus, a:focus {
+button:focus, a:focus, label:focus-within, .nav-toggle:focus ~ label {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
 }
@@ -108,7 +108,8 @@ nav .nav-link:hover {
 }
 
 .nav-toggle {
-    display: none;
+    opacity: 0;
+    position: absolute;
 }
 
 .nav-toggle-label {
@@ -161,7 +162,8 @@ nav .nav-link:hover {
 }
 
 .dropdownAdminBtn {
-    display: none;
+    opacity: 0;
+    position: absolute;
 }
 
 .dropdownAdminBtn:checked ~ .dropdownAdminLinks {
@@ -715,6 +717,10 @@ table a.btn {
     #nav-inicio {
         margin-left: auto;
         margin-right: 0;
+    }
+
+    .nav-toggle {
+        display: none;
     }
 
     .nav-toggle-label {

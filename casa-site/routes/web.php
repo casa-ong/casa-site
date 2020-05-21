@@ -41,6 +41,7 @@ Route::post('/login/entrar',['as' => 'login.entrar', 'uses' => 'LoginController@
 
 Route::get('/sugestao/adicionar',['as' => 'sugestao.adicionar', 'uses' => 'SugestaoController@adicionar']);
 Route::post('/sugestao/salvar',['as' => 'sugestao.salvar', 'uses' => 'SugestaoController@salvar']);
+Route::get('/sugestao/verify/{id}/{hash}',['as' => 'sugestao.verify', 'uses' => 'Auth\VerificationController@verifySugestao']);
 
 Route::get('/newsletter/adicionar',['as' => 'newsletter.adicionar', 'uses' => 'NewsletterController@adicionar']);
 Route::post('/newsletter/salvar',['as' => 'newsletter.salvar', 'uses' => 'NewsletterController@salvar']);
@@ -66,9 +67,10 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
     Route::get('/admin/voluntarios', ['as' => 'admin.voluntarios', 'uses' => 'UserController@index']);
     Route::get('/admin/voluntatio/adicionar',['as' => 'admin.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
     //Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
-    Route::get('/admin/voluntario/editar/{id}',['as' => 'admin.voluntario.editar', 'uses' => 'UserController@editar']);
+    Route::get('/admin/voluntario/editar/',['as' => 'admin.voluntario.editar', 'uses' => 'UserController@editar']);
     Route::put('/admin/voluntario/atualizar/{id}',['as' => 'admin.voluntario.atualizar', 'uses' => 'UserController@atualizar']);
     Route::get('/admin/voluntario/deletar/{id}',['as' => 'admin.voluntario.deletar', 'uses' => 'UserController@deletar']);
+    Route::get('/admin/voluntario/aprovar/{id}',['as' => 'admin.voluntario.aprovar', 'uses' => 'UserController@aprovarVoluntario']);
 
     Route::get('/admin/sobre', ['as' => 'admin.sobre', 'uses' => 'SobreController@index']);
     Route::get('/admin/sobre/adicionar',['as' => 'admin.sobre.adicionar', 'uses' => 'SobreController@adicionar']);
