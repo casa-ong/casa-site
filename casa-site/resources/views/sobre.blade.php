@@ -1,4 +1,4 @@
-<div id="sobre" class="item-title">
+<div class="item-title">
     <h1>Sobre nós</h1>
 </div>
 <div class="item">

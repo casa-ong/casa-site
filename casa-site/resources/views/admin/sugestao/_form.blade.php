@@ -1,6 +1,7 @@
 @if ($errors->any())
     <p class="error">Campos com * são obrigatórios!</p>
 @endif
+
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 <input type="checkbox" name="lida" value="true" style="display: none;">
 

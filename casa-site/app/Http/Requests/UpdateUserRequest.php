@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
         'name' => 'required|min:3', //Definir os campos que são obrigatórios com required
         'descricao' => 'required|min:3',
         'profissao' => 'required|min:3',
-        'foto' => 'image',
+        'foto' => 'image|dimensions:ratio=1/1',
         'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
         'password' => 'nullable|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
         'estado' => 'required|min:2|max:2',
@@ -47,6 +47,7 @@ class UpdateUserRequest extends FormRequest
             'descricao.required' => 'O texto da descrição deve ser preenchido',
             'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
             'foto.image' => 'A imagem deve ser no formato jpeg, png, bmp, gif, svg ou webp',
+            'foto.dimensions' => 'A foto de perfil deve ser quadrada',
             'telefone.regex' => 'O número deve ser no formato (81)99999-9999',
             'password.regex' => 'Senha deve conter ao menos uma letra e um número e no mínimo 8 digitos',
             'password.confirmed' => 'As senhas não conferem',

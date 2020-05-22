@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Lista de Newsletters')
+@section('titulo', 'Lista de newsletters')
 
 @section('conteudo')
     <div class="content">

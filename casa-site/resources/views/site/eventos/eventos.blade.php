@@ -1,8 +1,9 @@
 @extends('layout.site')
 @section('titulo', 'Lista de Eventos')
+@section('anchor', 'eventos')
 
 @section('conteudo')
-        <div id="eventos" class="item-title">
+        <div class="item-title">
             <h1>Eventos</h1>
         </div>
         <div class="item" style="border: 0;">

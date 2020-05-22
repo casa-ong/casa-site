@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Lista de Sugestões')
+@section('titulo', 'Lista de sugestões')
 
 @section('conteudo')
     <div class="content">
@@ -7,7 +7,7 @@
             <h1 class="">Lista de Sugestões</h1>
             @if(Session::has('success'))
                 <div class="alert alert-success">
-                    {{ Session::get('success') }}
+                    <p>{{ Session::get('success') }}</p>
                 </div>
             @endif
         </div>

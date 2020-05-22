@@ -28,7 +28,7 @@ class CreateUserRequest extends FormRequest
         'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/', //Definir o mínimo de letras no campo com min:x
         'descricao' => 'required|min:3',
         'profissao' => 'required|min:3',
-        'foto' => 'image',
+        'foto' => 'image|dimensions:ratio=1/1',
         'email' => 'required|email|unique:users',
         'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
         'password' => 'nullable|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
@@ -50,7 +50,8 @@ class CreateUserRequest extends FormRequest
             'profissao.min' => 'O campo profissão deve ter no mínimo 3 letras',
             'descricao.required' => 'O texto da descrição deve ser preenchido',
             'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
-            'foto.image' => 'A imagem deve ser no formato jpeg, png, bmp, gif, svg ou webp',
+            'foto.image' => 'O arquivo sob validação deve ser uma imagem (jpeg, png, bmp, gif, svg ou webp)',
+            'foto.dimensions' => 'A foto de perfil deve ser quadrada',
             'email.required' => 'O campo de email é obrigatório',
             'email.email' => 'Digite um endereço de email válido',
             'email.unique' => 'O email digitado já foi cadastrado',

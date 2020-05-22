@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Sugestao;
 use App\User;
+use Auth;
 use Validator;
 use App\Http\Requests\SugestaoRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Notifications\NovaSugestaoNotification;
 use App\Notifications\SugestaoEnviadaNotification;
 use App\Notifications\SugestaoLidaNotification;
+use App\Notifications\VerifyEmailSugestaoNotification;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
 
@@ -59,11 +61,13 @@ class SugestaoController extends Controller
 
         $sugestao = $this->sugestao->create($dados);
 
-        $users = $this->user->where('admin', true)->get();
-        Notification::send($users, new NovaSugestaoNotification($sugestao));
-        $sugestao->notify(new SugestaoEnviadaNotification($sugestao));
+        $sugestao->notify(new VerifyEmailSugestaoNotification($sugestao));
 
-        return redirect()->route('admin.sugestoes');
+        if (Auth::user()) {
+            return redirect()->route('admin.sugestoes')->with('success', 'Sugestão feita com sucesso! Verifique seu email para confirmar a solicitação.');
+        } else {
+            return redirect()->route('sugestao.adicionar')->with('success', 'Sugestão feita com sucesso! Verifique seu email para confirmar a solicitação.');
+        }
     }
 
     // Método responsavel por ver a sugestao como lida 
@@ -81,7 +85,7 @@ class SugestaoController extends Controller
 
         $registro->update($dados);
 
-        Notification::send($registro, new SugestaoLidaNotification());
+        Notification::send($registro, new VerifyEmailSugestaoNotification());
 
         return view('admin.sugestao.ver', compact('registro'));
     }

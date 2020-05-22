@@ -11,7 +11,7 @@
                 {{ csrf_field() }}
                 <div class="input-field">
                     <label for="email">Quer ser um voluntário?</label>
-                    <input name="email" type="text" placeholder="Digite seu email para se cadastrar" value="{{ old('email') }}">
+                    <input class="{{ $errors->has('email') ? 'error' : '' }}" name="email" type="text" placeholder="Digite seu email para se cadastrar" value="{{ old('email') }}">
                     @error('email')
                         <p class="error" form="form-btn-vol">{{ $message }}</p>
                     @enderror
@@ -30,7 +30,7 @@
             @endforeach
         </div>
     @endif
-
+    <a id="sobre"></a>
     @if(isset($sobre))
         @include('sobre')
     @endif

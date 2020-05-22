@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Lista de Projetos')
+@section('titulo', 'Lista de projetos')
 
 @section('conteudo')
     <div class="content">
@@ -8,7 +8,7 @@
             <a class="btn" href="{{ route('admin.projeto.adicionar') }}">Adicionar</a>
             @if(Session::has('success'))
                 <div class="alert alert-success">
-                    {{ Session::get('success') }}
+                    <p>{{ Session::get('success') }}</p>
                 </div>
             @endif
         </div>

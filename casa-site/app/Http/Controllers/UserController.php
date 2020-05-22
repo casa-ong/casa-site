@@ -10,6 +10,9 @@ use App\Projeto;
 use Validator;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Notifications\UserRegisteredSuccessfully;
+use App\Notifications\VoluntarioAprovadoNotification;
+use Notification;
 
 class UserController extends Controller
 {
@@ -28,13 +31,15 @@ class UserController extends Controller
 
     public function voluntariosNorte() {
         $registros = $this->user->where('aprovado', '=', 1)
-        ->where('estado', '=', 'AC')
-        ->orWhere('estado', '=', 'AP')
-        ->orWhere('estado', '=', 'AM')
-        ->orWhere('estado', '=', 'PA')
-        ->orWhere('estado', '=', 'RR')
-        ->orWhere('estado', '=', 'RO')
-        ->orWhere('estado', '=', 'TO')
+        ->where(function($query) {
+            $query->where('estado', '=', 'AC')
+            ->orWhere('estado', '=', 'AP')
+            ->orWhere('estado', '=', 'AM')
+            ->orWhere('estado', '=', 'PA')
+            ->orWhere('estado', '=', 'RR')
+            ->orWhere('estado', '=', 'RO')
+            ->orWhere('estado', '=', 'TO');
+        })
         ->orderBy('name')->get();
 
         $estado = 'Norte';
@@ -43,29 +48,33 @@ class UserController extends Controller
     }
 
     public function voluntariosNordeste() {
-        $registros = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'AL')
-        ->orWhere('estado', '=', 'BA')
-        ->orWhere('estado', '=', 'CE')
-        ->orWhere('estado', '=', 'PB')
-        ->orWhere('estado', '=', 'MA')
-        ->orWhere('estado', '=', 'PE')
-        ->orWhere('estado', '=', 'PI')
-        ->orWhere('estado', '=', 'RN')
-        ->orWhere('estado', '=', 'SE')
-        ->orderBy('name')->get();
+        $registros = $this->user
+            ->where('aprovado', '=', 1)
+            ->where(function($query) {
+                $query->where('estado', '=', 'AL')
+                    ->orWhere('estado', '=', 'BA')
+                    ->orWhere('estado', '=', 'CE')
+                    ->orWhere('estado', '=', 'PB')
+                    ->orWhere('estado', '=', 'MA')
+                    ->orWhere('estado', '=', 'PE')
+                    ->orWhere('estado', '=', 'PI')
+                    ->orWhere('estado', '=', 'RN')
+                    ->orWhere('estado', '=', 'SE');
+            })
+            ->orderBy('name')->get();
 
         $estado = 'Nordeste';
-
         return view('site.voluntarios.regiao', compact('registros', 'estado'));
     }
 
     public function voluntariosCentro() {
         $registros = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'DF')
-        ->orWhere('estado', '=', 'GO')
-        ->orWhere('estado', '=', 'MT')
-        ->orWhere('estado', '=', 'MS')
+        ->where(function($query) {
+            $query->where('estado', '=', 'DF')
+            ->orWhere('estado', '=', 'GO')
+            ->orWhere('estado', '=', 'MT')
+            ->orWhere('estado', '=', 'MS');
+        })
         ->orderBy('name')->get();
 
         $estado = 'Centro';
@@ -75,22 +84,25 @@ class UserController extends Controller
 
     public function voluntariosSudeste() {
         $registros = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'ES')
-        ->orWhere('estado', '=', 'MG')
-        ->orWhere('estado', '=', 'RJ')
-        ->orWhere('estado', '=', 'SP')
+        ->where(function($query) {
+            $query->where('estado', '=', 'ES')
+            ->orWhere('estado', '=', 'MG')
+            ->orWhere('estado', '=', 'RJ')
+            ->orWhere('estado', '=', 'SP');
+        })
         ->orderBy('name')->get();
 
         $estado = 'Sudeste';
-
         return view('site.voluntarios.regiao', compact('registros', 'estado'));
     }
 
     public function voluntariosSul() {
         $registros = $this->user->where('aprovado', 1)
-        ->where('estado', '=', 'PR')
-        ->orWhere('estado', '=', 'RS')
-        ->orWhere('estado', '=', 'SC')
+        ->where(function($query) {
+            $query->where('estado', '=', 'PR')
+            ->orWhere('estado', '=', 'RS')
+            ->orWhere('estado', '=', 'SC');
+        })
         ->orderBy('name')->get();
 
         $estado = 'Sul';
@@ -100,7 +112,7 @@ class UserController extends Controller
 
     public function index() 
     {
-        $registros = $this->user->all()->reverse();
+        $registros = $this->user->whereNotNull('email_verified_at')->get()->reverse();
         return view('admin.voluntarios.index', compact('registros'));
     }
 
@@ -169,8 +181,11 @@ class UserController extends Controller
 
         $this->user->create($dados);
 
+        $user = $this->user->where('email', $dados['email'])->first();
+        Notification::send($user, new UserRegisteredSuccessfully($user));
+
         if(Auth::guest()) {
-            return redirect()->route('site.voluntarios');
+            return redirect()->route('site.voluntarios')->with('success', 'Inscrição feita com sucesso! Verifique seu email e aguarde a aprovação por nossos representantes.');;
         }
 
         return redirect()->route('admin.voluntarios')->with('success', 'Voluntário adicionado com sucesso!');
@@ -178,9 +193,9 @@ class UserController extends Controller
     }
 
     // Método responsavel por abrir a pagina de editar um projeto
-    public function editar($id) 
+    public function editar() 
     {
-        $registro = $this->user->find($id);
+        $registro = Auth::user();
         $estados = $this->user::$estadosBrasileiros;
         $projetos = $this->projeto->all();
         return view('admin.voluntarios.editar', compact('registro', 'estados', 'projetos'));
@@ -227,6 +242,25 @@ class UserController extends Controller
         $user->update($dados);
 
         return redirect()->route('admin.voluntarios')->with('success', 'Voluntário atualizado com sucesso!');
+    }
+
+    public function aprovarVoluntario($id)
+    {
+        $user = $this->user->find($id);
+
+        if($user->aprovado) {
+            $user->aprovado = false;
+        } else {
+            $user->aprovado = true;
+        }
+
+        $user->update();
+
+        if($user->aprovado) {
+            $user->notify(new VoluntarioAprovadoNotification());
+        }
+
+        return redirect()->route('admin.voluntarios')->with('success', 'Voluntário aprovado com sucesso!');
     }
 
     // Metodo da acao de apagar um projeto

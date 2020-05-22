@@ -20,15 +20,18 @@
     @enderror
 </div>
 <div class="input-field">
-    <label for="nome">Anexo</label>
-    <input type="file" name="anexo">
+    <label for="nome">Banner do projeto</label>
+    <input type="file" class="{{ $errors->has('anexo') ? 'error' : '' }}" name="anexo" onchange="document.getElementById('img-banner').src = window.URL.createObjectURL(this.files[0])">
+    @error('anexo')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+    @enderror
 </div>
 
-@if(@isset($registro->anexo))
-    <div class="input-field">
-        <img src="{{ asset($registro->anexo) }}" alt="">
-    </div>    
-@endisset
+<div class="input-field">
+    <img id="img-banner" src="{{ isset($registro->anexo) ? asset($registro->anexo) : '' }}" alt="">
+</div>    
 
 <label class="input-checkbox" for="publicado">Publicar agora?
     <input type="checkbox" name="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">

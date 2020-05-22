@@ -9,27 +9,36 @@
     --main-hover-color: rgb(63, 78, 61);
     --main-hover-light-color: rgb(150, 187, 145);
     --main-danger-color: rgb(255, 0, 0);
-    --main-hover-danger-color: rgb(220, 0, 0);    
+    --main-hover-danger-color: rgb(220, 0, 0); 
+    --main-success-color: rgb(0, 150, 0);   
 }
 
 body {
     margin: 0;
-    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 img {
     width: 100%;
 }
 
-button:focus, a:focus {
+button:focus, a:focus, label:focus-within, .nav-toggle:focus ~ label {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
 }
 
+/* Banner */
+
 header {
+    position: relative;
     padding: 1em;
     background-color: var(--main-bg-color);
     text-align: center;
+    max-height: 300px;
+}
+
+.banner {
+    max-width: 800px;
 }
 
 header h1 {
@@ -40,6 +49,9 @@ header h2 {
     font-weight: lighter;
     text-transform: uppercase;
 }
+
+/* Fim de banner */
+
 
 nav {
     background-color: #000;
@@ -52,6 +64,7 @@ nav.nav-links {
     top: 0;
     position: sticky;
     z-index: 999;
+    justify-content: space-between;
 }
 
 nav .nav-fluid {
@@ -66,6 +79,7 @@ nav .nav-fluid {
     z-index: 999;
     transform: scale(1, 0);
     transform-origin: top;
+    text-align: center;
 }
 
 .nav-toggle:checked ~ .nav-fluid {
@@ -73,7 +87,6 @@ nav .nav-fluid {
 }
 
 nav .nav-link {
-    margin: 0 auto;
     padding: 1em;
     color: #fff;
     font-size: 1rem;
@@ -96,7 +109,8 @@ nav .nav-link:hover {
 }
 
 .nav-toggle {
-    display: none;
+    opacity: 0;
+    position: absolute;
 }
 
 .nav-toggle-label {
@@ -119,10 +133,6 @@ nav .nav-link:hover {
     color: #fff;
     background-color: var(--main-hover-color);
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
-}
-
-#nav-inicio {
-    margin-left: 1rem;
 }
 
 .dropdownAdminLinks {
@@ -149,7 +159,8 @@ nav .nav-link:hover {
 }
 
 .dropdownAdminBtn {
-    display: none;
+    opacity: 0;
+    position: absolute;
 }
 
 .dropdownAdminBtn:checked ~ .dropdownAdminLinks {
@@ -339,7 +350,7 @@ a.btn.btn-danger {
     color: #fff;
 }
 
-a.btn.btn-dark {
+a.btn.btn-dark, button.btn.btn-dark {
     background-color: var(--main-bg-color);
     color: #000;
 }
@@ -463,7 +474,6 @@ div.page-nav nav ul li a:hover {
     color: rgba(0,0,0,0.85);
     text-decoration: none;
     font-size: 18px;
-	font-family: times;
 	font-variant: normal;
 	font-style: normal;
 	font-weight: bold;
@@ -473,7 +483,6 @@ div.page-nav nav ul li a:hover {
 
 .item-form div.input-field input, .item-form div.input-field textarea, .item-form div.input-field select {
     font-size: 16px;
-    font-family: sans-serif;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     width: 100%;
@@ -499,8 +508,14 @@ span.invalid-feedback, p.error {
     color: #FF0000;
 }
 
-.alert.alert-sucess {
-    color: rgb(28, 236, 28); /* cor da fonte*/
+p.error.error-dark {
+    color: #FF3333;
+    font-weight: bold;
+}
+
+.alert-success p {
+    color: var(--main-success-color); /* cor da fonte*/
+    font-weight: bold;
 }
 
 .input-checkbox {
@@ -508,7 +523,6 @@ span.invalid-feedback, p.error {
     flex-direction: row;
     text-decoration: none;
     font-size: 18px;
-	font-family: times;
 	font-variant: normal;
 	font-style: normal;
 	font-weight: bold;
@@ -687,11 +701,52 @@ table a.btn {
 
 /* Fim de Cards de voluntarios */
 
-@media only screen and (min-width: 940px) {
+.bold {
+    font-weight: bold;
+}
+
+.m-0 {
+    margin: 0;
+}
+
+div.input-field.align-center {
+    align-items: center;
+}
+
+div.input-field.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div.input-field.row input {
+    width: 80%;
+}
+
+div.input-field.datetime {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div.input-field.datetime input {
+    width: 47.5%;
+}
+
+div.container div.content div.input-field.row img {
+    width: 63px;
+}
+
+@media only screen and (min-width: 950px) {
     
-    #nav-inicio {
-        margin-left: auto;
-        margin-right: 0;
+    nav.nav-links {
+        justify-content: center;
+    }
+
+    .nav-toggle {
+        display: none;
     }
 
     .nav-toggle-label {
@@ -703,15 +758,10 @@ table a.btn {
         display: flex;
         flex-direction: row;
         width: inherit;
-        margin-right: auto;
     }
 
     nav .nav-fluid a.nav-link {
         opacity: 1;
-    }
-
-    nav a {
-        margin: 0 auto;
     }
 
     .dropdownAdminLinks {

@@ -27,6 +27,9 @@ class EventoRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'nome' => 'required|min:3',
             'descricao' => 'required|min:3',
+            'anexo' => 'nullable|image',
+            'data' => 'date',
+            'hora' => 'date_format:H:i',
         ];
     }
     
@@ -37,6 +40,9 @@ class EventoRequest extends FormRequest
             'nome.min' => 'O campo nome deve ter no mínimo 3 letras',
             'descricao.required' => 'O texto da descrição deve ser preenchido',
             'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
+            'anexo.image' => 'O arquivo sob validação deve ser uma imagem (jpeg, png, bmp, gif, svg ou webp)',
+            'data.date' => 'A data deve ser no formato 01/01/2020',
+            'hora.date_format' => 'A hora deve ser no formato 00:00',
         ];
     }
 }
