@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Lista de Eventos')
+@section('titulo', 'Lista de eventos')
 
 @section('conteudo')
     <div class="content">
@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{ $registro->id }}</td>
                             <td>{{ $registro->nome }}</td>
-                            <td>{{ $registro->data}}</td>
+                            <td>{{ isset($registro->data) ? date('d/m/Y', strtotime($registro->data)).' às '.date('H:i', strtotime($registro->hora)) : 'Não definida' }}</td>
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td>
                                 <a class="btn" href="{{ route('admin.evento.editar',$registro->id) }}" title="Editar">

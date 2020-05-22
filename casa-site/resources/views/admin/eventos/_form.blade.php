@@ -13,7 +13,7 @@
 </div>
 <div class="input-field">
     <label for="nome">Descrição*</label>
-    <textarea class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva aqui como será o evento">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
+    <textarea id="summernote" class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva aqui como será o evento">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -36,7 +36,10 @@
 
 <div class="input-field">
     <label for="nome">Data</label>
-    <input type="date" name="data" value="{{ isset($registro->data) ? $registro->data : '' }}" placeholder="Digite a data do evento">
+    <div class="input-field datetime">
+        <input type="date" name="data" value="{{ isset($registro->data) ? $registro->data : '' }}" placeholder="Digite a data do evento">
+        <input type="time" name="hora" value="{{ isset($registro->hora) ? date('H:i', strtotime($registro->hora)) : '' }}" placeholder="Digite a hora do evento">
+    </div>
 </div>
 
 <label class="input-checkbox" for="publicado">Publicar agora?

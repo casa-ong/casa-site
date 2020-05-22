@@ -26,7 +26,7 @@
     <label for="logo">Ícone do site</label>
     <div class="input-field row">
         <input class="{{ $errors->has('logo') ? 'error' : '' }}" type="file" name="logo" onchange="document.getElementById('img-logo').src = window.URL.createObjectURL(this.files[0])">
-        <img id="img-logo" src="{{ isset($registro->logo) ? asset($registro->logo) ? '' }}" alt="" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px;">
+        <img id="img-logo" src="{{ isset($registro->logo) ? asset($registro->logo) : '' }}" alt="" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px;">
     </div>    
     @error('logo')
         <span class="invalid-feedback" role="alert">
@@ -38,7 +38,7 @@
 
 <div class="input-field">
     <label for="banner">Banner do site</label>
-    <input class="{{ $errors->has('banner') ? 'error' : '' }}" type="file" name="banner" onchange="document.getElementById('img-banner').src = window.URL.createObjectURL(this.files[0])" >
+    <input class="{{ $errors->has('banner') ? 'error' : '' }}" type="file" name="banner" onchange="document.getElementById('img-banner').src = window.URL.createObjectURL(this.files[0])">
     @error('banner')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

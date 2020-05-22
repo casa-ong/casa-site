@@ -727,6 +727,17 @@ div.input-field.row input {
     width: 80%;
 }
 
+div.input-field.datetime {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div.input-field.datetime input {
+    width: 47.5%;
+}
+
 div.container div.content div.input-field.row img {
     width: 63px;
 }
