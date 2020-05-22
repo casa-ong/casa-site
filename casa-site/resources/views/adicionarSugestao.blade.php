@@ -1,5 +1,6 @@
 @extends('layout.site')
 @section('titulo', 'Adicionar sugestão')
+@section('anchor', 'sugestoes')
 
 @section('conteudo')
 <div class="content">

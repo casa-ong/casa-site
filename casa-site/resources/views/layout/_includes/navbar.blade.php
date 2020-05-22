@@ -1,12 +1,21 @@
 <nav class="nav-links">
-    <a id="nav-inicio" class="nav-link" href="{{ route('site.home') }}">Início</a>
+    <div style="display: flex">
+        @if(!Request::is('/')
+            && Request::is('admin/*')
+            && !Request::is('admin/index'))
+            <a title="Voltar" href="#" class="nav-link" type="button" onclick="history.back()">
+                <span class="fas fa-chevron-left"></span>
+            </a>
+        @endif
+        <a id="nav-inicio" class="nav-link" href="{{ route('site.home') }}">Início</a>
+    </div>
     <input tabindex="0" type="checkbox" id="nav-toggle" class="nav-toggle">
     <div class="nav-fluid">
         <a class="nav-link" href="{{ route('site.noticias').'#noticias' }}">Notícias</a>
         <a class="nav-link" href="{{ route('site.eventos').'#eventos' }}">Eventos</a>
         <a class="nav-link" href="{{ route('site.projetos').'#projetos' }}">Projetos</a>
-        <a class="nav-link" href="{{ route('site.voluntarios') }}">Voluntarios</a>
-        <a class="nav-link" href="{{ route('sugestao.adicionar') }}">Sugestões</a>
+        <a class="nav-link" href="{{ route('site.voluntarios').'#voluntarios' }}">Voluntarios</a>
+        <a class="nav-link" href="{{ route('sugestao.adicionar').'#sugestoes' }}">Sugestões</a>
         <a class="nav-link" href="{{ route('site.home').'#sobre' }}">Sobre</a>
         @if(Auth::guest())
         <a class="nav-link" href="{{ route('login') }}">Acesso</a>
@@ -16,7 +25,7 @@
                     {{ $user->name }} <i class="fas fa-caret-down"></i>
                     <input type="checkbox" class="dropdownAdminBtn" id="dropdownAdminBtn">
                     <div id="dropdownAdminLinks" class="dropdownAdminLinks">
-                        <a href="{{ route('admin.index') }}">Painel de Controle
+                        <a href="{{ route('admin.index').'#controle' }}">Painel de Controle
                             <i class="fas fa-user-cog"></i>
                         </a>
                         <a href="{{ route('login.sair') }}">Sair
@@ -31,3 +40,4 @@
         <span class="fas fa-times"></span>
     </label>
 </nav>
+<a id="@yield('anchor')"></a>

@@ -64,6 +64,7 @@ nav.nav-links {
     top: 0;
     position: sticky;
     z-index: 999;
+    justify-content: space-between;
 }
 
 nav .nav-fluid {
@@ -78,6 +79,7 @@ nav .nav-fluid {
     z-index: 999;
     transform: scale(1, 0);
     transform-origin: top;
+    text-align: center;
 }
 
 .nav-toggle:checked ~ .nav-fluid {
@@ -85,7 +87,6 @@ nav .nav-fluid {
 }
 
 nav .nav-link {
-    margin: 0 auto;
     padding: 1em;
     color: #fff;
     font-size: 1rem;
@@ -132,10 +133,6 @@ nav .nav-link:hover {
     color: #fff;
     background-color: var(--main-hover-color);
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
-}
-
-#nav-inicio {
-    margin-left: 1rem;
 }
 
 .dropdownAdminLinks {
@@ -742,11 +739,10 @@ div.container div.content div.input-field.row img {
     width: 63px;
 }
 
-@media only screen and (min-width: 940px) {
+@media only screen and (min-width: 950px) {
     
-    #nav-inicio {
-        margin-left: auto;
-        margin-right: 0;
+    nav.nav-links {
+        justify-content: center;
     }
 
     .nav-toggle {
@@ -762,15 +758,10 @@ div.container div.content div.input-field.row img {
         display: flex;
         flex-direction: row;
         width: inherit;
-        margin-right: auto;
     }
 
     nav .nav-fluid a.nav-link {
         opacity: 1;
-    }
-
-    nav a {
-        margin: 0 auto;
     }
 
     .dropdownAdminLinks {

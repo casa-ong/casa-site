@@ -1,9 +1,9 @@
 @extends('layout.site')
 @section('titulo', 'Notícias - CASA')
+@section('anchor', 'noticias')
 
 @section('conteudo')
-
-<div id="noticias" class="item-title">
+<div class="item-title">
     <h1>Notícias</h1>
 </div>
 <div class="item" style="border: 0px">

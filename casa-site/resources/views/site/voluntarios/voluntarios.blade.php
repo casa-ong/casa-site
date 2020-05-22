@@ -1,9 +1,10 @@
 @extends('layout.site')
 @section('titulo', 'Nossos voluntários')
+@section('anchor', 'voluntarios')
 
 @section('conteudo')
     <div class="content">
-        <div id="voluntarios" class="item-title">
+        <div class="item-title">
             <h1>Voluntários</h1>
 
             @if(Session::has('success'))
