@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Projeto;
+use App\Newsletter;
 use Validator;
 use App\Http\Requests\ProjetoRequest;
+use App\Mail\ProjetoEmail;
+use Mail;
 
 class ProjetoController extends Controller
 {
 
     protected $projeto;
+    protected $newsletter;
 
-    public function __construct(Projeto $projeto) {
+    public function __construct(Projeto $projeto, Newsletter $newsletter) {
         $this->projeto = $projeto;
+        $this->newsletter = $newsletter;
     }
 
     public function projetos() 
@@ -24,6 +30,10 @@ class ProjetoController extends Controller
 
     public function projeto($id) {
         $projeto = $this->projeto->find($id);
+        if(!$projeto) {
+            throw new ModelNotFoundException;
+        }
+
         return view('site.projetos.projeto', compact('projeto'));
     }
     
@@ -61,7 +71,11 @@ class ProjetoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $this->projeto->create($dados);
+        $projeto = $this->projeto->create($dados);
+
+        if($projeto->publicado) {
+            $this->emailProjeto($projeto);
+        }
 
         return redirect()->route('admin.projetos')->with('success', 'Projeto adicionado com sucesso!');
     }
@@ -96,7 +110,13 @@ class ProjetoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $this->projeto->find($id)->update($dados);
+        $projeto = $this->projeto->find($id);
+
+        if(!$projeto->publicado && $dados['publicado'] == true) {
+            $this->emailProjeto($projeto);
+        }
+
+        $projeto->update($dados);
 
         return redirect()->route('admin.projetos')->with('success', 'Projeto atualizado com sucesso!');
     }
@@ -108,5 +128,22 @@ class ProjetoController extends Controller
         return redirect()->route('admin.projetos')->with('success', 'Projeto deletado com sucesso!');
     }
 
+    public function emailProjeto($projeto) 
+    {
+        $newsletters = $this->newsletter
+                        ->where('receber_projetos', true)->get();
+
+        $detalhes = [
+            'url' => url('projeto/'.$projeto->id),
+            'titulo' => 'Conheça nosso novo projeto '.$projeto->nome,
+            'info' => 'Para saber mais sobre o projeto e se envoler nele, clique no link abaixo',
+            'newsletter_id' => '',
+        ];
+
+        foreach ($newsletters as $newsletter) {
+            $detalhes['newsletter_id'] = $newsletter->id;
+            Mail::to($newsletter->getEmailAttribute())->send(new ProjetoEmail($detalhes));
+        }
+    }
 
 }

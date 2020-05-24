@@ -13,7 +13,7 @@
 
 @component('mail::button', ['url' => $detalhes['url']])
 
-Ver texto completo
+Ver mais detalhes
 
 @endcomponent
 
