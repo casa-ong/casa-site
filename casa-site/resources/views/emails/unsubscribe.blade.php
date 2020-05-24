@@ -1,10 +1,14 @@
 @component('mail::message')
 
-<h1>{{ $detalhes['titulo'] }}</h1>
+<h1>{{ $detalhes['titulo'] ?? '' }}</h1>
 
 <br>
 
-{{ $detalhes['texto'] }}  
+{{ $detalhes['texto'] ?? '' }}  
+
+<br>
+
+{{ $detalhes['info'] ?? '' }}
   
 
 @component('mail::button', ['url' => $detalhes['url']])

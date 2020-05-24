@@ -10,8 +10,6 @@ use Validator;
 use App\Http\Requests\NoticiaRequest;
 use App\Mail\NoticiaEmail;
 use Mail;
-use Notification;
-
 
 class NoticiaController extends Controller
 {
@@ -145,7 +143,6 @@ class NoticiaController extends Controller
     {
         $newsletters = $this->newsletter
                         ->where('receber_noticias', true)->get();
-        // Notification::send($newsletters, (new NovaNoticiaNotification($noticia)));
 
         $detalhes = [
             'url' => url('noticia/'.$noticia->id),

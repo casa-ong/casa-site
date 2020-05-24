@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Evento;
+use App\Newsletter;
 use Validator;
 use App\Http\Requests\EventoRequest;
+use App\Mail\EventoEmail;
+use Mail;
 
 class EventoController extends Controller
 {
 
     protected $evento;
+    protected $newsletter;
 
-    public function __construct(Evento $evento) 
+    public function __construct(Evento $evento, Newsletter $newsletter) 
     {
         $this->evento = $evento;
+        $this->newsletter = $newsletter;
     }
 
     public function eventos() 
@@ -25,13 +31,16 @@ class EventoController extends Controller
 
     public function evento($id) {
         $evento = $this->evento->find($id);
+        if(!$evento) {
+            throw new ModelNotFoundException;
+        }
         return view('site.eventos.evento', compact('evento'));
     }
 
     // Metodo responsavel por abrir a pagina de index dos eventos
     public function index()
     {
-        $registros = $this->evento->all();
+        $registros = $this->evento->all()->reverse();
         return view('admin.eventos.index', compact('registros'));
     }
 
@@ -63,7 +72,11 @@ class EventoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $this->evento->create($dados);
+        $evento = $this->evento->create($dados);
+
+        if($evento->publicado) {
+            $this->emailEvento($evento);
+        }
 
         return redirect()->route('admin.eventos')->with('success', 'Evento adicionado com sucesso!');
     }
@@ -97,7 +110,13 @@ class EventoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $this->evento->find($id)->update($dados);
+        $evento = $this->evento->find($id);
+
+        if(!$evento->publicado && $dados['publicado'] == true) {
+            $this->emailEvento($evento);
+        }
+
+        $evento->update($dados);
 
         return redirect()->route('admin.eventos')->with('success', 'Evento atualizado com sucesso!');
     }
@@ -109,6 +128,23 @@ class EventoController extends Controller
         return redirect()->route('admin.eventos')->with('success', 'Evento deletado com sucesso!');
     }
 
+    public function emailEvento($evento) 
+    {
+        $newsletters = $this->newsletter
+                        ->where('receber_eventos', true)->get();
 
+        $detalhes = [
+            'url' => url('evento/'.$evento->id),
+            'titulo' => $evento->nome,
+            'texto' => 'O evento acontecerá no dia '.date('d/m/Y', strtotime($evento->data)).' às '.date('H:i', strtotime($evento->data)),
+            'info' => 'Para ver mais detalhes do evento clique no link abaixo',
+            'newsletter_id' => '',
+        ];
+
+        foreach ($newsletters as $newsletter) {
+            $detalhes['newsletter_id'] = $newsletter->id;
+            Mail::to($newsletter->getEmailAttribute())->send(new EventoEmail($detalhes));
+        }
+    }
 
 }

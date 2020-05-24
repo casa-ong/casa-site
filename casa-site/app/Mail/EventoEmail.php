@@ -32,7 +32,7 @@ class EventoEmail extends Mailable
     public function build()
     {
         return $this->markdown('emails.unsubscribe')
-                    ->subject($this->detalhes['titulo'].' - '.config('app.name'))
+                    ->subject($this->detalhes['titulo'].' - CASA')
                     ->with('detalhes', $this->detalhes);;
     }
 }
