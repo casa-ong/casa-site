@@ -50,7 +50,7 @@ class NewsletterAdicionadaNotification extends Notification
                     ->greeting('Olá!')
                     ->line('Você acabou de ativar as notificações de email para receber novidades.')
                     ->line('Caso não deseje receber mais notificações é só clicar no link abaixo e cancelar.')
-                    ->action('Gerenciar notificações', url('/newsletter/editar/'.$this->newsletter->id));
+                    ->action('Gerenciar notificações', route('newsletter.editar', [$this->newsletter->id, $this->newsletter->token]));
     }
 
     /**

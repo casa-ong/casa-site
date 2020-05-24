@@ -46,9 +46,9 @@ Route::get('/sugestao/verify/{id}/{hash}',['as' => 'sugestao.verify', 'uses' => 
 
 Route::get('/newsletter/adicionar',['as' => 'newsletter.adicionar', 'uses' => 'NewsletterController@adicionar']);
 Route::post('/newsletter/salvar',['as' => 'newsletter.salvar', 'uses' => 'NewsletterController@salvar']);
-Route::get('/newsletter/editar/{id}',['as' => 'newsletter.editar', 'uses' => 'NewsletterController@editar']);
-Route::put('/newsletter/atualizar/{id}',['as' => 'newsletter.atualizar', 'uses' => 'NewsletterController@atualizar']);
-Route::get('/newsletter/deletar/{id}',['as' => 'newsletter.deletar', 'uses' => 'NewsletterController@deletar']);
+Route::get('/newsletter/editar/{id}/{token}',['as' => 'newsletter.editar', 'uses' => 'NewsletterController@editar']);
+Route::put('/newsletter/atualizar/{id}/{token}',['as' => 'newsletter.atualizar', 'uses' => 'NewsletterController@atualizar']);
+Route::get('/newsletter/deletar/{id}/{token}',['as' => 'newsletter.deletar', 'uses' => 'NewsletterController@deletar']);
 
 Auth::routes(['verify' => true]);
 

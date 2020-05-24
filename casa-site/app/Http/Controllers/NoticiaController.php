@@ -147,12 +147,14 @@ class NoticiaController extends Controller
         $detalhes = [
             'url' => url('noticia/'.$noticia->id),
             'titulo' => $noticia->titulo,
-            'texto' => $noticia->texto,
+            'texto' => $noticia->manchete,
             'newsletter_id' => '',
+            'newsletter_token' => ''
         ];
 
         foreach ($newsletters as $newsletter) {
             $detalhes['newsletter_id'] = $newsletter->id;
+            $detalhes['newsletter_token'] = $newsletter->token;
             Mail::to($newsletter->getEmailAttribute())->send(new NoticiaEmail($detalhes));
         }
     }

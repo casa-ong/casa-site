@@ -23,6 +23,6 @@ Com carinho,<br>
 
 {{ config('app.name') }}
 
-<p style="font-size: 12px;">Se deseja deixar de receber e-mails <a href="{{ config('app.url').'/newsletter/editar/'.$detalhes['newsletter_id'] }}">descadastre-se</a></p>
+<p style="font-size: 12px;">Se deseja deixar de receber e-mails <a href="{{ route('newsletter.editar', [$detalhes['newsletter_id'], $detalhes['newsletter_token']]) }}">descadastre-se</a></p>
 
 @endcomponent

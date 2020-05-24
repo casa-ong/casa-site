@@ -13,7 +13,7 @@
     </div>
     @if(isset($registro))
         <div class="item-form">
-            <form action="{{ route('newsletter.atualizar', $registro->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('newsletter.atualizar', [$registro->id, $registro->token]) }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="_method" value="put">
                 @include('admin.newsletter._form')

@@ -138,10 +138,12 @@ class ProjetoController extends Controller
             'titulo' => 'Conheça nosso novo projeto '.$projeto->nome,
             'info' => 'Para saber mais sobre o projeto e se envoler nele, clique no link abaixo',
             'newsletter_id' => '',
+            'newsletter_token' => ''
         ];
 
         foreach ($newsletters as $newsletter) {
             $detalhes['newsletter_id'] = $newsletter->id;
+            $detalhes['newsletter_token'] = $newsletter->token;
             Mail::to($newsletter->getEmailAttribute())->send(new ProjetoEmail($detalhes));
         }
     }

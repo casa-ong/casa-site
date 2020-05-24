@@ -139,10 +139,12 @@ class EventoController extends Controller
             'texto' => 'O evento acontecerá no dia '.date('d/m/Y', strtotime($evento->data)).' às '.date('H:i', strtotime($evento->data)),
             'info' => 'Para ver mais detalhes do evento clique no link abaixo',
             'newsletter_id' => '',
+            'newsletter_token' => ''
         ];
 
         foreach ($newsletters as $newsletter) {
             $detalhes['newsletter_id'] = $newsletter->id;
+            $detalhes['newsletter_token'] = $newsletter->token;
             Mail::to($newsletter->getEmailAttribute())->send(new EventoEmail($detalhes));
         }
     }
