@@ -34,6 +34,10 @@
 @endcomponent
 @endisset
 
+@component('mail::link', ['url' => $actionUrl])
+{{ $actionText }}
+@endcomponent
+
 {{-- Outro Lines --}}
 @foreach ($outroLines as $line)
 {{ $line }}
@@ -52,8 +56,8 @@ Com carinho,<br>
 @isset($actionText)
 @slot('subcopy')
 @lang(
-    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\n".
-    'into your web browser: [:displayableActionUrl](:actionURL)',
+    "Se está com dificuldade em clicar no botão \":actionText\", copie e cole o seguinte URL\n".
+    'no seu navegador: [:displayableActionUrl](:actionURL)',
     [
         'actionText' => $actionText,
         'actionURL' => $actionUrl,

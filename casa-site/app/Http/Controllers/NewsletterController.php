@@ -35,7 +35,7 @@ class NewsletterController extends Controller
 
         
         $this->newsletter->create($dados);
-        return redirect()->route('site.home')->with('success', 'Newsletter adicionada com sucesso!');
+        return redirect()->back()->with('newsletter', 'Cadastro feito com sucesso, agora você ficará sabendo das novidades!');
 
     }
 
@@ -72,14 +72,14 @@ class NewsletterController extends Controller
         }
         
         $this->newsletter->find($id)->update($dados);
-        return redirect()->route('admin.newsletters')->with('success', 'Newsletter atualizada com sucesso!');
+        return redirect()->back()->with('success', 'Notificações de email atualizadas com sucesso!');
     }
 
     // Metodo da acao de apagar uma newsletter
     public function deletar($id) 
     {
         $this->newsletter->find($id)->delete();
-        return redirect()->route('admin.newsletters')->with('success', 'Newsletter deletada com sucesso!');
+        return redirect()->back()->with('success', 'Feito! Você não receberá mais novos email.');
     }
 }
 
