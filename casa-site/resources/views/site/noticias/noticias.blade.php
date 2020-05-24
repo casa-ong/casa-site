@@ -6,7 +6,7 @@
 <div class="item-title">
     <h1>Notícias</h1>
 </div>
-<div class="item" style="border: 0px">
+<div class="item border-0">
     @if(isset($noticias) && count($noticias) > 0)
         @foreach ($noticias as $noticia)
             @include('site.noticias._card')

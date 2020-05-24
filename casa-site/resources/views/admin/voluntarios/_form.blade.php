@@ -93,10 +93,10 @@
     @enderror
 </div>
 <div class="input-field">
-    <label for="foto">Foto do voluntario</label>
+    <label for="foto">Foto do voluntario (quadrada, 1x1)</label>
     <div class="input-field row">
         <input class="{{ $errors->has('foto') ? 'error' : '' }}" type="file" name="foto" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
-        <img id="img-foto" src="{{ isset($registro->foto) ? asset($registro->foto) : '' }}" alt="" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px;">
+        <img id="img-foto" src="{{ isset($registro->foto) ? asset($registro->foto) : asset('/img/voluntarios/user_profile.png') }}" alt="" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px;">
     </div>    
     @error('foto')
         <span class="invalid-feedback" role="alert">
@@ -124,29 +124,3 @@
         </span>
     @enderror
 </div>
-
-@if(!Auth::guest()) <!-- Garantir por validation que essa parte do codigo nao seja enviada sem autenticação -->
-<div class="input-field">
-    <label for="password">Senha de acesso*</label>
-    <input class="{{ $errors->has('password') ? 'error' : '' }}" type="password" name="password" value="" placeholder="Digite aqui sua nova senha de acesso">
-    @error('password')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
-<div class="input-field">
-    <label for="password_confirmation">Confirmação de senha de acesso*</label>
-    <input class="{{ $errors->has('password_confirmation') ? 'error' : '' }}" type="password" name="password_confirmation" value="" placeholder="Digite a senha novamente para confirmar">
-    @error('password_confirmation')
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
-        </span>
-    @enderror
-</div>
-<label class="input-checkbox" for="admin">Ele deve ser administrador do site?
-    <input type="checkbox" name="admin" {{ isset($registro->admin) && $registro->admin == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
-@endif
-

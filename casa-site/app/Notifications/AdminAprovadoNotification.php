@@ -6,12 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use URL;
-use Carbon\Carbon;
-use Config;
-use App\Sugestao;
 
-class VerifyEmailSugestaoNotification extends Notification
+class AdminAprovadoNotification extends Notification
 {
     use Queueable;
 
@@ -44,21 +40,13 @@ class VerifyEmailSugestaoNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $verifyUrl = URL::temporarySignedRoute(
-            'sugestao.verify',
-            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
-            [
-                'id' => $notifiable->getKey(),
-                'hash' => sha1($notifiable->getEmailForVerification()),
-            ]
-        );
 
         return (new MailMessage)
-                    ->subject('Verifique o endereço de e-mail')
+                    ->subject('Administrador(a) da CASA')
                     ->greeting('Olá!')
-                    ->line('Para confirmar o envio da sugestão, verifique o endereço de e-mail.')
-                    ->action('Verifique o endereço de e-mail', $verifyUrl)
-                    ->line('Se você não enviou uma sugestão, ignore este e-mail.');
+                    ->line('Seja bem-vindo(a).')
+                    ->line('Você foi aprovado(a) como administrador(a) da CASA!')
+                    ->line('Você receberá um email para redefinir a senha da sua conta e poder logar.');
     }
 
     /**

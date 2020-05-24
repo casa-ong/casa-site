@@ -14,7 +14,7 @@
         <a class="nav-link" href="{{ route('site.noticias').'#noticias' }}">Notícias</a>
         <a class="nav-link" href="{{ route('site.eventos').'#eventos' }}">Eventos</a>
         <a class="nav-link" href="{{ route('site.projetos').'#projetos' }}">Projetos</a>
-        <a class="nav-link" href="{{ route('site.voluntarios').'#voluntarios' }}">Voluntarios</a>
+        <a class="nav-link" href="{{ route('site.voluntarios').'#voluntarios' }}">Voluntários</a>
         <a class="nav-link" href="{{ route('sugestao.adicionar').'#sugestoes' }}">Sugestões</a>
         <a class="nav-link" href="{{ route('site.home').'#sobre' }}">Sobre</a>
         @if(Auth::guest())

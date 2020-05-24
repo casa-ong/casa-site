@@ -6,8 +6,16 @@
 @endsection
 
 @section('conteudo')
+
+        @if(Session::has('error'))
+            <div class="alert alert-error text-center">
+                <p>{{ Session::get('error') }}</p>
+            </div>
+        @endif
+
         <div class="item">
             <form id="form-btn-vol" action="{{ route('site.home.voluntario.adicionar') }}" method="POST" enctype="multipart/form-data">
+
                 {{ csrf_field() }}
                 <div class="input-field">
                     <label for="email">Quer ser um voluntário?</label>

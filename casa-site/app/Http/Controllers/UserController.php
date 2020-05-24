@@ -3,111 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Auth;
-use App\User;
-use App\Projeto;
-use Validator;
+use Illuminate\Support\Str;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Notifications\UserRegisteredSuccessfully;
 use App\Notifications\VoluntarioAprovadoNotification;
+use App\Notifications\AdminAprovadoNotification;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use Notification;
+use Validator;
+use Auth;
+use App\User;
+use App\Projeto;
 
 class UserController extends Controller
 {
 
     protected $user;
+    protected $projeto;
 
     public function __construct(User $user, Projeto $projeto) {
         $this->user = $user;
         $this->projeto = $projeto;
-    }
-
-    public function voluntarios() 
-    {
-        return view('site.voluntarios.voluntarios');
-    }
-
-    public function voluntariosNorte() {
-        $registros = $this->user->where('aprovado', '=', 1)
-        ->where(function($query) {
-            $query->where('estado', '=', 'AC')
-            ->orWhere('estado', '=', 'AP')
-            ->orWhere('estado', '=', 'AM')
-            ->orWhere('estado', '=', 'PA')
-            ->orWhere('estado', '=', 'RR')
-            ->orWhere('estado', '=', 'RO')
-            ->orWhere('estado', '=', 'TO');
-        })
-        ->orderBy('name')->get();
-
-        $estado = 'Norte';
-
-        return view('site.voluntarios.regiao', compact('registros', 'estado'));
-    }
-
-    public function voluntariosNordeste() {
-        $registros = $this->user
-            ->where('aprovado', '=', 1)
-            ->where(function($query) {
-                $query->where('estado', '=', 'AL')
-                    ->orWhere('estado', '=', 'BA')
-                    ->orWhere('estado', '=', 'CE')
-                    ->orWhere('estado', '=', 'PB')
-                    ->orWhere('estado', '=', 'MA')
-                    ->orWhere('estado', '=', 'PE')
-                    ->orWhere('estado', '=', 'PI')
-                    ->orWhere('estado', '=', 'RN')
-                    ->orWhere('estado', '=', 'SE');
-            })
-            ->orderBy('name')->get();
-
-        $estado = 'Nordeste';
-        return view('site.voluntarios.regiao', compact('registros', 'estado'));
-    }
-
-    public function voluntariosCentro() {
-        $registros = $this->user->where('aprovado', 1)
-        ->where(function($query) {
-            $query->where('estado', '=', 'DF')
-            ->orWhere('estado', '=', 'GO')
-            ->orWhere('estado', '=', 'MT')
-            ->orWhere('estado', '=', 'MS');
-        })
-        ->orderBy('name')->get();
-
-        $estado = 'Centro';
-
-        return view('site.voluntarios.regiao', compact('registros', 'estado'));
-    }
-
-    public function voluntariosSudeste() {
-        $registros = $this->user->where('aprovado', 1)
-        ->where(function($query) {
-            $query->where('estado', '=', 'ES')
-            ->orWhere('estado', '=', 'MG')
-            ->orWhere('estado', '=', 'RJ')
-            ->orWhere('estado', '=', 'SP');
-        })
-        ->orderBy('name')->get();
-
-        $estado = 'Sudeste';
-        return view('site.voluntarios.regiao', compact('registros', 'estado'));
-    }
-
-    public function voluntariosSul() {
-        $registros = $this->user->where('aprovado', 1)
-        ->where(function($query) {
-            $query->where('estado', '=', 'PR')
-            ->orWhere('estado', '=', 'RS')
-            ->orWhere('estado', '=', 'SC');
-        })
-        ->orderBy('name')->get();
-
-        $estado = 'Sul';
-
-        return view('site.voluntarios.regiao', compact('registros', 'estado'));
     }
 
     public function index() 
@@ -151,11 +70,8 @@ class UserController extends Controller
         }
         
         if(!isset($dados['password'])) {
-            $dados['password'] = 'admin';
+            $dados['password'] = bcrypt(Str::random(8));
         }
-
-        $dados['password'] = bcrypt($dados['password']);
-        
 
         if(isset($dados['admin'])) {
             $dados['admin'] = true;
@@ -192,6 +108,18 @@ class UserController extends Controller
 
     }
 
+    public function ver($id) 
+    {
+        $registro = $this->user->find($id);
+        $estados = $this->user::$estadosBrasileiros;
+        foreach($estados as $estado) {
+            if($estado[0] == $registro->estado) {
+                $registro->estado = $estado[1];
+            }
+        }
+        return view('admin.voluntarios.ver', compact('registro', 'estados'));
+    }
+
     // Método responsavel por abrir a pagina de editar um projeto
     public function editar() 
     {
@@ -206,21 +134,7 @@ class UserController extends Controller
     {
         $request->validated();
         $dados = $request->all();
-
-        $dados['password'] = bcrypt($dados['password']);
         
-        if(isset($dados['admin'])) {
-            $dados['admin'] = true;
-        } else {
-            $dados['admin'] = false;
-        }
-
-        if(isset($dados['aprovado'])) {
-            $dados['aprovado'] = true;
-        } else {
-            $dados['aprovado'] = false;
-        }
-
         if($request->hasFile('foto')) {
             $anexo = $request->file('foto');
             $num = rand(1111,9999);
@@ -233,6 +147,18 @@ class UserController extends Controller
 
         $user = $this->user->find($id);
 
+        if(isset($dados['admin']) || $user->admin == 1) {
+            $dados['admin'] = true;
+        } else {
+            $dados['admin'] = false;
+        }
+
+        if(isset($dados['aprovado']) || $user->aprovado == 1) {
+            $dados['aprovado'] = true;
+        } else {
+            $dados['aprovado'] = false;
+        }
+
         if ($user->cpf != $dados['cpf']) {
             return redirect()->back()->withErrors(['cpf' => 'Você não pode alterar o cpf']);
         } else if($user->email != $dados['email']) {
@@ -240,7 +166,8 @@ class UserController extends Controller
         }
         
         $user->update($dados);
-
+        Auth::login($user);
+        
         return redirect()->route('admin.voluntarios')->with('success', 'Voluntário atualizado com sucesso!');
     }
 
@@ -263,10 +190,140 @@ class UserController extends Controller
         return redirect()->route('admin.voluntarios')->with('success', 'Voluntário aprovado com sucesso!');
     }
 
+    public function aprovarAdmin(Request $request) 
+    {
+        $dados = $request->all();
+
+        $user = $this->user->where('email', $dados['email'])->latest()->first();
+
+        $dados = [
+            'admin' => true,
+        ];
+
+        if($user->admin) {
+            $dados['admin'] = false;
+        }
+
+        $user->update($dados);
+
+        if($user->admin) {
+            $user->notify(new AdminAprovadoNotification());
+            (new ForgotPasswordController())->sendResetLinkEmail($request);
+        }
+
+        return redirect()->route('admin.voluntarios')->with('success', 'Voluntário agora é administrador com sucesso!');
+    }
+
     // Metodo da acao de apagar um projeto
     public function deletar($id) 
     {
-        $this->user->find($id)->delete();
-        return redirect()->route('admin.voluntarios')->with('success', 'Voluntário deletado com sucesso!');
+        $user = $this->user->where('id', $id);
+
+        if(Auth::user()->id == $id) {
+            Auth::logout();
+            $user->delete();
+            return redirect()->route('site.home')->with('success', 'Conta excluída permanentemente!');
+        } else if ($user->latest()->first()->admin) {
+            return redirect()->route('admin.voluntarios')->with('error', 'Você não pode excluir outros administradores!');
+        }
+        
+        $user->delete();
+        return redirect()->route('admin.voluntarios')->with('success', 'Conta excluída permanentemente!');
+        
+    }
+
+    public function voluntarios() 
+    {
+        return view('site.voluntarios.voluntarios');
+    }
+
+    public function voluntariosNorte() {
+        $registros = $this->user
+            ->whereNotNull('email_verified_at')
+            ->where('aprovado', '=', 1)
+            ->where(function($query) {
+                $query->where('estado', '=', 'AC')
+                    ->orWhere('estado', '=', 'AP')
+                    ->orWhere('estado', '=', 'AM')
+                    ->orWhere('estado', '=', 'PA')
+                    ->orWhere('estado', '=', 'RR')
+                    ->orWhere('estado', '=', 'RO')
+                    ->orWhere('estado', '=', 'TO');
+        })
+        ->orderBy('name')->get();
+
+        $estado = 'Norte';
+
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
+    }
+
+    public function voluntariosNordeste() {
+        $registros = $this->user
+            ->whereNotNull('email_verified_at')
+            ->where('aprovado', '=', 1)
+            ->where(function($query) {
+                $query->where('estado', '=', 'AL')
+                    ->orWhere('estado', '=', 'BA')
+                    ->orWhere('estado', '=', 'CE')
+                    ->orWhere('estado', '=', 'PB')
+                    ->orWhere('estado', '=', 'MA')
+                    ->orWhere('estado', '=', 'PE')
+                    ->orWhere('estado', '=', 'PI')
+                    ->orWhere('estado', '=', 'RN')
+                    ->orWhere('estado', '=', 'SE');
+            })
+            ->orderBy('name')->get();
+
+        $estado = 'Nordeste';
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
+    }
+
+    public function voluntariosCentro() {
+        $registros = $this->user
+            ->whereNotNull('email_verified_at')
+            ->where('aprovado', 1)
+            ->where(function($query) {
+                $query->where('estado', '=', 'DF')
+                    ->orWhere('estado', '=', 'GO')
+                    ->orWhere('estado', '=', 'MT')
+                    ->orWhere('estado', '=', 'MS');
+        })
+        ->orderBy('name')->get();
+
+        $estado = 'Centro';
+
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
+    }
+
+    public function voluntariosSudeste() {
+        $registros = $this->user
+            ->whereNotNull('email_verified_at')
+            ->where('aprovado', 1)
+            ->where(function($query) {
+                $query->where('estado', '=', 'ES')
+                    ->orWhere('estado', '=', 'MG')
+                    ->orWhere('estado', '=', 'RJ')
+                    ->orWhere('estado', '=', 'SP');
+        })
+        ->orderBy('name')->get();
+
+        $estado = 'Sudeste';
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
+    }
+
+    public function voluntariosSul() {
+        $registros = $this->user
+            ->whereNotNull('email_verified_at')
+            ->where('aprovado', 1)
+            ->where(function($query) {
+                $query->where('estado', '=', 'PR')
+                    ->orWhere('estado', '=', 'RS')
+                    ->orWhere('estado', '=', 'SC');
+        })
+        ->orderBy('name')->get();
+
+        $estado = 'Sul';
+
+        return view('site.voluntarios.regiao', compact('registros', 'estado'));
     }
 }
