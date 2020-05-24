@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Newsletter;
 use Validator;
 use App\Http\Requests\NewsletterRequest;
+use App\Notifications\NewsletterAdicionadaNotification;
 
 class NewsletterController extends Controller
 {
@@ -32,9 +33,11 @@ class NewsletterController extends Controller
         $dados['receber_eventos'] = true;
         $dados['receber_projetos'] = true;
         $dados['receber_noticias'] = true;
-
         
-        $this->newsletter->create($dados);
+        $newsletter = $this->newsletter->create($dados);
+
+        $newsletter->notify(new NewsletterAdicionadaNotification($newsletter));
+
         return redirect()->back()->with('newsletter', 'Cadastro feito com sucesso, agora você ficará sabendo das novidades!');
 
     }
@@ -72,6 +75,12 @@ class NewsletterController extends Controller
         }
         
         $this->newsletter->find($id)->update($dados);
+        
+        if(!$dados['receber_eventos'] && !$dados['receber_projetos'] && !$dados['receber_noticias']) {
+            $this->newsletter->find($id)->delete();
+            return redirect()->back()->with('success', 'Notificações de email canceladas com sucesso!');
+        }
+
         return redirect()->back()->with('success', 'Notificações de email atualizadas com sucesso!');
     }
 

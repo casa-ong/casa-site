@@ -11,15 +11,17 @@
             </div>
         @endif
     </div>
-    <div class="item-form">
-        <form action="{{ route('newsletter.atualizar', $registro->id) }}" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <input type="hidden" name="_method" value="put">
-            @include('admin.newsletter._form')
-            <div class="input-btn">
-                <button class="btn">Salvar</button>
-            </div>
-        </form>
-    </div>
+    @if(isset($registro))
+        <div class="item-form">
+            <form action="{{ route('newsletter.atualizar', $registro->id) }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="put">
+                @include('admin.newsletter._form')
+                <div class="input-btn">
+                    <button class="btn">Salvar</button>
+                </div>
+            </form>
+        </div>
+    @endif
 </div>
 @endsection

@@ -34,10 +34,6 @@
 @endcomponent
 @endisset
 
-@component('mail::link', ['url' => $actionUrl])
-{{ $actionText }}
-@endcomponent
-
 {{-- Outro Lines --}}
 @foreach ($outroLines as $line)
 {{ $line }}
