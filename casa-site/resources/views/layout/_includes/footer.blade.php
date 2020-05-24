@@ -1,6 +1,13 @@
 
         <div class="item-black">
             <form id="form-btn"  action="{{ route('newsletter.salvar') }}#newsletter" method="POST" enctype="multipart/form-data">
+        
+                @if(Session::has('newsletter'))
+                    <div class="alert alert-success text-center">
+                        <p>{{ Session::get('newsletter') }}</p>
+                    </div>
+                @endif
+                
                 <div class="input-field">
                     {{ csrf_field() }}
                         <label id="newsletter" for="item-title">Receba novidades</label>
@@ -16,6 +23,7 @@
         </div>
         <div class="item">
             <div class="social-icons">
+
                 @php($sobre = App\Sobre::latest('updated_at')->first())
                 @if(isset($sobre->twitter))
                     <a class="social-icon" href="{{ isset($sobre->twitter) ? $sobre->twitter : '#' }}" target="_blank">
@@ -34,6 +42,7 @@
                         <i class="fab fa-facebook"></i>
                     </a>
                 @endif
+                
             </div>
             <p>© 2020 Todos os direitos reservados.</p>
         </div>

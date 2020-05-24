@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Auth\Events\Verified;
 use App\Notifications\NovaSugestaoNotification;
 use App\Notifications\SugestaoEnviadaNotification;
+use App\Notifications\NovoVoluntarioNotification;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
 use App\User;
@@ -58,6 +59,8 @@ class VerificationController extends Controller
         if ($user->markEmailAsVerified())
             event(new Verified($user));
 
+        $users = User::where('admin', true)->get();
+        Notification::send($users, new NovoVoluntarioNotification($user));
         return redirect()->route('site.voluntarios')->with('success', 'Email verificado com sucesso!');
     }
 

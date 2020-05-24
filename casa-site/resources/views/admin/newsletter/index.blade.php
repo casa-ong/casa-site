@@ -7,7 +7,7 @@
             <h1 class="">Lista de newsletters</h1>
             @if(Session::has('success'))
                 <div class="alert alert-success">
-                    {{ Session::get('success') }}
+                    <p>{{ Session::get('success') }}</p>
                 </div>
             @endif
         </div>
@@ -30,10 +30,10 @@
                             <td>{{ $registro->receber_projetos ? "Sim" : "Não" }}</td>
                             <td>{{ $registro->receber_noticias ? "Sim" : "Não" }}</td>
                             <td class="action-cell">
-                                <a class="btn" href="{{ route('admin.newsletter.editar',$registro->id) }}" title="Editar">
+                                <a class="btn" href="{{ route('newsletter.editar',[$registro->id, $registro->token]) }}" title="Editar">
                                     <span class="fas fa-pencil-alt"></span>
                                 </a>
-                                <a class="btn btn-danger" href="{{ route('admin.newsletter.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar esta newsletter?');" title="Deletar">
+                                <a class="btn btn-danger" href="{{ route('newsletter.deletar', [$registro->id, $registro->token]) }}" onclick="return confirm('Tem certeza que deseja deletar esta newsletter?');" title="Deletar">
                                     <span class="fas fa-trash-alt"></span>
                                 </a>
                             </td>

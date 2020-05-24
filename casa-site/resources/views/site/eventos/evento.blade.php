@@ -12,9 +12,8 @@
             <img src="{{ asset($evento->anexo) }}" alt="">
         </div>
         <p>Realização: {{ date('d/m/Y', strtotime($evento->data)) }}</p>
-        <p>{{ $evento->descricao }}</p>
-        <!--div class="text">
-            {-- $evento->toArray()['texto'] --}
-        </div-->
+        <div class="text">
+            {!! $evento->toArray()['descricao'] !!}
+        </div>
     </div>
 @endsection

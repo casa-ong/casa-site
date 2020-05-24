@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Noticia;
+use App\Newsletter;
 use Validator;
 use App\Http\Requests\NoticiaRequest;
+use App\Mail\NoticiaEmail;
+use Mail;
 
 class NoticiaController extends Controller
 {
 
     protected $noticia;
+    protected $newsletter;
 
-    public function __construct(Noticia $noticia) {
+    public function __construct(Noticia $noticia, Newsletter $newsletter) {
         $this->noticia = $noticia;
+        $this->newsletter = $newsletter;
     }
 
     public function noticias() 
@@ -23,7 +29,11 @@ class NoticiaController extends Controller
     }
 
     public function noticia($id) {
-        $noticia = $this->noticia->find($id);
+        $noticia = $this->noticia->where('id', $id)->where('publicado', true)->first();
+        if(!$noticia) {
+            throw new ModelNotFoundException;
+        }
+
         return view('site.noticias.noticia', compact('noticia'));
     }
     
@@ -68,8 +78,12 @@ class NoticiaController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        
-        $this->noticia->create($dados);
+        $noticia = $this->noticia->create($dados);
+
+        if($noticia->publicado) {
+            $this->emailNoticia($noticia);
+        }
+
         return redirect()->route('admin.noticias')->with('success', 'Notícia adicionada com sucesso!');
     }
 
@@ -108,7 +122,13 @@ class NoticiaController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $this->noticia->find($id)->update($dados);
+        $noticia = $this->noticia->find($id);
+
+        if(!$noticia->publicado && $dados['publicado'] == true) {
+            $this->emailNoticia($noticia);
+        }
+
+        $noticia->update($dados);
         return redirect()->route('admin.noticias')->with('success', 'Notícia atualizada com sucesso!');
     }
 
@@ -117,6 +137,26 @@ class NoticiaController extends Controller
     {
         $this->noticia->find($id)->delete();
         return redirect()->route('admin.noticias')->with('success', 'Notícia deletada com sucesso!');
+    }
+
+    public function emailNoticia($noticia) 
+    {
+        $newsletters = $this->newsletter
+                        ->where('receber_noticias', true)->get();
+
+        $detalhes = [
+            'url' => url('noticia/'.$noticia->id),
+            'titulo' => $noticia->titulo,
+            'texto' => $noticia->manchete,
+            'newsletter_id' => '',
+            'newsletter_token' => ''
+        ];
+
+        foreach ($newsletters as $newsletter) {
+            $detalhes['newsletter_id'] = $newsletter->id;
+            $detalhes['newsletter_token'] = $newsletter->token;
+            Mail::to($newsletter->getEmailAttribute())->send(new NoticiaEmail($detalhes));
+        }
     }
 
 }
