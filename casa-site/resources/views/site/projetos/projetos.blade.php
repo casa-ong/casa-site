@@ -7,7 +7,7 @@
 <div class="item-title">
     <h1>Nossos projetos</h1>
 </div>
-<div class="item" style="border: 0px">
+<div class="item border-0">
     @if(isset($projetos) && count($projetos) > 0)
         @foreach ($projetos as $projeto)
             @include('site.projetos._card')

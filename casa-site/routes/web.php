@@ -24,7 +24,8 @@ Route::get('/voluntarios/sudeste', ['as' => 'site.voluntarios.sudeste', 'uses' =
 Route::get('/voluntarios/sul', ['as' => 'site.voluntarios.sul', 'uses' => 'UserController@voluntariosSul']);
 Route::get('/voluntario/adicionar', ['as' => 'site.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
 Route::post('/voluntario/adicionar', ['as' => 'site.home.voluntario.adicionar', 'uses' => 'UserController@homeAdicionar']);
-Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
+Route::post('/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
+Route::get('/voluntario/ver/{id}',['as' => 'admin.voluntario.ver', 'uses' => 'UserController@ver']);
 
 Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
 Route::get('/evento/{id}', ['as' => 'site.evento', 'uses' => 'EventoController@evento']);
@@ -49,6 +50,12 @@ Route::post('/newsletter/salvar',['as' => 'newsletter.salvar', 'uses' => 'Newsle
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
+    Route::get('/admin/voluntario/editar/',['as' => 'admin.voluntario.editar', 'uses' => 'UserController@editar']);
+    Route::put('/admin/voluntario/atualizar/{id}',['as' => 'admin.voluntario.atualizar', 'uses' => 'UserController@atualizar']);
+    Route::get('/admin/voluntario/deletar/{id}',['as' => 'admin.voluntario.deletar', 'uses' => 'UserController@deletar']);
+});
+
+Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' => 'check.admin'], function() {
     Route::get('/admin/index',['as' => 'admin.index', 'uses' => 'HomeController@adminIndex']);
     Route::get('/admin/projetos',['as' => 'admin.projetos', 'uses' => 'ProjetoController@index']);
     Route::get('/admin/projeto/adicionar',['as' => 'admin.projeto.adicionar', 'uses' => 'ProjetoController@adicionar']);
@@ -66,11 +73,8 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
     
     Route::get('/admin/voluntarios', ['as' => 'admin.voluntarios', 'uses' => 'UserController@index']);
     Route::get('/admin/voluntatio/adicionar',['as' => 'admin.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
-    //Route::post('/admin/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
-    Route::get('/admin/voluntario/editar/',['as' => 'admin.voluntario.editar', 'uses' => 'UserController@editar']);
-    Route::put('/admin/voluntario/atualizar/{id}',['as' => 'admin.voluntario.atualizar', 'uses' => 'UserController@atualizar']);
-    Route::get('/admin/voluntario/deletar/{id}',['as' => 'admin.voluntario.deletar', 'uses' => 'UserController@deletar']);
     Route::get('/admin/voluntario/aprovar/{id}',['as' => 'admin.voluntario.aprovar', 'uses' => 'UserController@aprovarVoluntario']);
+    Route::post('/admin/voluntario/aprovar/admin/',['as' => 'admin.voluntario.aprovar.admin', 'uses' => 'UserController@aprovarAdmin']);
 
     Route::get('/admin/sobre', ['as' => 'admin.sobre', 'uses' => 'SobreController@index']);
     Route::get('/admin/sobre/adicionar',['as' => 'admin.sobre.adicionar', 'uses' => 'SobreController@adicionar']);

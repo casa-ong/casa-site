@@ -332,17 +332,16 @@ a.btn, button.btn {
     display: inline-block;
     border: none;
     background-color: #000;
-    font-weight: bold;
-    /* text-transform: uppercase; */
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
     padding: 0.75em 1em;
     margin: 1em;
-    max-width: 10em;
     cursor: pointer;
     position: relative;
     z-index: 1;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 a.btn.btn-danger {
@@ -503,7 +502,7 @@ div.page-nav nav ul li a:hover {
     -moz-outline-radius: 5px;
 }
 
-span.invalid-feedback, p.error {
+span.invalid-feedback, p.error, .alert-error p  {
     margin: 0.5em 0;
     color: #FF0000;
 }
@@ -545,6 +544,32 @@ p.error.error-dark {
 .input-field textarea:focus {
     height: 300px;
     transition: height 250ms ease-in-out;
+}
+
+div.input-field.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div.input-field.row input {
+    width: 80%;
+}
+
+div.input-field.datetime {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+div.input-field.datetime input {
+    width: 47.5%;
+}
+
+div.container div.content div.input-field.row img {
+    width: 63px;
 }
 
 /* Fim de formulários */
@@ -651,17 +676,6 @@ table a.btn {
 
 /* Cards de voluntarios */
 
-.column {
-    display: flex;
-    flex-direction: column;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
 .user-card {
     background-color: #fff;
     border-radius: 5px;
@@ -673,13 +687,13 @@ table a.btn {
     justify-content: space-between;
 }
 
-.user-card div.card-img {
+.user-card div.card-img, img.user-profile {
     width: 25%;
     height: 5em;
     max-width: 5em;
 }
 
-.user-card div.card-img img {
+.user-card div.card-img img, img.user-profile {
     height: 100%;
     border-radius: 5px;
 }
@@ -701,6 +715,56 @@ table a.btn {
 
 /* Fim de Cards de voluntarios */
 
+
+/* definicoes de uso geral */
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.align-center,
+div.input-field.align-center {
+    align-items: center;
+}
+
+.align-self-center {
+    align-self: center;
+}
+
+.justify-content-start, 
+.container .item.justify-content-start {
+    justify-content: flex-start;
+}
+
+.justify-content-end {
+    justify-content: flex-end;
+}
+
+.border-0, 
+.container .item.border-0 {
+    border: none;
+}
+
+.border-1 {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.w-text, 
+.container .item.w-text {
+    max-width: 660px;
+}
+
 .bold {
     font-weight: bold;
 }
@@ -709,35 +773,36 @@ table a.btn {
     margin: 0;
 }
 
-div.input-field.align-center {
-    align-items: center;
+.m-0-2, 
+.btn.m-0-2 {
+    margin: 0.2em;
 }
 
-div.input-field.row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+.m-1 {
+    margin: 1em;
 }
 
-div.input-field.row input {
-    width: 80%;
+.mx-auto {
+    margin: 0 auto;
 }
 
-div.input-field.datetime {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+.py-0,
+.container .item.py-0 {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
-div.input-field.datetime input {
-    width: 47.5%;
+.mt-1 {
+    margin-top: 1em;
 }
 
-div.container div.content div.input-field.row img {
-    width: 63px;
+.p-0,
+.container .item.p-0 {
+    padding: 0;
 }
+
+/* definicoes de uso geral */
+
 
 @media only screen and (min-width: 950px) {
     

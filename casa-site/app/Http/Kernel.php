@@ -42,6 +42,11 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+        
+        'check.admin' => [
+            \Illuminate\Auth\Middleware\Authenticate::class,
+            \App\Http\Middleware\CheckUserIsAdmin::class,
+        ]
     ];
 
     /**

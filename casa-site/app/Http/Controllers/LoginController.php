@@ -25,7 +25,7 @@ class LoginController extends Controller
         if($user == null || $user['admin'] == false) {
             return redirect()->route('login')->withErrors(['email' => 'E-mail não cadastrado'])->withInput();
         } else if(Auth::attempt(['email'=>$dados['email'], 'password'=>$dados['password']])) {
-            Auth::login($user);
+            Auth::login($user, false);
             return redirect()->route('admin.index');
         }
         return redirect()->route('login')->withErrors(['password' => 'Senha incorreta, tente novamente'])->withInput();
