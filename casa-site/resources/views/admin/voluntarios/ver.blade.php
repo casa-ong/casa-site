@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="row mt-1 mx-auto">
-        <form id="adminForm" action="{{ route('admin.voluntario.aprovar.admin') }}" method="POST" enctype="multipart/form-data">
+        <form class="row" id="adminForm" action="{{ route('admin.voluntario.aprovar.admin') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="email" value="{{ $registro->email ?? '' }}">
 

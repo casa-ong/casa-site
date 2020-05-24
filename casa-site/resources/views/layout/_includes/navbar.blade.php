@@ -25,8 +25,15 @@
                     {{ $user->name }} <i class="fas fa-caret-down"></i>
                     <input type="checkbox" class="dropdownAdminBtn" id="dropdownAdminBtn">
                     <div id="dropdownAdminLinks" class="dropdownAdminLinks">
+                        
+                        @if($user->admin)
                         <a href="{{ route('admin.index').'#controle' }}">Painel de Controle
-                            <i class="fas fa-user-cog"></i>
+                            <i class="fas fa-sliders-h"></i>
+                        </a>
+                        @endif
+                        
+                        <a href="{{ route('admin.voluntario.editar') }}">Minha conta
+                            <i class="fas fa-user"></i>
                         </a>
                         <a href="{{ route('login.sair') }}">Sair
                             <i class="fas fa-sign-out-alt"></i>

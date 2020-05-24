@@ -1,5 +1,5 @@
 @if ($errors->any())
-    <p class="error">Campos com * são obrigatórios!</p>
+    <p class="error">Confire novamente os campos em vermelho</p>
 @endif
 <div class="input-field">
     <label for="name">Nome*</label>
