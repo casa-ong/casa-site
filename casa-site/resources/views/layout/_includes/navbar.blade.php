@@ -1,8 +1,9 @@
 <nav class="nav-links">
     <div style="display: flex">
-        @if(!Request::is('/')
+        @if((!Request::is('/')
             && Request::is('admin/*')
             && !Request::is('admin/index'))
+            || Request::is('voluntario/*'))
             <a title="Voltar" href="#" class="nav-link" type="button" onclick="history.back()">
                 <span class="fas fa-chevron-left"></span>
             </a>

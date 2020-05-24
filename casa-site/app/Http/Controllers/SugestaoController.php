@@ -85,8 +85,6 @@ class SugestaoController extends Controller
 
         $registro->update($dados);
 
-        Notification::send($registro, new VerifyEmailSugestaoNotification());
-
         return view('admin.sugestao.ver', compact('registro'));
     }
 
