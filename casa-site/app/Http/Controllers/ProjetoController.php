@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use App\Noticia;
 use App\Projeto;
 use App\Newsletter;
 use Validator;
@@ -20,6 +21,8 @@ class ProjetoController extends Controller
     public function __construct(Projeto $projeto, Newsletter $newsletter) {
         $this->projeto = $projeto;
         $this->newsletter = $newsletter;
+
+        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     }
 
     public function projetos() 
@@ -30,11 +33,12 @@ class ProjetoController extends Controller
 
     public function projeto($id) {
         $projeto = $this->projeto->find($id);
+        $noticias = Noticia::where('publicado', 1)->latest()->paginate(3);
         if(!$projeto) {
             throw new ModelNotFoundException;
         }
 
-        return view('site.projetos.projeto', compact('projeto'));
+        return view('site.projetos.projeto', compact('projeto', 'noticias'));
     }
     
     // Metodo responsavel por abrir a pagina inicial dos projetos

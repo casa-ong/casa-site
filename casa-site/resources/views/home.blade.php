@@ -6,7 +6,7 @@
 @endsection
 
 @section('conteudo')
-
+<div>
         @if(Session::has('error'))
             <div class="alert alert-error text-center">
                 <p>{{ Session::get('error') }}</p>
@@ -38,6 +38,7 @@
             @endforeach
         </div>
     @endif
+    
     <a id="sobre"></a>
     @if(isset($sobre))
         @include('sobre')
@@ -53,4 +54,5 @@
             @endforeach
         </div>
     @endif
+</div>
 @endsection

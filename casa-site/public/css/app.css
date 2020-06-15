@@ -5,14 +5,31 @@
 }
 
 :root {
-    --main-bg-color: #BEF0B8;
+    --bg-color: #BEF0B8;
+    --danger: rgb(255, 0, 0);
+    --danger-hover: rgb(220, 0, 0); 
+    --dark-green: #005C2B;
+    --light-green: #29B32C;
+    --black: #000000;
+    --white: #FFFFFF;
+    --light-gray: #F2F2F2;
+
     --main-hover-color: rgb(63, 78, 61);
     --main-hover-light-color: rgb(150, 187, 145);
-    --main-danger-color: rgb(255, 0, 0);
-    --main-hover-danger-color: rgb(220, 0, 0); 
-    --main-success-color: rgb(0, 150, 0);   
+
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+
+    --font-16: 1rem;
+    --font-18: 1.125rem;
+    --font-24: 1.5rem;
+    --font-36: 2.25rem;
+
 }
 
+/* Regular 400, Medium 500, Semi-bold 600, Bold 700 */
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -32,7 +49,7 @@ button:focus, a:focus, label:focus-within, .nav-toggle:focus ~ label {
 header {
     position: relative;
     padding: 1em;
-    background-color: var(--main-bg-color);
+    background-color: var(--bg-color);
     text-align: center;
     max-height: 300px;
 }
@@ -54,7 +71,7 @@ header h2 {
 
 
 nav {
-    background-color: #000;
+    background-color: var(--dark-green);
 }
 
 nav.nav-links {
@@ -67,9 +84,18 @@ nav.nav-links {
     justify-content: space-between;
 }
 
+nav.nav-logged {
+    display: flex;
+    justify-content: flex-end;
+    top: 50px;
+    right: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 nav .nav-fluid {
     display: flex;
-    background-color: #000;
+    background-color: var(--dark-green);
     list-style: none;
     position: absolute;
     flex-wrap: wrap;
@@ -88,9 +114,9 @@ nav .nav-fluid {
 
 nav .nav-link {
     padding: 1em;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: bold;
+    color: var(--white);
+    font-size: var(--font-16);
+    font-weight: var(--font-semi-bold);
     text-transform: uppercase;
     text-decoration: none;
     position: relative;
@@ -98,13 +124,21 @@ nav .nav-link {
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
+nav .nav-link.rounded {
+    background-color: var(--white);
+    color: var(--dark-green);
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 5px;
+}
+
 nav a:visited {
-    color: #fff;
+    color: var(--white);
 }
 
 nav .nav-link:hover {
     background-color: var(--main-hover-color);
-    color: #fff;
+    color: var(--white);
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
@@ -173,26 +207,31 @@ label.nav-link {
 }
 
 p.breadcrumbs {
-    background-color: var(--main-bg-color);
+    background-color: var(--bg-color);
     padding: 1em;
     margin: 0 auto;
     max-width: 960px;
 }
 
 div.container {
-    background-color: var(--main-bg-color);
+    background-color: var(--bg-color);
     padding: 1em;
 }
 
 div.container div.content {
     background-color: #fff;
     border-radius: 10px;
-    padding: 1em;
     margin: 0 auto;
-    max-width: 960px;
+    max-width: 700px;
 }
 
-div.container div.content h1 {
+.container .content .text {
+    padding: 2em;
+}
+
+div.container div.content .text h1 {
+    font-weight: var(--font-medium);
+    text-align: center;
     margin: 0;
 }
 
@@ -229,14 +268,20 @@ div.container div.item-title h1 {
 }
 
 div.container div.card {
-    max-width: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 15em;
+    height: 20em;
     border-radius: 10px;
-    margin: 1em;
+    margin: 0.5em;
     background-color: #fff;
 }
 
 div.container div.card div.card-img {
-    min-height: 15em;
+    margin-bottom: auto;
+    height: 10em;
+    overflow: hidden;
 }
 
 div.container div.card img {
@@ -252,11 +297,13 @@ div.container div.card img:hover {
 }
 
 div.container div.card div.card-text {
-    padding: 0 1em 1em 1em;
+    height: 5em;
+    width: 15em;
+    padding: 1em 0.5em 0 0.5em;
 }
 
 div.container div.card div.card-text p {
-    color: #000000AA;
+    color: var(--black);
     margin: 0.5em 0;
 }
 
@@ -269,11 +316,14 @@ div.container div.card div.card-text p.card-p {
 div.container div.card div.card-text h4 {
     margin: 0;
     overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--font-18);
+    text-align: center;
+    font-weight: var(--font-regular);
 }
 
 div.container div.card div.card-text h4 a {
     color: #000000;
-    font-size: 2rem;
     text-decoration: none;
     padding: 0 1em 0 0;
     align-self: center;
@@ -281,6 +331,16 @@ div.container div.card div.card-text h4 a {
 
 div.container div.card div.card-text h4 a:hover {
     text-decoration: underline;
+}
+
+.container .sidebar h1 {
+    text-align: center;
+    font-weight: var(--font-medium);
+    font-size: var(--font-24);
+}
+
+.container .sidebar h1 strong {
+    color: var(--dark-green)
 }
 
 div.item label, div.item-black label {
@@ -291,7 +351,7 @@ div.item label, div.item-black label {
 }
 
 footer {
-    background-color: var(--main-bg-color);      
+    background-color: var(--bg-color);      
 }
 
 footer div.item {
@@ -342,15 +402,16 @@ a.btn, button.btn {
     z-index: 1;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+    font-weight: var(--font-medium);
 }
 
 a.btn.btn-danger {
-    background-color: var(--main-danger-color);
+    background-color: var(--danger);
     color: #fff;
 }
 
 a.btn.btn-dark, button.btn.btn-dark {
-    background-color: var(--main-bg-color);
+    background-color: var(--bg-color);
     color: #000;
 }
 
@@ -384,12 +445,16 @@ a.btn.btn-dark::after {
 }
 
 a.btn.btn-danger::after {
-    background-color: var(--main-hover-danger-color);
+    background-color: var(--danger-hover);
 }
 
 a.btn:hover::after, button.btn:hover::after, a.btn:hover.btn-danger::after{
     opacity: 1;
     transition: opacity 250ms ease-in-out;
+}
+
+.btn.btn-green {
+    background-color: var(--dark-green);
 }
 
 /* Paginação */
@@ -513,7 +578,7 @@ p.error.error-dark {
 }
 
 .alert-success p {
-    color: var(--main-success-color); /* cor da fonte*/
+    color: var(--light-green); /* cor da fonte*/
     font-weight: bold;
 }
 
@@ -588,7 +653,7 @@ div.container div.content div.input-field.row img {
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    background-color: var(--main-bg-colors);
+    background-color: var(--bg-color);
     position: relative;
     z-index: 1;
 }
@@ -760,6 +825,10 @@ div.input-field.align-center {
     border-radius: 10px;
 }
 
+.border-left-1 {
+    border-left: 1px solid var(--white);
+}
+
 .w-text, 
 .container .item.w-text {
     max-width: 660px;
@@ -803,11 +872,39 @@ div.input-field.align-center {
 
 /* definicoes de uso geral */
 
+.img {
+    overflow: hidden;
+    height: 300px;
+}
+
+.img img{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Postagens */
 
 @media only screen and (min-width: 950px) {
     
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+
+    div.container div.content {
+        margin: 1em;
+    }
+
+    .container .sidebar {
+        max-width: 260px;
+    }
+
     nav.nav-links {
         justify-content: center;
+    }
+
+    nav.nav-logged {
+        position: absolute;
     }
 
     .nav-toggle {
@@ -820,6 +917,7 @@ div.input-field.align-center {
 
     nav .nav-fluid {
         all: unset;
+        position: relative;
         display: flex;
         flex-direction: row;
         width: inherit;
