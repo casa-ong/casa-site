@@ -6,7 +6,14 @@
 @endsection
 
 @section('conteudo')
-<div>
+    @if(isset($noticias) && count($noticias) > 0)
+        <div class="gallery js-flickity carousel"
+            data-flickity-options='{ "wrapAround": true, "autoPlay": true }'>
+            @foreach ($noticias as $index => $item)
+                @include('site._includes._carousel_item')
+            @endforeach
+        </div>
+    @endif
         @if(Session::has('error'))
             <div class="alert alert-error text-center">
                 <p>{{ Session::get('error') }}</p>
@@ -54,5 +61,4 @@
             @endforeach
         </div>
     @endif
-</div>
 @endsection

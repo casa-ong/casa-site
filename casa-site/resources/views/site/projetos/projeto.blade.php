@@ -2,6 +2,7 @@
 @section('titulo', $projeto->nome.' - CASA')
 
 @section('conteudo')
+<div class="post">
     <div class="content">
         <div class="img">
             <img src="{{ asset($projeto->anexo) }}" alt="">
@@ -28,4 +29,5 @@
 
         </div>
     </section>
+</div>
 @endsection

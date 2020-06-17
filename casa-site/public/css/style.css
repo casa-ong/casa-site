@@ -300,6 +300,7 @@ div.container div.card div.card-text {
     height: 5em;
     width: 15em;
     padding: 1em 0.5em 0 0.5em;
+    overflow: hidden;
 }
 
 div.container div.card div.card-text p {
@@ -326,7 +327,6 @@ div.container div.card div.card-text h4 a {
     color: #000000;
     text-decoration: none;
     padding: 0 1em 0 0;
-    align-self: center;
 }
 
 div.container div.card div.card-text h4 a:hover {
@@ -780,6 +780,57 @@ table a.btn {
 
 /* Fim de Cards de voluntarios */
 
+/* Carousel da home */
+
+.carousel {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+.carousel-item {
+    display: flex;
+    height: 300px;
+    width: 75%;
+    padding: 2em;
+    border-radius: 10px;
+    margin-right: 1em;
+}
+
+.carousel-item .carousel-title {
+    text-align: center;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-item .carousel-title h1 {
+    margin: 0 auto;
+    font-weight: var(--font-medium);
+    font-size: var(--font-24);
+}
+
+.carousel-item .carousel-title a, .carousel-action .carousel-btn {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.carousel-item .carousel-title a:hover {
+    text-decoration: underline;
+}
+
+.carousel-action {
+    text-align: center;
+}
+
+.carousel-action .carousel-btn {
+    font-weight: var(--font-medium);
+    background-color: var(--dark-green);
+    padding: 0.65em 1em;
+    border-radius: 100px;
+}
+
+/* Carousel da home */
 
 /* definicoes de uso geral */
 .column {
@@ -886,7 +937,7 @@ div.input-field.align-center {
 
 @media only screen and (min-width: 950px) {
     
-    .container {
+    .post {
         display: flex;
         justify-content: center;
     }
@@ -951,5 +1002,9 @@ div.input-field.align-center {
     .dropdownAdminLinks a:hover {
         color: #000;
         background-color: var(--main-hover-light-color);
+    }
+
+    .carousel-item .carousel-title h1 { 
+        font-size: var(--font-36);
     }
 }

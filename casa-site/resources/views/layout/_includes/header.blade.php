@@ -14,7 +14,7 @@
         <title>@yield('titulo')</title>
         
         <!-- Estilo da pagina -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
         <!-- JavaScript da pagina -->
         <script src="{{ asset('js/dropdown_on_click.js') }}" crossorigin="anonymous"></script>
 
@@ -31,6 +31,10 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote-lite.min.js"></script>
+
+        <!-- include Flickty for carousel/slider -->
+        <script src="{{ asset('js/flickity.pkgd.min.js') }}"></script>        
+        <link rel="stylesheet" href="{{ asset('css/flickity.css') }}">
 
         <!-- Mascaras -->
         <script defer type="text/javascript" src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
