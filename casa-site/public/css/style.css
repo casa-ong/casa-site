@@ -39,6 +39,10 @@ img {
     width: 100%;
 }
 
+h1 {
+    margin: 0;
+}
+
 button:focus, a:focus, label:focus-within, .nav-toggle:focus ~ label {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
@@ -239,12 +243,19 @@ div.container div.content img {
     width: 100%;
 }
 
+div.container div.item.sobre {
+    font-size: var(--font-16);
+    margin: 0 auto;
+}
+
 div.container div.item {
     padding: 1em;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--dark-green);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 0 auto;
+    max-width: 960px;
 }
 
 div.container div.item div.input-field {
@@ -261,10 +272,11 @@ div.container div.item-title {
     font-weight: bold;
     /* text-transform: uppercase; */
     text-align: center;
+    font-size: var(--font-18);
 }
 
 div.container div.item-title h1 {
-    margin: 1em 0 0 0;
+    font-weight: var(--font-medium);
 }
 
 div.container div.card {
@@ -299,7 +311,7 @@ div.container div.card img:hover {
 div.container div.card div.card-text {
     height: 5em;
     width: 15em;
-    padding: 1em 0.5em 0 0.5em;
+    padding: 1em 1em 0 1em;
     overflow: hidden;
 }
 
@@ -326,20 +338,73 @@ div.container div.card div.card-text h4 {
 div.container div.card div.card-text h4 a {
     color: #000000;
     text-decoration: none;
-    padding: 0 1em 0 0;
 }
 
 div.container div.card div.card-text h4 a:hover {
     text-decoration: underline;
 }
 
+div.container div.card.card-big {
+    height: 19em;
+}
+
+div.container div.card.card-small {
+    height: 15em;
+}
+
+div.container div.card.card-big div.card-img,
+div.container div.card.card-small div.card-img {
+    height: 6em;
+    text-align: center;
+}
+
+div.container div.card.card-big img,
+div.container div.card.card-small img {
+    max-height: 6em;
+    width: auto;
+}
+
+div.container div.card.card-big img:hover, 
+div.container div.card.card-small img:hover {
+    opacity: 1;
+    cursor: unset;
+}
+
+div.container div.card.card-big div.card-text,
+div.container div.card.card-small div.card-text {
+    text-overflow: ellipsis;
+    padding: 0 1em 0 1em;
+    height: 8em;
+}
+
+div.container div.card.card-small div.card-text {
+    height: 4em;
+}
+
+div.container div.card.card-big div.card-text strong,
+div.container div.card.card-small div.card-text strong {
+    color: var(--dark-green)
+}
+
+div.container div.card.card-big div.card-text h4,
+div.container div.card.card-small div.card-text h4 {
+    font-size: var(--font-24);
+}
+
+div.container div.card.card-big div.card-text p,
+div.container div.card.card-small div.card-text p {
+    text-align: center;
+    font-size: var(--font-16);
+}
+
 .container .sidebar h1 {
     text-align: center;
     font-weight: var(--font-medium);
     font-size: var(--font-24);
+    margin: 1em 0 0 0;
 }
 
-.container .sidebar h1 strong {
+h1 strong {
     color: var(--dark-green)
 }
 
@@ -1006,5 +1071,9 @@ div.input-field.align-center {
 
     .carousel-item .carousel-title h1 { 
         font-size: var(--font-36);
+    }
+
+    div.container div.item.sobre {
+        font-size: var(--font-24);
     }
 }

@@ -52,8 +52,8 @@
 
 <h3>Informações da organização</h3>
 <div class="input-field">
-    <label for="texto_sobre">Texto sobre a organização</label>
-    <textarea id="summernote" type="text" name="texto_sobre" placeholder="Escreve aqui um texto sobre a organização">{{ isset($registro->texto_sobre) ? $registro->texto_sobre : old('texto_sobre') }}</textarea>
+    <label for="texto_sobre">Nossa missão</label>
+    <textarea type="text" name="texto_sobre" placeholder="Escreve aqui um texto sobre a organização">{{ isset($registro->texto_sobre) ? $registro->texto_sobre : old('texto_sobre') }}</textarea>
     @error('texto_sobre')
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>

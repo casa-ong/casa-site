@@ -17,7 +17,7 @@
         <a class="nav-link" href="{{ route('site.projetos').'#projetos' }}">Projetos</a>
         <a class="nav-link" href="{{ route('site.voluntarios').'#voluntarios' }}">Voluntários</a>
         <a class="nav-link" href="{{ route('site.home').'#sobre' }}">Sobre</a>
-        <a class="nav-link rounded" href="{{ route('site.home').'#apoie' }}">Apoie-nos</a>
+        <a class="nav-link rounded" href="{{ route('site.home').'#contribua' }}">Contribua</a>
         @if(Auth::user())
         @php($user = Auth::user())
             <nav class="nav-logged">
