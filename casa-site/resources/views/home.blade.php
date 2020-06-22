@@ -20,32 +20,6 @@
             <p>{{ Session::get('error') }}</p>
         </div>
     @endif
-
-        {{-- <div class="item">
-            <form id="form-btn-vol" action="{{ route('site.home.voluntario.adicionar') }}" method="POST" enctype="multipart/form-data">
-
-                {{ csrf_field() }}
-                <div class="input-field">
-                    <label for="email">Quer ser um voluntário?</label>
-                    <input class="{{ $errors->has('email') ? 'error' : '' }}" name="email" type="text" placeholder="Digite seu email para se cadastrar" value="{{ old('email') }}">
-                    @error('email')
-                        <p class="error" form="form-btn-vol">{{ $message }}</p>
-                    @enderror
-                    <button class="btn">Enviar</button>
-                </div>
-            </form>
-        </div> --}}
-
-    {{-- @if(isset($noticias) && count($noticias) > 0)
-        <div id="noticias" class="item-title">
-            <h1>Últimas Notícias</h1>
-        </div>
-        <div class="item">
-            @foreach ($noticias as $noticia)
-                @include('site.noticias._card')
-            @endforeach
-        </div>
-    @endif --}}
     
     <a id="sobre"></a>
     <div class="item-title">

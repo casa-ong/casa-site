@@ -12,7 +12,7 @@
     --light-green: #29B32C;
     --black: #000000;
     --white: #FFFFFF;
-    --light-gray: #F2F2F2;
+    --light-gray: #c4c4c4;
 
     --main-hover-color: rgb(63, 78, 61);
     --main-hover-light-color: rgb(150, 187, 145);
@@ -141,8 +141,15 @@ nav a:visited {
 }
 
 nav .nav-link:hover {
-    background-color: var(--main-hover-color);
+    background-color: var(--white);
+    color: var(--dark-green);
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+nav .nav-link:hover.rounded {
+    background-color: var(--dark-green);
     color: var(--white);
+    box-shadow: 0px 0px 0px 1px var(--white) inset;
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
@@ -410,8 +417,8 @@ h1 strong {
 
 div.item label, div.item-black label {
     padding: 1em;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-weight: var(--font-medium);
+    font-size: var(--font-24);
     text-align: center;
 }
 
@@ -429,17 +436,23 @@ footer div.item div.social-icons {
 }
 
 footer div.item div.social-icons a {
-    color: #000;
+    color: var(--dark-green);
     text-decoration: none;
+    transition: opacity ease-in-out 250ms;
 }
 
 footer div.item div.social-icons a:visited {
-    color: #000;
+    color: var(--dark-green);
+}
+
+footer div.item div.social-icons a:hover {
+    opacity: 0.8;
+    transition: opacity ease-in-out 250ms;
 }
 
 footer div.item-black {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--dark-green);
+    color: var(--white);
     padding: 1em;
 }
 
@@ -468,6 +481,7 @@ a.btn, button.btn {
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: var(--font-medium);
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
 a.btn.btn-danger {
@@ -476,8 +490,16 @@ a.btn.btn-danger {
 }
 
 a.btn.btn-dark, button.btn.btn-dark {
-    background-color: var(--bg-color);
-    color: #000;
+    background-color: var(--white);
+    color: var(--dark-green);
+    font-weight: var(--font-semi-bold);
+}
+
+a.btn.btn-dark:hover, button.btn.btn-dark:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+    box-shadow: 0px 0px 0px 1px var(--white) inset;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out, box-shadow 250ms ease-in-out;
 }
 
 a:visited.btn.btn-dark {
@@ -488,34 +510,11 @@ a:visited.btn {
     color: #fff;
 }
 
-a.btn::after, a.btn.btn-dark::after, button.btn::after, a.btn.btn-danger::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 250ms ease-in-out;
-    z-index: -1;
-}
-
-a.btn.btn::after, button.btn::after {
-    background-color: var(--main-hover-color);
-}
-
-a.btn.btn-dark::after {
-    background-color: var(--main-hover-light-color);
-}
-
-a.btn.btn-danger::after {
-    background-color: var(--danger-hover);
-}
-
-a.btn:hover::after, button.btn:hover::after, a.btn:hover.btn-danger::after{
-    opacity: 1;
-    transition: opacity 250ms ease-in-out;
+a.btn:hover, button.btn:hover, a.btn:hover.btn-danger {
+    background-color: var(--white);
+    color: var(--dark-green);
+    box-shadow: 0px 0px 0px 1px var(--dark-green) inset;
+    transition: background-color 250ms ease-in-out, color 250 ease-in-out;
 }
 
 .btn.btn-green {

@@ -10,13 +10,13 @@
                 
                 <div class="input-field">
                     {{ csrf_field() }}
-                        <label id="newsletter" for="item-title">Receba novidades</label>
+                        <label id="newsletter" for="item-title">Receba <strong>novidades<br></strong> por email</label>
                         <input name="email_newsletter" class="{{ $errors->has('email_newsletter') ? 'error' : '' }}" type="text" placeholder="Digite seu email para se cadastrar">
                         @error('email_newsletter')
                             <p class="error error-dark">{{ $message }}</p>
                         @enderror
                     <div class="input-btn m-0">
-                        <button form="form-btn" type="submit" class="btn btn-dark">Enviar</button>
+                        <button form="form-btn" type="submit" class="btn btn-dark">Cadastrar-se</button>
                     </div>
                 </div>
             </form>
