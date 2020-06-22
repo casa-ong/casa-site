@@ -17,7 +17,6 @@
             </div>
             <div class="title row text-center">
                 <p>
-                    Uma equipe de <strong>{{ $n_voluntarios ?? '0' }} voluntários</strong> espalhados por <strong>todo Brasil!</strong>
                     <br>Conheça nossos voluntários <strong>por região</strong> abaixo
                 </p>
             </div>
@@ -95,12 +94,58 @@
 
         /* Mobile */
         @media only screen and (max-width: 520px) {
+
+            ul#map {
+                display: flex; 
+                margin: 0; 
+                padding: 0; 
+                list-style: none; 
+                width: 300px; 
+                height: 280px; 
+                background-size:300px 280px; 
+                background-image: url({{ asset('img/user_map/map.png') }});
+            }
+
+            a#no {width: 185px; height: 135px; }
+            a#ne {width: 100px; height: 100px; }
+            a#co {width: 100px; height: 100px; }
+            a#se {width: 80px; height: 60px; }
+            a#su {width: 90px; height: 90px; }
+            
+            li#cno {margin-top: 0px; margin-left: 0px; z-index: 99}
+            li#cne {margin-top: 50px; margin-left: 170px; }
+            li#cco {margin-top: 90px; margin-left: -80px; z-index: 98}
+            li#cse {margin-top: 140px; margin-left: 50px; }
+            li#csu {margin-top: 195px; margin-left: -40px; }
+
+            a#ne:hover, 
+            a#ne:active, 
+            a#no:hover, 
+            a#no:active, 
+            a#co:hover, 
+            a#co:active, 
+            a#se:hover, 
+            a#se:active, 
+            a#su:hover, 
+            a#su:active { 
+                display: block; 
+                background: url({{ asset('img/user_map/sprite.gif') }}) no-repeat;
+                background-size: 192px 542px; 
+                cursor: pointer; 
+            }
+
+            a#no:hover, a#no:active { background-position: 6px 0px; width: 185px; height: 135px; }
+            a#ne:hover, a#ne:active { background-position: 1px -140px; width: 120px; height: 120px; }
+            a#co:hover, a#co:active { background-position: -4px -259px; width: 100px; height: 120px; }
+            a#se:hover, a#se:active { background-position: 1.5px -383px; width: 100px; height: 80px; }
+            a#su:hover, a#su:active { background-position: 12px -459px; width: 102px; height: 139px; }
+            
             .mapa {
-                display: none;
+                display: flex;
             }
 
             .mapa-mobile {
-                display: flex;
+                display: none;
                 flex-direction: column;
             }
 
