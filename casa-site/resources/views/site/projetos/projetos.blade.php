@@ -1,10 +1,9 @@
 @extends('layout.site')
-@section('titulo', 'Projetos - CASA')
-@section('anchor', 'projetos')
+@section('titulo', 'Nossos projetos | Casa')
 
 @section('conteudo')
 
-<div class="item-title">
+<div id="projetos" class="anchor item-title">
     <h1>Nossos projetos</h1>
 </div>
 <div class="item border-0">

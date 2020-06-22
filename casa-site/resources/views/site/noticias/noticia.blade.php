@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', $noticia->titulo.' - CASA')
+@section('titulo', $noticia->titulo.' | Casa')
 
 @section('conteudo')
     <div class="content">

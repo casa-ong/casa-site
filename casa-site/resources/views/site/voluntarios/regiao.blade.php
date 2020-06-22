@@ -5,7 +5,6 @@
 <div id="titulo" class="item-title">
     <h1>Nossos voluntários</h1>
 </div>
-<p class="breadcrumbs"><a href="{{ route('site.home') }}">Início</a> / <a href="{{ route('site.voluntarios') }}">Voluntários</a> / {{ $estado }}</p>
 <div class="row">
     @if(isset($registros) && count($registros) > 0)
         @foreach ($registros as $registro)

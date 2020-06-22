@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', $evento->nome.' - CASA')
+@section('titulo', $evento->nome.' | Casa')
 
 @section('conteudo')
     <p class="breadcrumbs"><a href="{{ route('site.home') }}">Início</a> / <a href="{{ route('site.eventos') }}">Eventos</a> / {{ $evento->nome }}</p>

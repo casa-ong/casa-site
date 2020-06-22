@@ -16,7 +16,7 @@
         <a class="nav-link" href="{{ route('site.eventos').'#eventos' }}">Eventos</a>
         <a class="nav-link" href="{{ route('site.projetos').'#projetos' }}">Projetos</a>
         <a class="nav-link" href="{{ route('site.voluntarios').'#voluntarios' }}">Voluntários</a>
-        <a class="nav-link" href="{{ route('site.home').'#sobre' }}">Sobre</a>
+        <a class="nav-link" href="{{ route('site.home').'#sobre' }}">Quem somos</a>
         <a class="nav-link rounded" href="{{ route('site.home').'#contribua' }}">Contribua</a>
         @if(Auth::user())
         @php($user = Auth::user())
@@ -42,6 +42,3 @@
         <span class="fas fa-times"></span>
     </label>
 </nav>
-
-
-<a id="@yield('anchor')"></a>

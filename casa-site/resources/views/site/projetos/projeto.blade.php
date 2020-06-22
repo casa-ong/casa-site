@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', $projeto->nome.' - CASA')
+@section('titulo', $projeto->nome.' | Casa')
 
 @section('conteudo')
 <div class="post">
@@ -16,18 +16,7 @@
         </div>
     </div>
     <section class="sidebar">
-        <h1>Últimas <strong>notícias<strong></h1>
-        <div class="row align-center">
-
-            @if(isset($noticias) && count($noticias) > 0)
-            @foreach ($noticias as $noticia)
-                @include('site.noticias._card')
-            @endforeach
-            @else
-                <p>Ops, ainda não temos nenhuma novidade...</p>
-            @endif
-
-        </div>
+        @include('site._includes._ultimas_noticias_sidebar')
     </section>
 </div>
 @endsection

@@ -17,16 +17,19 @@ use Validator;
 use Auth;
 use App\User;
 use App\Projeto;
+use App\Noticia;
 
 class UserController extends Controller
 {
 
     protected $user;
     protected $projeto;
+    protected $noticia;
 
-    public function __construct(User $user, Projeto $projeto) {
+    public function __construct(User $user, Projeto $projeto, Noticia $noticia) {
         $this->user = $user;
         $this->projeto = $projeto;
+        $this->noticia = $noticia;
     }
 
     public function index() 
@@ -234,7 +237,12 @@ class UserController extends Controller
 
     public function voluntarios() 
     {
-        return view('site.voluntarios.voluntarios');
+        $n_voluntarios = $this->user->whereNotNull('email_verified_at')
+                                    ->where('aprovado', '=', 1)->count();
+
+        $noticias = $this->noticia->where('publicado', 1)->latest()->paginate(3);
+
+        return view('site.voluntarios.voluntarios', compact('n_voluntarios', 'noticias'));
     }
 
     public function voluntariosNorte() {

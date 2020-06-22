@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Inicio - CASA')
+@section('titulo', 'Início | Casa')
 
 @section('banner')
         <div class="banner" style="background-image: url({{ isset($sobre->banner) ? asset($sobre->banner) : '' }});"></div>
@@ -21,8 +21,7 @@
         </div>
     @endif
     
-    <a id="sobre"></a>
-    <div class="item-title">
+    <div id="sobre" class="anchor item-title">
         <h1>Quem somos</h1>
     </div>
     <div class="item border-0">
@@ -35,7 +34,7 @@
                 <p>Temos voluntários espalhados por <strong>todo Brasil!</strong></p>
             </div>
             <div class="action text-center">
-                <a href="" class="btn btn-green">Conheça</a>
+                <a href="{{ route('site.voluntarios') }}" class="btn btn-green">Conheça</a>
             </div>
         </div>
         <div class="card card-big">
@@ -47,7 +46,7 @@
                 <p>Projetos para melhoria do <strong>meio ambiente</strong> e da <strong>sociedade</strong>.</p>
             </div>
             <div class="action text-center">
-                <a href="" class="btn btn-green">Conheça</a>
+                <a href="{{ route('site.projetos') }}" class="btn btn-green">Conheça</a>
             </div>
         </div>
     </div>
@@ -72,9 +71,8 @@
         </div>
     @endif
 
-    <a id="contribua"></a>
-    <div class="item-title mt-1">
-        <h1>Contribua</h1>
+    <div id="contribua" class="anchor item-title mt-1">
+        <h1>Como <strong>contribuir</strong></h1>
     </div>
     <div class="item">
         <div class="card card-small">

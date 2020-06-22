@@ -1,10 +1,10 @@
 @extends('layout.site')
-@section('titulo', 'Nossos voluntários')
-@section('anchor', 'voluntarios')
+@section('titulo', 'Nossos voluntários | Casa')
 
 @section('conteudo')
-    <div class="content">
-        <div class="item-title">
+<div class="post">
+    <div class="content main">
+        <div id="voluntarios" class="anchor item-title">
             <h1>Voluntários</h1>
 
             @if(Session::has('success'))
@@ -14,10 +14,10 @@
             @endif
 
         </div>
-        <div class="title row">
+        <div class="title row text-center">
             <p>
-                Temos voluntários espalhados por todo o Brasil, <a href="{{ route('site.voluntario.adicionar') }}">venha ser um de nós</a>!<br>
-                Conheça nossos voluntários por região.
+                Uma equipe de <strong>{{ $n_voluntarios }} voluntários</strong> espalhados por <strong>todo Brasil!</strong>
+                <br>Conheça nossos voluntários <strong>por região</strong> abaixo
             </p>
         </div>
         <div class="mapa">
@@ -37,6 +37,25 @@
             <a href="{{ route('site.voluntarios.sul').'#titulo' }}"title="Sul">Sul</a>
         </div>
     </div>
+    <section class="sidebar">
+        <h1 class="mb">Seja <strong>voluntário</strong></h1>
+        <div class="card form-card">
+            <form id="form-btn-vol" action="{{ route('site.home.voluntario.adicionar') }}" method="POST" enctype="multipart/form-data">
+
+                {{ csrf_field() }}
+                <div class="input-field">
+                    <label for="email">Digite seu e-mail para começar</label>
+                    <input class="{{ $errors->has('email') ? 'error' : '' }}" name="email" type="text" placeholder="Digite seu email para se cadastrar" value="{{ old('email') }}">
+                    @error('email')
+                        <p class="error" form="form-btn-vol">{{ $message }}</p>
+                    @enderror
+                    <button class="btn btn-green">Cadastrar-se</button>
+                </div>
+            </form>
+        </div>
+        @include('site._includes._ultimas_noticias_sidebar')
+    </section>
+</div>
 @endsection
 @section('scripts')
     <style type="text/css">

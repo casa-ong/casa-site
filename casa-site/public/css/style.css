@@ -48,6 +48,15 @@ button:focus, a:focus, label:focus-within, .nav-toggle:focus ~ label {
     -moz-outline-radius: 5px;
 }
 
+.anchor::before {
+    display: block; 
+    content: " "; 
+    margin-top: -56px; 
+    height: 56px; 
+    visibility: hidden; 
+    pointer-events: none;
+}
+
 /* Banner */
 
 header {
@@ -229,11 +238,24 @@ div.container {
     padding: 1em;
 }
 
-div.container div.content {
+div.container div.content, .container .main {
     background-color: #fff;
     border-radius: 10px;
     margin: 0 auto;
     max-width: 700px;
+}
+
+.container .main {
+    padding: 1em;
+}
+
+.container .main .title {
+    font-size: var(--font-24);
+    font-weight: var(--font-regular);
+}
+
+.container .main .title strong {
+    color: var(--dark-green);
 }
 
 .container .content .text {
@@ -295,6 +317,15 @@ div.container div.card {
     border-radius: 10px;
     margin: 0.5em;
     background-color: #fff;
+}
+
+div.container div.card.form-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    padding: 1em 1em 0.5em 1em;
+    height: unset;
+    margin: 0 auto;
 }
 
 div.container div.card div.card-img {
@@ -587,29 +618,33 @@ div.page-nav nav ul li a:hover {
     justify-content: center;
 }
 
-.item-form  form {
+.item-form  form, div.container div.card.form-card form {
     width: 100%;
     max-width: 560px;
 }
 
-.item-form div.input-field {
+.item-form div.input-field, div.container div.card.form-card div.input-field {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.item-form div.input-field label {
+div.container div.card.form-card div.input-field {
+    align-items: center;
+}
+
+.item-form div.input-field label, div.container div.card.form-card div.input-field label {
     color: rgba(0,0,0,0.85);
     text-decoration: none;
     font-size: 18px;
 	font-variant: normal;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: var(--font-medium);
     padding-top: 10px;
     padding-bottom: 2px;
 }
 
-.item-form div.input-field input, .item-form div.input-field textarea, .item-form div.input-field select {
+.item-form div.input-field input, .item-form div.input-field textarea, .item-form div.input-field select, div.container div.card.form-card div.input-field input {
     font-size: 16px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -621,7 +656,7 @@ div.page-nav nav ul li a:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.item-form div.input-field input:focus, .item-form div.input-field textarea:focus, .item-form div.input-field select:focus {
+.item-form div.input-field input:focus, .item-form div.input-field textarea:focus, .item-form div.input-field select:focus, div.container div.card.form-card div.input-field input:focus {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
 }
@@ -978,6 +1013,11 @@ div.input-field.align-center {
 
 .mt-1 {
     margin-top: 1em;
+}
+
+.mb,
+.container .sidebar h1.mb {
+    margin-bottom: 0.5em;
 }
 
 .p-0,
