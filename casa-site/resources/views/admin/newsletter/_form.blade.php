@@ -3,7 +3,7 @@
     <input readonly type="text" name="email_newsletter" value="{{ isset($registro->email_newsletter) ? $registro->email_newsletter : '' }}">
     @error('email_newsletter')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>

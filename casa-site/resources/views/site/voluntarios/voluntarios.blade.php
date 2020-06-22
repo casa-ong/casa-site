@@ -6,7 +6,7 @@
     <div class="content main">
         @if (isset($n_voluntarios) && $n_voluntarios > 0)
             <div id="voluntarios" class="anchor item-title">
-                <h1>Voluntários</h1>
+                <h1>Nossos <strong>voluntários</strong></h1>
 
                 @if(Session::has('success'))
                     <div class="alert alert-success">

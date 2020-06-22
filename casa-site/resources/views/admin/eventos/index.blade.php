@@ -2,10 +2,11 @@
 @section('titulo', 'Lista de eventos')
 
 @section('conteudo')
-    <div class="content">
+<div class="post">
+    <div class="content main">
         <div class="item-title">
             <h1>Lista de Eventos</h1>
-            <a class="btn" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
+            <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
             @if(Session::has('success'))
                 <div class="alert alert-success">
                     <p>{{ Session::get('success') }}</p>
@@ -32,7 +33,7 @@
                             <td>{{ isset($registro->data) ? date('d/m/Y', strtotime($registro->data)).' às '.date('H:i', strtotime($registro->hora)) : 'Não definida' }}</td>
                             <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             <td>
-                                <a class="btn" href="{{ route('admin.evento.editar',$registro->id) }}" title="Editar">
+                                <a class="btn btn-green" href="{{ route('admin.evento.editar',$registro->id) }}" title="Editar">
                                     <span class="fas fa-pencil-alt"></span>
                                 </a>
                                 <a class="btn btn-danger" href="{{ route('admin.evento.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar o evento?');" title="Deletar">
@@ -45,4 +46,5 @@
             </table>
         </div>
     </div>
+</div>
 @endsection

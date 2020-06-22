@@ -1,6 +1,3 @@
-@if ($errors->any())
-    <p class="error">Campos com * são obrigatórios!</p>
-@endif
 @php($user = Auth::user())
 <input type="hidden" name="user_id" value="{{ $user->id }}">
 
@@ -9,7 +6,7 @@
     <input class="{{ $errors->has('titulo') ? 'error' : '' }}" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Digite aqui o título da notícia">
     @error('titulo')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>
@@ -19,7 +16,7 @@
     <textarea class="{{ $errors->has('manchete') ? 'error' : old('manchete') }}" name="manchete" type="text" placeholder="Digite aqui a manchete da notícia, ela aparecerá nos cards das notícias">{{ isset($registro->manchete) ? $registro->manchete : old('manchete') }}</textarea>
     @error('manchete')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>
@@ -29,7 +26,7 @@
     <textarea class="{{ $errors->has('texto') ? 'error' : old('texto') }}" id="summernote" name="texto" type="text" placeholder="Digite aqui o texto da notícia">{{ isset($registro->texto) ? $registro->texto : old('texto')  }}</textarea>
     @error('texto')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>
@@ -39,7 +36,7 @@
     <input type="file" class="{{ $errors->has('anexo') ? 'error' : '' }}" name="anexo" onchange="document.getElementById('img-banner').src = window.URL.createObjectURL(this.files[0])">
     @error('anexo')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>

@@ -14,7 +14,7 @@
                 @include('admin.voluntarios._form')
 
                 <div class="input-btn">
-                    <button class="btn btn-green">Salvar</button>
+                    <button class="btn btn-green">Cadastrar-se</button>
                 </div>
                 <p><strong>Ao se cadastrar-se, você aceita com os <a href="#">nossos termos de privacidade</a></strong></p>
             </form>

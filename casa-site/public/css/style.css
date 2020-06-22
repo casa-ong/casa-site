@@ -554,6 +554,13 @@ a.btn:hover, button.btn:hover, a.btn:hover.btn-danger {
     transition: background-color 250ms ease-in-out, color 250 ease-in-out;
 }
 
+a.btn:hover.btn-danger {
+    background-color: var(--white);
+    color: var(--danger-hover);
+    box-shadow: 0px 0px 0px 1px var(--danger) inset;
+    transition: background-color 250ms ease-in-out, color 250 ease-in-out;
+}
+
 .btn.btn-green {
     background-color: var(--dark-green);
 }
@@ -751,41 +758,34 @@ div.container div.content div.input-field.row img {
 .admin-card {
     display: flex;
     align-items: center;
-    border: 1px solid #000000;
+    border: 1px solid var(--dark-green);
     border-radius: 5px;
     padding: 1em;
     margin: 0.5em;
     width: 300px;
-    color: #000000;
+    color: var(--white);
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    background-color: var(--bg-color);
+    background-color: var(--white);
     position: relative;
     z-index: 1;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
-.admin-card::after {
-    content: '';
-    height: 100%;
-    width: 100%;
-    background-color: var(--main-hover-light-color);
-    border-radius: 5px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 250ms ease-in-out;
-}
-
-.admin-card:hover::after {
-    opacity: 1;
-    transition: opacity 250ms ease-in-out;
+.admin-card:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+    border: 1px solid var(--dark-green);
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
 .admin-card:visited {
-    color: #000000;
+    color: var(--dark-green);
+}
+
+.admin-card:visited:hover {
+    color: var(--white);
 }
 
 .admin-card span {

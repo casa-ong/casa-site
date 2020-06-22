@@ -2,7 +2,8 @@
 @section('titulo', 'Lista de sugestões')
 
 @section('conteudo')
-    <div class="content">
+<div class="post">
+    <div class="content main">
         <div class="item-title">
             <h1 class="">Lista de Sugestões</h1>
             @if(Session::has('success'))
@@ -29,12 +30,12 @@
                             <td>{{ $registro->created_at }}</td>
                             <td>{{ $registro->email }}</td>
                             <td>
-                                <a class="btn" href="{{ route('admin.sugestao.atualizar', $registro->id) }}" title="Marcar como {!! $registro->lida ? 'não lida' : 'lida' !!}">
+                                <a class="btn btn-green" href="{{ route('admin.sugestao.atualizar', $registro->id) }}" title="Marcar como {!! $registro->lida ? 'não lida' : 'lida' !!}">
                                     <span class="far {{ $registro->lida ? 'fa-check-square' : 'fa-square' }}"></span> {{ $registro->lida ? 'Lida' : 'Não lida' }}
                                 </a>
                             </td>
                             <td class="action-cell">
-                                <a class="btn" href="{{ route('admin.sugestao.ver',$registro->id) }}" title="Ver">
+                                <a class="btn btn-green" href="{{ route('admin.sugestao.ver',$registro->id) }}" title="Ver">
                                     <span class="fas fa-eye"></span>
                                 </a>
                                 <a class="btn btn-danger" href="{{ route('admin.sugestao.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar essa sugestão?');" title="Deletar">
@@ -47,4 +48,5 @@
             </table>
         </div>
     </div>
+</div>
 @endsection
