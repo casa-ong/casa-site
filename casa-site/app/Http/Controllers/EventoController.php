@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Evento;
 use App\Newsletter;
+use App\Noticia;
+use App\Projeto;
 use Validator;
 use App\Http\Requests\EventoRequest;
 use App\Mail\EventoEmail;
@@ -16,11 +18,15 @@ class EventoController extends Controller
 
     protected $evento;
     protected $newsletter;
+    protected $noticia;
+    protected $projeto;
 
-    public function __construct(Evento $evento, Newsletter $newsletter) 
+    public function __construct(Evento $evento, Newsletter $newsletter, Noticia $noticia, Projeto $projeto) 
     {
         $this->evento = $evento;
         $this->newsletter = $newsletter;
+        $this->noticia = $noticia;
+        $this->projeto = $projeto;
 
         setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     }
@@ -32,11 +38,16 @@ class EventoController extends Controller
     }
 
     public function evento($id) {
+        $noticias = $this->noticia->where('publicado', 1)
+                                ->latest()->take(3)->get();
+
+        $projetos = $this->projeto->where('publicado', 1)->latest()->take(2)->get();
+
         $evento = $this->evento->find($id);
         if(!$evento) {
             throw new ModelNotFoundException;
         }
-        return view('site.eventos.evento', compact('evento'));
+        return view('site.eventos.evento', compact('evento', 'noticias', 'projetos'));
     }
 
     // Metodo responsavel por abrir a pagina de index dos eventos
