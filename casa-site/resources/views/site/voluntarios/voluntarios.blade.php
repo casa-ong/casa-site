@@ -4,55 +4,47 @@
 @section('conteudo')
 <div class="post">
     <div class="content main">
-        <div id="voluntarios" class="anchor item-title">
-            <h1>Voluntários</h1>
+        @if (isset($n_voluntarios) && $n_voluntarios > 0)
+            <div id="voluntarios" class="anchor item-title">
+                <h1>Voluntários</h1>
 
-            @if(Session::has('success'))
-                <div class="alert alert-success">
-                    <p>{{ Session::get('success') }}</p>
-                </div>
-            @endif
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                        <p>{{ Session::get('success') }}</p>
+                    </div>
+                @endif
 
-        </div>
-        <div class="title row text-center">
-            <p>
-                Uma equipe de <strong>{{ $n_voluntarios }} voluntários</strong> espalhados por <strong>todo Brasil!</strong>
-                <br>Conheça nossos voluntários <strong>por região</strong> abaixo
-            </p>
-        </div>
-        <div class="mapa">
-            <ul id="map">
-                <li id="cno" estado="no"><a href="{{ route('site.voluntarios.norte').'#titulo' }}" id="no" title="Norte"><img src="{{ asset('img/user_map/null.gif') }}" alt="Norte" /></a></li>
-                <li id="cne" estado="ne"><a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" id="ne" title="Nordeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Nordeste" /></a></li>
-                <li id="cco" estado="co"><a href="{{ route('site.voluntarios.centro').'#titulo' }}" id="co" title="Centro-Oeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Centro-Oeste" /></a></li>
-                <li id="cse" estado="se"><a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" id="se" title="Sudeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sudeste" /></a></li>
-                <li id="csu" estado="su"><a href="{{ route('site.voluntarios.sul').'#titulo' }}"id="su" title="Sul"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sul" /></a></li>
-            </ul>
-        </div>
-        <div class="mapa-mobile">
-            <a href="{{ route('site.voluntarios.norte').'#titulo' }}" title="Norte">Norte</a>
-            <a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" title="Nordeste">Nordeste</a>
-            <a href="{{ route('site.voluntarios.centro').'#titulo' }}" title="Centro-Oeste">Centro-oeste</a>
-            <a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" title="Sudeste">Sudeste</a>
-            <a href="{{ route('site.voluntarios.sul').'#titulo' }}"title="Sul">Sul</a>
-        </div>
+            </div>
+            <div class="title row text-center">
+                <p>
+                    Uma equipe de <strong>{{ $n_voluntarios ?? '0' }} voluntários</strong> espalhados por <strong>todo Brasil!</strong>
+                    <br>Conheça nossos voluntários <strong>por região</strong> abaixo
+                </p>
+            </div>
+            <div class="mapa">
+                <ul id="map">
+                    <li id="cno" estado="no"><a href="{{ route('site.voluntarios.norte').'#titulo' }}" id="no" title="Norte"><img src="{{ asset('img/user_map/null.gif') }}" alt="Norte" /></a></li>
+                    <li id="cne" estado="ne"><a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" id="ne" title="Nordeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Nordeste" /></a></li>
+                    <li id="cco" estado="co"><a href="{{ route('site.voluntarios.centro').'#titulo' }}" id="co" title="Centro-Oeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Centro-Oeste" /></a></li>
+                    <li id="cse" estado="se"><a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" id="se" title="Sudeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sudeste" /></a></li>
+                    <li id="csu" estado="su"><a href="{{ route('site.voluntarios.sul').'#titulo' }}"id="su" title="Sul"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sul" /></a></li>
+                </ul>
+            </div>
+            <div class="mapa-mobile">
+                <a href="{{ route('site.voluntarios.norte').'#titulo' }}" title="Norte">Norte</a>
+                <a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" title="Nordeste">Nordeste</a>
+                <a href="{{ route('site.voluntarios.centro').'#titulo' }}" title="Centro-Oeste">Centro-oeste</a>
+                <a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" title="Sudeste">Sudeste</a>
+                <a href="{{ route('site.voluntarios.sul').'#titulo' }}"title="Sul">Sul</a>
+            </div>
+        @else
+            <div class="title text-center">
+                <p>Poxa, não temos voluntários!!<br> Que tal <a href="{{ route('site.voluntario.adicionar') }}">ser um dos primeiros</a>?</p>
+            </div>
+        @endif
     </div>
     <section class="sidebar">
-        <h1 class="mb">Seja <strong>voluntário</strong></h1>
-        <div class="card form-card">
-            <form id="form-btn-vol" action="{{ route('site.home.voluntario.adicionar') }}" method="POST" enctype="multipart/form-data">
-
-                {{ csrf_field() }}
-                <div class="input-field">
-                    <label for="email">Digite seu e-mail para começar</label>
-                    <input class="{{ $errors->has('email') ? 'error' : '' }}" name="email" type="text" placeholder="Digite seu email para se cadastrar" value="{{ old('email') }}">
-                    @error('email')
-                        <p class="error" form="form-btn-vol">{{ $message }}</p>
-                    @enderror
-                    <button class="btn btn-green">Cadastrar-se</button>
-                </div>
-            </form>
-        </div>
+        @include('site._includes._novo_voluntario_sidebar')
         @include('site._includes._ultimas_noticias_sidebar')
     </section>
 </div>

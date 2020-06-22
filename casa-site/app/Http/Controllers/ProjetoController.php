@@ -27,7 +27,7 @@ class ProjetoController extends Controller
 
     public function projetos() 
     {
-        $projetos = $this->projeto->where('publicado', 1)->latest()->paginate(6);
+        $projetos = $this->projeto->where('publicado', 1)->latest()->paginate(4);
         return view('site.projetos.projetos', compact('projetos'));
     }
 

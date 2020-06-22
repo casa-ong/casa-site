@@ -25,7 +25,7 @@ class EventoController extends Controller
 
     public function eventos() 
     {
-        $eventos = $this->evento->all()->reverse();
+        $eventos = $this->evento->where('publicado', 1)->latest()->paginate(4);
         return view('site.eventos.eventos', compact('eventos'));
     }
 

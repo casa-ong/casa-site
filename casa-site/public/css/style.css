@@ -242,7 +242,7 @@ div.container div.content, .container .main {
     background-color: #fff;
     border-radius: 10px;
     margin: 0 auto;
-    max-width: 700px;
+    width: 700px;
 }
 
 .container .main {
@@ -442,7 +442,7 @@ div.container div.card.card-small div.card-text p {
     margin: 1em 0 0 0;
 }
 
-h1 strong {
+h1 strong, p strong {
     color: var(--dark-green)
 }
 
@@ -556,11 +556,12 @@ a.btn:hover, button.btn:hover, a.btn:hover.btn-danger {
 .content-footer {
     display: flex;
     justify-content: center;
+    font-weight: var(--font-medium);
 }
 
 div.page-nav nav {
-    background-color: #fff;
-    border: 1px solid #000000;
+    background-color: var(--white);
+    border: 1px solid var(--dark-green);
     border-radius: 5px;
 }
 
@@ -579,34 +580,35 @@ div.page-nav nav ul li {
 }
 
 div.page-nav nav ul li.disabled,  div.page-nav nav ul li.active {
-    color: #000000AA;
+    color: var(--black);
     padding: 1em;
 }
 
 div.page-nav nav ul li.active {
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: var(--dark-green);
+    color: var(--white);
 }
 
 div.page-nav nav ul li a.previous {
-    border-right: 1px solid #000000;
+    border-right: 1px solid var(--dark-green);
     border-left: 0px;
 } 
 
 div.page-nav nav ul li a.next {
-    border-left: 1px solid #000000;
+    border-left: 1px solid var(--dark-green);
     border-right: 0px;
 }
 
 div.page-nav nav ul li a {
-    color: #000000;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+    color: var(--dark-green);
     padding: 1em;
     text-decoration: none;
 }
 
 div.page-nav nav ul li a:hover {
-    transition: 0.5s;
-    background-color: #000000;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+    background-color: var(--dark-green);
     color: #FFFFFF;
 }
 /* Fim de paginação */
@@ -876,7 +878,6 @@ table a.btn {
 .user-card div.card-data p {
     margin: 0;
 }
-
 /* Fim de Cards de voluntarios */
 
 /* Carousel da home */
@@ -930,6 +931,85 @@ table a.btn {
 }
 
 /* Carousel da home */
+
+/* List de noticia, projeto e eventos */
+
+div.container div.list-card {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 25em;
+    /* height: 25em; */
+    border-radius: 10px;
+    margin: 0.5em;
+    background-color: #fff;
+}
+
+div.container .list-card.form-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    padding: 1em 1em 0.5em 1em;
+    height: unset;
+    margin: 0 auto;
+}
+
+div.container .list-card div.card-img {
+    height: 15em;
+    overflow: hidden;
+}
+
+div.container .list-card img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    align-self: center;
+}
+
+div.container .list-card img:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+div.container .list-card div.card-text {
+    /* height: 10em; */
+    margin: 1em;
+    overflow: hidden;
+}
+
+div.container .list-card div.card-text p {
+    color: var(--black);
+    margin: 0.5em 0;
+    text-overflow: ellipsis;
+}
+
+div.container .list-card div.card-text p.card-p {
+    color: #000000BB;
+    max-height: 10em;
+}
+
+div.container .list-card div.card-text h4 {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--font-24);
+    text-align: center;
+    font-weight: var(--font-medium);
+}
+
+div.container .list-card div.card-text h4 a {
+    color: #000000;
+    text-decoration: none;
+}
+
+div.container .list-card div.card-text h4 a:hover {
+    text-decoration: underline;
+}
+
+div.container .list-card a.btn {
+    margin: 0 0 1em 0;
+}
+
+/* Fim de list de noticias, projetos e eventos */
 
 /* definicoes de uso geral */
 .column {

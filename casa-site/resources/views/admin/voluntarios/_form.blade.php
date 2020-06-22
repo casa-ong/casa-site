@@ -7,7 +7,7 @@
 
     @error('name')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
 
     @enderror
@@ -17,7 +17,7 @@
     <input {{ isset($registro->cpf) ? "readonly" : ""  }} class="{{ $errors->has('cpf') ? 'error' : '' }} cpf " type="text" name="cpf" value="{{ isset($registro->cpf) ? $registro->cpf : old('cpf') }}" placeholder="Digite aqui seu cpf">
     @error('cpf')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>
@@ -26,7 +26,7 @@
     <input class="{{ $errors->has('nascimento') ? 'error' : '' }}" type="date" name="nascimento" value="{{ isset($registro->cpf) ? $registro->nascimento : old('nascimento') }}" placeholder="Digite aqui sua data de nascimento">
     @error('nascimento')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>
@@ -35,7 +35,7 @@
     <input class="{{ $errors->has('profissao') ? 'error' : '' }}" type="text" name="profissao" value="{{ isset($registro->profissao) ? $registro->profissao : old('profissao') }}" placeholder="Digite aqui sua profissão">
     @error('profissao')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>       
     @enderror
 </div>
@@ -52,7 +52,7 @@
     </select>
     @error('estado')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>    
     @enderror
 </div>
@@ -88,7 +88,7 @@
     </select>
     @error('projeto_id')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>    
     @enderror
 </div>
@@ -100,7 +100,7 @@
     </div>    
     @error('foto')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>
@@ -110,7 +110,7 @@
     <input {{ isset($registro->email) ? "readonly" : ""  }} class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui seu email">
     @error('email')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 
@@ -120,7 +120,7 @@
     <input class="{{ $errors->has('telefone') ? 'error' : '' }} telefone" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite aqui seu telefone">
     @error('telefone')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>
