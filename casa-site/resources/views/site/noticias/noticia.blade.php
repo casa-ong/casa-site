@@ -1,8 +1,7 @@
 @extends('layout.site')
-@section('titulo', $noticia->titulo.' - CASA')
+@section('titulo', $noticia->titulo.' | Casa')
 
 @section('conteudo')
-    <p class="breadcrumbs"><a href="{{ route('site.home') }}">Início</a> / <a href="{{ route('site.noticias') }}">Notícias</a> / {{ $noticia->titulo }}</p>
     <div class="content">
         <div id="noticias" class="title">
             <h1>{{ $noticia->titulo }}</h1>

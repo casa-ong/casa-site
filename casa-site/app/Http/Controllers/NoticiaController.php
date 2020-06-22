@@ -24,7 +24,7 @@ class NoticiaController extends Controller
 
     public function noticias() 
     {
-        $noticias = $this->noticia->where('publicado', 1)->latest()->paginate(6);
+        $noticias = $this->noticia->where('publicado', 1)->latest()->paginate(4);
         return view('site.noticias.noticias', compact('noticias'));
     }
 

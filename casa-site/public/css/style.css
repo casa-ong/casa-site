@@ -5,14 +5,31 @@
 }
 
 :root {
-    --main-bg-color: #BEF0B8;
+    --bg-color: #BEF0B8;
+    --danger: rgb(255, 0, 0);
+    --danger-hover: rgb(220, 0, 0); 
+    --dark-green: #005C2B;
+    --light-green: #29B32C;
+    --black: #000000;
+    --white: #FFFFFF;
+    --light-gray: #c4c4c4;
+
     --main-hover-color: rgb(63, 78, 61);
     --main-hover-light-color: rgb(150, 187, 145);
-    --main-danger-color: rgb(255, 0, 0);
-    --main-hover-danger-color: rgb(220, 0, 0); 
-    --main-success-color: rgb(0, 150, 0);   
+
+    --font-regular: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+
+    --font-16: 1rem;
+    --font-18: 1.125rem;
+    --font-24: 1.5rem;
+    --font-36: 2.25rem;
+
 }
 
+/* Regular 400, Medium 500, Semi-bold 600, Bold 700 */
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -22,9 +39,22 @@ img {
     width: 100%;
 }
 
+h1 {
+    margin: 0;
+}
+
 button:focus, a:focus, label:focus-within, .nav-toggle:focus ~ label {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
+}
+
+.anchor::before {
+    display: block; 
+    content: " "; 
+    margin-top: -56px; 
+    height: 56px; 
+    visibility: hidden; 
+    pointer-events: none;
 }
 
 /* Banner */
@@ -32,7 +62,7 @@ button:focus, a:focus, label:focus-within, .nav-toggle:focus ~ label {
 header {
     position: relative;
     padding: 1em;
-    background-color: var(--main-bg-color);
+    background-color: var(--bg-color);
     text-align: center;
     max-height: 300px;
 }
@@ -54,7 +84,7 @@ header h2 {
 
 
 nav {
-    background-color: #000;
+    background-color: var(--dark-green);
 }
 
 nav.nav-links {
@@ -67,9 +97,18 @@ nav.nav-links {
     justify-content: space-between;
 }
 
+nav.nav-logged {
+    display: flex;
+    justify-content: flex-end;
+    top: 50px;
+    right: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 nav .nav-fluid {
     display: flex;
-    background-color: #000;
+    background-color: var(--dark-green);
     list-style: none;
     position: absolute;
     flex-wrap: wrap;
@@ -88,9 +127,9 @@ nav .nav-fluid {
 
 nav .nav-link {
     padding: 1em;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: bold;
+    color: var(--white);
+    font-size: var(--font-16);
+    font-weight: var(--font-semi-bold);
     text-transform: uppercase;
     text-decoration: none;
     position: relative;
@@ -98,13 +137,28 @@ nav .nav-link {
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
+nav .nav-link.rounded {
+    background-color: var(--white);
+    color: var(--dark-green);
+    padding: 0.5em;
+    margin: 0.5em;
+    border-radius: 5px;
+}
+
 nav a:visited {
-    color: #fff;
+    color: var(--white);
 }
 
 nav .nav-link:hover {
-    background-color: var(--main-hover-color);
-    color: #fff;
+    background-color: var(--white);
+    color: var(--dark-green);
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+nav .nav-link:hover.rounded {
+    background-color: var(--dark-green);
+    color: var(--white);
+    box-shadow: 0px 0px 0px 1px var(--white) inset;
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
@@ -173,26 +227,44 @@ label.nav-link {
 }
 
 p.breadcrumbs {
-    background-color: var(--main-bg-color);
+    background-color: var(--bg-color);
     padding: 1em;
     margin: 0 auto;
     max-width: 960px;
 }
 
 div.container {
-    background-color: var(--main-bg-color);
+    background-color: var(--bg-color);
     padding: 1em;
 }
 
-div.container div.content {
+div.container div.content, .container .main {
     background-color: #fff;
     border-radius: 10px;
-    padding: 1em;
     margin: 0 auto;
-    max-width: 960px;
+    width: 700px;
 }
 
-div.container div.content h1 {
+.container .main {
+    padding: 1em;
+}
+
+.container .main .title {
+    font-size: var(--font-24);
+    font-weight: var(--font-regular);
+}
+
+.container .main .title strong {
+    color: var(--dark-green);
+}
+
+.container .content .text {
+    padding: 2em;
+}
+
+div.container div.content .text h1 {
+    font-weight: var(--font-medium);
+    text-align: center;
     margin: 0;
 }
 
@@ -200,12 +272,19 @@ div.container div.content img {
     width: 100%;
 }
 
+div.container div.item.sobre {
+    font-size: var(--font-16);
+    margin: 0 auto;
+}
+
 div.container div.item {
     padding: 1em;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--dark-green);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 0 auto;
+    max-width: 960px;
 }
 
 div.container div.item div.input-field {
@@ -222,21 +301,37 @@ div.container div.item-title {
     font-weight: bold;
     /* text-transform: uppercase; */
     text-align: center;
+    font-size: var(--font-18);
 }
 
 div.container div.item-title h1 {
-    margin: 1em 0 0 0;
+    font-weight: var(--font-medium);
 }
 
 div.container div.card {
-    max-width: 20em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 15em;
+    height: 20em;
     border-radius: 10px;
-    margin: 1em;
+    margin: 0.5em;
     background-color: #fff;
 }
 
+div.container div.card.form-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    padding: 1em 1em 0.5em 1em;
+    height: unset;
+    margin: 0 auto;
+}
+
 div.container div.card div.card-img {
-    min-height: 15em;
+    margin-bottom: auto;
+    height: 10em;
+    overflow: hidden;
 }
 
 div.container div.card img {
@@ -252,11 +347,14 @@ div.container div.card img:hover {
 }
 
 div.container div.card div.card-text {
-    padding: 0 1em 1em 1em;
+    height: 5em;
+    width: 15em;
+    padding: 1em 1em 0 1em;
+    overflow: hidden;
 }
 
 div.container div.card div.card-text p {
-    color: #000000AA;
+    color: var(--black);
     margin: 0.5em 0;
 }
 
@@ -269,29 +367,94 @@ div.container div.card div.card-text p.card-p {
 div.container div.card div.card-text h4 {
     margin: 0;
     overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--font-18);
+    text-align: center;
+    font-weight: var(--font-regular);
 }
 
 div.container div.card div.card-text h4 a {
     color: #000000;
-    font-size: 2rem;
     text-decoration: none;
-    padding: 0 1em 0 0;
-    align-self: center;
 }
 
 div.container div.card div.card-text h4 a:hover {
     text-decoration: underline;
 }
 
+div.container div.card.card-big {
+    height: 19em;
+}
+
+div.container div.card.card-small {
+    height: 15em;
+}
+
+div.container div.card.card-big div.card-img,
+div.container div.card.card-small div.card-img {
+    height: 6em;
+    text-align: center;
+}
+
+div.container div.card.card-big img,
+div.container div.card.card-small img {
+    max-height: 6em;
+    width: auto;
+}
+
+div.container div.card.card-big img:hover, 
+div.container div.card.card-small img:hover {
+    opacity: 1;
+    cursor: unset;
+}
+
+div.container div.card.card-big div.card-text,
+div.container div.card.card-small div.card-text {
+    text-overflow: ellipsis;
+    padding: 0 1em 0 1em;
+    height: 8em;
+}
+
+div.container div.card.card-small div.card-text {
+    height: 4em;
+}
+
+div.container div.card.card-big div.card-text strong,
+div.container div.card.card-small div.card-text strong {
+    color: var(--dark-green)
+}
+
+div.container div.card.card-big div.card-text h4,
+div.container div.card.card-small div.card-text h4 {
+    font-size: var(--font-24);
+}
+
+div.container div.card.card-big div.card-text p,
+div.container div.card.card-small div.card-text p {
+    text-align: center;
+    font-size: var(--font-16);
+}
+
+.container .sidebar h1 {
+    text-align: center;
+    font-weight: var(--font-medium);
+    font-size: var(--font-24);
+    margin: 1em 0 0 0;
+}
+
+h1 strong, p strong {
+    color: var(--dark-green)
+}
+
 div.item label, div.item-black label {
     padding: 1em;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-weight: var(--font-medium);
+    font-size: var(--font-24);
     text-align: center;
 }
 
 footer {
-    background-color: var(--main-bg-color);      
+    background-color: var(--bg-color);      
 }
 
 footer div.item {
@@ -304,17 +467,23 @@ footer div.item div.social-icons {
 }
 
 footer div.item div.social-icons a {
-    color: #000;
+    color: var(--dark-green);
     text-decoration: none;
+    transition: opacity ease-in-out 250ms;
 }
 
 footer div.item div.social-icons a:visited {
-    color: #000;
+    color: var(--dark-green);
+}
+
+footer div.item div.social-icons a:hover {
+    opacity: 0.8;
+    transition: opacity ease-in-out 250ms;
 }
 
 footer div.item-black {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--dark-green);
+    color: var(--white);
     padding: 1em;
 }
 
@@ -342,16 +511,26 @@ a.btn, button.btn {
     z-index: 1;
     font-size: 1rem;
     font-family: 'Montserrat', sans-serif;
+    font-weight: var(--font-medium);
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
 a.btn.btn-danger {
-    background-color: var(--main-danger-color);
+    background-color: var(--danger);
     color: #fff;
 }
 
 a.btn.btn-dark, button.btn.btn-dark {
-    background-color: var(--main-bg-color);
-    color: #000;
+    background-color: var(--white);
+    color: var(--dark-green);
+    font-weight: var(--font-semi-bold);
+}
+
+a.btn.btn-dark:hover, button.btn.btn-dark:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
+    box-shadow: 0px 0px 0px 1px var(--white) inset;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out, box-shadow 250ms ease-in-out;
 }
 
 a:visited.btn.btn-dark {
@@ -362,45 +541,27 @@ a:visited.btn {
     color: #fff;
 }
 
-a.btn::after, a.btn.btn-dark::after, button.btn::after, a.btn.btn-danger::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 250ms ease-in-out;
-    z-index: -1;
+a.btn:hover, button.btn:hover, a.btn:hover.btn-danger {
+    background-color: var(--white);
+    color: var(--dark-green);
+    box-shadow: 0px 0px 0px 1px var(--dark-green) inset;
+    transition: background-color 250ms ease-in-out, color 250 ease-in-out;
 }
 
-a.btn.btn::after, button.btn::after {
-    background-color: var(--main-hover-color);
-}
-
-a.btn.btn-dark::after {
-    background-color: var(--main-hover-light-color);
-}
-
-a.btn.btn-danger::after {
-    background-color: var(--main-hover-danger-color);
-}
-
-a.btn:hover::after, button.btn:hover::after, a.btn:hover.btn-danger::after{
-    opacity: 1;
-    transition: opacity 250ms ease-in-out;
+.btn.btn-green {
+    background-color: var(--dark-green);
 }
 
 /* Paginação */
 .content-footer {
     display: flex;
     justify-content: center;
+    font-weight: var(--font-medium);
 }
 
 div.page-nav nav {
-    background-color: #fff;
-    border: 1px solid #000000;
+    background-color: var(--white);
+    border: 1px solid var(--dark-green);
     border-radius: 5px;
 }
 
@@ -419,34 +580,35 @@ div.page-nav nav ul li {
 }
 
 div.page-nav nav ul li.disabled,  div.page-nav nav ul li.active {
-    color: #000000AA;
+    color: var(--black);
     padding: 1em;
 }
 
 div.page-nav nav ul li.active {
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: var(--dark-green);
+    color: var(--white);
 }
 
 div.page-nav nav ul li a.previous {
-    border-right: 1px solid #000000;
+    border-right: 1px solid var(--dark-green);
     border-left: 0px;
 } 
 
 div.page-nav nav ul li a.next {
-    border-left: 1px solid #000000;
+    border-left: 1px solid var(--dark-green);
     border-right: 0px;
 }
 
 div.page-nav nav ul li a {
-    color: #000000;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+    color: var(--dark-green);
     padding: 1em;
     text-decoration: none;
 }
 
 div.page-nav nav ul li a:hover {
-    transition: 0.5s;
-    background-color: #000000;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+    background-color: var(--dark-green);
     color: #FFFFFF;
 }
 /* Fim de paginação */
@@ -458,29 +620,33 @@ div.page-nav nav ul li a:hover {
     justify-content: center;
 }
 
-.item-form  form {
+.item-form  form, div.container div.card.form-card form {
     width: 100%;
     max-width: 560px;
 }
 
-.item-form div.input-field {
+.item-form div.input-field, div.container div.card.form-card div.input-field {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.item-form div.input-field label {
+div.container div.card.form-card div.input-field {
+    align-items: center;
+}
+
+.item-form div.input-field label, div.container div.card.form-card div.input-field label {
     color: rgba(0,0,0,0.85);
     text-decoration: none;
     font-size: 18px;
 	font-variant: normal;
 	font-style: normal;
-	font-weight: bold;
+	font-weight: var(--font-medium);
     padding-top: 10px;
     padding-bottom: 2px;
 }
 
-.item-form div.input-field input, .item-form div.input-field textarea, .item-form div.input-field select {
+.item-form div.input-field input, .item-form div.input-field textarea, .item-form div.input-field select, div.container div.card.form-card div.input-field input {
     font-size: 16px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -492,7 +658,7 @@ div.page-nav nav ul li a:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.item-form div.input-field input:focus, .item-form div.input-field textarea:focus, .item-form div.input-field select:focus {
+.item-form div.input-field input:focus, .item-form div.input-field textarea:focus, .item-form div.input-field select:focus, div.container div.card.form-card div.input-field input:focus {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
 }
@@ -513,7 +679,7 @@ p.error.error-dark {
 }
 
 .alert-success p {
-    color: var(--main-success-color); /* cor da fonte*/
+    color: var(--light-green); /* cor da fonte*/
     font-weight: bold;
 }
 
@@ -588,7 +754,7 @@ div.container div.content div.input-field.row img {
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    background-color: var(--main-bg-colors);
+    background-color: var(--bg-color);
     position: relative;
     z-index: 1;
 }
@@ -712,9 +878,138 @@ table a.btn {
 .user-card div.card-data p {
     margin: 0;
 }
-
 /* Fim de Cards de voluntarios */
 
+/* Carousel da home */
+
+.carousel {
+    margin: 0 auto;
+    max-width: 960px;
+}
+
+.carousel-item {
+    display: flex;
+    height: 300px;
+    width: 75%;
+    padding: 2em;
+    border-radius: 10px;
+    margin-right: 1em;
+}
+
+.carousel-item .carousel-title {
+    text-align: center;
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-item .carousel-title h1 {
+    margin: 0 auto;
+    font-weight: var(--font-medium);
+    font-size: var(--font-24);
+}
+
+.carousel-item .carousel-title a, .carousel-action .carousel-btn {
+    color: var(--white);
+    text-decoration: none;
+}
+
+.carousel-item .carousel-title a:hover {
+    text-decoration: underline;
+}
+
+.carousel-action {
+    text-align: center;
+}
+
+.carousel-action .carousel-btn {
+    font-weight: var(--font-medium);
+    background-color: var(--dark-green);
+    padding: 0.65em 1em;
+    border-radius: 100px;
+}
+
+/* Carousel da home */
+
+/* List de noticia, projeto e eventos */
+
+div.container div.list-card {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 25em;
+    /* height: 25em; */
+    border-radius: 10px;
+    margin: 0.5em;
+    background-color: #fff;
+}
+
+div.container .list-card.form-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: unset;
+    padding: 1em 1em 0.5em 1em;
+    height: unset;
+    margin: 0 auto;
+}
+
+div.container .list-card div.card-img {
+    height: 15em;
+    overflow: hidden;
+}
+
+div.container .list-card img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    align-self: center;
+}
+
+div.container .list-card img:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+div.container .list-card div.card-text {
+    /* height: 10em; */
+    margin: 1em;
+    overflow: hidden;
+}
+
+div.container .list-card div.card-text p {
+    color: var(--black);
+    margin: 0.5em 0;
+    text-overflow: ellipsis;
+}
+
+div.container .list-card div.card-text p.card-p {
+    color: #000000BB;
+    max-height: 10em;
+}
+
+div.container .list-card div.card-text h4 {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: var(--font-24);
+    text-align: center;
+    font-weight: var(--font-medium);
+}
+
+div.container .list-card div.card-text h4 a {
+    color: #000000;
+    text-decoration: none;
+}
+
+div.container .list-card div.card-text h4 a:hover {
+    text-decoration: underline;
+}
+
+div.container .list-card a.btn {
+    margin: 0 0 1em 0;
+}
+
+/* Fim de list de noticias, projetos e eventos */
 
 /* definicoes de uso geral */
 .column {
@@ -760,6 +1055,10 @@ div.input-field.align-center {
     border-radius: 10px;
 }
 
+.border-left-1 {
+    border-left: 1px solid var(--white);
+}
+
 .w-text, 
 .container .item.w-text {
     max-width: 660px;
@@ -796,6 +1095,11 @@ div.input-field.align-center {
     margin-top: 1em;
 }
 
+.mb,
+.container .sidebar h1.mb {
+    margin-bottom: 0.5em;
+}
+
 .p-0,
 .container .item.p-0 {
     padding: 0;
@@ -803,11 +1107,39 @@ div.input-field.align-center {
 
 /* definicoes de uso geral */
 
+.img {
+    overflow: hidden;
+    height: 300px;
+}
+
+.img img{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Postagens */
 
 @media only screen and (min-width: 950px) {
     
+    .post {
+        display: flex;
+        justify-content: center;
+    }
+
+    div.container div.content {
+        margin: 1em;
+    }
+
+    .container .sidebar {
+        max-width: 260px;
+    }
+
     nav.nav-links {
         justify-content: center;
+    }
+
+    nav.nav-logged {
+        position: absolute;
     }
 
     .nav-toggle {
@@ -820,6 +1152,7 @@ div.input-field.align-center {
 
     nav .nav-fluid {
         all: unset;
+        position: relative;
         display: flex;
         flex-direction: row;
         width: inherit;
@@ -853,5 +1186,13 @@ div.input-field.align-center {
     .dropdownAdminLinks a:hover {
         color: #000;
         background-color: var(--main-hover-light-color);
+    }
+
+    .carousel-item .carousel-title h1 { 
+        font-size: var(--font-36);
+    }
+
+    div.container div.item.sobre {
+        font-size: var(--font-24);
     }
 }

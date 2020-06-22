@@ -1,42 +1,53 @@
 @extends('layout.site')
-@section('titulo', 'Nossos voluntários')
-@section('anchor', 'voluntarios')
+@section('titulo', 'Nossos voluntários | Casa')
 
 @section('conteudo')
-    <div class="content">
-        <div class="item-title">
-            <h1>Voluntários</h1>
+<div class="post">
+    <div class="content main">
+        @if (isset($n_voluntarios) && $n_voluntarios > 0)
+            <div id="voluntarios" class="anchor item-title">
+                <h1>Voluntários</h1>
 
-            @if(Session::has('success'))
-                <div class="alert alert-success">
-                    <p>{{ Session::get('success') }}</p>
-                </div>
-            @endif
+                @if(Session::has('success'))
+                    <div class="alert alert-success">
+                        <p>{{ Session::get('success') }}</p>
+                    </div>
+                @endif
 
-        </div>
-        <div class="title row">
-            <p>
-                Temos voluntários espalhados por todo o Brasil, <a href="{{ route('site.voluntario.adicionar') }}">venha ser um de nós</a>!<br>
-                Conheça nossos voluntários por região.
-            </p>
-        </div>
-        <div class="mapa">
-            <ul id="map">
-                <li id="cno" estado="no"><a href="{{ route('site.voluntarios.norte').'#titulo' }}" id="no" title="Norte"><img src="{{ asset('img/user_map/null.gif') }}" alt="Norte" /></a></li>
-                <li id="cne" estado="ne"><a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" id="ne" title="Nordeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Nordeste" /></a></li>
-                <li id="cco" estado="co"><a href="{{ route('site.voluntarios.centro').'#titulo' }}" id="co" title="Centro-Oeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Centro-Oeste" /></a></li>
-                <li id="cse" estado="se"><a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" id="se" title="Sudeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sudeste" /></a></li>
-                <li id="csu" estado="su"><a href="{{ route('site.voluntarios.sul').'#titulo' }}"id="su" title="Sul"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sul" /></a></li>
-            </ul>
-        </div>
-        <div class="mapa-mobile">
-            <a href="{{ route('site.voluntarios.norte').'#titulo' }}" title="Norte">Norte</a>
-            <a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" title="Nordeste">Nordeste</a>
-            <a href="{{ route('site.voluntarios.centro').'#titulo' }}" title="Centro-Oeste">Centro-oeste</a>
-            <a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" title="Sudeste">Sudeste</a>
-            <a href="{{ route('site.voluntarios.sul').'#titulo' }}"title="Sul">Sul</a>
-        </div>
+            </div>
+            <div class="title row text-center">
+                <p>
+                    Uma equipe de <strong>{{ $n_voluntarios ?? '0' }} voluntários</strong> espalhados por <strong>todo Brasil!</strong>
+                    <br>Conheça nossos voluntários <strong>por região</strong> abaixo
+                </p>
+            </div>
+            <div class="mapa">
+                <ul id="map">
+                    <li id="cno" estado="no"><a href="{{ route('site.voluntarios.norte').'#titulo' }}" id="no" title="Norte"><img src="{{ asset('img/user_map/null.gif') }}" alt="Norte" /></a></li>
+                    <li id="cne" estado="ne"><a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" id="ne" title="Nordeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Nordeste" /></a></li>
+                    <li id="cco" estado="co"><a href="{{ route('site.voluntarios.centro').'#titulo' }}" id="co" title="Centro-Oeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Centro-Oeste" /></a></li>
+                    <li id="cse" estado="se"><a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" id="se" title="Sudeste"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sudeste" /></a></li>
+                    <li id="csu" estado="su"><a href="{{ route('site.voluntarios.sul').'#titulo' }}"id="su" title="Sul"><img src="{{ asset('img/user_map/null.gif') }}" alt="Sul" /></a></li>
+                </ul>
+            </div>
+            <div class="mapa-mobile">
+                <a href="{{ route('site.voluntarios.norte').'#titulo' }}" title="Norte">Norte</a>
+                <a href="{{ route('site.voluntarios.nordeste').'#titulo' }}" title="Nordeste">Nordeste</a>
+                <a href="{{ route('site.voluntarios.centro').'#titulo' }}" title="Centro-Oeste">Centro-oeste</a>
+                <a href="{{ route('site.voluntarios.sudeste').'#titulo' }}" title="Sudeste">Sudeste</a>
+                <a href="{{ route('site.voluntarios.sul').'#titulo' }}"title="Sul">Sul</a>
+            </div>
+        @else
+            <div class="title text-center">
+                <p>Poxa, não temos voluntários!!<br> Que tal <a href="{{ route('site.voluntario.adicionar') }}">ser um dos primeiros</a>?</p>
+            </div>
+        @endif
     </div>
+    <section class="sidebar">
+        @include('site._includes._novo_voluntario_sidebar')
+        @include('site._includes._ultimas_noticias_sidebar')
+    </section>
+</div>
 @endsection
 @section('scripts')
     <style type="text/css">
