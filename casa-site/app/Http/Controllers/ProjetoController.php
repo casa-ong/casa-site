@@ -33,12 +33,18 @@ class ProjetoController extends Controller
 
     public function projeto($id) {
         $projeto = $this->projeto->find($id);
-        $noticias = Noticia::where('publicado', 1)->latest()->paginate(3);
+
+        $projetos = $this->projeto->where('publicado', 1)
+                                ->where('id', '!=', $id)
+                                ->latest()->take(2)->get();
+
+        $noticias = Noticia::where('publicado', 1)->latest()->take(3)->get();
+
         if(!$projeto) {
             throw new ModelNotFoundException;
         }
 
-        return view('site.projetos.projeto', compact('projeto', 'noticias'));
+        return view('site.projetos.projeto', compact('projeto', 'noticias', 'projetos'));
     }
     
     // Metodo responsavel por abrir a pagina inicial dos projetos

@@ -42,10 +42,11 @@
             </div>
         @endif
     </div>
+    
     <section class="sidebar">
         @include('site._includes._novo_voluntario_sidebar')
-        @include('site._includes._ultimas_noticias_sidebar')
     </section>
+
 </div>
 @endsection
 @section('scripts')

@@ -21,7 +21,7 @@
                 e mora {!! isset($registro->cidade) ? 'em <strong>'.$registro->cidade.'</strong>' : '' !!}
                 {!! 'no estado de <strong>'.$registro->estado.'</strong>' !!}, trabalha como 
                 <strong>{{ $registro->profissao }}</strong> 
-                {!! isset($registro->projeto->id) ? 'e participa do projeto <a href="'.route('site.projeto', $registro->projeto->id).'">'.$registro->projeto->nome.'</a>.' : '' !!}
+                {!! isset($registro->projeto->id) ? 'e participa do projeto <a href="'.route('site.projeto', $registro->projeto->id).'">'.$registro->projeto->nome.'</a>.' : '.' !!}
                 {!! Auth::user() ? 'Seu e-mail para contato é <strong>'.$registro->email.'</strong> e o seu número de telefone é <strong>'.$registro->telefone.'</strong>.' : '' !!}
                 Na sua descrição <strong>{{ $registro->name }}</strong> diz "{{ $registro->descricao }}".
             </p>

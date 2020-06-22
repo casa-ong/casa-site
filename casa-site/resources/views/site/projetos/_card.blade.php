@@ -1,7 +1,11 @@
 <div class="card">
-    <div class="card-img">
-        <a href="{{ route('site.projeto', $projeto->id) }}"><img src="{{ asset($projeto->anexo) }}" alt=""></a>
-    </div>
+    
+    @if(isset($projeto->anexo))
+        <div class="card-img">
+            <a href="{{ route('site.projeto', $projeto->id) }}"><img src="{{ asset($projeto->anexo) }}" alt=""></a>
+        </div>
+    @endif
+
     <div class="card-text">                            
         <h4>
             <a title="{{ $projeto->nome }}" href="{{ route('site.projeto', $projeto->id) }}">{{ $projeto->nome }}</a>

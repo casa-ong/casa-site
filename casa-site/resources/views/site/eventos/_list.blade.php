@@ -1,7 +1,11 @@
 <div class="list-card">
-    <div class="card-img">
-        <a href="{{ route('site.evento', $evento->id) }}"><img src="{{ asset($evento->anexo) }}" alt=""></a>
-    </div>
+
+    @if(isset($evento->anexo))
+        <div class="card-img">
+            <a href="{{ route('site.evento', $evento->id) }}"><img src="{{ asset($evento->anexo) }}" alt=""></a>
+        </div>
+    @endif
+    
     <div class="card-text">                            
         <h4>
             <a title="{{ $evento->nome }}" href="{{ route('site.eventos', $evento->id) }}">{{ $evento->nome }}</a>

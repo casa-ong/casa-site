@@ -21,6 +21,8 @@ class EventoController extends Controller
     {
         $this->evento = $evento;
         $this->newsletter = $newsletter;
+
+        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     }
 
     public function eventos() 
