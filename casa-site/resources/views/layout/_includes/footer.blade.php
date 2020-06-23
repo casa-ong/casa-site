@@ -25,6 +25,7 @@
             <div class="social-icons">
 
                 @php($sobre = App\Sobre::latest('updated_at')->first())
+				
                 @if(isset($sobre->twitter))
                     <a class="social-icon" href="{{ isset($sobre->twitter) ? $sobre->twitter : '#' }}" target="_blank">
                         <i class="fab fa-twitter"></i>
@@ -44,6 +45,11 @@
                 @endif
                 
             </div>
+            @if(isset($sobre->email))
+				<p>E-mail: <a href="mailto:{{ isset($sobre->email) ? $sobre->email : '#' }}">
+                    {{ $sobre->email ?? '' }}
+                </a></p>
+			@endif
             <p>© 2020 Todos os direitos reservados.</p>
         </div>
 
@@ -52,3 +58,4 @@
     </footer>
 </body>
 </html>
+
