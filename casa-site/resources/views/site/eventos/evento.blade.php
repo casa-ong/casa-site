@@ -2,18 +2,39 @@
 @section('titulo', $evento->nome.' | Casa')
 
 @section('conteudo')
-    <p class="breadcrumbs"><a href="{{ route('site.home') }}">Início</a> / <a href="{{ route('site.eventos') }}">Eventos</a> / {{ $evento->nome }}</p>
-    <div class="content">
-        <div id="eventos" class="news-title">
-            <h1>{{ $evento->nome }}</h1>
-            <p>Postado dia {{ date('d/m/Y', strtotime($evento->created_at)) }} por <a href="#">{{ $evento->user->name }}</a></p>
+<div class="post">
+    <div>
+        <div class="content main">
+            @if(isset($evento->anexo))
+                <div class="img">
+                    <img src="{{ asset($evento->anexo) }}" alt="">
+                </div>
+            @endif
+            <div class="text">
+                <div class="title">
+                    <h1>{{ $evento->nome }}</h1>
+                </div>
+                <p><strong>Realização: {{ strftime('%A, %d de %B  de %Y', strtotime($evento->data)).' às '.date('H:i', strtotime($evento->hora)) }}</strong></p>
+                {!! $evento->toArray()['descricao'] !!}
+                <p>Postado {{ strftime('%A, %d de %B  de %Y', strtotime($evento->created_at)) }}</p>
+            </div>
         </div>
-        <div class="img">
-            <img src="{{ asset($evento->anexo) }}" alt="">
-        </div>
-        <p>Realização: {{ date('d/m/Y', strtotime($evento->data)) }}</p>
-        <div class="text">
-            {!! $evento->toArray()['descricao'] !!}
-        </div>
+
+        @if(isset($projetos) && count($projetos) > 0)
+            <section class="sidebar under">
+                <h1>Conheça alguns de <strong>nossos projetos</strong></h1>
+                @include('site._includes._projetos_suggestions')
+            </section>
+        @endif
+
     </div>
+    
+    @if(isset($noticias) && count($noticias) > 0)
+        <section class="sidebar">
+            <h1>Últimas <strong>notícias</strong></h1>
+            @include('site._includes._ultimas_noticias_sidebar')
+        </section>
+    @endif
+
+</div>
 @endsection

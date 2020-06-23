@@ -21,7 +21,7 @@
                 @include('admin.sugestao._form')
 
                 <div class="input-btn">
-                    <button class="btn btn-green">Salvar</button>
+                    <button class="btn btn-green">Enviar</button>
                 </div>
             </form>
         </div>

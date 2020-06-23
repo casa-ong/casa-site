@@ -4,9 +4,10 @@
 @php($user = Auth::user())
 
 @section('conteudo')
-<div class="content">
+<div class="post">
+    <div class="content main">
         <div class="item-title">
-		    <h1 class="">Bem-vindo ao seu painel de controle, {{ $user['name'] }}!</h1>
+            <h1 class=""><strong>Bem-vindo</strong> ao seu painel de controle, {{ $user['name'] }}!</h1>
         </div>
         <div class="item" style="border-bottom: 0;">
             <a class="admin-card" href="{{ route('admin.noticias') }}">
@@ -38,5 +39,6 @@
                 <h2>Configurações</h2>
             </a>
         </div>
+    </div>
 </div>
 @endsection

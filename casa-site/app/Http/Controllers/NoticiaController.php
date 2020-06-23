@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Noticia;
 use App\Newsletter;
+use App\Projeto;
 use Validator;
 use App\Http\Requests\NoticiaRequest;
 use App\Mail\NoticiaEmail;
@@ -16,10 +17,14 @@ class NoticiaController extends Controller
 
     protected $noticia;
     protected $newsletter;
+    protected $projeto;
 
-    public function __construct(Noticia $noticia, Newsletter $newsletter) {
+    public function __construct(Noticia $noticia, Newsletter $newsletter, Projeto $projeto) {
         $this->noticia = $noticia;
         $this->newsletter = $newsletter;
+        $this->projeto = $projeto;
+
+        setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     }
 
     public function noticias() 
@@ -29,12 +34,19 @@ class NoticiaController extends Controller
     }
 
     public function noticia($id) {
+
+        $noticias = $this->noticia->where('publicado', 1)
+                                ->where('id', '!=', $id)
+                                ->latest()->take(3)->get();
+
+        $projetos = $this->projeto->where('publicado', 1)->latest()->take(2)->get();
+
         $noticia = $this->noticia->where('id', $id)->where('publicado', true)->first();
         if(!$noticia) {
             throw new ModelNotFoundException;
         }
 
-        return view('site.noticias.noticia', compact('noticia'));
+        return view('site.noticias.noticia', compact('noticia', 'noticias', 'projetos'));
     }
     
     // Metodo responsavel por abrir a pagina inicial das noticias

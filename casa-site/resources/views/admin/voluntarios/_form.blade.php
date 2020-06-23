@@ -1,5 +1,5 @@
 @if ($errors->any())
-    <p class="error">Confire novamente os campos em vermelho</p>
+    <p class="error">Confira novamente os campos em vermelho</p>
 @endif
 <div class="input-field">
     <label for="name">Nome*</label>
@@ -61,7 +61,7 @@
     <input class="{{ $errors->has('cidade') ? 'error' : '' }}" type="text" name="cidade" value="{{ isset($registro->cidade) ? $registro->cidade : old('cidade') }}" placeholder="Digite aqui o nome da sua cidade">
     @error('cidade')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>       
     @enderror
 </div>
@@ -70,7 +70,7 @@
     <textarea class="{{ $errors->has('descricao') ? 'error' : '' }}" type="text" name="descricao" placeholder="Descreva você mesmo">{{ isset($registro->descricao) ? $registro->descricao : old('descricao') }}</textarea>
     @error('descricao')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
 </div>

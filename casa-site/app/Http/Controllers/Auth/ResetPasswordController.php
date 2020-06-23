@@ -47,7 +47,7 @@ class ResetPasswordController extends Controller
             'email.email' => 'Digite um endereço de email válido',
             'email.unique' => 'O email digitado já foi cadastrado',
             'password.required' => 'O campo de senha é obrigatório',
-            'password.regex' => 'Senha deve conter ao menos uma letra e um número e no mínimo 8 digitos',
+            'password.regex' => 'Senha deve conter ao menos uma letra e um número e no mínimo 8 digitos, não é permitido caracteres especiais',
             'password.confirmed' => 'As senhas não conferem',
         ]);
 

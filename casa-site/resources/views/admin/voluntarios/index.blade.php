@@ -2,10 +2,11 @@
 @section('titulo', 'Lista de Voluntários')
 
 @section('conteudo')
-<div class="content">
+<div class="post">
+    <div class="content main">
         <div class="item-title">
             <h1 class="">Lista de Voluntários</h1>
-            <a class="btn" href="{{ route('admin.voluntario.adicionar') }}">Adicionar</a>
+            <a class="btn btn-green" href="{{ route('admin.voluntario.adicionar') }}">Adicionar</a>
             @if(Session::has('success'))
                 <div class="alert alert-success">
                     <p>{{ Session::get('success') }}</p>
@@ -36,13 +37,13 @@
                             <td>{{ isset($registro->projeto_id) ? $registro->projeto->nome : "Nenhum" }}</td>
                             <td class="action-cell">
                                 @if(Auth::user()->id != $registro->id)
-                                    <a class="btn" href="{{ route('admin.voluntario.ver', $registro->id) }}" title="Ver">
+                                    <a class="btn btn-green" href="{{ route('admin.voluntario.ver', $registro->id) }}" title="Ver">
                                         <span class="fas fa-eye"></span>
                                     </a>
                                 @endif
 
                                 @if(Auth::user()->id == $registro->id)
-                                    <a class="btn" href="{{ route('admin.voluntario.editar') }}" title="Editar">
+                                    <a class="btn btn-green" href="{{ route('admin.voluntario.editar') }}" title="Editar">
                                         <span class="fas fa-pencil-alt"></span>
                                     </a>
                                 @endif
@@ -54,4 +55,5 @@
             </table>
         </div>
     </div>
+</div>
 @endsection

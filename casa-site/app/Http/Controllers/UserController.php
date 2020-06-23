@@ -240,9 +240,7 @@ class UserController extends Controller
         $n_voluntarios = $this->user->whereNotNull('email_verified_at')
                                     ->where('aprovado', '=', 1)->count();
 
-        $noticias = $this->noticia->where('publicado', 1)->latest()->paginate(3);
-
-        return view('site.voluntarios.voluntarios', compact('n_voluntarios', 'noticias'));
+        return view('site.voluntarios.voluntarios', compact('n_voluntarios'));
     }
 
     public function voluntariosNorte() {
