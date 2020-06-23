@@ -6,7 +6,7 @@ O projeto foi então iniciado no início de maio de 2020, contando com a ajuda d
 
 ## Envolvidos on projeto
 
-- [Luan Alves] (https://www.instagram.com/luantorres69/)
+- [Luan Alves](https://www.instagram.com/luantorres69/)
 - [Raquel Vieira](https://github.com/RaquelVieiraa)
 - [Vinícius Santos](https://github.com/vinesnts)
 
