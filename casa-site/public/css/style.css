@@ -312,8 +312,8 @@ div.container div.card {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-self: flex-start;
     width: 15em;
-    height: 20em;
     border-radius: 10px;
     margin: 0.5em;
     background-color: #fff;
@@ -330,7 +330,7 @@ div.container div.card.form-card {
 
 div.container div.card div.card-img {
     margin-bottom: auto;
-    height: 10em;
+    max-height: 10em;
     overflow: hidden;
 }
 
@@ -347,7 +347,6 @@ div.container div.card img:hover {
 }
 
 div.container div.card div.card-text {
-    height: 5em;
     width: 15em;
     padding: 1em 1em 0 1em;
     overflow: hidden;
@@ -763,7 +762,7 @@ div.container div.content div.input-field.row img {
     padding: 1em;
     margin: 0.5em;
     width: 300px;
-    color: var(--white);
+    color: var(--dark-green);
     text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
