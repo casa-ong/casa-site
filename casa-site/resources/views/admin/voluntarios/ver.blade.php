@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Dados do voluntário - '.config('APP_NAME', 'CASA'))
+@section('titulo', 'Dados do voluntário | Casa')
 
 @section('conteudo')
 <div class="post">
@@ -8,7 +8,7 @@
             @if((Auth::user()->id ?? null) == $registro->id)
                 <h1>Minha conta</h1>
             @else
-                <h1>Dados do voluntário</h1>
+                <h1>{{ $registro->name ?? '' }}</h1>
             @endif
         </div>
         <div class="w-text mx-auto border-1">

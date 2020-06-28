@@ -1,11 +1,11 @@
 @extends('layout.site')
-@section('titulo', 'Adicionar voluntário')
+@section('titulo', 'Seja voluntário | Casa')
 
 @section('conteudo')
 <div class="post">
     <div class="content main">
         <div class="item-title">
-            <h1>Seja voluntário</h1>
+            <h1>Seja <strong>voluntário</strong></h1>
         </div>
         <div class="item-form">
             <form action="{{ route('admin.voluntario.salvar') }}" method="POST" enctype="multipart/form-data">

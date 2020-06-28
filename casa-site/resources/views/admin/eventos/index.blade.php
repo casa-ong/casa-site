@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Lista de eventos')
+@section('titulo', 'Lista de eventos | Casa')
 
 @section('conteudo')
 <div class="post">
@@ -8,7 +8,7 @@
             <h1>Lista de Eventos</h1>
             <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
             @if(Session::has('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" onclick="$(this).toggle('hide')">
                     <p>{{ Session::get('success') }}</p>
                 </div>
             @endif

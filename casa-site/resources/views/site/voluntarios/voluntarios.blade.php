@@ -9,7 +9,7 @@
                 <h1>Nossos <strong>voluntários</strong></h1>
 
                 @if(Session::has('success'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success" onclick="$(this).toggle('hide')">
                         <p>{{ Session::get('success') }}</p>
                     </div>
                 @endif

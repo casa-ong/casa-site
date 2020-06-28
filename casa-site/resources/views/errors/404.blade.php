@@ -3,11 +3,13 @@
 
 
 @section('conteudo')
-<div class="content">
-    <div class="item-title">
-        <h1 class="fas fa-exclamation-triangle"></h1>
-        <h1>404</h1>
-        <p>Página não encontrada.</p>
+<div class="post">
+    <div class="content main">
+        <div class="item-title">
+            <i style="font-size: 3rem" class="fas fa-exclamation-triangle"></i>
+            <h1>404</h1>
+            <p>Página não encontrada.</p>
+        </div>
     </div>
 </div>
 

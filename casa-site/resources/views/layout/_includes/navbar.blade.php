@@ -8,7 +8,7 @@
                 <span class="fas fa-chevron-left"></span>
             </a>
         @endif
-        <a id="nav-inicio" class="nav-link" href="{{ route('site.home') }}">Início</a>
+        <a id="nav-inicio" title="Início" class="nav-link" href="{{ route('site.home') }}">Início</a>
     </div>
     <input tabindex="0" type="checkbox" id="nav-toggle" class="nav-toggle">
     <div class="nav-fluid">
@@ -37,7 +37,7 @@
             </nav>
         @endif
     </div>
-    <label for="nav-toggle" class="nav-toggle-label">
+    <label title="Menu de navegação" for="nav-toggle" class="nav-toggle-label">
         <span class="fas fa-bars"></span>
         <span class="fas fa-times"></span>
     </label>

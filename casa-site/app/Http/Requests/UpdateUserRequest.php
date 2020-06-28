@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
         'name' => 'required|min:3', //Definir os campos que são obrigatórios com required
         'descricao' => 'required|min:3',
         'profissao' => 'required|min:3',
-        'foto' => 'image|dimensions:ratio=1/1',
+        'foto' => 'image',
         'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
         'password' => 'nullable|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
         'estado' => 'required|min:2|max:2',

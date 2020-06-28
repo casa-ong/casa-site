@@ -84,7 +84,7 @@ class ResetPasswordController extends Controller
         //Send Email Reset Success Email
         $this->sendSuccessEmail($user);
 
-        return redirect()->route('password.request')->with('success', 'Senha alterada com sucesso');
+        return redirect()->route('login')->with('success', 'Senha recuperada com sucesso');
     }
 
     public function sendSuccessEmail(User $user) 

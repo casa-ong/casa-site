@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Painel de controle - CASA')
+@section('titulo', 'Painel de controle | Casa')
 @section('anchor', 'controle')
 @php($user = Auth::user())
 

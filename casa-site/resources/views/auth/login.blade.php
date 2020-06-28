@@ -1,11 +1,16 @@
 @extends('layout.site')
-@section('titulo', 'Login - Casa')
+@section('titulo', 'Entrar | Casa')
 
 @section('conteudo')
 <div class="post">
     <div class="content main">
         <div class="item-title">
             <h1>{{ __('Login') }}</h1>
+            @if(Session::has('success'))
+                <div class="alert alert-success" onclick="$(this).toggle('hide')">
+                    <p>{{ Session::get('success') }}</p>
+                </div>
+            @endif
         </div>
         <div class="item-form">
             <form action="{{ route('login.entrar') }}" method="POST">
@@ -29,7 +34,7 @@
                         </span>
                     @enderror
                 </div>
-                <div style="display:flex; justify-content: space-between">
+                <div style="display:flex; justify-content: space-between; padding-top: 10px;">
                     <div>
                         <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 

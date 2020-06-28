@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Redefinir senha - Casa')
+@section('titulo', 'Redefinir senha | Casa')
 
 @section('conteudo')
 <div class="post">
@@ -25,8 +25,11 @@
 
                 <div class="input-field">
                     <label for="password">{{ __('Password') }}</label>
-                    <p>A senha deve conter letras e números e não deve conter caracteres especiais</p>
                     <input id="password" type="password" class="@error('password') error @enderror" name="password" required autocomplete="new-password">
+                    <p class="input-info">
+                        <span class="fas fa-exclamation-circle"></span>
+                        A senha deve conter letras e números e não deve conter caracteres especiais.
+                    </p>
 
                     @error('password')
                         <span class="invalid-feedback" role="alert">

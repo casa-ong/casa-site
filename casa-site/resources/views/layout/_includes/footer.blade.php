@@ -1,6 +1,6 @@
 
         <div class="item-black">
-            <form id="form-btn"  action="{{ route('newsletter.salvar') }}#newsletter" method="POST" enctype="multipart/form-data">
+            <form id="news-form"  action="{{ route('newsletter.salvar') }}#newsletter" method="POST" enctype="multipart/form-data">
         
                 @if(Session::has('newsletter'))
                     <div class="alert alert-success text-center">
@@ -10,13 +10,13 @@
                 
                 <div class="input-field">
                     {{ csrf_field() }}
-                        <label id="newsletter" for="item-title">Receba <strong>novidades<br></strong> por email</label>
-                        <input name="email_newsletter" class="{{ $errors->has('email_newsletter') ? 'error' : '' }}" type="text" placeholder="Digite seu email para se cadastrar">
+                        <label id="newsletter" for="email_newsletter">Receba <strong>novidades<br></strong> por email</label>
+                        <input id="email_newsletter" name="email_newsletter" class="{{ $errors->has('email_newsletter') ? 'error' : '' }}" type="text" placeholder="Digite seu email para se cadastrar" style="max-width: 300px;">
                         @error('email_newsletter')
-                            <p class="error error-dark">{{ $message }}</p>
+                            <p class="error error-dark" onclick="$(this).toggle('hide')">{{ $message }}</p>
                         @enderror
                     <div class="input-btn m-0">
-                        <button form="form-btn" type="submit" class="btn btn-dark">Cadastrar-se</button>
+                        <button form="news-form" type="submit" class="btn btn-dark">Cadastrar-se</button>
                     </div>
                 </div>
             </form>
@@ -50,7 +50,7 @@
                     {{ $sobre->email ?? '' }}
                 </a></p>
 			@endif
-            <p>© 2020 Todos os direitos reservados.</p>
+            <p>&copy; 2020 Todos os direitos reservados.</p>
         </div>
 
         <script src="{{ asset('js/summernote_config.js') }}"></script>

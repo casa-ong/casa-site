@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Verifique seu email - CASA')
+@section('titulo', 'Verifique seu email | Casa')
 
 @section('conteudo')
 <div class="post">

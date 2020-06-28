@@ -5,14 +5,14 @@
 <div class="post">
     <div class="content main">
         <div class="item-title">
-            <h1 class="">Lista de Voluntários</h1>
+            <h1 class="">Lista de Voluntários | Casa</h1>
             <a class="btn btn-green" href="{{ route('admin.voluntario.adicionar') }}">Adicionar</a>
             @if(Session::has('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" onclick="$(this).toggle('hide')">
                     <p>{{ Session::get('success') }}</p>
                 </div>
             @elseif(Session::has('error'))
-                <div class="alert alert-error">
+                <div class="alert alert-error" onclick="$(this).toggle('hide')">
                     <p>{{ Session::get('error') }}</p>
                 </div>
             @endif

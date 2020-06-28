@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Adicionar sugestão')
+@section('titulo', 'Enviar sugestão | Casa')
 @section('anchor', 'sugestoes')
 
 @section('conteudo')
@@ -9,7 +9,7 @@
             <h1>Envie uma sugestão</h1>
 
             @if(Session::has('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" onclick="$(this).toggle('hide')">
                     <p>{{ Session::get('success') }}</p>
                 </div>
             @endif
