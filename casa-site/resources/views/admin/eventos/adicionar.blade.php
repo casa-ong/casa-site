@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Adicionar evento')
+@section('titulo', 'Adicionar evento | Casa')
 
 @section('conteudo')
 <div class="post">

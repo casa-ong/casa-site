@@ -14,6 +14,11 @@
     --white: #FFFFFF;
     --light-gray: #c4c4c4;
 
+    --black-2: rgba(0, 0, 0, 0.2);
+    --black-5: rgba(0, 0, 0, 0.5);
+    --soft-red: #f8d7da;
+    --soft-green: #d4edda;
+
     --main-hover-color: rgb(63, 78, 61);
     --main-hover-light-color: rgb(150, 187, 145);
 
@@ -314,6 +319,7 @@ div.container div.card {
     justify-content: flex-end;
     align-self: flex-start;
     width: 15em;
+    max-height: 25em;
     border-radius: 10px;
     margin: 0.5em;
     background-color: #fff;
@@ -339,10 +345,12 @@ div.container div.card img {
     max-height: 20em;
     border-radius: 10px 10px 0 0;
     align-self: center;
+    transition: opacity 250ms ease-in-out;
 }
 
 div.container div.card img:hover {
     opacity: 0.5;
+    transition: opacity 250ms ease-in-out;
     cursor: pointer;
 }
 
@@ -498,8 +506,17 @@ footer div.item-black div.input-field {
     align-items: center;
 }
 
-footer div.item-black div.input-field input {
+footer div.item-black p.error.error-dark {
+    max-width: 500px;
+    background-color: var(--soft-red);
+    border: 1px solid var(--danger);
+    border-radius: 5px;
     padding: 1em;
+    margin: 1em auto;
+    color: var(--danger);
+    font-weight: var(--font-medium);
+    text-align: center;
+    z-index: 999;
 }
 
 a.btn, button.btn {
@@ -638,6 +655,7 @@ div.page-nav nav ul li a:hover {
 }
 
 .item-form div.input-field, div.container div.card.form-card div.input-field {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -654,11 +672,15 @@ div.container div.card.form-card div.input-field {
 	font-variant: normal;
 	font-style: normal;
 	font-weight: var(--font-medium);
-    padding-top: 10px;
-    padding-bottom: 2px;
+    padding-top: 20px;
+    padding-bottom: 5px;
 }
 
-.item-form div.input-field input, .item-form div.input-field textarea, .item-form div.input-field select, div.container div.card.form-card div.input-field input {
+.item-form div.input-field input,
+.item-form div.input-field textarea, 
+.item-form div.input-field select, 
+div.container div.card.form-card div.input-field input,
+footer div.item-black div.input-field input {
     font-size: 16px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -670,12 +692,45 @@ div.container div.card.form-card div.input-field {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.item-form div.input-field input:focus, .item-form div.input-field textarea:focus, .item-form div.input-field select:focus, div.container div.card.form-card div.input-field input:focus {
+.input-info {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: -80px;
+    right: 0;
+    width: 300px;
+    background-color: var(--white);
+    border-radius: 5px;
+    padding: 1em;
+    box-shadow: 1px 1px 5px var(--black-5);
+    scale: 0;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
+}
+
+.item-form div.input-field input:focus + .input-info {
+    scale: 1;
+    opacity: 1;
+    transition: opacity 250ms ease-in-out;
+}
+
+.input-info > span {
+    padding-right: 1em;
+}
+
+.item-form div.input-field input:focus, 
+.item-form div.input-field textarea:focus, 
+.item-form div.input-field select:focus, 
+div.container div.card.form-card div.input-field input:focus,
+footer div.item-black div.input-field input:focus {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
 }
 
-.input-field input.error, .input-field textarea.error, .input-field select.error {
+.input-field input.error, 
+.input-field textarea.error, 
+.input-field select.error,
+footer div.item-black div.input-field input.error {
     outline: 2px solid rgba(255, 0, 0, 1);
     -moz-outline-radius: 5px;
 }
@@ -686,13 +741,21 @@ span.invalid-feedback, p.error, .alert-error p  {
 }
 
 p.error.error-dark {
-    color: #FF3333;
+    color: var(--danger);
     font-weight: bold;
 }
 
 .alert-success p {
-    color: var(--light-green); /* cor da fonte*/
-    font-weight: bold;
+    max-width: 500px;
+    background-color: var(--soft-green);
+    border: 1px solid var(--light-green);
+    border-radius: 5px;
+    padding: 1em;
+    margin: 0 auto;
+    color: var(--dark-green); /* cor da fonte*/
+    font-weight: var(--font-medium);
+    text-align: center;
+    z-index: 999;
 }
 
 .input-checkbox {
@@ -968,15 +1031,17 @@ div.container .list-card img {
     width: 100%;
     border-radius: 10px 10px 0 0;
     align-self: center;
+    transition: opacity 250ms ease-in-out;
 }
 
 div.container .list-card img:hover {
     opacity: 0.5;
+    transition: opacity 250ms ease-in-out;
     cursor: pointer;
 }
 
 div.container .list-card div.card-text {
-    /* height: 10em; */
+    max-height: 10em;
     margin: 1em;
     overflow: hidden;
 }

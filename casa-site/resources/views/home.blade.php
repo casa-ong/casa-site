@@ -16,7 +16,7 @@
     @endif
 
     @if(Session::has('error'))
-        <div class="alert alert-error text-center">
+        <div class="alert alert-error text-center" onclick="$(this).toggle('hide')">
             <p>{{ Session::get('error') }}</p>
         </div>
     @endif

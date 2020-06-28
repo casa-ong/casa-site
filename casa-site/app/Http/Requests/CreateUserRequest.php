@@ -28,7 +28,7 @@ class CreateUserRequest extends FormRequest
         'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/', //Definir o mínimo de letras no campo com min:x
         'descricao' => 'required|min:3',
         'profissao' => 'required|min:3',
-        'foto' => 'image|dimensions:ratio=1/1',
+        'foto' => 'image',
         'email' => 'required|email|unique:users',
         'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
         'password' => 'nullable|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',

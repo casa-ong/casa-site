@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Configurar notificações')
+@section('titulo', 'Configurações de notificações | Casa')
 
 @section('conteudo')
 <div class="post">
@@ -7,7 +7,7 @@
         <div class="item-title">
             <h1>Configurar notificações</h1>
             @if(Session::has('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" onclick="$(this).toggle('hide')">
                     <p>{{ Session::get('success') }}</p>
                 </div>
             @endif
@@ -22,6 +22,10 @@
                         <button class="btn btn-green">Salvar</button>
                     </div>
                 </form>
+            </div>
+        @else
+            <div class="item-form">
+                <p>Nenhuma configuração de e-mail foi encontrada.</p>
             </div>
         @endif
     </div>

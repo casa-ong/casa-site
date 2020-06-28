@@ -50,10 +50,7 @@ class NewsletterController extends Controller
     public function editar($id, $token) 
     {
         $registro = $this->newsletter->find($id);
-        if($token != $registro->token) {
-            throw new ModelNotFoundException;
-        } 
-
+        
         return view('admin.newsletter.editar', compact('registro'));
     }
 

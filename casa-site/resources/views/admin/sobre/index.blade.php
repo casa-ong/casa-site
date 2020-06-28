@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Historico de configurações')
+@section('titulo', 'Historico de configurações | Casa')
 
 @section('conteudo')
     <div class="content">
@@ -7,8 +7,8 @@
             <h1 class="">Historico de configurações e sobre do site</h1>
             <a class="btn" href="{{ route('admin.sobre.adicionar') }}">Nova config.</a>
             @if(Session::has('success'))
-                <div class="alert alert-success">
-                    {{ Session::get('success') }}
+                <div class="alert alert-success" onclick="$(this).toggle('hide')">
+                    <p>{{ Session::get('success') }}</p>
                 </div>
             @endif
         </div>

@@ -78,7 +78,7 @@ class SobreController extends Controller
 
         $this->sobre->create($dados);
 
-        return redirect()->route('admin.sobre')->with('success', 'Informações do Sobre adicionadas com sucesso!');
+        return redirect()->route('admin.sobre')->with('success', 'Informações adicionadas com sucesso!');
     }
 
     // Método responsavel por abrir a pagina de editar um evento

@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Lista de sugestões')
+@section('titulo', 'Lista de sugestões | Casa')
 
 @section('conteudo')
 <div class="post">
@@ -7,7 +7,7 @@
         <div class="item-title">
             <h1 class="">Lista de Sugestões</h1>
             @if(Session::has('success'))
-                <div class="alert alert-success">
+                <div class="alert alert-success" onclick="$(this).toggle('hide')">
                     <p>{{ Session::get('success') }}</p>
                 </div>
             @endif

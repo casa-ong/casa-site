@@ -1,9 +1,9 @@
 @extends('layout.site')
-@section('titulo', 'Projetos - CASA')
+@section('titulo', 'Voluntários do '.$estado.' | CASA')
 
 @section('conteudo')
 <div id="titulo" class="item-title">
-    <h1>Nossos voluntários</h1>
+    <h1>Nossos <strong>voluntários do {{ $estado ?? 'Brasil' }}</strong></h1>
 </div>
 <div class="row">
     @if(isset($registros) && count($registros) > 0)
@@ -14,15 +14,5 @@
         <p>Nenhum voluntário aqui por enquanto, <strong>seja o primeiro!</strong></p>
     @endif
 </div>
-@endsection
 
-@section('scripts')
-    <style>
-        div.user-card {
-            display: flex;
-            flex-direction: row
-        }
-
-        div.user-card div.card-data
-    </style>
 @endsection

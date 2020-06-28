@@ -1,5 +1,5 @@
 @extends('layout.site')
-@section('titulo', 'Redefinir senha - Casa')
+@section('titulo', 'Redefinir senha | Casa')
 
 @section('conteudo')
 <div class="post">
@@ -7,7 +7,7 @@
         <div class="item-title">
             <h1>{{ __('Reset Password') }}</h1>
             @if (session('status'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success" role="alert" onclick="$(this).toggle('hide')">
                     <p>{{ session('status') }}</p>
                 </div>
             @endif
