@@ -12,6 +12,7 @@ use App\Notifications\UserRegisteredSuccessfully;
 use App\Notifications\VoluntarioAprovadoNotification;
 use App\Notifications\AdminAprovadoNotification;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Notification;
 use Validator;
 use Auth;
@@ -114,6 +115,10 @@ class UserController extends Controller
     public function ver($id) 
     {
         $registro = $this->user->find($id);
+        if(!$registro) {
+            throw new ModelNotFoundException;
+        }
+
         $estados = $this->user::$estadosBrasileiros;
         foreach($estados as $estado) {
             if($estado[0] == $registro->estado) {

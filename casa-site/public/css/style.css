@@ -928,8 +928,9 @@ table a.btn {
 }
 
 .user-card div.card-img img, img.user-profile {
-    height: 100%;
     border-radius: 5px;
+    max-width: 15em;
+    height: unset;
 }
 
 .user-card div.card-data {
