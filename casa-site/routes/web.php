@@ -61,6 +61,8 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
 Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' => 'check.admin'], function() {
     Route::get('/admin/index',['as' => 'admin.index', 'uses' => 'HomeController@adminIndex']);
     Route::get('/admin/projetos',['as' => 'admin.projetos', 'uses' => 'ProjetoController@index']);
+    Route::get('/admin/projetos/publicados',['as' => 'admin.projetos.publicados', 'uses' => 'ProjetoController@indexPublicados']);
+    Route::get('/admin/projetos/rascunhos',['as' => 'admin.projetos.rascunhos', 'uses' => 'ProjetoController@indexRascunhos']);
     Route::get('/admin/projeto/adicionar',['as' => 'admin.projeto.adicionar', 'uses' => 'ProjetoController@adicionar']);
     Route::post('/admin/projeto/salvar',['as' => 'admin.projeto.salvar', 'uses' => 'ProjetoController@salvar']);
     Route::get('/admin/projeto/editar/{id}',['as' => 'admin.projeto.editar', 'uses' => 'ProjetoController@editar']);
@@ -76,6 +78,15 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::put('/admin/evento/atualizar/{id}',['as' => 'admin.evento.atualizar', 'uses' => 'EventoController@atualizar']);
     Route::get('/admin/evento/deletar/{id}',['as' => 'admin.evento.deletar', 'uses' => 'EventoController@deletar']);
     
+    Route::get('/admin/noticias', ['as' => 'admin.noticias', 'uses' => 'NoticiaController@index']);
+    Route::get('/admin/noticias/publicados', ['as' => 'admin.noticias.publicados', 'uses' => 'NoticiaController@indexPublicados']);
+    Route::get('/admin/noticias/rascunhos', ['as' => 'admin.noticias.rascunhos', 'uses' => 'NoticiaController@indexRascunhos']);
+    Route::get('/admin/noticia/adicionar',['as' => 'admin.noticia.adicionar', 'uses' => 'NoticiaController@adicionar']);
+    Route::post('/admin/noticia/salvar',['as' => 'admin.noticia.salvar', 'uses' => 'NoticiaController@salvar']);
+    Route::get('/admin/noticia/editar/{id}',['as' => 'admin.noticia.editar', 'uses' => 'NoticiaController@editar']);
+    Route::put('/admin/noticia/atualizar/{id}',['as' => 'admin.noticia.atualizar', 'uses' => 'NoticiaController@atualizar']);
+    Route::get('/admin/noticia/deletar/{id}',['as' => 'admin.noticia.deletar', 'uses' => 'NoticiaController@deletar']);
+
     Route::get('/admin/voluntarios', ['as' => 'admin.voluntarios', 'uses' => 'UserController@index']);
     Route::get('/admin/voluntatio/adicionar',['as' => 'admin.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
     Route::get('/admin/voluntario/aprovar/{id}',['as' => 'admin.voluntario.aprovar', 'uses' => 'UserController@aprovarVoluntario']);
@@ -94,12 +105,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::get('/admin/sugestao/deletar/{id}',['as' => 'admin.sugestao.deletar', 'uses' => 'SugestaoController@deletar']);
 
      
-    Route::get('/admin/noticias', ['as' => 'admin.noticias', 'uses' => 'NoticiaController@index']);
-    Route::get('/admin/noticia/adicionar',['as' => 'admin.noticia.adicionar', 'uses' => 'NoticiaController@adicionar']);
-    Route::post('/admin/noticia/salvar',['as' => 'admin.noticia.salvar', 'uses' => 'NoticiaController@salvar']);
-    Route::get('/admin/noticia/editar/{id}',['as' => 'admin.noticia.editar', 'uses' => 'NoticiaController@editar']);
-    Route::put('/admin/noticia/atualizar/{id}',['as' => 'admin.noticia.atualizar', 'uses' => 'NoticiaController@atualizar']);
-    Route::get('/admin/noticia/deletar/{id}',['as' => 'admin.noticia.deletar', 'uses' => 'NoticiaController@deletar']);
 
     Route::get('/admin/newsletters', ['as' => 'admin.newsletters', 'uses' => 'NewsletterController@index']);  
 

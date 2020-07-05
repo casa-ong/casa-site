@@ -51,7 +51,37 @@ class ProjetoController extends Controller
     public function index()
     {
         $registros = $this->projeto->all()->reverse();
-        return view('admin.projetos.index', compact('registros'));
+        $lista = [
+            'all' => true,
+            'drafts' => false,
+            'public' => false,
+        ];
+
+        return view('admin.projetos.index', compact('registros', 'lista'));
+    }
+
+    public function indexPublicados()
+    {
+        $registros = $this->projeto->where('publicado', true)->latest()->get();
+        $lista = [
+            'all' => false,
+            'drafts' => false,
+            'public' => true,
+        ];
+
+        return view('admin.projetos.index', compact('registros', 'lista'));
+    }
+
+    public function indexRascunhos()
+    {
+        $registros = $this->projeto->where('publicado', false)->latest()->get();
+        $lista = [
+            'all' => false,
+            'drafts' => true,
+            'public' => false,
+        ];
+
+        return view('admin.projetos.index', compact('registros', 'lista'));
     }
 
     public function adicionar() 

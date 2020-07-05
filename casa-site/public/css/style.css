@@ -804,9 +804,14 @@ p.error.error-dark {
 
 .input-btn {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.input-btn .btn {
+    margin: 0.5em;
 }
 
 .input-field textarea {
@@ -1267,37 +1272,21 @@ div.input-field.align-center {
         opacity: 1;
     }
 
-    .dropdownAdminLinks {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-        border-radius: 0 0 5px 5px;
-        top: 3.2em;
-        right: 0;
-        width: 16em;
-        background-color: #fff;
-        z-index: 999;
-    }
-
-    .dropdownAdminLinks a {
-        color: #000;
-    }
-    
-    .dropdownAdminLinks a:visited {
-        color: #000;
-    }
-    
-    .dropdownAdminLinks a:hover {
-        color: #000;
-        background-color: var(--main-hover-light-color);
-    }
-
     .carousel-item .carousel-title h1 { 
         font-size: var(--font-36);
     }
 
     div.container div.item.sobre {
         font-size: var(--font-24);
+    }
+
+    .input-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .input-btn .btn {
+        margin: 0.5em;
     }
 }

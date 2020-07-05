@@ -16,35 +16,36 @@
             <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Novo evento</a>
         </div>
 
-        @if(isset($registros) && count($registros) > 0)
-            <div class="table">
-                <table>
-                    <thead>
-                        <tr class="table-header">
-                            <th>Ações</th>
-                            <th>Nome</th>
-                            <th>Data</th>
-                            <th>
-                                <label for="dropdown" class="btn-dropdown">
-                                    @if($lista['all'])
-                                        Status&nbsp;(Todos)
+        <div class="table">
+            <table>
+                <thead>
+                    <tr class="table-header">
+                        <th width="20%">Ações</th>
+                        <th width="30%">Nome</th>
+                        <th width="25%">Data</th>
+                        <th width="25%">
+                            <label for="dropdown" class="btn-dropdown">
+                                @if($lista['all'])
+                                    Status&nbsp;(Todos)
                                     @elseif($lista['drafts'])
-                                        Status&nbsp;(Rascunhos)
+                                    Status&nbsp;(Rasc.)
                                     @elseif($lista['public'])
-                                        Status&nbsp;(Publicados)
+                                    Status&nbsp;(Publi.)
                                     @endif
                                     <i class="fas fa-caret-down"></i>
                                     <input type="checkbox" class="dropdown" id="dropdown">
-                                    <div id="dropdown-links" class="dropdown-links">
-                                        {!! !$lista['all'] ? '<a href="'.route('admin.eventos').'">Todos</a>' : '' !!}
-                                        {!! !$lista['drafts'] ? '<a href="'.route('admin.eventos.rascunhos').'">Rascunhos</a>' : '' !!}
-                                        {!! !$lista['public'] ? '<a href="'.route('admin.eventos.publicados').'">Publicados</a>' : '' !!}
-                                    </div>
-                                </label>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-body">
+                                <div id="dropdown-links" class="dropdown-links">
+                                    {!! !$lista['all'] ? '<a href="'.route('admin.eventos').'">Todos</a>' : '' !!}
+                                    {!! !$lista['drafts'] ? '<a href="'.route('admin.eventos.rascunhos').'">Rascunhos</a>' : '' !!}
+                                    {!! !$lista['public'] ? '<a href="'.route('admin.eventos.publicados').'">Publicados</a>' : '' !!}
+                                </div>
+                            </label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+
+                    @if(isset($registros) && count($registros) > 0)
                         @foreach ($registros as $registro)
                             <tr>
                                 <td>
@@ -60,13 +61,14 @@
                                 <td>{{ $registro->publicado ? "Publicado" : "Rascunho" }}</td>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
-            </div>
-        @else
-            <p>Ainda não há eventos.</p>
-        @endif
-
+                    @else
+                        <tr>
+                            <td height="56px" colspan="4">Ainda não há eventos{{ $lista['all'] ? '' : '' }}{{ $lista['drafts'] ? ' rascunhos' : '' }}{{ $lista['public'] ? ' publicados' : ''}}.</td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection

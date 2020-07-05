@@ -53,9 +53,38 @@ class NoticiaController extends Controller
     public function index()
     {
         $registros = $this->noticia->all()->reverse();
-        return view('admin.noticias.index', compact('registros'));
+        $lista = [
+            'all' => true,
+            'drafts' => false,
+            'public' => false,
+        ];
+
+        return view('admin.noticias.index', compact('registros', 'lista'));
     }
 
+    public function indexPublicados()
+    {
+        $registros = $this->noticia->where('publicado', true)->get();
+        $lista = [
+            'all' => false,
+            'drafts' => false,
+            'public' => true,
+        ];
+
+        return view('admin.noticias.index', compact('registros', 'lista'));
+    }
+
+    public function indexRascunhos()
+    {
+        $registros = $this->noticia->where('publicado', false)->get();
+        $lista = [
+            'all' => false,
+            'drafts' => true,
+            'public' => false,
+        ];
+
+        return view('admin.noticias.index', compact('registros', 'lista'));
+    }
     
     public function adicionar() 
     {
