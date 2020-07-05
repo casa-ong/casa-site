@@ -230,11 +230,11 @@ img {
 
 .button-blue,
 .button-primary {
-    background-color: #000;
-    border-bottom: 8px solid #000;
-    border-left: 18px solid #000;
-    border-right: 18px solid #000;
-    border-top: 8px solid #000;
+    background-color: #005C2B;
+    border-bottom: 8px solid #005C2B;
+    border-left: 18px solid #005C2B;
+    border-right: 18px solid #005C2B;
+    border-top: 8px solid #005C2B;
     border-radius: 5px;
 }
 

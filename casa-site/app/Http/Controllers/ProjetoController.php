@@ -146,7 +146,7 @@ class ProjetoController extends Controller
         $detalhes = [
             'url' => url('projeto/'.$projeto->id),
             'titulo' => 'Conheça nosso novo projeto '.$projeto->nome,
-            'info' => 'Para saber mais sobre o projeto e se envoler nele, clique no link abaixo',
+            'info' => 'Para saber mais sobre o projeto, clique no link abaixo',
             'newsletter_id' => '',
             'newsletter_token' => ''
         ];
