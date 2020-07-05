@@ -54,7 +54,37 @@ class EventoController extends Controller
     public function index()
     {
         $registros = $this->evento->all()->reverse();
-        return view('admin.eventos.index', compact('registros'));
+        $lista = [
+            'all' => true,
+            'public' => false,
+            'drafts' => false,
+        ];
+
+        return view('admin.eventos.index', compact('registros', 'lista'));
+    }
+
+    public function indexPublicados()
+    {
+        $registros = $this->evento->where('publicado', true)->latest()->get();
+        $lista = [
+            'all' => false,
+            'public' => true,
+            'drafts' => false,
+        ];
+
+        return view('admin.eventos.index', compact('registros', 'lista'));
+    }
+
+    public function indexRascunhos()
+    {
+        $registros = $this->evento->where('publicado', false)->latest()->get();
+        $lista = [
+            'all' => false,
+            'public' => false,
+            'drafts' => true,
+        ];
+
+        return view('admin.eventos.index', compact('registros', 'lista'));
     }
 
     // Metodo que vai servir para adiconar o evento

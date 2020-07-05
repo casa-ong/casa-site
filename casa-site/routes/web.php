@@ -68,6 +68,8 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::get('/admin/projeto/deletar/{id}',['as' => 'admin.projeto.deletar', 'uses' => 'ProjetoController@deletar']);
 
     Route::get('/admin/eventos',['as' => 'admin.eventos', 'uses' => 'EventoController@index']);
+    Route::get('/admin/eventos/publicados',['as' => 'admin.eventos.publicados', 'uses' => 'EventoController@indexPublicados']);
+    Route::get('/admin/eventos/rascunhos',['as' => 'admin.eventos.rascunhos', 'uses' => 'EventoController@indexRascunhos']);
     Route::get('/admin/evento/adicionar',['as' => 'admin.evento.adicionar', 'uses' => 'EventoController@adicionar']);
     Route::post('/admin/evento/salvar',['as' => 'admin.evento.salvar', 'uses' => 'EventoController@salvar']);
     Route::get('/admin/evento/editar/{id}',['as' => 'admin.evento.editar', 'uses' => 'EventoController@editar']);

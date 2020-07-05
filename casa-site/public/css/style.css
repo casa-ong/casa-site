@@ -194,37 +194,61 @@ nav .nav-link:hover.rounded {
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
-.dropdownAdminLinks {
-    display: none;
-    flex-direction: column;
-    background-color: #000;
+/* Dropdown */
+
+.item-actions {
+    display: flex;
+    justify-content: center;
 }
 
-.dropdownAdminLinks a {
+.btn-dropdown {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    padding: 0.2em;
+    border-radius: 5px;
+}
+
+.dropdown-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 28px;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--dark-green);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-links a {
     color: #fff;
     text-decoration: none;
+    text-align: center;
     border-radius: 5px;
-    padding: 1em;
+    padding: 0.5em;
     margin: 0;
 }
 
-.dropdownAdminLinks a:visited {
+.dropdown-links a:visited {
     color: #fff;
 }
 
-.dropdownAdminLinks a:hover {
-    color: #fff;
-    background-color: var(--main-hover-color);
+.dropdown-links a:hover {
+    color: var(--dark-green);
+    background-color: var(--white);
 }
 
-.dropdownAdminBtn {
+.dropdown {
     opacity: 0;
     position: absolute;
 }
 
-.dropdownAdminBtn:checked ~ .dropdownAdminLinks {
+.dropdown:checked ~ .dropdown-links {
     display: flex;
 }
+
+/* Dropdown */
 
 label.nav-link {
     cursor: pointer;
@@ -252,6 +276,10 @@ div.container div.content, .container .main {
 
 .container .main {
     padding: 1em;
+}
+
+.container .main > p {
+    text-align: center;
 }
 
 .container .main .title {
@@ -519,7 +547,7 @@ footer div.item-black p.error.error-dark {
     z-index: 999;
 }
 
-a.btn, button.btn, input.btn {
+a.btn, button.btn, input.btn, label.btn {
     display: inline-block;
     border: none;
     background-color: #000;
@@ -542,14 +570,14 @@ a.btn.btn-danger {
     color: #fff;
 }
 
-a.btn.btn-dark, button.btn.btn-dark, input.btn.btn-white {
+a.btn.btn-dark, button.btn.btn-dark, input.btn.btn-white, a.btn.btn-white {
     background-color: var(--white);
     color: var(--dark-green);
-    font-weight: var(--font-semi-bold);
+    font-weight: var(--font-medium);
     border: 1px solid var(--dark-green);
 }
 
-a.btn.btn-dark:hover, button.btn.btn-dark:hover, input.btn.btn-white:hover {
+a.btn.btn-dark:hover, button.btn.btn-dark:hover, input.btn.btn-white:hover, a.btn.btn-white:hover {
     background-color: var(--dark-green);
     color: var(--white);
 }
@@ -559,15 +587,15 @@ a.btn.btn-dark:hover, button.btn.btn-dark:hover {
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out, box-shadow 250ms ease-in-out;
 }
 
-a:visited.btn.btn-dark {
-    color: #000;
+a:visited.btn.btn-dark, a:visited.btn.btn-white {
+    color: var(--dark-green);
 }
 
-a:visited.btn {
+a:visited.btn, a:visited:hover.btn.btn-white {
     color: #fff;
 }
 
-a.btn:hover, button.btn:hover, a.btn:hover.btn-danger, input.btn:hover {
+a.btn:hover, button.btn:hover, a.btn:hover.btn-danger, input.btn:hover, label.btn:hover {
     background-color: var(--white);
     color: var(--dark-green);
     box-shadow: 0px 0px 0px 1px var(--dark-green) inset;
