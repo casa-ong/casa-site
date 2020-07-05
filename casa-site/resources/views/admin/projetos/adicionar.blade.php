@@ -13,7 +13,8 @@
                 @include('admin.projetos._form')
 
                 <div class="input-btn">
-                    <button class="btn btn-green">Salvar</button>
+                    <input name="rascunho" type="submit" class="btn btn-white" value="Salvar como rascunho">
+                    <input name="publicar" type="submit" class="btn btn-green" value="Publicar agora">
                 </div>
             </form>
         </div>

@@ -1,4 +1,9 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+
+@if(isset($registro))
+    <p>Esse evento está <strong>{{ isset($registro->publicado) && $registro->publicado == true ? 'publicado' : 'salvo no rascunho'}}.</strong></p>
+@endif
+
 <div class="input-field">
     <label for="nome">Nome*</label>
     <input class="{{ $errors->has('nome') ? 'error' : '' }}" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o nome do evento">
@@ -38,9 +43,3 @@
         <input type="time" name="hora" value="{{ isset($registro->hora) ? date('H:i', strtotime($registro->hora)) : '' }}" placeholder="Digite a hora do evento">
     </div>
 </div>
-
-<label class="input-checkbox" for="publicado">Publicar agora?
-    <input type="checkbox" name="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
-

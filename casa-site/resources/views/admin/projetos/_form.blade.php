@@ -1,6 +1,7 @@
-@if ($errors->any())
-    <p class="error">Campos com * são obrigatórios!</p>
+@if(isset($registro))
+    <p>Esse projeto está <strong>{{ isset($registro->publicado) && $registro->publicado == true ? 'publicado' : 'salvo no rascunho'}}.</strong></p>
 @endif
+
 <div class="input-field">
     <label for="nome">Nome*</label>
     <input class="{{ $errors->has('nome') ? 'error' : '' }}" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o nome do projeto">
@@ -31,10 +32,4 @@
 
 <div class="input-field">
     <img id="img-banner" src="{{ isset($registro->anexo) ? asset($registro->anexo) : '' }}" alt="">
-</div>    
-
-<label class="input-checkbox" for="publicado">Publicar agora?
-    <input type="checkbox" name="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
-
+</div>

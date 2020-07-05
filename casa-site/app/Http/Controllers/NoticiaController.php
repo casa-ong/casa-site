@@ -68,9 +68,9 @@ class NoticiaController extends Controller
         $request->validated();
         $dados = $request->all();
          
-        if(isset($dados['publicado'])) {
+        if(isset($dados['publicar'])) {
             $dados['publicado'] = true;
-        } else {
+        } else if(isset($dados['rascunho'])) {
             $dados['publicado'] = false;
         }
 
@@ -112,9 +112,9 @@ class NoticiaController extends Controller
         $request->validated();
         $dados = $request->all();
 
-        if(isset($dados['publicado'])) {
+        if(isset($dados['publicar'])) {
             $dados['publicado'] = true;
-        } else {
+        } else if(isset($dados['rascunho'])) {
             $dados['publicado'] = false;
         }
 

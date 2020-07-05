@@ -104,9 +104,9 @@ class ProjetoController extends Controller
         $dados = $request->all();
         
         
-        if(isset($dados['publicado'])) {
+        if(isset($dados['publicar'])) {
             $dados['publicado'] = true;
-        } else {
+        } else if(isset($dados['rascunho'])) {
             $dados['publicado'] = false;
         }
 

@@ -6,7 +6,7 @@
     <div class="content main">
         <div class="item-title">
             <h1>Lista de Eventos</h1>
-            <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
+            <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Novo evento</a>
             @if(Session::has('success'))
                 <div class="alert alert-success" onclick="$(this).toggle('hide')">
                     <p>{{ Session::get('success') }}</p>

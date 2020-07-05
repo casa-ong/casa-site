@@ -1,20 +1,14 @@
 @php($user = Auth::user())
 <input type="hidden" name="user_id" value="{{ $user->id }}">
 
+@if(isset($registro))
+    <p>Essa notícia está <strong>{{ isset($registro->publicado) && $registro->publicado == true ? 'publicada' : 'salva no rascunho'}}.</strong></p>
+@endif
+
 <div class="input-field">
     <label for="titulo">Título*</label>
     <input class="{{ $errors->has('titulo') ? 'error' : '' }}" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Digite aqui o título da notícia">
     @error('titulo')
-        <span class="invalid-feedback" role="alert">
-            {{ $message }}
-        </span>
-    @enderror
-</div>
-
-<div class="input-field">
-    <label for="texto">Manchete*</label>
-    <textarea class="{{ $errors->has('manchete') ? 'error' : old('manchete') }}" name="manchete" type="text" placeholder="Digite aqui a manchete da notícia, ela aparecerá nos cards das notícias">{{ isset($registro->manchete) ? $registro->manchete : old('manchete') }}</textarea>
-    @error('manchete')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>
@@ -43,9 +37,4 @@
 
 <div class="input-field">
     <img id="img-anexo" src="{{ isset($registro->anexo) ? asset($registro->anexo) : '' }}" alt="">
-</div>    
-
-<label class="input-checkbox" for="publicado">Publicar agora?
-    <input type="checkbox" name="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
+</div>

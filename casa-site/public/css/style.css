@@ -519,7 +519,7 @@ footer div.item-black p.error.error-dark {
     z-index: 999;
 }
 
-a.btn, button.btn {
+a.btn, button.btn, input.btn {
     display: inline-block;
     border: none;
     background-color: #000;
@@ -542,15 +542,19 @@ a.btn.btn-danger {
     color: #fff;
 }
 
-a.btn.btn-dark, button.btn.btn-dark {
+a.btn.btn-dark, button.btn.btn-dark, input.btn.btn-white {
     background-color: var(--white);
     color: var(--dark-green);
     font-weight: var(--font-semi-bold);
+    border: 1px solid var(--dark-green);
+}
+
+a.btn.btn-dark:hover, button.btn.btn-dark:hover, input.btn.btn-white:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
 }
 
 a.btn.btn-dark:hover, button.btn.btn-dark:hover {
-    background-color: var(--dark-green);
-    color: var(--white);
     box-shadow: 0px 0px 0px 1px var(--white) inset;
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out, box-shadow 250ms ease-in-out;
 }
@@ -563,7 +567,7 @@ a:visited.btn {
     color: #fff;
 }
 
-a.btn:hover, button.btn:hover, a.btn:hover.btn-danger {
+a.btn:hover, button.btn:hover, a.btn:hover.btn-danger, input.btn:hover {
     background-color: var(--white);
     color: var(--dark-green);
     box-shadow: 0px 0px 0px 1px var(--dark-green) inset;

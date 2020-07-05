@@ -1,12 +1,12 @@
 @extends('layout.site')
-@section('titulo', 'Lista de Voluntários')
+@section('titulo', 'Lista de Voluntários | Casa')
 
 @section('conteudo')
 <div class="post">
     <div class="content main">
         <div class="item-title">
-            <h1 class="">Lista de Voluntários | Casa</h1>
-            <a class="btn btn-green" href="{{ route('admin.voluntario.adicionar') }}">Adicionar</a>
+            <h1 class="">Lista de Voluntários</h1>
+            <a class="btn btn-green" href="{{ route('admin.voluntario.adicionar') }}">Novo voluntário</a>
             @if(Session::has('success'))
                 <div class="alert alert-success" onclick="$(this).toggle('hide')">
                     <p>{{ Session::get('success') }}</p>
@@ -32,7 +32,7 @@
                     @foreach ($registros as $registro)
                         <tr>
                             <td>{{ $registro->name }}</td>
-                            <td>{{ $registro->email }}</td>
+                            <td title="{{ $registro->email ?? '' }}">{{ mb_strimwidth(strip_tags($registro->email), 0, 15, "...") }}</td>
                             <td>{{ $registro->cpf }}</td>
                             <td>{{ isset($registro->projeto_id) ? $registro->projeto->nome : "Nenhum" }}</td>
                             <td class="action-cell">
