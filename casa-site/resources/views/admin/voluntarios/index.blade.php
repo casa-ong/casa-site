@@ -21,36 +21,44 @@
             <table>
                 <thead>
                     <tr class="table-header">
+                        <th>Ações</th>
                         <th>Nome</th>
                         <th>Email</th>
                         <th>CPF</th>
                         <th>Projeto</th>
-                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody class="table-body">
-                    @foreach ($registros as $registro)
+                    
+                    @if(isset($registros) && count($registros) > 0)
+                        @foreach ($registros as $registro)
+                            <tr>
+                                <td class="action-cell">
+                                    @if(Auth::user()->id != $registro->id)
+                                        <a class="btn btn-green" href="{{ route('admin.voluntario.ver', $registro->id) }}" title="Ver">
+                                            <span class="fas fa-eye"></span>
+                                        </a>
+                                    @endif
+
+                                    @if(Auth::user()->id == $registro->id)
+                                        <a class="btn btn-green" href="{{ route('admin.voluntario.editar') }}" title="Editar">
+                                            <span class="fas fa-pencil-alt"></span>
+                                        </a>
+                                    @endif
+
+                                </td>
+                                <td>{{ $registro->name }}</td>
+                                <td title="{{ $registro->email ?? '' }}">{{ mb_strimwidth(strip_tags($registro->email), 0, 15, "...") }}</td>
+                                <td>{{ $registro->cpf }}</td>
+                                <td>{{ isset($registro->projeto_id) ? $registro->projeto->nome : "Nenhum" }}</td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{ $registro->name }}</td>
-                            <td title="{{ $registro->email ?? '' }}">{{ mb_strimwidth(strip_tags($registro->email), 0, 15, "...") }}</td>
-                            <td>{{ $registro->cpf }}</td>
-                            <td>{{ isset($registro->projeto_id) ? $registro->projeto->nome : "Nenhum" }}</td>
-                            <td class="action-cell">
-                                @if(Auth::user()->id != $registro->id)
-                                    <a class="btn btn-green" href="{{ route('admin.voluntario.ver', $registro->id) }}" title="Ver">
-                                        <span class="fas fa-eye"></span>
-                                    </a>
-                                @endif
-
-                                @if(Auth::user()->id == $registro->id)
-                                    <a class="btn btn-green" href="{{ route('admin.voluntario.editar') }}" title="Editar">
-                                        <span class="fas fa-pencil-alt"></span>
-                                    </a>
-                                @endif
-
-                            </td>
+                            <td height="56px" colspan="5">Nenhum voluntário cadastrado.</td>
                         </tr>
-                    @endforeach
+                    @endif
+
                 </tbody>
             </table>
         </div>
