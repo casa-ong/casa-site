@@ -109,9 +109,12 @@ class NoticiaController extends Controller
             $dados['curtir'] = false;
         }
 
+        
+        $noticia = $this->noticia->create($dados);
+        
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
+            $num = $noticia->id;
             $dir = 'img/noticias';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
@@ -119,7 +122,7 @@ class NoticiaController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $noticia = $this->noticia->create($dados);
+        $noticia->update($dados);
 
         if($noticia->publicado) {
             $this->emailNoticia($noticia);
@@ -152,18 +155,18 @@ class NoticiaController extends Controller
         } else {
             $dados['curtir'] = false;
         }
-       
+        
+        $noticia = $this->noticia->find($id);
+        
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
+            $num = $noticia->id;
             $dir = 'img/noticias';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
-
-        $noticia = $this->noticia->find($id);
 
         if(!$noticia->publicado && $dados['publicado'] == true) {
             $this->emailNoticia($noticia);

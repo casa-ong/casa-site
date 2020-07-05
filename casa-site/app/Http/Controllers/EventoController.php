@@ -105,9 +105,12 @@ class EventoController extends Controller
             $dados['publicado'] = false;
         }
 
+        
+        $evento = $this->evento->create($dados);
+        
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
+            $num = $evento->id;
             $dir = 'img/eventos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
@@ -115,7 +118,7 @@ class EventoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $evento = $this->evento->create($dados);
+        $evento->update($dados);
 
         if($evento->publicado) {
             $this->emailEvento($evento);
@@ -143,9 +146,12 @@ class EventoController extends Controller
             $dados['publicado'] = false;
         }
 
+        
+        $evento = $this->evento->find($id);
+        
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
+            $num = $evento->id;
             $dir = 'img/eventos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
@@ -153,7 +159,7 @@ class EventoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $evento = $this->evento->find($id);
+        $evento->update($dados);
 
         if(!$evento->publicado && $dados['publicado'] == true) {
             $this->emailEvento($evento);

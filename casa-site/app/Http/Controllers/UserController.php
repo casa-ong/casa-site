@@ -91,7 +91,6 @@ class UserController extends Controller
 
         if($request->hasFile('foto')) {
             $anexo = $request->file('foto');
-            $num = rand(1111,9999);
             $dir = 'img/voluntarios/';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'foto_'.$dados['cpf'].'.'.$ex;
@@ -145,7 +144,6 @@ class UserController extends Controller
         
         if($request->hasFile('foto')) {
             $anexo = $request->file('foto');
-            $num = rand(1111,9999);
             $dir = 'img/voluntarios';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'foto_'.$dados['cpf'].'.'.$ex;
