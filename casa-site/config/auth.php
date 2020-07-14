@@ -114,4 +114,18 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Email Verification Timeout
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define the amount of seconds before a email verification
+    | times out and the user wont be able to verify their email address with
+    | that link. By default it is set to 60 minutes.
+    |
+    */
+    'verification' => [
+        'expire' => 60, // One year - enter as many mintues as you would like here
+    ],
+
 ];

@@ -35,7 +35,7 @@ class UserController extends Controller
 
     public function index() 
     {
-        $registros = $this->user->whereNotNull('email_verified_at')->get()->reverse();
+        $registros = $this->user->get()->reverse();
         return view('admin.voluntarios.index', compact('registros'));
     }
 
@@ -48,6 +48,14 @@ class UserController extends Controller
 
     public function homeAdicionar(Request $request) 
     {
+        $estados = $this->user::$estadosBrasileiros;
+        $projetos = $this->projeto->all();
+
+        $registro = $this->user->where('email', $request['email'])->first();
+        if($registro && !$registro->email_verified_at) {
+            return redirect()->back()->withErrors(['emailNotVerified' => 'E-mail já existe, mas não foi verificado. <strong>Clique abaixo para receber um novo link de verificação por e-mail</strong>.'])->withInput();
+        }
+
         $registro = new User();
         $registro->email = $request['email'];
 
@@ -58,8 +66,6 @@ class UserController extends Controller
             'email.unique' => 'Endereço de email digitado já tem cadastro',
         ]);
 
-        $estados = $this->user::$estadosBrasileiros;
-        $projetos = $this->projeto->all();
         return view('admin.voluntarios.adicionar', compact('estados', 'projetos', 'registro'));
     }
 
@@ -128,9 +134,19 @@ class UserController extends Controller
     }
 
     // Método responsavel por abrir a pagina de editar um projeto
-    public function editar() 
+    public function editar($id) 
     {
-        $registro = Auth::user();
+        $user = Auth::user();
+        $registro = $user;
+
+        if($id != $user->id) {
+            $registro = $this->user->where('id', $id)->where('admin', 0)->first();
+        }
+        
+        if(!$registro) {
+            throw new ModelNotFoundException;
+        }
+
         $estados = $this->user::$estadosBrasileiros;
         $projetos = $this->projeto->all();
         return view('admin.voluntarios.editar', compact('registro', 'estados', 'projetos'));

@@ -28,7 +28,7 @@
                             </a>
                         @endif
                         
-                        <a class="nav-link" title="Minha conta" href="{{ route('admin.voluntario.editar') }}">
+                        <a class="nav-link" title="Minha conta" href="{{ route('admin.voluntario.editar', $user->id) }}">
                             <i class="fas fa-user"></i>
                         </a>
                         <a class="nav-link" title="Sair" href="{{ route('login.sair') }}">

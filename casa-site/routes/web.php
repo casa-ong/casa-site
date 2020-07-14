@@ -53,7 +53,7 @@ Route::get('/newsletter/deletar/{id}/{token}',['as' => 'newsletter.deletar', 'us
 Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
-    Route::get('/admin/voluntario/editar/',['as' => 'admin.voluntario.editar', 'uses' => 'UserController@editar']);
+    Route::get('/admin/voluntario/editar/{id}',['as' => 'admin.voluntario.editar', 'uses' => 'UserController@editar']);
     Route::put('/admin/voluntario/atualizar/{id}',['as' => 'admin.voluntario.atualizar', 'uses' => 'UserController@atualizar']);
     Route::get('/admin/voluntario/deletar/{id}',['as' => 'admin.voluntario.deletar', 'uses' => 'UserController@deletar']);
 });

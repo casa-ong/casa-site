@@ -34,6 +34,7 @@
                         @foreach ($registros as $registro)
                             <tr>
                                 <td class="action-cell">
+
                                     @if(Auth::user()->id != $registro->id)
                                         <a class="btn btn-green" href="{{ route('admin.voluntario.ver', $registro->id) }}" title="Ver">
                                             <span class="fas fa-eye"></span>
@@ -41,14 +42,19 @@
                                     @endif
 
                                     @if(Auth::user()->id == $registro->id)
-                                        <a class="btn btn-green" href="{{ route('admin.voluntario.editar') }}" title="Editar">
+                                        <a class="btn btn-green" href="{{ route('admin.voluntario.editar', $registro->id) }}" title="Editar">
                                             <span class="fas fa-pencil-alt"></span>
                                         </a>
                                     @endif
 
                                 </td>
                                 <td>{{ $registro->name }}</td>
-                                <td title="{{ $registro->email ?? '' }}">{{ mb_strimwidth(strip_tags($registro->email), 0, 15, "...") }}</td>
+
+                                @if(isset($registro->email_verified_at))
+                                    <td title="{{ $registro->email ?? '' }}">{{ mb_strimwidth(strip_tags($registro->email), 0, 15, "...") }}</td>
+                                @else
+                                    <td style="color: red; cursor: pointer;" title="E-mail não verificado, clique no botão do avião de papel para reenviar e-mail de verificação" class="error">Não verificado</td>
+                                @endif
                                 <td>{{ $registro->cpf }}</td>
                                 <td>{{ isset($registro->projeto_id) ? $registro->projeto->nome : "Nenhum" }}</td>
                             </tr>

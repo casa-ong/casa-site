@@ -5,7 +5,7 @@
 <div class="post">
     <div class="content main">
         <div class="item-title">
-            <h1>Minha conta</h1>
+            <h1>{{ Auth::user()->id == $registro->id ? 'Minha conta' : 'Editar voluntário' }}</h1>
             @if (session('status'))
                 <div class="alert alert-success" role="alert" onclick="$(this).toggle('hide')">
                     <p>{{ session('status') }}</p>
