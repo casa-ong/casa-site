@@ -6,10 +6,10 @@
 @endsection
 
 @section('conteudo')
-    @if(isset($noticias) && count($noticias) > 0)
+    @if(isset($slider) && count($slider) > 0)
         <div class="gallery js-flickity carousel"
             data-flickity-options='{ "wrapAround": true, "autoPlay": true }'>
-            @foreach ($noticias as $index => $item)
+            @foreach ($slider as $index => $item)
                 @include('site._includes._carousel_item')
             @endforeach
         </div>

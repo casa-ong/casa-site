@@ -16,7 +16,6 @@
                 </div>
                 <p><strong>Realização: {{ strftime('%A, %d de %B  de %Y', strtotime($evento->data)).' às '.date('H:i', strtotime($evento->hora)) }}</strong></p>
                 {!! $evento->toArray()['descricao'] !!}
-                <p>Postado {{ strftime('%A, %d de %B  de %Y', strtotime($evento->created_at)) }}</p>
             </div>
         </div>
 

@@ -929,6 +929,10 @@ table td {
     padding: 0.5em;
 }
 
+table td > span {
+    color: var(--dark-green);
+    cursor: pointer;
+}
 
 tr + tr > td {
     border-top: 1px solid #000000;
@@ -1217,7 +1221,7 @@ div.input-field.align-center {
 
 .img {
     overflow: hidden;
-    height: 300px;
+    max-height: 300px;
 }
 
 .img img{

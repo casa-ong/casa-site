@@ -10,9 +10,9 @@
             <h1>Erro 403</h1>
         </div>
         @if(Session::has('success'))
-        <div class="alert alert-success" onclick="$(this).toggle('hide')">
-            <p>{{ Session::get('success') }}</p>
-        </div>
+            <div class="alert alert-success" onclick="$(this).toggle('hide')">
+                <p>{{ Session::get('success') }}</p>
+            </div>
         @endif
         <div class="item-form">
             <form id="form-btn-vol" action="{{ route('verification.resend') }}" method="POST" enctype="multipart/form-data">

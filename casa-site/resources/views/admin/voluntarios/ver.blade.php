@@ -24,7 +24,7 @@
                     <strong>{{ $registro->profissao }}</strong> 
                     {!! isset($registro->projeto->id) ? 'e participa do projeto <a href="'.route('site.projeto', $registro->projeto->id).'">'.$registro->projeto->nome.'</a>.' : '.' !!}
                     {!! Auth::user() ? 'Seu e-mail para contato é <strong>'.$registro->email.'</strong> e o seu número de telefone é <strong>'.$registro->telefone.'</strong>.' : '' !!}
-                    Na sua descrição <strong>{{ ucwords(strtolower($registro->name ?? '')) }}</strong> diz "{{ $registro->descricao }}".
+                    Na sua descrição <strong>{{ ucwords(strtolower($registro->name ?? '')) }}</strong> diz "{!! $registro->descricao !!}".
                 </p>
             </div>
         </div>
@@ -44,7 +44,7 @@
                         <span class="fas fa-pencil-alt"></span>
                     </a>
                     <a class="btn btn-green m-0-2" href="{{ route('admin.voluntario.aprovar', $registro->id) }}" title="{!! $registro->aprovado ? 'Remove do menu de voluntários do site.' : 'Adiciona ao menu de voluntários do site.' !!}">
-                        {{ $registro->aprovado ? 'Ocultar de voluntários' : 'Mostrar em voluntários' }}
+                        {{ $registro->aprovado ? 'Ocultar de voluntários' : 'Aprovar e mostrar em voluntários' }}
                     </a>
                     <form class="row" id="adminForm" action="{{ route('admin.voluntario.aprovar.admin') }}" method="POST" enctype="multipart/form-data">
                         @csrf

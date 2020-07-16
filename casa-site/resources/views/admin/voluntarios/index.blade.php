@@ -24,8 +24,8 @@
                         <th>Ações</th>
                         <th>Nome</th>
                         <th>Email</th>
-                        <th>CPF</th>
                         <th>Projeto</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody class="table-body">
@@ -53,10 +53,16 @@
                                 @if(isset($registro->email_verified_at))
                                     <td title="{{ $registro->email ?? '' }}">{{ mb_strimwidth(strip_tags($registro->email), 0, 15, "...") }}</td>
                                 @else
-                                    <td style="color: red; cursor: pointer;" title="E-mail não verificado, clique no botão do avião de papel para reenviar e-mail de verificação" class="error">Não verificado</td>
+                                    <td style="color: red; cursor: pointer;" title="E-mail não verificado, clique no botão de ver voluntário e reenvie o e-mail de verificação." class="error">Não verificado</td>
                                 @endif
-                                <td>{{ $registro->cpf }}</td>
                                 <td>{{ isset($registro->projeto_id) ? $registro->projeto->nome : "Nenhum" }}</td>
+                                <td>
+                                    @if($registro->admin)
+                                        <span title="Voluntário administrador" class="fas fa-crown" style="color: orange;"></span>
+                                    @else
+                                        {!! $registro->aprovado ? '<span title="Voluntário aprovado" class="fas fa-user-check"></span>' : '<span title="Aprovação do voluntário pendente" class="fas fa-exclamation-triangle" style="color: red;"></span>' !!}
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     @else
