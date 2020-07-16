@@ -188,7 +188,6 @@ class UserController extends Controller
         }
         
         $user->update($dados);
-        Auth::login($user);
         
         return redirect()->route('admin.voluntarios')->with('success', 'Voluntário atualizado com sucesso!');
     }

@@ -4,7 +4,7 @@
 @section('conteudo')
 <div class="post">
     <div>
-        <div class="content main">
+        <div class="content">
             @if(isset($evento->anexo))
                 <div class="img">
                     <img src="{{ asset($evento->anexo) }}" alt="">

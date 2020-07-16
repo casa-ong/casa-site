@@ -1,7 +1,7 @@
 <div class="card">
     
     @if(isset($registro->foto))
-        <div class="card-img" style="max-height: 15em;">
+        <div class="card-img user-card">
             <a href="{{ route('admin.voluntario.ver', $registro->id) }}"><img src="{{ asset($registro->foto) }}" alt=""></a>
         </div>
     @endif
