@@ -35,7 +35,3 @@
         </span>
     @enderror
 </div>
-
-<div class="input-field">
-    <img id="img-banner" src="{{ isset($registro->anexo) ? asset($registro->anexo) : '' }}" alt="">
-</div>

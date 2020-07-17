@@ -12,8 +12,8 @@
             @endif
         </div>
         <div class="w-text mx-auto border-1">
-            <div class="row align-center">
-                <img class="user-profile mt-1" src="{{ asset($registro->foto ?? '/img/voluntarios/user_profile.png') }}" alt="">
+            <div class="row align-center user-profile">
+                <img class="mt-1" src="{{ asset($registro->foto ?? '/img/voluntarios/user_profile.png') }}" alt="">
             </div>
             <div class="item py-0 border-0">
                 <p>

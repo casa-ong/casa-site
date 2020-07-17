@@ -301,8 +301,21 @@ div.container div.content .text h1 {
     margin: 0;
 }
 
-div.container div.content img {
-    width: 100%;
+div.container .user-profile {
+    position: relative;
+    padding-top: 50%;
+    width: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+div.container .user-profile img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto 0;
 }
 
 div.container div.item.sobre {
