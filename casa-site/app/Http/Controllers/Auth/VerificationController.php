@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Verified;
 use App\Notifications\NovaSugestaoNotification;
 use App\Notifications\SugestaoEnviadaNotification;
 use App\Notifications\NovoVoluntarioNotification;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
 use App\User;
@@ -45,7 +46,7 @@ class VerificationController extends Controller
     public function __construct()
     {
         $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
+        $this->middleware('throttle:6,1')->only('verify');
     }
 
     public function verify(Request $request)
@@ -80,5 +81,17 @@ class VerificationController extends Controller
         $sugestao->notify(new SugestaoEnviadaNotification($sugestao));
 
         return redirect()->route('sugestao.adicionar')->with('success', 'Email verificado com sucesso!');
+    }
+
+    public function resend(Request $request) 
+    {
+        $user = User::where('email', $request['email'])->first();
+        if(!$user) {
+            throw new ModelNotFoundException;
+        }
+
+        $user->sendEmailVerificationNotification();
+        
+        return redirect()->back()->withSuccess('E-mail de verificação reenviado com sucesso.');
     }
 }

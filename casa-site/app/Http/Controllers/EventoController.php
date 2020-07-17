@@ -54,7 +54,37 @@ class EventoController extends Controller
     public function index()
     {
         $registros = $this->evento->all()->reverse();
-        return view('admin.eventos.index', compact('registros'));
+        $lista = [
+            'all' => true,
+            'public' => false,
+            'drafts' => false,
+        ];
+
+        return view('admin.eventos.index', compact('registros', 'lista'));
+    }
+
+    public function indexPublicados()
+    {
+        $registros = $this->evento->where('publicado', true)->latest()->get();
+        $lista = [
+            'all' => false,
+            'public' => true,
+            'drafts' => false,
+        ];
+
+        return view('admin.eventos.index', compact('registros', 'lista'));
+    }
+
+    public function indexRascunhos()
+    {
+        $registros = $this->evento->where('publicado', false)->latest()->get();
+        $lista = [
+            'all' => false,
+            'public' => false,
+            'drafts' => true,
+        ];
+
+        return view('admin.eventos.index', compact('registros', 'lista'));
     }
 
     // Metodo que vai servir para adiconar o evento
@@ -69,15 +99,18 @@ class EventoController extends Controller
         $request->validated();
         $dados = $request->all();
         
-        if(isset($dados['publicado'])) {
+        if(isset($dados['publicar'])) {
             $dados['publicado'] = true;
-        } else {
+        } else if(isset($dados['rascunho'])) {
             $dados['publicado'] = false;
         }
 
+        
+        $evento = $this->evento->create($dados);
+        
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
+            $num = $evento->id;
             $dir = 'img/eventos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
@@ -85,7 +118,7 @@ class EventoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $evento = $this->evento->create($dados);
+        $evento->update($dados);
 
         if($evento->publicado) {
             $this->emailEvento($evento);
@@ -107,15 +140,18 @@ class EventoController extends Controller
         $request->validated();
         $dados = $request->all();
         
-        if(isset($dados['publicado'])) {
+        if(isset($dados['publicar'])) {
             $dados['publicado'] = true;
-        } else {
+        } else if($dados['rascunho']) {
             $dados['publicado'] = false;
         }
 
+        
+        $evento = $this->evento->find($id);
+        
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
+            $num = $evento->id;
             $dir = 'img/eventos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
@@ -123,7 +159,7 @@ class EventoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $evento = $this->evento->find($id);
+        $evento->update($dados);
 
         if(!$evento->publicado && $dados['publicado'] == true) {
             $this->emailEvento($evento);

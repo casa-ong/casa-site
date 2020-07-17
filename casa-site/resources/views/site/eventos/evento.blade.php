@@ -4,7 +4,7 @@
 @section('conteudo')
 <div class="post">
     <div>
-        <div class="content main">
+        <div class="content">
             @if(isset($evento->anexo))
                 <div class="img">
                     <img src="{{ asset($evento->anexo) }}" alt="">
@@ -16,7 +16,6 @@
                 </div>
                 <p><strong>Realização: {{ strftime('%A, %d de %B  de %Y', strtotime($evento->data)).' às '.date('H:i', strtotime($evento->hora)) }}</strong></p>
                 {!! $evento->toArray()['descricao'] !!}
-                <p>Postado {{ strftime('%A, %d de %B  de %Y', strtotime($evento->created_at)) }}</p>
             </div>
         </div>
 

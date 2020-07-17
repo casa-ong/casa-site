@@ -6,42 +6,66 @@
     <div class="content main">
         <div class="item-title">
             <h1>Lista de Eventos</h1>
-            <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Adicionar</a>
             @if(Session::has('success'))
-                <div class="alert alert-success" onclick="$(this).toggle('hide')">
-                    <p>{{ Session::get('success') }}</p>
-                </div>
+            <div class="alert alert-success" onclick="$(this).toggle('hide')">
+                <p>{{ Session::get('success') }}</p>
+            </div>
             @endif
         </div>
+        <div class="item-actions">
+            <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Novo evento</a>
+        </div>
+
         <div class="table">
             <table>
                 <thead>
                     <tr class="table-header">
-                        <th>Id</th>
-                        <th>Nome</th>
-                        <th>Data</th>
-                        <th>Publicado</th>
-                        <th>Ações</th>
-                        
+                        <th width="20%">Ações</th>
+                        <th width="30%">Nome</th>
+                        <th width="25%">Data</th>
+                        <th width="25%">
+                            <label for="dropdown" class="btn-dropdown">
+                                @if($lista['all'])
+                                    Status&nbsp;(Todos)
+                                    @elseif($lista['drafts'])
+                                    Status&nbsp;(Rasc.)
+                                    @elseif($lista['public'])
+                                    Status&nbsp;(Publi.)
+                                    @endif
+                                    <i class="fas fa-caret-down"></i>
+                                    <input type="checkbox" class="dropdown" id="dropdown">
+                                <div id="dropdown-links" class="dropdown-links">
+                                    {!! !$lista['all'] ? '<a href="'.route('admin.eventos').'">Todos</a>' : '' !!}
+                                    {!! !$lista['drafts'] ? '<a href="'.route('admin.eventos.rascunhos').'">Rascunhos</a>' : '' !!}
+                                    {!! !$lista['public'] ? '<a href="'.route('admin.eventos.publicados').'">Publicados</a>' : '' !!}
+                                </div>
+                            </label>
+                        </th>
                     </tr>
                 </thead>
                 <tbody class="table-body">
-                    @foreach ($registros as $registro)
+
+                    @if(isset($registros) && count($registros) > 0)
+                        @foreach ($registros as $registro)
+                            <tr>
+                                <td>
+                                    <a class="btn btn-green" href="{{ route('admin.evento.editar',$registro->id) }}" title="Editar">
+                                        <span class="fas fa-pencil-alt"></span>
+                                    </a>
+                                    <a class="btn btn-danger" href="{{ route('admin.evento.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar o evento?');" title="Deletar">
+                                        <span class="fas fa-trash-alt"></span>
+                                    </a>
+                                </td>
+                                <td>{{ $registro->nome }}</td>
+                                <td>{{ isset($registro->data) ? date('d/m/Y', strtotime($registro->data)).' às '.date('H:i', strtotime($registro->hora)) : 'Não definida' }}</td>
+                                <td>{{ $registro->publicado ? "Publicado" : "Rascunho" }}</td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{ $registro->id }}</td>
-                            <td>{{ $registro->nome }}</td>
-                            <td>{{ isset($registro->data) ? date('d/m/Y', strtotime($registro->data)).' às '.date('H:i', strtotime($registro->hora)) : 'Não definida' }}</td>
-                            <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
-                            <td>
-                                <a class="btn btn-green" href="{{ route('admin.evento.editar',$registro->id) }}" title="Editar">
-                                    <span class="fas fa-pencil-alt"></span>
-                                </a>
-                                <a class="btn btn-danger" href="{{ route('admin.evento.deletar',$registro->id) }}" onclick="return confirm('Tem certeza que deseja deletar o evento?');" title="Deletar">
-                                    <span class="fas fa-trash-alt"></span>
-                                </a>
-                            </td>
+                            <td height="56px" colspan="4">Ainda não há eventos{{ $lista['all'] ? '' : '' }}{{ $lista['drafts'] ? ' rascunhos' : '' }}{{ $lista['public'] ? ' publicados' : ''}}.</td>
                         </tr>
-                    @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

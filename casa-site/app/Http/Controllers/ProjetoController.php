@@ -51,7 +51,37 @@ class ProjetoController extends Controller
     public function index()
     {
         $registros = $this->projeto->all()->reverse();
-        return view('admin.projetos.index', compact('registros'));
+        $lista = [
+            'all' => true,
+            'drafts' => false,
+            'public' => false,
+        ];
+
+        return view('admin.projetos.index', compact('registros', 'lista'));
+    }
+
+    public function indexPublicados()
+    {
+        $registros = $this->projeto->where('publicado', true)->latest()->get();
+        $lista = [
+            'all' => false,
+            'drafts' => false,
+            'public' => true,
+        ];
+
+        return view('admin.projetos.index', compact('registros', 'lista'));
+    }
+
+    public function indexRascunhos()
+    {
+        $registros = $this->projeto->where('publicado', false)->latest()->get();
+        $lista = [
+            'all' => false,
+            'drafts' => true,
+            'public' => false,
+        ];
+
+        return view('admin.projetos.index', compact('registros', 'lista'));
     }
 
     public function adicionar() 
@@ -70,10 +100,12 @@ class ProjetoController extends Controller
         } else {
             $dados['publicado'] = false;
         }
+        
+        $projeto = $this->projeto->create($dados);
 
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
+            $num = $projetos->id;
             $dir = 'img/projetos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
@@ -81,7 +113,7 @@ class ProjetoController extends Controller
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
 
-        $projeto = $this->projeto->create($dados);
+        $projeto->update($dados);
 
         if($projeto->publicado) {
             $this->emailProjeto($projeto);
@@ -104,23 +136,23 @@ class ProjetoController extends Controller
         $dados = $request->all();
         
         
-        if(isset($dados['publicado'])) {
+        if(isset($dados['publicar'])) {
             $dados['publicado'] = true;
-        } else {
+        } else if(isset($dados['rascunho'])) {
             $dados['publicado'] = false;
         }
 
+        $projeto = $this->projeto->find($id);
+        
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = rand(1111,9999);
+            $num = $projeto->id;
             $dir = 'img/projetos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo'] = $dir.'/'.$nomeAnexo;
         }
-
-        $projeto = $this->projeto->find($id);
 
         if(!$projeto->publicado && $dados['publicado'] == true) {
             $this->emailProjeto($projeto);
@@ -146,7 +178,7 @@ class ProjetoController extends Controller
         $detalhes = [
             'url' => url('projeto/'.$projeto->id),
             'titulo' => 'Conheça nosso novo projeto '.$projeto->nome,
-            'info' => 'Para saber mais sobre o projeto e se envoler nele, clique no link abaixo',
+            'info' => 'Para saber mais sobre o projeto, clique no link abaixo',
             'newsletter_id' => '',
             'newsletter_token' => ''
         ];

@@ -194,37 +194,61 @@ nav .nav-link:hover.rounded {
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
 }
 
-.dropdownAdminLinks {
-    display: none;
-    flex-direction: column;
-    background-color: #000;
+/* Dropdown */
+
+.item-actions {
+    display: flex;
+    justify-content: center;
 }
 
-.dropdownAdminLinks a {
+.btn-dropdown {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    padding: 0.2em;
+    border-radius: 5px;
+}
+
+.dropdown-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 28px;
+    left: 0;
+    width: 100%;
+    border-radius: 10px;
+    background-color: var(--dark-green);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-links a {
     color: #fff;
     text-decoration: none;
+    text-align: center;
     border-radius: 5px;
-    padding: 1em;
+    padding: 0.5em;
     margin: 0;
 }
 
-.dropdownAdminLinks a:visited {
+.dropdown-links a:visited {
     color: #fff;
 }
 
-.dropdownAdminLinks a:hover {
-    color: #fff;
-    background-color: var(--main-hover-color);
+.dropdown-links a:hover {
+    color: var(--dark-green);
+    background-color: var(--white);
 }
 
-.dropdownAdminBtn {
+.dropdown {
     opacity: 0;
     position: absolute;
 }
 
-.dropdownAdminBtn:checked ~ .dropdownAdminLinks {
+.dropdown:checked ~ .dropdown-links {
     display: flex;
 }
+
+/* Dropdown */
 
 label.nav-link {
     cursor: pointer;
@@ -254,6 +278,10 @@ div.container div.content, .container .main {
     padding: 1em;
 }
 
+.container .main > p {
+    text-align: center;
+}
+
 .container .main .title {
     font-size: var(--font-24);
     font-weight: var(--font-regular);
@@ -273,8 +301,21 @@ div.container div.content .text h1 {
     margin: 0;
 }
 
-div.container div.content img {
-    width: 100%;
+div.container .user-profile {
+    position: relative;
+    padding-top: 50%;
+    width: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+div.container .user-profile img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto 0;
 }
 
 div.container div.item.sobre {
@@ -334,17 +375,29 @@ div.container div.card.form-card {
     margin: 0 auto;
 }
 
-div.container div.card div.card-img {
-    margin-bottom: auto;
-    max-height: 10em;
+div.container .list-card div.card-img, 
+div.container div.card div.card-img, 
+.banner-preview,
+.img {
+    position: relative;
+    padding-top: 50%;
+    width: 100%;
     overflow: hidden;
 }
 
+div.container div.card div.card-img {
+    margin-bottom: auto;
+    max-height: 10em;
+}
+
 div.container div.card img {
-    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     max-height: 20em;
     border-radius: 10px 10px 0 0;
-    align-self: center;
     transition: opacity 250ms ease-in-out;
 }
 
@@ -399,12 +452,14 @@ div.container div.card.card-small {
 
 div.container div.card.card-big div.card-img,
 div.container div.card.card-small div.card-img {
+    padding-top: 0;
     height: 6em;
     text-align: center;
 }
 
 div.container div.card.card-big img,
 div.container div.card.card-small img {
+    position: relative;
     max-height: 6em;
     width: auto;
 }
@@ -519,7 +574,7 @@ footer div.item-black p.error.error-dark {
     z-index: 999;
 }
 
-a.btn, button.btn {
+a.btn, button.btn, input.btn, label.btn {
     display: inline-block;
     border: none;
     background-color: #000;
@@ -542,28 +597,32 @@ a.btn.btn-danger {
     color: #fff;
 }
 
-a.btn.btn-dark, button.btn.btn-dark {
+a.btn.btn-dark, button.btn.btn-dark, input.btn.btn-white, a.btn.btn-white {
     background-color: var(--white);
     color: var(--dark-green);
-    font-weight: var(--font-semi-bold);
+    font-weight: var(--font-medium);
+    border: 1px solid var(--dark-green);
+}
+
+a.btn.btn-dark:hover, button.btn.btn-dark:hover, input.btn.btn-white:hover, a.btn.btn-white:hover {
+    background-color: var(--dark-green);
+    color: var(--white);
 }
 
 a.btn.btn-dark:hover, button.btn.btn-dark:hover {
-    background-color: var(--dark-green);
-    color: var(--white);
     box-shadow: 0px 0px 0px 1px var(--white) inset;
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out, box-shadow 250ms ease-in-out;
 }
 
-a:visited.btn.btn-dark {
-    color: #000;
+a:visited.btn.btn-dark, a:visited.btn.btn-white {
+    color: var(--dark-green);
 }
 
-a:visited.btn {
+a:visited.btn, a:visited:hover.btn.btn-white {
     color: #fff;
 }
 
-a.btn:hover, button.btn:hover, a.btn:hover.btn-danger {
+a.btn:hover, button.btn:hover, a.btn:hover.btn-danger, input.btn:hover, label.btn:hover {
     background-color: var(--white);
     color: var(--dark-green);
     box-shadow: 0px 0px 0px 1px var(--dark-green) inset;
@@ -772,9 +831,14 @@ p.error.error-dark {
 
 .input-btn {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+.input-btn .btn {
+    margin: 0.5em;
 }
 
 .input-field textarea {
@@ -811,6 +875,61 @@ div.input-field.datetime input {
 
 div.container div.content div.input-field.row img {
     width: 63px;
+}
+
+label.input input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+label.input:focus-within {
+    outline: 2px solid rgba(50, 50, 255, 0.5);
+    -moz-outline-radius: 5px;
+}
+
+label.input {
+    width: 100%;
+}
+
+.banner-preview {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: opacity 250ms ease-in-out;
+}
+
+.banner-preview:hover {
+    opacity: 0.8;
+    transition: opacity 250ms ease-in-out;
+}
+
+.banner-preview img, .banner-preview {
+    border-radius: 10px;
+}
+
+.banner-preview img, .banner-preview .fas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.banner-preview p {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--dark-green);
+    opacity: 0.9;
+    color: var(--white);
+    margin: 0;
+    padding: 0.5em;
+}
+
+.banner-preview .fas {
+    font-size: 10vw;
 }
 
 /* Fim de formulários */
@@ -892,6 +1011,10 @@ table td {
     padding: 0.5em;
 }
 
+table td > span {
+    color: var(--dark-green);
+    cursor: pointer;
+}
 
 tr + tr > td {
     border-top: 1px solid #000000;
@@ -910,42 +1033,19 @@ table a.btn {
 
 /* Cards de voluntarios */
 
-.user-card {
-    background-color: #fff;
-    border-radius: 5px;
-    width: 95%;
-    max-width: 400px;
-    min-width: 300px;
-    margin: 0.5em;
-    display: flex;
-    justify-content: space-between;
+div.container div.card div.card-img.user-card {
+    margin-bottom: auto;
+    max-height: 15em;
+    overflow: hidden;
+    padding-top: 0;
 }
 
-.user-card div.card-img, img.user-profile {
-    width: 25%;
-    height: 5em;
-    max-width: 5em;
+div.container div.card div.card-img.user-card img {
+    position: relative;
+    width: 100%;
+    max-height: 20em;
 }
 
-.user-card div.card-img img, img.user-profile {
-    height: 100%;
-    border-radius: 5px;
-}
-
-.user-card div.card-data {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 70%;
-}
-
-.user-card div.card-data h4 {
-    margin: 0;
-}
-
-.user-card div.card-data p {
-    margin: 0;
-}
 /* Fim de Cards de voluntarios */
 
 /* Carousel da home */
@@ -1022,15 +1122,13 @@ div.container .list-card.form-card {
     margin: 0 auto;
 }
 
-div.container .list-card div.card-img {
-    height: 15em;
-    overflow: hidden;
-}
-
-div.container .list-card img {
-    width: 100%;
+div.container .list-card img, .img img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     border-radius: 10px 10px 0 0;
-    align-self: center;
     transition: opacity 250ms ease-in-out;
 }
 
@@ -1177,16 +1275,6 @@ div.input-field.align-center {
 
 /* definicoes de uso geral */
 
-.img {
-    overflow: hidden;
-    height: 300px;
-}
-
-.img img{
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
 /* Postagens */
 
 @media only screen and (min-width: 950px) {
@@ -1234,37 +1322,21 @@ div.input-field.align-center {
         opacity: 1;
     }
 
-    .dropdownAdminLinks {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-        border-radius: 0 0 5px 5px;
-        top: 3.2em;
-        right: 0;
-        width: 16em;
-        background-color: #fff;
-        z-index: 999;
-    }
-
-    .dropdownAdminLinks a {
-        color: #000;
-    }
-    
-    .dropdownAdminLinks a:visited {
-        color: #000;
-    }
-    
-    .dropdownAdminLinks a:hover {
-        color: #000;
-        background-color: var(--main-hover-light-color);
-    }
-
     .carousel-item .carousel-title h1 { 
         font-size: var(--font-36);
     }
 
     div.container div.item.sobre {
         font-size: var(--font-24);
+    }
+
+    .input-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .input-btn .btn {
+        margin: 0.5em;
     }
 }

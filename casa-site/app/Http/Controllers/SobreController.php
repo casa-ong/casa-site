@@ -46,9 +46,11 @@ class SobreController extends Controller
         $request->validated();
         $dados = $request->all();
     
+        $sobrer = $this->sobre->create($dados);
+        
         if($request->hasFile('logo')) {
             $anexo = $request->file('logo');
-            $num = rand(1111,9999);
+            $num = $sobre->id;
             $dir = 'img/logos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'logo_'.$num.'.'.$ex;
@@ -58,7 +60,7 @@ class SobreController extends Controller
 
         if($request->hasFile('banner')) {
             $anexo = $request->file('banner');
-            $num = rand(1111,9999);
+            $num = $sobre->id;
             $dir = 'img/banner';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'banner_'.$num.'.'.$ex;
@@ -68,7 +70,7 @@ class SobreController extends Controller
 
         if($request->hasFile('anexo_sobre')) {
             $anexo = $request->file('anexo_sobre');
-            $num = rand(1111,9999);
+            $num = $sobre->id;
             $dir = 'img/anexo_sobre';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_sobre_'.$num.'.'.$ex;
@@ -76,7 +78,7 @@ class SobreController extends Controller
             $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
         }
 
-        $this->sobre->create($dados);
+        $sobre->update($dados);
 
         return redirect()->route('admin.sobre')->with('success', 'Informações adicionadas com sucesso!');
     }
@@ -93,9 +95,12 @@ class SobreController extends Controller
     {
         $request->validated();
         $dados = $request->all();
+        
+        $dadoSite = $this->sobre->find($id);
+
         if($request->hasFile('logo')) {
             $anexo = $request->file('logo');
-            $num = rand(1111,9999);
+            $num = $dadoSite->id;
             $dir = 'img/logos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'logo_'.$num.'.'.$ex;
@@ -105,7 +110,7 @@ class SobreController extends Controller
 
         if($request->hasFile('banner')) {
             $anexo = $request->file('banner');
-            $num = rand(1111,9999);
+            $num = $dadoSite->id;
             $dir = 'img/banner';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'banner_'.$num.'.'.$ex;
@@ -115,7 +120,7 @@ class SobreController extends Controller
 
         if($request->hasFile('anexo_sobre')) {
             $anexo = $request->file('anexo_sobre');
-            $num = rand(1111,9999);
+            $num = $dadoSite->id;
             $dir = 'img/anexo_sobre';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_sobre_'.$num.'.'.$ex;
@@ -123,7 +128,6 @@ class SobreController extends Controller
             $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
         }
 
-        $dadoSite = $this->sobre->find($id);
         $dadoSite->touch();
         $dadoSite->update($dados);
 

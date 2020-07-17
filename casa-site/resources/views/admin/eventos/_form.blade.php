@@ -1,4 +1,9 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+
+@if(isset($registro))
+    <p>Esse evento está <strong>{{ isset($registro->publicado) && $registro->publicado == true ? 'publicado' : 'salvo no rascunho'}}.</strong></p>
+@endif
+
 <div class="input-field">
     <label for="nome">Nome*</label>
     <input class="{{ $errors->has('nome') ? 'error' : '' }}" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o nome do evento">
@@ -18,18 +23,20 @@
     @enderror
 </div>
 <div class="input-field">
-    <label for="nome">Banner do evento</label>
-    <input type="file" class="{{ $errors->has('anexo') ? 'error' : '' }}" name="anexo" onchange="document.getElementById('img-banner').src = window.URL.createObjectURL(this.files[0])">
+    <label for="anexo" class="input">Banner do evento
+        <div class="banner-preview">
+            <span class="fas fa-image"></span>
+            <img id="img-banner" src="{{ isset($registro->anexo) ? asset($registro->anexo) : '' }}" alt="">
+            <p>Escolher uma imagem jpeg, jpg, png ou gif<br>na proporção 3x7</p>
+        </div>
+        <input type="file" class="{{ $errors->has('anexo') ? 'error' : '' }}" id="anexo" name="anexo" onchange="document.getElementById('img-banner').src = window.URL.createObjectURL(this.files[0])">
+    </label>
     @error('anexo')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>
     @enderror
-</div>
-
-<div class="input-field">
-    <img id="img-banner" src="{{ isset($registro->anexo) ? asset($registro->anexo) : '' }}" alt="">
-</div>    
+</div> 
 
 <div class="input-field">
     <label for="nome">Data</label>
@@ -38,9 +45,3 @@
         <input type="time" name="hora" value="{{ isset($registro->hora) ? date('H:i', strtotime($registro->hora)) : '' }}" placeholder="Digite a hora do evento">
     </div>
 </div>
-
-<label class="input-checkbox" for="publicado">Publicar agora?
-    <input type="checkbox" name="publicado" {{ isset($registro->publicado) && $registro->publicado == true ? 'checked' : ''}} value="true">
-    <span class="checkmark"></span>
-</label>
-

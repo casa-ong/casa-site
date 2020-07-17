@@ -6,10 +6,10 @@
 @endsection
 
 @section('conteudo')
-    @if(isset($noticias) && count($noticias) > 0)
+    @if(isset($slider) && count($slider) > 0)
         <div class="gallery js-flickity carousel"
             data-flickity-options='{ "wrapAround": true, "autoPlay": true }'>
-            @foreach ($noticias as $index => $item)
+            @foreach ($slider as $index => $item)
                 @include('site._includes._carousel_item')
             @endforeach
         </div>
@@ -51,12 +51,12 @@
         </div>
     </div>
 
-    @if(isset($sobre))
+    @if(isset($sobre->texto_sobre))
         <div class="item-title">
             <h1>Nossa <strong>missão</strong></h1>
         </div>
         <div class="item sobre text-center">
-            {{ $sobre->texto_sobre ?? '' }}
+            {!! $sobre->toArray()['texto_sobre'] !!}
         </div>
     @endif
 

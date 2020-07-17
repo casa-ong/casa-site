@@ -93,7 +93,7 @@
     @enderror
 </div>
 <div class="input-field">
-    <label for="foto">Foto do voluntario (quadrada, 1x1)</label>
+    <label for="foto">Foto de perfil*</label>
     <div class="input-field row">
         <input class="{{ $errors->has('foto') ? 'error' : '' }}" type="file" name="foto" onchange="document.getElementById('img-foto').src = window.URL.createObjectURL(this.files[0])">
         <img id="img-foto" src="{{ isset($registro->foto) ? asset($registro->foto) : asset('/img/voluntarios/user_profile.png') }}" alt="" style="border: 1px solid rgba(0, 0, 0, 0.2); border-radius: 5px;">

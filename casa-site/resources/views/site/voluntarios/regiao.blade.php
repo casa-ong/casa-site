@@ -5,7 +5,7 @@
 <div id="titulo" class="item-title">
     <h1>Nossos <strong>voluntários do {{ $estado ?? 'Brasil' }}</strong></h1>
 </div>
-<div class="row">
+<div class="row" style="max-width: 960px; margin: 0 auto;">
     @if(isset($registros) && count($registros) > 0)
         @foreach ($registros as $registro)
             @include('site.voluntarios._card')

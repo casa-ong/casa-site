@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Noticia extends Model
 {
     protected $fillable = [
-        'titulo', 'texto', 'anexo', 'publicado', 'user_id', 'manchete',
+        'titulo', 'texto', 'anexo', 'publicado', 'user_id',
     ];
 
     public function user() {
