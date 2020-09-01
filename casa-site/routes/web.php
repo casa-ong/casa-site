@@ -61,8 +61,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
 Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' => 'check.admin'], function() {
     Route::get('/admin/index',['as' => 'admin.index', 'uses' => 'HomeController@adminIndex']);
     Route::get('/admin/projetos',['as' => 'admin.projetos', 'uses' => 'ProjetoController@index']);
-    Route::get('/admin/projetos/publicados',['as' => 'admin.projetos.publicados', 'uses' => 'ProjetoController@indexPublicados']);
-    Route::get('/admin/projetos/rascunhos',['as' => 'admin.projetos.rascunhos', 'uses' => 'ProjetoController@indexRascunhos']);
     Route::get('/admin/projeto/adicionar',['as' => 'admin.projeto.adicionar', 'uses' => 'ProjetoController@adicionar']);
     Route::post('/admin/projeto/salvar',['as' => 'admin.projeto.salvar', 'uses' => 'ProjetoController@salvar']);
     Route::get('/admin/projeto/editar/{id}',['as' => 'admin.projeto.editar', 'uses' => 'ProjetoController@editar']);

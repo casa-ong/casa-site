@@ -52,14 +52,17 @@ class NoticiaController extends Controller
     // Metodo responsavel por abrir a pagina inicial das noticias
     public function index()
     {
-        $registros = $this->noticia->all()->reverse();
-        $lista = [
-            'all' => true,
-            'drafts' => false,
-            'public' => false,
-        ];
+        $registros = $this->noticia;
+        $filtro['nome'] = 'Todos';
 
-        return view('admin.noticias.index', compact('registros', 'lista'));
+        if(request()->has('publicado') && request('publicado') != '') {
+            $registros = $registros->where('publicado', request('publicado'));
+            $filtro['publicado'] = request('publicado');
+            $filtro['nome'] = (request('publicado') ? 'Public.' : 'Rasc.');
+        }
+
+        $registros = $registros->latest()->get();
+        return view('admin.noticias.index', compact('registros', 'filtro'));
     }
 
     public function indexPublicados()

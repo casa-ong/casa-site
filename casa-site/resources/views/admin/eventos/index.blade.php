@@ -6,16 +6,14 @@
     <div class="content main">
         <div class="item-title">
             <h1>Lista de Eventos</h1>
+            <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Novo evento</a>
             @if(Session::has('success'))
             <div class="alert alert-success" onclick="$(this).toggle('hide')">
                 <p>{{ Session::get('success') }}</p>
             </div>
             @endif
         </div>
-        <div class="item-actions">
-            <a class="btn btn-green" href="{{ route('admin.evento.adicionar') }}">Novo evento</a>
-        </div>
-
+        
         <div class="table">
             <table>
                 <thead>
@@ -25,19 +23,13 @@
                         <th width="25%">Data</th>
                         <th width="25%">
                             <label for="dropdown" class="btn-dropdown">
-                                @if($lista['all'])
-                                    Status&nbsp;(Todos)
-                                    @elseif($lista['drafts'])
-                                    Status&nbsp;(Rasc.)
-                                    @elseif($lista['public'])
-                                    Status&nbsp;(Publi.)
-                                    @endif
-                                    <i class="fas fa-caret-down"></i>
-                                    <input type="checkbox" class="dropdown" id="dropdown">
+                                Status&nbsp;({{ $filtro['nome'] ?? 'Todos' }})
+                                <i class="fas fa-caret-down"></i>
+                                <input type="checkbox" class="dropdown" id="dropdown">
                                 <div id="dropdown-links" class="dropdown-links">
-                                    {!! !$lista['all'] ? '<a href="'.route('admin.eventos').'">Todos</a>' : '' !!}
-                                    {!! !$lista['drafts'] ? '<a href="'.route('admin.eventos.rascunhos').'">Rascunhos</a>' : '' !!}
-                                    {!! !$lista['public'] ? '<a href="'.route('admin.eventos.publicados').'">Publicados</a>' : '' !!}
+                                    {!! $filtro['nome'] != 'Todos' ? '<a href="'.route('admin.eventos').'">Todos</a>' : '' !!}
+                                    {!! $filtro['nome'] != 'Public.' ? '<a href="'.route('admin.eventos').'?publicado=1">Publicados</a>' : '' !!}
+                                    {!! $filtro['nome'] != 'Rasc.' ? '<a href="'.route('admin.eventos').'?publicado=0">Rascunhos</a>' : '' !!}
                                 </div>
                             </label>
                         </th>
@@ -63,7 +55,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td height="56px" colspan="4">Ainda não há eventos{{ $lista['all'] ? '' : '' }}{{ $lista['drafts'] ? ' rascunhos' : '' }}{{ $lista['public'] ? ' publicados' : ''}}.</td>
+                            <td height="56px" colspan="4">Ainda não há eventos.</td>
                         </tr>
                     @endif
                 </tbody>
