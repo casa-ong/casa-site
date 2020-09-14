@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 
-    @php($sobre = App\Sobre::latest('updated_at')->first())
-    @if($sobre != null)
-        @php($titulo = $sobre->titulo_site)
-        @php($slogan = $sobre->slogan)
-        @php($logo = $sobre->logo)
-        @php($banner = $sobre->banner)
-    @endif
+@php
+    $sobre = App\Sobre::latest('updated_at')->first();
+    if($sobre != null) {
+        $titulo = $sobre->titulo_site;
+        $slogan = $sobre->slogan;
+        $logo = $sobre->logo;
+        $banner = $sobre->banner;
+    }
+@endphp
 
 <html lang="pt-br">
     <head>
@@ -41,6 +43,8 @@
         <script src="{{ asset('js/jquery/jquery.inputmask.js') }}"></script>      
         <script src="{{ asset('js/jquery/jquery.maskMoney.min.js') }}"></script>
         <script src="{{ asset('js/masks.js') }}"></script>
+        <!-- reCAPTCHA-->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </head>
 
     <body>

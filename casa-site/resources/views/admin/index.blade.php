@@ -11,12 +11,12 @@
         <div class="item" style="border-bottom: 0;">
             <a class="admin-card" href="{{ route('admin.noticias') }}">
                 <span class="fas fa-newspaper"></span>
-                <h2>Publicações</h2>
+                <h2>Notícias</h2>
             </a>
-            {{-- <a class="admin-card" href="{{ route('admin.eventos') }}">
+            <a class="admin-card" href="{{ route('admin.eventos') }}">
                 <span class="fas fa-calendar-alt"></span>
                 <h2>Eventos</h2>
-            </a> --}}
+            </a>
             <a class="admin-card" href="{{ route('admin.projetos') }}">
                 <span class="fas fa-scroll"></span>
                 <h2>Projetos</h2>
@@ -31,16 +31,18 @@
             </a>
             <a class="admin-card" href="{{ route('admin.enquetes') }}">
                 <span class="fas fa-poll"></span>
-                <h2>Enquetes</h2>
+                <h2>Enquetes
+                    <span class="fa fa-new"></span>
+                </h2>
             </a>
-            <a class="admin-card" href="#">
+            {{-- <a class="admin-card" href="#">
                 <span class="fas fa-hand-holding-medical"></span>
-                <h2>Doações</h2>
+                <h2>Doações (breve)</h2>
             </a>
             <a class="admin-card" href="#">
                 <span class="fas fa-money-bill-alt"></span>
-                <h2>Despesas</h2>
-            </a>
+                <h2>Despesas (breve)</h2>
+            </a> --}}
             <a class="admin-card" href="{{ route('admin.newsletters') }}">
                 <span class="fas fa-envelope-open-text"></span>
                 <h2>NewsLetters</h2>

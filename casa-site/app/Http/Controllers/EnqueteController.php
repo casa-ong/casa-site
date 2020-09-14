@@ -8,6 +8,7 @@ use App\Enquete;
 use App\Opcao;
 use App\User;
 use App\Http\Requests\EnqueteRequest;
+use App\Http\Requests\VotarRequest;
 use App\Util\SaveFileUtil;
 use Auth;
 
@@ -51,8 +52,10 @@ class EnqueteController extends Controller
         return view('site.enquetes.enquete', compact('registro'));
     }
 
-    public function votar(Request $request, $id)
+    public function votar(VotarRequest $request, $id)
     {
+        $request->validated();
+        
         $dados = $request->all();
         $opcao = $this->opcao->find($dados['opcao']);
         

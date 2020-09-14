@@ -10,7 +10,18 @@
     @endforeach
     @error('opcao')
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $message }}</strong>
+            {{ $message }}
         </span>
     @enderror
+</div>
+
+<div class="form-group row">	
+    <div class="g-recaptcha {{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}" data-sitekey="{!! env('NOCAPTCHA_SITEKEY', 'NOKEYFOUND') !!}"></div>
+    
+        @if ($errors->has('g-recaptcha-response'))
+            <span class="invalid-feedback" style="display: block;">
+                    {{ $errors->first('g-recaptcha-response') }}
+            </span>      
+        @endif
+
 </div>
