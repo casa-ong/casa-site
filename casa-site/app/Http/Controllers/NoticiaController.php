@@ -105,14 +105,7 @@ class NoticiaController extends Controller
         } else if(isset($dados['rascunho'])) {
             $dados['publicado'] = false;
         }
-
-        if(isset($dados['curtir'])) {
-            $dados['curtir'] = true;
-        } else {
-            $dados['curtir'] = false;
-        }
-
-        
+  
         $noticia = $this->noticia->create($dados);
         
         if($request->hasFile('anexo')) {
@@ -153,12 +146,6 @@ class NoticiaController extends Controller
             $dados['publicado'] = false;
         }
 
-        if(isset($dados['curtir'])) {
-            $dados['curtir'] = true;
-        } else {
-            $dados['curtir'] = false;
-        }
-        
         $noticia = $this->noticia->find($id);
         
         if($request->hasFile('anexo')) {

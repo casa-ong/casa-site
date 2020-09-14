@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/site/enquete/{id}', ['uses' => 'EnqueteController@ver'])->name('site.enquete.ver');
+Route::put('/site/enquete/votar/{id}', ['uses' => 'EnqueteController@votar'])->name('site.enquete.votar');
 
 Route::get('/',['as' => 'site.home', 'uses' => 'HomeController@index']);
 
@@ -102,7 +104,11 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::get('/admin/sugestao/atualizar/{id}',['as' => 'admin.sugestao.atualizar', 'uses' => 'SugestaoController@atualizar']);
     Route::get('/admin/sugestao/deletar/{id}',['as' => 'admin.sugestao.deletar', 'uses' => 'SugestaoController@deletar']);
 
-     
+    Route::get('/admin/enquetes', ['uses' => 'EnqueteController@index'])->name('admin.enquetes');
+    Route::get('/admin/enquete/adicionar', ['uses' => 'EnqueteController@adicionar'])->name('admin.enquete.adicionar');
+    Route::post('/admin/enquete/salvar', ['uses' => 'EnqueteController@salvar'])->name('admin.enquete.salvar');
+    Route::get('/admin/enquete/atualizar/{id}', ['uses' => 'EnqueteController@atualizar'])->name('admin.enquete.atualizar');
+    Route::get('/admin/enquete/deletar/{id}', ['uses' => 'EnqueteController@deletar'])->name('admin.enquete.deletar');
 
     Route::get('/admin/newsletters', ['as' => 'admin.newsletters', 'uses' => 'NewsletterController@index']);  
 

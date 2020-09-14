@@ -220,6 +220,7 @@ nav .nav-link:hover.rounded {
     border-radius: 10px;
     background-color: var(--dark-green);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
 .dropdown-links a {
@@ -901,6 +902,59 @@ label.input:focus-within {
 
 label.input {
     width: 100%;
+}
+
+.opcao-group {
+    display: flex;
+    flex-flow: row wrap;
+    padding-bottom: 0.5em;
+}
+
+.opcao-group :nth-child(odd) {
+    flex: 1 1 200px;
+    margin-right: 0.5em;
+}
+
+.opcao-group :nth-child(even) {
+    flex: 0 1 150px;
+}
+
+.editar-opcao-group {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    padding-bottom: 0.5em;
+}
+
+.editar-opcao-group :nth-child(even) {
+    align-self: center;
+    margin: 0 0 0 0.5em;
+}
+
+.editar-opcao-group :nth-child(odd) {
+    flex: 1 1 200px;
+}
+
+.radio-option {
+    display: flex;
+    flex-flow: row wrap;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+    align-items: center;
+    max-height: 100px;
+}
+
+.radio-option div {
+    margin-left: auto;
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+}
+
+.form-group h2 {
+    font-weight: var(--font-regular);
+    font-size: var(--font-24);
 }
 
 .banner-preview {
