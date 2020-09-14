@@ -45,7 +45,9 @@ class EnqueteController extends Controller
     {
         $registro = $this->enquete->find($id);
 
-        if(!$registro->is_aberta && Auth::guest()) {
+        if(!$registro) {
+            throw new ModelNotFoundException;
+        } else if(!$registro->is_aberta && Auth::guest()) {
             return view('errors.404_enquete');
         }
 
@@ -57,14 +59,16 @@ class EnqueteController extends Controller
         $request->validated();
         
         $dados = $request->all();
-        $opcao = $this->opcao->find($dados['opcao']);
-        
-        if(!$opcao->is_aberta) {
+        $enquete = $this->enquete->find($id);
+
+        if(!$enquete->is_aberta) {
             return view('errors.404_enquete');
         }
 
+        $opcao = $this->opcao->find($dados['opcao']);
+
         $opcao->votos++;
-        $opcao->update();
+        $opcao->update($dados);
 
         return redirect()->back()->with('success', 'Voto registrado com sucesso!');
     }
