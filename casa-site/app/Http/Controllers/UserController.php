@@ -95,16 +95,18 @@ class UserController extends Controller
             $dados['aprovado'] = false;
         }
 
+        $user = $this->user->create($dados);
+
         if($request->hasFile('foto')) {
             $anexo = $request->file('foto');
             $dir = 'img/voluntarios/';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'foto_'.$dados['cpf'].'.'.$ex;
+            $nomeAnexo = 'foto_'.$user->id.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['foto'] = $dir.'/'.$nomeAnexo;
         }
 
-        $this->user->create($dados);
+        $user->update($dados);
 
         $user = $this->user->where('email', $dados['email'])->first();
         Notification::send($user, new UserRegisteredSuccessfully($user));
@@ -157,15 +159,6 @@ class UserController extends Controller
     {
         $request->validated();
         $dados = $request->all();
-        
-        if($request->hasFile('foto')) {
-            $anexo = $request->file('foto');
-            $dir = 'img/voluntarios';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'foto_'.$dados['cpf'].'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['foto'] = $dir.'/'.$nomeAnexo;
-        }
 
         $user = $this->user->find($id);
 
@@ -185,6 +178,15 @@ class UserController extends Controller
             return redirect()->back()->withErrors(['cpf' => 'Você não pode alterar o cpf']);
         } else if($user->email != $dados['email']) {
             return redirect()->back()->withErrors(['email' => 'Você não pode alterar o email']);
+        }
+
+        if($request->hasFile('foto')) {
+            $anexo = $request->file('foto');
+            $dir = 'img/voluntarios';
+            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
+            $nomeAnexo = 'foto_'.$user->id.'.'.$ex;
+            $anexo->move($dir, $nomeAnexo);
+            $dados['foto'] = $dir.'/'.$nomeAnexo;
         }
         
         $user->update($dados);

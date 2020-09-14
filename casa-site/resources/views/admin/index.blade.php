@@ -1,13 +1,12 @@
 @extends('layout.site')
 @section('titulo', 'Painel de controle | Casa')
 @section('anchor', 'controle')
-@php($user = Auth::user())
 
 @section('conteudo')
 <div class="post">
     <div class="content main">
         <div class="item-title">
-            <h1 class=""><strong>Bem-vindo</strong> ao seu painel de controle, {{ $user['name'] }}!</h1>
+            <h1 class=""><strong>Bem-vindo</strong> ao seu painel de controle, {{ Auth::user()['name'] }}!</h1>
         </div>
         <div class="item" style="border-bottom: 0;">
             <a class="admin-card" href="{{ route('admin.noticias') }}">
@@ -30,6 +29,20 @@
                 <span class="fas fa-comments"></span>
                 <h2>Sugestões</h2>
             </a>
+            <a class="admin-card" href="{{ route('admin.enquetes') }}">
+                <span class="fas fa-poll"></span>
+                <h2>Enquetes
+                    <span class="fa fa-new"></span>
+                </h2>
+            </a>
+            {{-- <a class="admin-card" href="#">
+                <span class="fas fa-hand-holding-medical"></span>
+                <h2>Doações (breve)</h2>
+            </a>
+            <a class="admin-card" href="#">
+                <span class="fas fa-money-bill-alt"></span>
+                <h2>Despesas (breve)</h2>
+            </a> --}}
             <a class="admin-card" href="{{ route('admin.newsletters') }}">
                 <span class="fas fa-envelope-open-text"></span>
                 <h2>NewsLetters</h2>

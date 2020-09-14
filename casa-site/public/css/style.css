@@ -198,7 +198,8 @@ nav .nav-link:hover.rounded {
 
 .item-actions {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 1em;
 }
 
 .btn-dropdown {
@@ -219,6 +220,7 @@ nav .nav-link:hover.rounded {
     border-radius: 10px;
     background-color: var(--dark-green);
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
 .dropdown-links a {
@@ -713,7 +715,7 @@ div.page-nav nav ul li a:hover {
     max-width: 560px;
 }
 
-.item-form div.input-field, div.container div.card.form-card div.input-field {
+.item-form div.input-field, div.container div.card.form-card div.input-field, .filter-input {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -724,7 +726,7 @@ div.container div.card.form-card div.input-field {
     align-items: center;
 }
 
-.item-form div.input-field label, div.container div.card.form-card div.input-field label {
+.item-form div.input-field label, div.container div.card.form-card div.input-field label, .filter-input label {
     color: rgba(0,0,0,0.85);
     text-decoration: none;
     font-size: 18px;
@@ -739,12 +741,20 @@ div.container div.card.form-card div.input-field {
 .item-form div.input-field textarea, 
 .item-form div.input-field select, 
 div.container div.card.form-card div.input-field input,
-footer div.item-black div.input-field input {
+footer div.item-black div.input-field input,
+.filter-input input {
     font-size: 16px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     width: 100%;
     padding: 1em 0.5em;
+}
+
+.filter-input input {
+    padding: 0.5em;
+    padding-left: 2em;
+    background: url('../img/icons/search.png') no-repeat 5px center; 
+    background-size: 20px;
 }
 
 .item-form div.input-field input[readonly=""], .item-form div.input-field textarea[readonly=""] {
@@ -781,7 +791,8 @@ footer div.item-black div.input-field input {
 .item-form div.input-field textarea:focus, 
 .item-form div.input-field select:focus, 
 div.container div.card.form-card div.input-field input:focus,
-footer div.item-black div.input-field input:focus {
+footer div.item-black div.input-field input:focus,
+.filter-input input:focus {
     outline: 2px solid rgba(50, 50, 255, 0.5);
     -moz-outline-radius: 5px;
 }
@@ -891,6 +902,59 @@ label.input:focus-within {
 
 label.input {
     width: 100%;
+}
+
+.opcao-group {
+    display: flex;
+    flex-flow: row wrap;
+    padding-bottom: 0.5em;
+}
+
+.opcao-group :nth-child(odd) {
+    flex: 1 1 200px;
+    margin-right: 0.5em;
+}
+
+.opcao-group :nth-child(even) {
+    flex: 0 1 150px;
+}
+
+.editar-opcao-group {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    padding-bottom: 0.5em;
+}
+
+.editar-opcao-group :nth-child(even) {
+    align-self: center;
+    margin: 0 0 0 0.5em;
+}
+
+.editar-opcao-group :nth-child(odd) {
+    flex: 1 1 200px;
+}
+
+.radio-option {
+    display: flex;
+    flex-flow: row wrap;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+    align-items: center;
+    max-height: 100px;
+}
+
+.radio-option div {
+    margin-left: auto;
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+}
+
+.form-group h2 {
+    font-weight: var(--font-regular);
+    font-size: var(--font-24);
 }
 
 .banner-preview {
@@ -1251,6 +1315,10 @@ div.input-field.align-center {
 
 .mx-auto {
     margin: 0 auto;
+}
+
+.ml-auto {
+    margin-left: auto !important;
 }
 
 .py-0,

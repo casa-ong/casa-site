@@ -50,38 +50,17 @@ class ProjetoController extends Controller
     // Metodo responsavel por abrir a pagina inicial dos projetos
     public function index()
     {
-        $registros = $this->projeto->all()->reverse();
-        $lista = [
-            'all' => true,
-            'drafts' => false,
-            'public' => false,
-        ];
-
-        return view('admin.projetos.index', compact('registros', 'lista'));
-    }
-
-    public function indexPublicados()
-    {
-        $registros = $this->projeto->where('publicado', true)->latest()->get();
-        $lista = [
-            'all' => false,
-            'drafts' => false,
-            'public' => true,
-        ];
-
-        return view('admin.projetos.index', compact('registros', 'lista'));
-    }
-
-    public function indexRascunhos()
-    {
-        $registros = $this->projeto->where('publicado', false)->latest()->get();
-        $lista = [
-            'all' => false,
-            'drafts' => true,
-            'public' => false,
-        ];
-
-        return view('admin.projetos.index', compact('registros', 'lista'));
+        $registros = $this->projeto;
+        $filtro['nome'] = 'Todos';
+        
+        if(request()->has('publicado') && request('publicado') != '') {
+            $registros = $registros->where('publicado', request('publicado'));
+            $filtro['publicado'] = request('publicado');
+            $filtro['nome'] = (request('publicado') ? 'Public.' : 'Rasc.');
+        }
+        
+        $registros = $registros->latest()->get();
+        return view('admin.projetos.index', compact('registros', 'filtro'));
     }
 
     public function adicionar() 
@@ -105,7 +84,7 @@ class ProjetoController extends Controller
 
         if($request->hasFile('anexo')) {
             $anexo = $request->file('anexo');
-            $num = $projetos->id;
+            $num = $projeto->id;
             $dir = 'img/projetos';
             $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
             $nomeAnexo = 'anexo_'.$num.'.'.$ex;

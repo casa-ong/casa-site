@@ -17,6 +17,11 @@
                 </div>
             @endif
         </div>
+        <div class="item-actions">
+            <div class="filter-input ml-auto">
+                <input id="pesquisaVoluntarios" type="search" placeholder="Filtrar por nome...">
+            </div>
+        </div>
         <div class="table">
             <table>
                 <thead>
@@ -28,7 +33,7 @@
                         <th>Status</th>
                     </tr>
                 </thead>
-                <tbody class="table-body">
+                <tbody class="table-body" id="tableVoluntarios">
                     
                     @if(isset($registros) && count($registros) > 0)
                         @foreach ($registros as $registro)
@@ -76,4 +81,10 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+
+    <script src="{{ asset('js/filtro_voluntario.js') }}"></script>
+
 @endsection

@@ -25,9 +25,9 @@ class NoticiaRequest extends FormRequest
     {
         return [
             'user_id' => 'required|exists:users,id',
-            'titulo' => 'required|min:3',
+            'titulo' => 'required|min:3|max:255',
             'texto' => 'required|min:3',
-            'anexo' => 'nullable|image',
+            'anexo' => 'nullable|image|max:255',
             
         ];
     }

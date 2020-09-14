@@ -24,9 +24,9 @@ class ProjetoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:3',
+            'nome' => 'required|min:3|max:255',
             'descricao' => 'required|min:3',
-            'anexo' => 'nullable|image',
+            'anexo' => 'nullable|image|max:255',
         ];
     }
 

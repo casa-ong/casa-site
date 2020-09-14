@@ -24,17 +24,17 @@ class SobreRequest extends FormRequest
     public function rules()
     {
         return [
-        'titulo_site' => 'min:3',
-        'logo' => 'image',
-        'slogan' => 'min:3',
-        'banner' => 'image',
+        'titulo_site' => 'min:3|max:255',
+        'logo' => 'image|max:255',
+        'slogan' => 'min:3|max:255',
+        'banner' => 'image|max:255',
         'texto_sobre' => 'min:10',
-        'anexo_sobre' => 'image',
-        'email' => 'nullable|email',
+        'anexo_sobre' => 'image|max:255',
+        'email' => 'nullable|email|max:255',
         'telefone' => 'nullable|regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/', 
-        'instagram' => 'nullable|url',
-        'twitter' => 'nullable|url',
-        'facebook' => 'nullable|url',
+        'instagram' => 'nullable|url|max:255',
+        'twitter' => 'nullable|url|max:255',
+        'facebook' => 'nullable|url|max:255',
         ];
     }
     public function messages() 

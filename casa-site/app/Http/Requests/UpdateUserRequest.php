@@ -24,14 +24,14 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
-        'name' => 'required|min:3', //Definir os campos que são obrigatórios com required
-        'descricao' => 'required|min:3',
-        'profissao' => 'required|min:3',
-        'foto' => 'image',
+        'name' => 'required|min:3|max:255', //Definir os campos que são obrigatórios com required
+        'descricao' => 'required|min:3|max:255',
+        'profissao' => 'required|min:3|max:255',
+        'foto' => 'image|max:255',
         'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
         'password' => 'nullable|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
         'estado' => 'required|min:2|max:2',
-        'cidade' => 'nullable|min:3',
+        'cidade' => 'nullable|min:3|max:255',
         'nascimento' => 'date',
         'projeto_id' => 'exists:projetos,id',
         ];

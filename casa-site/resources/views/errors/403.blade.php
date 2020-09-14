@@ -33,7 +33,7 @@
                 </div>
             </form>
         </div>
-        <p>Não é veio de um link de verificação de e-mail? Contate-nos em <a href="mailto:suporte@casaong.org">suporte@casaong.org</a></p>
+        <p>Não veio de um link de verificação de e-mail? Contate-nos em <a href="mailto:suporte@casaong.org">suporte@casaong.org</a></p>
     </div>
 </div>
 

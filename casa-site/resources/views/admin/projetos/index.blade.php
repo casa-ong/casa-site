@@ -21,19 +21,13 @@
                         <th width="55%">Nome</th>
                         <th width="25%">
                             <label for="dropdown" class="btn-dropdown">
-                                @if($lista['all'])
-                                    Status&nbsp;(Todos)
-                                @elseif($lista['drafts'])
-                                    Status&nbsp;(Rasc.)
-                                @elseif($lista['public'])
-                                    Status&nbsp;(Publi.)
-                                @endif
+                                Status&nbsp;({{ $filtro['nome'] ?? 'Todos'}})
                                 <i class="fas fa-caret-down"></i>
                                 <input type="checkbox" class="dropdown" id="dropdown">
                                 <div id="dropdown-links" class="dropdown-links">
-                                    {!! !$lista['all'] ? '<a href="'.route('admin.projetos').'">Todos</a>' : '' !!}
-                                    {!! !$lista['drafts'] ? '<a href="'.route('admin.projetos.rascunhos').'">Rascunhos</a>' : '' !!}
-                                    {!! !$lista['public'] ? '<a href="'.route('admin.projetos.publicados').'">Publicados</a>' : '' !!}
+                                    {!! $filtro['nome'] != 'Todos' ? '<a href="'.route('admin.projetos').'">Todos</a>' : '' !!}
+                                    {!! $filtro['nome'] != 'Public.' ? '<a href="'.route('admin.projetos').'?publicado=1">Publicados</a>' : '' !!}
+                                    {!! $filtro['nome'] != 'Rasc.' ? '<a href="'.route('admin.projetos').'?publicado=0">Rascunhos</a>' : '' !!}
                                 </div>
                             </label>
                         </th>
@@ -58,7 +52,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td height="56px" colspan="3">Ainda não há projetos{{ $lista['all'] ? '' : '' }}{{ $lista['drafts'] ? ' rascunhos' : '' }}{{ $lista['public'] ? ' publicados' : ''}}.</td>
+                            <td height="56px" colspan="3">Ainda não há projetos.</td>
                         </tr>
                     @endif
 

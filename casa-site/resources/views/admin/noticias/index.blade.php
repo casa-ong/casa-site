@@ -22,21 +22,15 @@
                         <th width="55%">Título</th>
                         <th width="25%">
                             <label for="dropdown" class="btn-dropdown">
-                                @if($lista['all'])
-                                Status&nbsp;(Todos)
-                                @elseif($lista['drafts'])
-                                Status&nbsp;(Rasc.)
-                                    @elseif($lista['public'])
-                                    Status&nbsp;(Publi.)
-                                    @endif
-                                    <i class="fas fa-caret-down"></i>
-                                    <input type="checkbox" class="dropdown" id="dropdown">
-                                    <div id="dropdown-links" class="dropdown-links">
-                                        {!! !$lista['all'] ? '<a href="'.route('admin.noticias').'">Todos</a>' : '' !!}
-                                        {!! !$lista['drafts'] ? '<a href="'.route('admin.noticias.rascunhos').'">Rascunhos</a>' : '' !!}
-                                        {!! !$lista['public'] ? '<a href="'.route('admin.noticias.publicados').'">Publicados</a>' : '' !!}
-                                    </div>
-                                </label>
+                                Status&nbsp;({{ $filtro['nome'] ?? 'Todos'}})
+                                <i class="fas fa-caret-down"></i>
+                                <input type="checkbox" class="dropdown" id="dropdown">
+                                <div id="dropdown-links" class="dropdown-links">
+                                    {!! $filtro['nome'] != 'Todos' ? '<a href="'.route('admin.noticias').'">Todos</a>' : '' !!}
+                                    {!! $filtro['nome'] != 'Public.' ? '<a href="'.route('admin.noticias').'?publicado=1">Publicados</a>' : '' !!}
+                                    {!! $filtro['nome'] != 'Rasc.' ? '<a href="'.route('admin.noticias').'?publicado=0">Rascunhos</a>' : '' !!}
+                                </div>
+                            </label>
                         </th>
                     </tr>
                 </thead>
@@ -59,7 +53,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td height="56px" colspan="3">Ainda não há notícias{{ $lista['all'] ? '' : '' }}{{ $lista['drafts'] ? ' rascunhos' : '' }}{{ $lista['public'] ? ' publicadas' : ''}}.</td>
+                            <td height="56px" colspan="3">Ainda não há notícias.</td>
                         </tr>
                     @endif
                     

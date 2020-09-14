@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NewsletterRequest extends FormRequest
+class VotarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,15 @@ class NewsletterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email_newsletter' => 'email|unique:newsletters|max:255',
+            'opcao' => 'required',
+	        'g-recaptcha-response' => 'required',
         ];
     }
-    
-    public function messages() 
-    {
+
+    public function messages() {
         return [
-            'email_newsletter.email' => 'Endereço de email digitado inválido',
-            'email_newsletter.unique' => 'Endereço de email digitado já tem cadastro',
-            
+            'opcao.required' => 'Você deve escolher uma das opção para votar',
+            'g-recaptcha-response.required' => 'Você deve marcar o campo "Não sou um robô"',
         ];
     }
 }

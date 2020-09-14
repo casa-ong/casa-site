@@ -24,10 +24,10 @@ class SugestaoRequest extends FormRequest
     public function rules()
     {
         return [
-        'assunto' => 'required|min:3',
-        'mensagem' => 'required|min:3',
-        'email' => 'required|email',
-        'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
+            'assunto' => 'required|min:3|max:255',
+            'mensagem' => 'required|min:3',
+            'email' => 'required|email|max:255',
+            'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
         ];
     }
     public function messages() 

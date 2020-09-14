@@ -52,14 +52,17 @@ class NoticiaController extends Controller
     // Metodo responsavel por abrir a pagina inicial das noticias
     public function index()
     {
-        $registros = $this->noticia->all()->reverse();
-        $lista = [
-            'all' => true,
-            'drafts' => false,
-            'public' => false,
-        ];
+        $registros = $this->noticia;
+        $filtro['nome'] = 'Todos';
 
-        return view('admin.noticias.index', compact('registros', 'lista'));
+        if(request()->has('publicado') && request('publicado') != '') {
+            $registros = $registros->where('publicado', request('publicado'));
+            $filtro['publicado'] = request('publicado');
+            $filtro['nome'] = (request('publicado') ? 'Public.' : 'Rasc.');
+        }
+
+        $registros = $registros->latest()->get();
+        return view('admin.noticias.index', compact('registros', 'filtro'));
     }
 
     public function indexPublicados()
@@ -102,14 +105,7 @@ class NoticiaController extends Controller
         } else if(isset($dados['rascunho'])) {
             $dados['publicado'] = false;
         }
-
-        if(isset($dados['curtir'])) {
-            $dados['curtir'] = true;
-        } else {
-            $dados['curtir'] = false;
-        }
-
-        
+  
         $noticia = $this->noticia->create($dados);
         
         if($request->hasFile('anexo')) {
@@ -150,12 +146,6 @@ class NoticiaController extends Controller
             $dados['publicado'] = false;
         }
 
-        if(isset($dados['curtir'])) {
-            $dados['curtir'] = true;
-        } else {
-            $dados['curtir'] = false;
-        }
-        
         $noticia = $this->noticia->find($id);
         
         if($request->hasFile('anexo')) {
