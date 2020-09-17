@@ -14,4 +14,8 @@ class Projeto extends Model
     public function user() {
         return $this->hasMany('App\User');
     }
+
+    public function despesa() {
+        return $this->hasMany('App\Despesa');
+    }
 }
