@@ -94,4 +94,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->oneToOne('App\Newsletter');
     }
 
+    public function despesa(){
+        return $this->hasMany('App\Despesa');
+    }
+
 }
