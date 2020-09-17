@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sobre;
+use App\Contato;
 use Validator;
 use App\Http\Requests\SobreRequest;
  
@@ -11,27 +12,30 @@ class SobreController extends Controller
 {
 
     protected $sobre;
+    protected $contato;
 
-    public function __construct(Sobre $sobre)
+    public function __construct(Sobre $sobre, Contato $contato)
     {
         $this->sobre = $sobre;
+        $this->contato = $contato;
     } 
 
     public function sobre() 
     {
         $registro = $this->sobre->latest('updated_at')->first();
-        return view('sobre', compact('registro'));
+        $contato = $this->contato->where('sobre_id', $registro->id);
+        return view('sobre', compact('registro', 'contato'));
     }
 
     public function index() 
     {
         $registro = $this->sobre->latest('updated_at')->first();
-        // $registros = $this->sobre->all()->reverse();
         if(!isset($registro)) {
             return view('admin.sobre.adicionar');
         }
+        $contato = $this->contato->where('sobre_id', $registro->id)->first();
 
-        return view('admin.sobre.editar', compact('registro'));
+        return view('admin.sobre.editar', compact('registro', 'contato'));
     }
 
     public function adicionar() 
@@ -45,8 +49,8 @@ class SobreController extends Controller
 
         $request->validated();
         $dados = $request->all();
-    
-        $sobrer = $this->sobre->create($dados);
+
+        $sobre = $this->sobre->create($dados);
         
         if($request->hasFile('logo')) {
             $anexo = $request->file('logo');
@@ -77,6 +81,9 @@ class SobreController extends Controller
             $anexo->move($dir, $nomeAnexo);
             $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
         }
+
+        $dados['sobre_id'] = $sobre->id;
+        $contato = $this->contato->create($dados);
 
         $sobre->update($dados);
 
@@ -128,9 +135,13 @@ class SobreController extends Controller
             $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
         }
 
+        $dados['sobre_id'] = $dadoSite->id;
+        $contato = $this->contato->where('sobre_id', $dadoSite->id)->first();
+        $contato->update($dados);
+
         $dadoSite->touch();
         $dadoSite->update($dados);
 
-        return redirect()->route('admin.index')->with('success', 'Informações atualizadas com sucesso!');
+        return redirect()->back()->with('success', 'Informações atualizadas com sucesso!');
     }
 }

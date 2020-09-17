@@ -10,7 +10,7 @@ class Newsletter extends Model
     use Notifiable;
 
     protected $fillable = [
-        'email_newsletter', 'receber_eventos', 'receber_projetos', 'receber_noticias', 'token',
+        'email_newsletter', 'receber_eventos', 'receber_projetos', 'receber_noticias', 'token', 'user_id'
     ];
 
     public function user() {

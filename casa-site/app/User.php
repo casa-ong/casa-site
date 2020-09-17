@@ -91,7 +91,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function newsletter() {
-        return $this->oneToOne('App\Newsletter');
+        return $this->hasOne('App\Newsletter');
     }
 
     public function despesa(){
@@ -101,6 +101,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function enquete()
     {
         return $this->hasMany('App\Enquete');
+    }
+
+    public function sugestao()
+    {
+        return $this->hasMany('App\Sugestao');
     }
 
 }

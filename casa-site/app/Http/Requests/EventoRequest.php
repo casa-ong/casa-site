@@ -27,7 +27,7 @@ class EventoRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'nome' => 'required|min:3|max:255',
             'descricao' => 'required|min:3',
-            'anexo' => 'nullable|image|max:255',
+            'anexo' => 'nullable|image',
             'data' => 'date',
             'hora' => 'date_format:H:i',
         ];
