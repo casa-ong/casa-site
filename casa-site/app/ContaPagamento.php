@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ContaPagamento extends Model
 {
     protected $fillable = [
-        'nome', 'cnpj', 'banco', 'agencia', 'operacao','numeroConta',
+        'nome', 'cnpj', 'banco', 'agencia', 'operacao','numero_conta',
       ];
 
     
