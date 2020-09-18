@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Enquete extends Model
+class Despesa extends Model
 {
   protected $fillable = [
     'nome', 'descricao', 'nota_fiscal', 'valor', 'user_id', 'projeto_id'

@@ -18,4 +18,8 @@ class Projeto extends Model
     public function despesa() {
         return $this->hasMany('App\Despesa');
     }
+
+    public function doacao() {
+        return $this->hasMany('App\Doacao');
+    }
 }
