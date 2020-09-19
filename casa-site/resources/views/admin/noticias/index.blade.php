@@ -47,7 +47,7 @@
                                         <span class="fas fa-trash-alt"></span>
                                     </a>
                                 </td>
-                                <td>{{ $registro->titulo }}</td>
+                                <td>{{ $registro->nome }}</td>
                                 <td>{{ $registro->publicado ? "Sim" : "Não" }}</td>
                             </tr>
                         @endforeach

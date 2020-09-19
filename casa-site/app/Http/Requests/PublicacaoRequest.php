@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NoticiaRequest extends FormRequest
+class PublicacaoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,22 +25,24 @@ class NoticiaRequest extends FormRequest
     {
         return [
             'user_id' => 'required|exists:users,id',
-            'titulo' => 'required|min:3|max:255',
-            'texto' => 'required|min:3',
+            'nome' => 'required|min:3|max:255',
+            'descricao' => 'required|min:3',
             'anexo' => 'nullable|image',
-            
+            'data' => 'date',
+            'hora' => 'date_format:H:i',
         ];
     }
-
+    
     public function messages() 
     {
         return [
-            'titulo.required' => 'O campo titulo deve ser preenchido',
-            'titulo.min' => 'O campo titulo deve ter no mínimo 3 letras',
-            'texto.required' => 'O texto da notícia deve ser preenchido',
-            'texto.min' => 'O texto da notícia deve ter no mínimo 3 letras',
+            'nome.required' => 'O campo nome deve ser preenchido',
+            'nome.min' => 'O campo nome deve ter no mínimo 3 letras',
+            'descricao.required' => 'O texto da descrição deve ser preenchido',
+            'descricao.min' => 'O texto da descrição deve ter no mínimo 3 letras',
             'anexo.image' => 'O arquivo sob validação deve ser uma imagem (jpeg, png, bmp, gif, svg ou webp)',
-
+            'data.date' => 'A data deve ser no formato 01/01/2020',
+            'hora.date_format' => 'A hora deve ser no formato 00:00',
         ];
     }
 }

@@ -1,18 +1,18 @@
 @extends('layout.site')
-@section('titulo', 'Eventos | Casa')
+@section('titulo', ($tipo == 'evento' ? 'Eventos' : 'Notícias').' | Casa')
 
 @section('conteudo')
 <div id="eventos" class="anchor item-title">
-    <h1><strong>Eventos</strong></h1>
+    <h1><strong>{{ $tipo == 'evento' ? 'Eventos' : 'Notícias' }}</strong></h1>
 </div>
-@if(isset($eventos) && count($eventos) > 0)
+@if(isset($registros) && count($registros) > 0)
     <div class="item border-0">
-        @foreach ($eventos as $evento)
-            @include('site.eventos._list')
+        @foreach ($registros as $registro)
+            @include('site.publicacaos._list')
         @endforeach
     </div>
     <div class="page-nav">
-        {{ $eventos->links() }}
+        {{ $registros->links() }}
     </div>
 </div>
 @else

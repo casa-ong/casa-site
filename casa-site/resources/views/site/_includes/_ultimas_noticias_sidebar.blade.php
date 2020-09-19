@@ -1,7 +1,7 @@
 <div class="row align-center">
 
-    @foreach ($noticias as $noticia)
-        @include('site.noticias._card')
+    @foreach ($noticias as $registro)
+        @include('site.publicacaos._card')
     @endforeach
 
 </div>
