@@ -1,14 +1,17 @@
-@php($user = Auth::user())
+@php
+    $user = Auth::user()
+@endphp
 <input type="hidden" name="user_id" value="{{ $user->id }}">
+<input type="hidden" name="tipo" value="noticia">
 
 @if(isset($registro))
     <p>Essa notícia está <strong>{{ isset($registro->publicado) && $registro->publicado == true ? 'publicada' : 'salva no rascunho'}}.</strong></p>
 @endif
 
 <div class="input-field">
-    <label for="titulo">Título*</label>
-    <input class="{{ $errors->has('titulo') ? 'error' : '' }}" type="text" name="titulo" value="{{ isset($registro->titulo) ? $registro->titulo : old('titulo') }}" placeholder="Digite aqui o título da notícia">
-    @error('titulo')
+    <label for="nome">Título*</label>
+    <input class="{{ $errors->has('nome') ? 'error' : '' }}" type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}" placeholder="Digite aqui o título da notícia">
+    @error('nome')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>
@@ -16,9 +19,9 @@
 </div>
 
 <div class="input-field">
-    <label for="texto">Texto*</label>
-    <textarea class="{{ $errors->has('texto') ? 'error' : old('texto') }}" id="summernote" name="texto" type="text" placeholder="Digite aqui o texto da notícia">{{ isset($registro->texto) ? $registro->texto : old('texto')  }}</textarea>
-    @error('texto')
+    <label for="descricao">Texto*</label>
+    <textarea class="{{ $errors->has('descricao') ? 'error' : old('descricao') }}" id="summernote" name="descricao" type="text" placeholder="Digite aqui o descricao da notícia">{{ isset($registro->descricao) ? $registro->descricao : old('descricao')  }}</textarea>
+    @error('descricao')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>

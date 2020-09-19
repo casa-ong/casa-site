@@ -1,4 +1,5 @@
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+<input type="hidden" name="tipo" value="evento">
 
 @if(isset($registro))
     <p>Esse evento está <strong>{{ isset($registro->publicado) && $registro->publicado == true ? 'publicado' : 'salvo no rascunho'}}.</strong></p>

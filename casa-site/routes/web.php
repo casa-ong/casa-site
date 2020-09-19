@@ -29,14 +29,14 @@ Route::post('/voluntario/adicionar', ['as' => 'site.home.voluntario.adicionar', 
 Route::post('/voluntario/salvar',['as' => 'admin.voluntario.salvar', 'uses' => 'UserController@salvar']);
 Route::get('/voluntario/ver/{id}',['as' => 'admin.voluntario.ver', 'uses' => 'UserController@ver']);
 
-Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'EventoController@eventos']);
-Route::get('/evento/{id}', ['as' => 'site.evento', 'uses' => 'EventoController@evento']);
+Route::get('/eventos', ['as' => 'site.eventos', 'uses' => 'PublicacaoController@publicacaos']);
+Route::get('/evento/{id}', ['as' => 'site.evento', 'uses' => 'PublicacaoController@publicacao']);
 
 Route::get('/projetos', ['as' => 'site.projetos', 'uses' => 'ProjetoController@projetos']);
 Route::get('/projeto/{id}', ['as' => 'site.projeto', 'uses' => 'ProjetoController@projeto']);
 
-Route::get('/noticias', ['as' => 'site.noticias', 'uses' => 'NoticiaController@noticias']);
-Route::get('/noticia/{id}', ['as' => 'site.noticia', 'uses' => 'NoticiaController@noticia']);
+Route::get('/noticias', ['as' => 'site.noticias', 'uses' => 'PublicacaoController@publicacaos']);
+Route::get('/noticia/{id}', ['as' => 'site.noticia', 'uses' => 'PublicacaoController@publicacao']);
 
 Route::get('/login',['as' => 'login', 'uses' => 'LoginController@index']);
 Route::get('/login/sair', ['as' => 'login.sair', 'uses' => 'LoginController@sair']);
@@ -69,23 +69,23 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::put('/admin/projeto/atualizar/{id}',['as' => 'admin.projeto.atualizar', 'uses' => 'ProjetoController@atualizar']);
     Route::get('/admin/projeto/deletar/{id}',['as' => 'admin.projeto.deletar', 'uses' => 'ProjetoController@deletar']);
 
-    Route::get('/admin/eventos',['as' => 'admin.eventos', 'uses' => 'EventoController@index']);
-    Route::get('/admin/eventos/publicados',['as' => 'admin.eventos.publicados', 'uses' => 'EventoController@indexPublicados']);
-    Route::get('/admin/eventos/rascunhos',['as' => 'admin.eventos.rascunhos', 'uses' => 'EventoController@indexRascunhos']);
-    Route::get('/admin/evento/adicionar',['as' => 'admin.evento.adicionar', 'uses' => 'EventoController@adicionar']);
-    Route::post('/admin/evento/salvar',['as' => 'admin.evento.salvar', 'uses' => 'EventoController@salvar']);
-    Route::get('/admin/evento/editar/{id}',['as' => 'admin.evento.editar', 'uses' => 'EventoController@editar']);
-    Route::put('/admin/evento/atualizar/{id}',['as' => 'admin.evento.atualizar', 'uses' => 'EventoController@atualizar']);
-    Route::get('/admin/evento/deletar/{id}',['as' => 'admin.evento.deletar', 'uses' => 'EventoController@deletar']);
+    Route::get('/admin/eventos',['as' => 'admin.eventos', 'uses' => 'PublicacaoController@index']);
+    Route::get('/admin/eventos/publicados',['as' => 'admin.eventos.publicados', 'uses' => 'PublicacaoController@indexPublicados']);
+    Route::get('/admin/eventos/rascunhos',['as' => 'admin.eventos.rascunhos', 'uses' => 'PublicacaoController@indexRascunhos']);
+    Route::get('/admin/evento/adicionar',['as' => 'admin.evento.adicionar', 'uses' => 'PublicacaoController@adicionar']);
+    Route::post('/admin/evento/salvar',['as' => 'admin.evento.salvar', 'uses' => 'PublicacaoController@salvar']);
+    Route::get('/admin/evento/editar/{id}',['as' => 'admin.evento.editar', 'uses' => 'PublicacaoController@editar']);
+    Route::put('/admin/evento/atualizar/{id}',['as' => 'admin.evento.atualizar', 'uses' => 'PublicacaoController@atualizar']);
+    Route::get('/admin/evento/deletar/{id}',['as' => 'admin.evento.deletar', 'uses' => 'PublicacaoController@deletar']);
     
-    Route::get('/admin/noticias', ['as' => 'admin.noticias', 'uses' => 'NoticiaController@index']);
-    Route::get('/admin/noticias/publicados', ['as' => 'admin.noticias.publicados', 'uses' => 'NoticiaController@indexPublicados']);
-    Route::get('/admin/noticias/rascunhos', ['as' => 'admin.noticias.rascunhos', 'uses' => 'NoticiaController@indexRascunhos']);
-    Route::get('/admin/noticia/adicionar',['as' => 'admin.noticia.adicionar', 'uses' => 'NoticiaController@adicionar']);
-    Route::post('/admin/noticia/salvar',['as' => 'admin.noticia.salvar', 'uses' => 'NoticiaController@salvar']);
-    Route::get('/admin/noticia/editar/{id}',['as' => 'admin.noticia.editar', 'uses' => 'NoticiaController@editar']);
-    Route::put('/admin/noticia/atualizar/{id}',['as' => 'admin.noticia.atualizar', 'uses' => 'NoticiaController@atualizar']);
-    Route::get('/admin/noticia/deletar/{id}',['as' => 'admin.noticia.deletar', 'uses' => 'NoticiaController@deletar']);
+    Route::get('/admin/noticias', ['as' => 'admin.noticias', 'uses' => 'PublicacaoController@index']);
+    Route::get('/admin/noticias/publicados', ['as' => 'admin.noticias.publicados', 'uses' => 'PublicacaoController@indexPublicados']);
+    Route::get('/admin/noticias/rascunhos', ['as' => 'admin.noticias.rascunhos', 'uses' => 'PublicacaoController@indexRascunhos']);
+    Route::get('/admin/noticia/adicionar',['as' => 'admin.noticia.adicionar', 'uses' => 'PublicacaoController@adicionar']);
+    Route::post('/admin/noticia/salvar',['as' => 'admin.noticia.salvar', 'uses' => 'PublicacaoController@salvar']);
+    Route::get('/admin/noticia/editar/{id}',['as' => 'admin.noticia.editar', 'uses' => 'PublicacaoController@editar']);
+    Route::put('/admin/noticia/atualizar/{id}',['as' => 'admin.noticia.atualizar', 'uses' => 'PublicacaoController@atualizar']);
+    Route::get('/admin/noticia/deletar/{id}',['as' => 'admin.noticia.deletar', 'uses' => 'PublicacaoController@deletar']);
 
     Route::get('/admin/voluntarios', ['as' => 'admin.voluntarios', 'uses' => 'UserController@index']);
     Route::get('/admin/voluntatio/adicionar',['as' => 'admin.voluntario.adicionar', 'uses' => 'UserController@adicionar']);

@@ -1,22 +1,26 @@
 @extends('layout.site')
-@section('titulo', $noticia->titulo.' | Casa')
+@section('titulo', $registro->nome.' | Casa')
 
 @section('conteudo')
 <div class="post">
     <div>
         <div class="content">
-            @if (isset($noticia->anexo))
+            @if(isset($registro->anexo))
                 <div class="img">
-                    <img src="{{ asset($noticia->anexo) }}" alt="">
+                    <img src="{{ asset($registro->anexo) }}" alt="">
                 </div>
             @endif
             <div class="text">
                 <div class="title">
-                    <h1>{{ $noticia->titulo }}</h1>
+                    <h1>{{ $registro->nome }}</h1>
                 </div>
-                <p style="align-self: flex-start">{{ $noticia->manchete }}</p>
-                {!! $noticia->toArray()['texto'] !!}
-                <p>{{ strftime('%A, %d de %B  de %Y', strtotime($noticia->created_at)) }}</p>
+                
+                @if($registro->tipo == 'evento')
+                    <p><strong>Realização: {{ strftime('%A, %d de %B  de %Y', strtotime($registro->data)).' às '.date('H:i', strtotime($registro->hora)) }}</strong></p>
+                @endif
+
+                {!! $registro->toArray()['descricao'] !!}
+                <p>{{ strftime('%A, %d de %B  de %Y', strtotime($registro->created_at)) }}</p>
             </div>
         </div>
 
@@ -28,7 +32,7 @@
         @endif
 
     </div>
-
+    
     @if(isset($noticias) && count($noticias) > 0)
         <section class="sidebar">
             <h1>Últimas <strong>notícias</strong></h1>

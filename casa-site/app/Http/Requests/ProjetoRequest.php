@@ -26,7 +26,7 @@ class ProjetoRequest extends FormRequest
         return [
             'nome' => 'required|min:3|max:255',
             'descricao' => 'required|min:3',
-            'anexo' => 'nullable|image|max:255',
+            'anexo' => 'nullable|image',
         ];
     }
 

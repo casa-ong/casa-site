@@ -13,7 +13,7 @@ class Sugestao extends Model implements MustVerifyEmail
     use Notifiable;
 
     protected $fillable = [
-        'assunto', 'mensagem', 'email', 'telefone', 'lida',
+        'assunto', 'mensagem', 'email', 'telefone', 'lida', 'data_leitura', 'user_id',
     ];
 
     /**
@@ -65,5 +65,15 @@ class Sugestao extends Model implements MustVerifyEmail
     public function getEmailForVerification()
     {
         return $this->email;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    public function contato()
+    {
+        return $this->hasOne('App\Contato');
     }
 }

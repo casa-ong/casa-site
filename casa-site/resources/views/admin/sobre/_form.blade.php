@@ -1,21 +1,18 @@
 @if ($errors->any())
     <p class="error">Campos com * são obrigatórios!</p>
 @endif
+@if(Session::has('success'))
+    <div class="alert alert-success" onclick="$(this).toggle('hide')">
+        <p>{{ Session::get('success') }}</p>
+    </div>
+@endif
+
 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 <h3>Informações do site</h3>
 <div class="input-field">
     <label for="titulo_site">Titulo do site</label>
     <input class="{{ $errors->has('titulo_site') ? 'error' : '' }}" type="text" name="titulo_site" value="{{ isset($registro->titulo_site) ? $registro->titulo_site : old('titulo_site') }}" placeholder="Digite aqui o titulo do site">
     @error('titulo_site')
-        <span class="invalid-feedback" role="alert">
-            {{ $message }}
-        </span>
-    @enderror
-</div>
-<div class="input-field">
-    <label for="slogan">Slogan</label>
-    <input class="{{ $errors->has('slogan') ? 'error' : '' }}" type="text" name="slogan" value="{{ isset($registro->slogan) ? $registro->slogan : old('slogan') }}" placeholder="Digite aqui o slogan do site">
-    @error('slogan')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>
@@ -61,8 +58,8 @@
     @enderror
 </div>
 <div class="input-field">
-    <label for="email">Email da organização</label>
-    <input class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($registro->email) ? $registro->email : old('email') }}" placeholder="Digite aqui o email da organização">
+    <label for="email">E-mail da organização</label>
+    <input class="{{ $errors->has('email') ? 'error' : '' }}" type="text" name="email" value="{{ isset($contato->email) ? $contato->email : old('email') }}" placeholder="Digite aqui o email da organização">
     @error('email')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
@@ -71,7 +68,7 @@
 </div>
 <div class="input-field">
     <label for="telefone">Telefone para contato da organização</label>
-    <input class="{{ $errors->has('telefone') ? 'error' : '' }} telefone" type="text" name="telefone" value="{{ isset($registro->telefone) ? $registro->telefone : old('telefone') }}" placeholder="Digite aqui o telefone da organização">
+    <input class="{{ $errors->has('telefone') ? 'error' : '' }} telefone" type="text" name="telefone" value="{{ isset($contato->telefone) ? $contato->telefone : old('telefone') }}" placeholder="Digite aqui o telefone da organização">
     @error('telefone')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
@@ -82,7 +79,7 @@
 <h3>Redes sociais</h3>
 <div class="input-field">
     <label for="instagram">Instagram</label>
-    <input type="url" name="instagram" value="{{ isset($registro->instagram) ? $registro->instagram : old('instagram') }}" placeholder="Digite aqui o instagram da organização">
+    <input type="url" name="instagram" value="{{ isset($contato->instagram) ? $contato->instagram : old('instagram') }}" placeholder="Digite aqui o instagram da organização">
     @error('instagran')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
@@ -91,7 +88,7 @@
 </div>
 <div class="input-field">
     <label for="twitter">Twitter</label>
-    <input type="url" name="twitter" value="{{ isset($registro->twitter) ? $registro->twitter : old('twitter') }}" placeholder="Digite aqui o twitter da organização">
+    <input type="url" name="twitter" value="{{ isset($contato->twitter) ? $contato->twitter : old('twitter') }}" placeholder="Digite aqui o twitter da organização">
     @error('twitter')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
@@ -100,7 +97,7 @@
 </div>
 <div class="input-field">
     <label for="facebook">Facebook</label>
-    <input type="url" name="facebook" value="{{ isset($registro->facebook) ? $registro->facebook : old('facebook') }}" placeholder="Digite aqui o facebook da organização">
+    <input type="url" name="facebook" value="{{ isset($contato->facebook) ? $contato->facebook : old('facebook') }}" placeholder="Digite aqui o facebook da organização">
     @error('facebook')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
