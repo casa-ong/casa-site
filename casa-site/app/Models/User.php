@@ -1,15 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use \Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Carbon\Carbon;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,20 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'cpf', 'descricao', 'foto', 'profissao', 'admin', 'telefone', 'aprovado', 'estado', 'projeto_id', 'nascimento', 'cidade'
+        'name',
+        'email',
+        'password',
+        'cpf',
+        'descricao',
+        'foto',
+        'profissao',
+        'admin',
+        'telefone',
+        'aprovado',
+        'estado',
+        'projeto_id',
+        'nascimento',
+        'cidade'
     ];
 
     /**
@@ -26,7 +40,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -69,15 +84,18 @@ class User extends Authenticatable implements MustVerifyEmail
         ['TO','Tocantins'],
     ];
 
-    public function projeto() {
+    public function projeto()
+    {
         return $this->belongsTo('App\Projeto');
     }
 
-    public function sobre() {
+    public function sobre()
+    {
         return $this->hasMany('App\Sobre');
     }
 
-    public function publicacao() {
+    public function publicacao()
+    {
         return $this->hasMany('App\Publicacao');
     }
 
@@ -86,11 +104,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return Carbon::parse($this->attributes['nascimento'])->age;
     }
 
-    public function newsletter() {
+    public function newsletter()
+    {
         return $this->hasOne('App\Newsletter');
     }
 
-    public function despesa(){
+    public function despesa()
+    {
         return $this->hasMany('App\Despesa');
     }
 

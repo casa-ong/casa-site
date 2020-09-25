@@ -16,21 +16,18 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Notification;
 use Validator;
 use Auth;
-use App\User;
-use App\Projeto;
-use App\Noticia;
+use App\Models\User;
+use App\Models\Projeto;
 
 class UserController extends Controller
 {
 
     protected $user;
     protected $projeto;
-    protected $noticia;
 
-    public function __construct(User $user, Projeto $projeto, Noticia $noticia) {
+    public function __construct(User $user, Projeto $projeto) {
         $this->user = $user;
         $this->projeto = $projeto;
-        $this->noticia = $noticia;
     }
 
     public function index() 

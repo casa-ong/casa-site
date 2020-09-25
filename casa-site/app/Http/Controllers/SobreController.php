@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sobre;
-use App\Contato;
+use App\Models\Sobre;
+use App\Models\Contato;
 use Validator;
 use App\Http\Requests\SobreRequest;
  

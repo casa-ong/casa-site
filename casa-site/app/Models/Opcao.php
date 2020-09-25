@@ -1,13 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Opcao extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'nome', 'foto', 'enquete_id',
+        'nome',
+        'foto',
+        'enquete_id',
     ];
 
     public function enquete() 

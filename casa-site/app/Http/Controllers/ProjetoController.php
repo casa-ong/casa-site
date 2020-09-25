@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Noticia;
-use App\Projeto;
-use App\Newsletter;
+use App\Models\Publicacao;
+use App\Models\Projeto;
+use App\Models\Newsletter;
 use Validator;
 use App\Http\Requests\ProjetoRequest;
 use App\Mail\ProjetoEmail;
@@ -17,10 +17,12 @@ class ProjetoController extends Controller
 
     protected $projeto;
     protected $newsletter;
+    protected $publicacao;
 
-    public function __construct(Projeto $projeto, Newsletter $newsletter) {
+    public function __construct(Projeto $projeto, Newsletter $newsletter, Publicacao $publicacao) {
         $this->projeto = $projeto;
         $this->newsletter = $newsletter;
+        $this->publicacao = $publicacao;
 
         setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     }
@@ -38,7 +40,9 @@ class ProjetoController extends Controller
                                 ->where('id', '!=', $id)
                                 ->latest()->take(2)->get();
 
-        $noticias = Noticia::where('publicado', 1)->latest()->take(3)->get();
+        $noticias = $this->publicacao->where('publicado', 1)
+                                    ->where('tipo', 'noticia')
+                                    ->latest()->take(3)->get();
 
         if(!$projeto) {
             throw new ModelNotFoundException;

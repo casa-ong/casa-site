@@ -1,19 +1,26 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Newsletter extends Model
 {
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
-        'email_newsletter', 'receber_eventos', 'receber_projetos', 'receber_noticias', 'token', 'user_id'
+        'email_newsletter',
+        'receber_eventos',
+        'receber_projetos',
+        'receber_noticias',
+        'token',
+        'user_id'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 

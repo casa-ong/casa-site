@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Sugestao;
-use App\User;
+use App\Models\Sugestao;
+use App\Models\User;
 use Auth;
 use Validator;
 use App\Http\Requests\SugestaoRequest;

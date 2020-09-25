@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Newsletter;
+use App\Models\Newsletter;
 use Validator;
 use App\Http\Requests\NewsletterRequest;
 use App\Notifications\NewsletterAdicionadaNotification;

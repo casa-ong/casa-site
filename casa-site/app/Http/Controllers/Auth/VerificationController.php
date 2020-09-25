@@ -13,8 +13,8 @@ use App\Notifications\NovoVoluntarioNotification;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use \Illuminate\Notifications\Notifiable;
 use Notification;
-use App\User;
-use App\Sugestao;
+use App\Models\User;
+use App\Models\Sugestao;
 
 class VerificationController extends Controller
 {

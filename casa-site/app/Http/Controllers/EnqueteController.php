@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Enquete;
-use App\Opcao;
-use App\User;
+use App\Models\Enquete;
+use App\Models\Opcao;
+use App\Models\User;
 use App\Http\Requests\EnqueteRequest;
 use App\Http\Requests\VotarRequest;
 use App\Util\SaveFileUtil;

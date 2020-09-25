@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use App\Publicacao;
-use App\Newsletter;
-use App\Noticia;
-use App\Projeto;
+use App\Models\Publicacao;
+use App\Models\Newsletter;
+use App\Models\Projeto;
 use Validator;
 use App\Http\Requests\PublicacaoRequest;
 use App\Util\SaveFileUtil;
