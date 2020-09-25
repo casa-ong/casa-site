@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 @php
-    $sobre = App\Sobre::latest('updated_at')->first();
+    $sobre = App\Models\Sobre::latest('updated_at')->first();
     if($sobre != null) {
         $titulo = $sobre->titulo_site;
         $slogan = $sobre->slogan;

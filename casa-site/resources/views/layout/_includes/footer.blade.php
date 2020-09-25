@@ -23,8 +23,6 @@
         </div>
         <div class="item">
             <div class="social-icons">
-
-                @php($sobre = App\Sobre::latest('updated_at')->first())
 				
                 @if(isset($sobre->twitter))
                     <a class="social-icon" href="{{ isset($sobre->twitter) ? $sobre->twitter : '#' }}" target="_blank">

@@ -1,19 +1,26 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Sugestao extends Model implements MustVerifyEmail
 {
 
-    use Notifiable;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
-        'assunto', 'mensagem', 'email', 'telefone', 'lida', 'data_leitura', 'user_id',
+        'assunto',
+        'mensagem',
+        'email',
+        'telefone',
+        'lida',
+        'data_leitura',
+        'user_id',
     ];
 
     /**

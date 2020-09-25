@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use URL;
 use Carbon\Carbon;
 use Config;
-use App\Sugestao;
+use App\Models\Sugestao;
 
 class VerifyEmailSugestaoNotification extends Notification
 {

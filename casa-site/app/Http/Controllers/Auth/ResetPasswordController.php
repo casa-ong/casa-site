@@ -11,7 +11,7 @@ use Validator;
 use DB;
 use Hash;
 use Auth;
-use App\User;
+use App\Models\User;
 
 
 class ResetPasswordController extends Controller

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Projeto;
-use App\Publicacao;
-use App\User;
-use App\Sobre;
+use App\Models\Projeto;
+use App\Models\Publicacao;
+use App\Models\User;
+use App\Models\Sobre;
 
 class HomeController extends Controller
 {

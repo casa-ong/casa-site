@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notification;
 use URL;
 use Carbon\Carbon;
 use Config;
-use App\User;
+use App\Models\User;
 
 class UserRegisteredSuccessfully extends Notification
 {

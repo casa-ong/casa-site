@@ -1,19 +1,30 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Mail\EventoEmail;
 use App\Mail\NoticiaEmail;
 use Mail;
 
 class Publicacao extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'nome', 'descricao', 'anexo', 'data', 'publicado', 'user_id', 'hora', 'tipo',
+        'nome',
+        'descricao',
+        'anexo',
+        'data',
+        'publicado',
+        'user_id',
+        'hora',
+        'tipo',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 
