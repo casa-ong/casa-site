@@ -126,4 +126,4 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
 
 Auth::routes();
 
-Route::get('/home', HomeController::class, 'index')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
