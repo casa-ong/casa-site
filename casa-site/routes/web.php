@@ -71,48 +71,50 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function() {
 });
 
 Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' => 'check.admin'], function() {
-    Route::get('/admin/index',['as' => 'admin.index', 'uses' => 'HomeController@adminIndex']);
-    Route::get('/admin/projetos',['as' => 'admin.projetos', 'uses' => 'ProjetoController@index']);
-    Route::get('/admin/projeto/adicionar',['as' => 'admin.projeto.adicionar', 'uses' => 'ProjetoController@adicionar']);
-    Route::post('/admin/projeto/salvar',['as' => 'admin.projeto.salvar', 'uses' => 'ProjetoController@salvar']);
-    Route::get('/admin/projeto/editar/{id}',['as' => 'admin.projeto.editar', 'uses' => 'ProjetoController@editar']);
-    Route::put('/admin/projeto/atualizar/{id}',['as' => 'admin.projeto.atualizar', 'uses' => 'ProjetoController@atualizar']);
-    Route::get('/admin/projeto/deletar/{id}',['as' => 'admin.projeto.deletar', 'uses' => 'ProjetoController@deletar']);
+   
+    Route::get('/admin/index', [HomeController::class, 'adminIndex' ])->name('admin.index');
+    Route::get('/admin/projetos', [ProjetoController::class, 'index' ])->name('admin.projetos');
+    Route::get('/admin/projeto/adicionar', [ProjetoController::class, 'adicionar'])->name('admin.projeto.adicionar');
+    Route::post('/admin/projeto/salvar', [ProjetoController::class, 'salvar' ])->name('admin.projeto.salvar');
+    Route::get('/admin/projeto/editar/{id}', [ProjetoController::class, 'editar' ])->name('admin.projeto.editar');
+    Route::put('/admin/projeto/atualizar/{id}', [ProjetoController::class, 'atualizar' ])->name('admin.projeto.atualizar');
+    Route::get('/admin/projeto/deletar/{id}', [ProjetoController::class, 'deletar' ])->name('admin.projeto.deletar');
 
-    Route::get('/admin/eventos',['as' => 'admin.eventos', 'uses' => 'PublicacaoController@index']);
-    Route::get('/admin/eventos/publicados',['as' => 'admin.eventos.publicados', 'uses' => 'PublicacaoController@indexPublicados']);
-    Route::get('/admin/eventos/rascunhos',['as' => 'admin.eventos.rascunhos', 'uses' => 'PublicacaoController@indexRascunhos']);
-    Route::get('/admin/evento/adicionar',['as' => 'admin.evento.adicionar', 'uses' => 'PublicacaoController@adicionar']);
-    Route::post('/admin/evento/salvar',['as' => 'admin.evento.salvar', 'uses' => 'PublicacaoController@salvar']);
-    Route::get('/admin/evento/editar/{id}',['as' => 'admin.evento.editar', 'uses' => 'PublicacaoController@editar']);
-    Route::put('/admin/evento/atualizar/{id}',['as' => 'admin.evento.atualizar', 'uses' => 'PublicacaoController@atualizar']);
-    Route::get('/admin/evento/deletar/{id}',['as' => 'admin.evento.deletar', 'uses' => 'PublicacaoController@deletar']);
+   
+    Route::get('/admin/eventos', [PublicacaoController::class, 'index' ])->name('admin.eventos');
+    Route::get('/admin/eventos/publicados', [PublicacaoController::class, 'indexPublicados' ])->name('admin.eventos.publicados');
+    Route::get('/admin/eventos/rascunhos', [PublicacaoController::class, 'indexRascunhos' ])->name('admin.eventos.rascunhos');
+    Route::get('/admin/evento/adicionar', [PublicacaoController::class,'adicionar' ])->name('admin.evento.adicionar');
+    Route::post('/admin/evento/salvar', [PublicacaoController::class, 'salvar' ])->name('admin.evento.salvar');
+    Route::get('/admin/evento/editar/{id}', [PublicacaoController::class, 'editar' ])->name('admin.evento.editar');
+    Route::put('/admin/evento/atualizar/{id}', [PublicacaoController::class, 'atualizar' ])->name('admin.evento.atualizar');
+    Route::get('/admin/evento/deletar/{id}', [PublicacaoController::class, 'deletar' ])->name('admin.evento.deletar');
     
-    Route::get('/admin/noticias', ['as' => 'admin.noticias', 'uses' => 'PublicacaoController@index']);
-    Route::get('/admin/noticias/publicados', ['as' => 'admin.noticias.publicados', 'uses' => 'PublicacaoController@indexPublicados']);
-    Route::get('/admin/noticias/rascunhos', ['as' => 'admin.noticias.rascunhos', 'uses' => 'PublicacaoController@indexRascunhos']);
-    Route::get('/admin/noticia/adicionar',['as' => 'admin.noticia.adicionar', 'uses' => 'PublicacaoController@adicionar']);
-    Route::post('/admin/noticia/salvar',['as' => 'admin.noticia.salvar', 'uses' => 'PublicacaoController@salvar']);
-    Route::get('/admin/noticia/editar/{id}',['as' => 'admin.noticia.editar', 'uses' => 'PublicacaoController@editar']);
-    Route::put('/admin/noticia/atualizar/{id}',['as' => 'admin.noticia.atualizar', 'uses' => 'PublicacaoController@atualizar']);
-    Route::get('/admin/noticia/deletar/{id}',['as' => 'admin.noticia.deletar', 'uses' => 'PublicacaoController@deletar']);
+    Route::get('/admin/noticias', [PublicacaoController::class,'index' ])->name('admin.noticias');
+    Route::get('/admin/noticias/publicados', [PublicacaoController::class, 'indexPublicados' ])->name('admin.noticias.publicados');
+    Route::get('/admin/noticias/rascunhos', [PublicacaoController::class, 'indexRascunhos' ])->name('admin.noticias.rascunhos');
+    Route::get('/admin/noticia/adicionar', [PublicacaoController::class, 'adicionar' ])->name('admin.noticia.adicionar');
+    Route::post('/admin/noticia/salvar', [PublicacaoController::class, 'salvar' ])->name('admin.noticia.salvar');
+    Route::get('/admin/noticia/editar/{id}', [PublicacaoController::class, 'editar'])->name('admin.noticia.editar');
+    Route::put('/admin/noticia/atualizar/{id}', [PublicacaoController::class, 'atualizar' ])->name('admin.noticia.atualizar');
+    Route::get('/admin/noticia/deletar/{id}', [PublicacaoController::class, 'deletar' ])->name('admin.noticia.deletar');
 
-    Route::get('/admin/voluntarios', ['as' => 'admin.voluntarios', 'uses' => 'UserController@index']);
-    Route::get('/admin/voluntatio/adicionar',['as' => 'admin.voluntario.adicionar', 'uses' => 'UserController@adicionar']);
-    Route::get('/admin/voluntario/aprovar/{id}',['as' => 'admin.voluntario.aprovar', 'uses' => 'UserController@aprovarVoluntario']);
-    Route::post('/admin/voluntario/aprovar/admin/',['as' => 'admin.voluntario.aprovar.admin', 'uses' => 'UserController@aprovarAdmin']);
+    Route::get('/admin/voluntarios', [UserController::class, 'index' ])->name('admin.voluntarios');
+    Route::get('/admin/voluntatio/adicionar', [UserController::class, 'adicionar' ])->name('admin.voluntario.adicionar');
+    Route::get('/admin/voluntario/aprovar/{id}', [UserController::class, 'aprovarVoluntario' ])->name('admin.voluntario.aprovar');
+    Route::post('/admin/voluntario/aprovar/admin/', [UserController::class, 'aprovarAdmin' ])->name('admin.voluntario.aprovar.admin');
 
-    Route::get('/admin/sobre', ['as' => 'admin.sobre', 'uses' => 'SobreController@index']);
-    Route::get('/admin/sobre/adicionar',['as' => 'admin.sobre.adicionar', 'uses' => 'SobreController@adicionar']);
-    Route::post('/admin/sobre/salvar',['as' => 'admin.sobre.salvar', 'uses' => 'SobreController@salvar']);
-    Route::get('/admin/sobre/editar/{id}',['as' => 'admin.sobre.editar', 'uses' => 'SobreController@editar']);
-    Route::put('/admin/sobre/atualizar/{id}',['as' => 'admin.sobre.atualizar', 'uses' => 'SobreController@atualizar']);
-    Route::get('/admin/sobre/deletar/{id}',['as' => 'admin.sobre.deletar', 'uses' => 'SobreController@deletar']);
+    Route::get('/admin/sobre', [SobreController::class, 'index'])->name('admin.sobre');
+    Route::get('/admin/sobre/adicionar', [SobreController::class, 'adicionar' ])->name('admin.sobre.adicionar');
+    Route::post('/admin/sobre/salvar', [SobreController::class, 'salvar' ])->name('admin.sobre.salvar');
+    Route::get('/admin/sobre/editar/{id}', [SobreController::class,'editar' ])->name('admin.sobre.editar');
+    Route::put('/admin/sobre/atualizar/{id}', [SobreController::class, 'atualizar' ])->name('admin.sobre.atualizar');
+    Route::get('/admin/sobre/deletar/{id}', [SobreController::class, 'deletar' ])->name('admin.sobre.deletar');
 
-    Route::get('/admin/sugestoes',['as' => 'admin.sugestoes', 'uses' => 'SugestaoController@index']);
-    Route::get('/admin/sugestao/ver/{id}',['as' => 'admin.sugestao.ver', 'uses' => 'SugestaoController@ver']);
-    Route::get('/admin/sugestao/atualizar/{id}',['as' => 'admin.sugestao.atualizar', 'uses' => 'SugestaoController@atualizar']);
-    Route::get('/admin/sugestao/deletar/{id}',['as' => 'admin.sugestao.deletar', 'uses' => 'SugestaoController@deletar']);
+    Route::get('/admin/sugestoes', [SugestaoController::class, 'index' ])->name('admin.sugestoes');
+    Route::get('/admin/sugestao/ver/{id}', [SugestaoController::class, 'ver' ])->name('admin.sugestao.ver');
+    Route::get('/admin/sugestao/atualizar/{id}', [SugestaoController::class, 'atualizar' ])->name('admin.sugestao.atualizar');
+    Route::get('/admin/sugestao/deletar/{id}', [SugestaoController::class, 'deletar' ])->name('admin.sugestao.deletar');
 
     Route::get('/admin/enquetes', [EnqueteController::class, 'index'])->name('admin.enquetes');
     Route::get('/admin/enquete/adicionar', [EnqueteController::class, 'adicionar'])->name('admin.enquete.adicionar');
