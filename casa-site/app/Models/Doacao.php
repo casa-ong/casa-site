@@ -21,11 +21,11 @@ class Doacao extends Model
       
     public function conta_pagamento()
     {
-        return $this->belongsTo('App\ContaPagamento');
+        return $this->belongsTo('App\Models\ContaPagamento');
     } 
     
     public function projeto()
     {
-        return $this->belongsTo('App\Projeto');
+        return $this->belongsTo('App\Models\Projeto');
     }
 }

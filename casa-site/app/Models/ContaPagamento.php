@@ -21,6 +21,6 @@ class ContaPagamento extends Model
     
     public function doacao()
     {
-        return $this->hasMany('App\Doacao');
+        return $this->hasMany('App\Models\Doacao');
     }
 }

@@ -17,6 +17,6 @@ class Opcao extends Model
 
     public function enquete() 
     {
-        return $this->belongsTo('App\Enquete');
+        return $this->belongsTo('App\Models\Enquete');
     }
 }
