@@ -20,11 +20,11 @@ class Despesa extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function projeto()
     {
-        return $this->belongsTo('App\Projeto');
+        return $this->belongsTo('App\Models\Projeto');
     }
 }

@@ -76,11 +76,11 @@ class Sugestao extends Model implements MustVerifyEmail
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function contato()
     {
-        return $this->hasOne('App\Contato');
+        return $this->hasOne('App\Models\Contato');
     }
 }
