@@ -53,50 +53,19 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-
-    public static $estadosBrasileiros = [
-        ['AC','Acre'],
-        ['AL','Alagoas'],
-        ['AP','Amapá'],
-        ['AM','Amazonas'],
-        ['BA','Bahia'],
-        ['CE','Ceará'],
-        ['DF','Distrito Federal'],
-        ['ES','Espírito Santo'],
-        ['GO','Goiás'],
-        ['MA','Maranhão'],
-        ['MT','Mato Grosso'],
-        ['MS','Mato Grosso do Sul'],
-        ['MG','Minas Gerais'],
-        ['PA','Pará'],
-        ['PB','Paraíba'],
-        ['PR','Paraná'],
-        ['PE','Pernambuco'],
-        ['PI','Piauí'],
-        ['RJ','Rio de Janeiro'],
-        ['RN','Rio Grande do Norte'],
-        ['RS','Rio Grande do Sul'],
-        ['RO','Rondônia'],
-        ['RR','Roraima'],
-        ['SC','Santa Catarina'],
-        ['SP','São Paulo'],
-        ['SE','Sergipe'],
-        ['TO','Tocantins'],
-    ];
-
     public function projeto()
     {
-        return $this->belongsTo('App\Projeto');
+        return $this->belongsTo('App\Models\Projeto');
     }
 
     public function sobre()
     {
-        return $this->hasMany('App\Sobre');
+        return $this->hasMany('App\Models\Sobre');
     }
 
     public function publicacao()
     {
-        return $this->hasMany('App\Publicacao');
+        return $this->hasMany('App\Models\Publicacao');
     }
 
     public function getAge()
@@ -106,22 +75,54 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function newsletter()
     {
-        return $this->hasOne('App\Newsletter');
+        return $this->hasOne('App\Models\Newsletter');
     }
 
     public function despesa()
     {
-        return $this->hasMany('App\Despesa');
+        return $this->hasMany('App\Models\Despesa');
     }
 
     public function enquete()
     {
-        return $this->hasMany('App\Enquete');
+        return $this->hasMany('App\Models\Enquete');
     }
 
     public function sugestao()
     {
-        return $this->hasMany('App\Sugestao');
+        return $this->hasMany('App\Models\Sugestao');
     }
 
+    public static function getEstadosBrasileiros() 
+    {
+        return [
+            ['AC','Acre'],
+            ['AL','Alagoas'],
+            ['AP','Amapá'],
+            ['AM','Amazonas'],
+            ['BA','Bahia'],
+            ['CE','Ceará'],
+            ['DF','Distrito Federal'],
+            ['ES','Espírito Santo'],
+            ['GO','Goiás'],
+            ['MA','Maranhão'],
+            ['MT','Mato Grosso'],
+            ['MS','Mato Grosso do Sul'],
+            ['MG','Minas Gerais'],
+            ['PA','Pará'],
+            ['PB','Paraíba'],
+            ['PR','Paraná'],
+            ['PE','Pernambuco'],
+            ['PI','Piauí'],
+            ['RJ','Rio de Janeiro'],
+            ['RN','Rio Grande do Norte'],
+            ['RS','Rio Grande do Sul'],
+            ['RO','Rondônia'],
+            ['RR','Roraima'],
+            ['SC','Santa Catarina'],
+            ['SP','São Paulo'],
+            ['SE','Sergipe'],
+            ['TO','Tocantins'],
+        ];
+    }
 }

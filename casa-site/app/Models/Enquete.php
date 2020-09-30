@@ -17,11 +17,11 @@ class Enquete extends Model
 
     public function opcao()
     {
-        return $this->hasMany('App\Opcao');
+        return $this->hasMany('App\Models\Opcao');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -21,6 +21,6 @@ class Contato extends Model
    
     public function sobre()
     {
-        return $this->belongsTo('App\Sobre');
+        return $this->belongsTo('App\Models\Sobre');
     }
 }

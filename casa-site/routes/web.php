@@ -54,7 +54,7 @@ Route::post('/login/entrar', [LoginController::class, 'entrar'])->name('login.en
 
 Route::get('/sugestao/adicionar', [SugestaoController::class, 'adicionar'])->name('sugestao.adicionar');
 Route::post('/sugestao/salvar', [SugestaoController::class, 'salvar'])->name('sugestao.salvar');
-Route::get('/sugestao/verify/{id}/{hash}', [Auth\VerificationController::class, 'verifySugestao'])->name('sugestao.verify');
+Route::get('/sugestao/verify/{id}/{hash}', [VerificationController::class, 'verifySugestao'])->name('sugestao.verify');
 
 Route::get('/newsletter/adicionar', [NewsletterController::class, 'adicionar'])->name('newsletter.adicionar');
 Route::post('/newsletter/salvar', [NewsletterController::class, 'salvar'])->name('newsletter.salvar');
