@@ -13,7 +13,6 @@ class Sobre extends Model
         'titulo_site',
         'logo',
         'banner',
-        'titulo_sobre',
         'texto_sobre',
         'user_id',
     ];
