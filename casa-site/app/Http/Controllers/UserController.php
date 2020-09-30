@@ -38,14 +38,14 @@ class UserController extends Controller
 
     public function adicionar() 
     {
-        $estados = $this->user::$estadosBrasileiros;
+        $estados = $this->user->getEstadosBrasileiros();
         $projetos = $this->projeto->all();
         return view('admin.voluntarios.adicionar', compact('estados', 'projetos'));
     }
 
     public function homeAdicionar(Request $request) 
     {
-        $estados = $this->user::$estadosBrasileiros;
+        $estados = $this->user::getEstadosBrasileiros();
         $projetos = $this->projeto->all();
 
         $registro = $this->user->where('email', $request['email'])->first();
@@ -123,7 +123,7 @@ class UserController extends Controller
             throw new ModelNotFoundException;
         }
 
-        $estados = $this->user::$estadosBrasileiros;
+        $estados = $this->user::getEstadosBrasileiros();
         foreach($estados as $estado) {
             if($estado[0] == $registro->estado) {
                 $registro->estado = $estado[1];
@@ -146,7 +146,7 @@ class UserController extends Controller
             throw new ModelNotFoundException;
         }
 
-        $estados = $this->user::$estadosBrasileiros;
+        $estados = $this->user::getEstadosBrasileiros();
         $projetos = $this->projeto->all();
         return view('admin.voluntarios.editar', compact('registro', 'estados', 'projetos'));
     }

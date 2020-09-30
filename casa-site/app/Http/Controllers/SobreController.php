@@ -72,16 +72,6 @@ class SobreController extends Controller
             $dados['banner'] = $dir.'/'.$nomeAnexo;
         }
 
-        if($request->hasFile('anexo_sobre')) {
-            $anexo = $request->file('anexo_sobre');
-            $num = $sobre->id;
-            $dir = 'img/anexo_sobre';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_sobre_'.$num.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
-        }
-
         $dados['sobre_id'] = $sobre->id;
         $contato = $this->contato->create($dados);
 
@@ -123,16 +113,6 @@ class SobreController extends Controller
             $nomeAnexo = 'banner_'.$num.'.'.$ex;
             $anexo->move($dir, $nomeAnexo);
             $dados['banner'] = $dir.'/'.$nomeAnexo;
-        }
-
-        if($request->hasFile('anexo_sobre')) {
-            $anexo = $request->file('anexo_sobre');
-            $num = $dadoSite->id;
-            $dir = 'img/anexo_sobre';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'anexo_sobre_'.$num.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['anexo_sobre'] = $dir.'/'.$nomeAnexo;
         }
 
         $dados['sobre_id'] = $dadoSite->id;
