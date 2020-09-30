@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Doacao;
 
 class DoacaosSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class DoacaosSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Doacao::factory()->create();
     }
 }

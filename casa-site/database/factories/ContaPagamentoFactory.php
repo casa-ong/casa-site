@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\ContaPagamento;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ContaPagamentoFactory extends Factory
 {
@@ -22,7 +23,12 @@ class ContaPagamentoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'nome' => $this->faker->name,
+            'cnpj' => Str::random(14),
+            'banco' => $this->faker->name,
+            'agencia' => $this->faker->randomNumber($nbDigits = 4),
+            'operacao' => $this->faker->randomNumber($nbDigits = 3),
+            'numero_conta' => $this->faker->bankAccountNumber, 
         ];
     }
 }

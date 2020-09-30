@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\ContaPagamento;
 
 class ContaPagamentosSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class ContaPagamentosSeeder extends Seeder
      */
     public function run()
     {
-        //
+        ContaPagamento::factory()->create();
     }
 }
