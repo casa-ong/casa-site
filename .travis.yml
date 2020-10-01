@@ -1,22 +1,19 @@
 language: php
 
 php:
+  - 7.2
   - 7.4
 
 addons:
   chrome: stable
 
-install:
-  - ls -a
-  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
-
 before_script:
   - cp .env.example .env
-  - cat .env
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
   - php artisan key:generate
-  - mysql -e 'CREATE DATABASE laravel;'
   - php artisan migrate
-  - php artisan serve &
+  - php artisan serve
 
 script:
   - php artisan test
