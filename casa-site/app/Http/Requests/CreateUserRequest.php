@@ -25,12 +25,12 @@ class CreateUserRequest extends FormRequest
     {
         return [
         'name' => 'required|min:3|max:255', //Definir os campos que são obrigatórios com required
-        'cpf' => 'required|regex:/\d{3}\.\d{3}\.\d{3}\-\d{2}/', //Definir o mínimo de letras no campo com min:x
+        'cpf' => 'required|regex:/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/', //Definir o mínimo de letras no campo com min:x
         'descricao' => 'required|min:3',
         'profissao' => 'required|min:3|max:255',
         'foto' => 'required|image',
         'email' => 'required|email|unique:users|max:255',
-        'telefone' => 'regex:/\(?\d{2}\)?\s?\d{5}\-?\d{4}/',
+        'telefone' => 'regex:/^\(?\d{2}\)?\s?\d{5}\-?\d{4}$/',
         'password' => 'nullable|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/|confirmed',
         'estado' => 'required|min:2|max:2',
         'cidade' => 'nullable|min:3|max:50',
