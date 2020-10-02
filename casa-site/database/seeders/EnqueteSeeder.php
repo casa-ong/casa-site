@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Enquete;
-use App\Models\Opcao;
 
-class EnquetesSeeder extends Seeder
+class EnqueteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
