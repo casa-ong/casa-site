@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Newsletter;
 
-class NewslettersSeeder extends Seeder
+class NewsletterSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,12 +14,7 @@ class NewslettersSeeder extends Seeder
      */
     public function run()
     {
-        $dados = [
-            'email_newsletter' => 'teste@teste.com',
-        ];
-
         Newsletter::factory(10)
                 ->create();
-        echo 'Newsletter criado com sucesso!';
     }
 }

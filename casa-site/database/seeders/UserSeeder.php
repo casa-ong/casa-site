@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
-class UsersTableSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
         $dados = [
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'telefone' => '(81)99616-9113',
+            'telefone' => '(81)99999-9999',
             'password' => bcrypt('admin'),
             'cpf' => '111.111.111-11',
             'descricao' => 'Olá, Mundo!',
@@ -26,17 +26,14 @@ class UsersTableSeeder extends Seeder
             'admin' => '1',
             'aprovado' => '1',
             'estado' => 'PE',
-            'cidade' => 'São Bento do Una',
-            'nascimento' => '1998-06-04',
+            'nascimento' => '1999-01-01',
         ];
 
         if(User::where('email', '=', $dados['email'])->count()) {
             $user = User::where('email', '=', $dados['email'])->first();
             $user->update($dados);
-            echo 'Usuario alterado';
         } else {
-            User::create($dados);
-            echo 'Usuario criado';
+            User::factory()->create($dados);
         }
     }
 }
