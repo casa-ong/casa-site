@@ -253,7 +253,7 @@ class UserValidationTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $user = User::factory()->make([
-            'projeto_id' => Str::random(1),
+            'projeto_id' => 0,
         ]);
 
         UserValidator::validate($user->toArray());
