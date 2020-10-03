@@ -5,12 +5,14 @@ namespace Tests\Unit;
 use Tests\TestCase;
 use App\Models\Enquete;
 use App\Validator\ValidationException;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Validator\EnqueteValidator;
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
 
 class EnqueteValidationTest extends TestCase
 {
+    use RefreshDatabase;
     /**
      * A basic unit test example.
      *

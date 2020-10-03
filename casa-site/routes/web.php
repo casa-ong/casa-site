@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\PublicacaoController;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\SugestaoController;
+use App\Http\Controllers\DoacaoController;
 use App\Http\Controllers\Auth\VerificationController;
 
 /*
@@ -131,8 +132,6 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::get('/admin/doacao/editar/{id}', [DoacaoController::class, 'editar' ])->name('admin.doacao.editar');
     Route::put('/admin/doacao/atualizar/{id}', [DoacaoController::class, 'atualizar' ])->name('admin.doacao.atualizar');
     Route::get('/admin/doacao/deletar/{id}', [DoacaoController::class, 'deletar' ])->name('admin.doacao.deletar');
-
-   
 
     Route::get('/admin/newsletters', [NewsletterController::class, 'index'])->name('admin.newsletters');
 

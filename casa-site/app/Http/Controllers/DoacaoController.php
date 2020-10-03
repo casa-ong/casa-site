@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ContaPagamento;
 use App\Models\Projeto;
+use App\Models\Doacao;
 
 class DoacaoController extends Controller
 {
@@ -13,7 +14,7 @@ class DoacaoController extends Controller
     protected $projeto;
 
 
-    public function __construct(Docao $doacao, ContaPagamento $contaPagamento, Projeto $projeto)
+    public function __construct(Doacao $doacao, ContaPagamento $contaPagamento, Projeto $projeto)
     {
         $this->doacao = $doacao;
         $this->contaPagamento = $contaPagamento;
@@ -29,7 +30,7 @@ class DoacaoController extends Controller
     public function index() {
 
         $registros = $this->doacao->all()->reverse();
-        return view('admin.doacao.index', compact('registros'));
+        return view('admin.doacoes.index', compact('registros'));
     }
 
     public function adicionar() 
