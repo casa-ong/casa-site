@@ -258,4 +258,28 @@ class UserValidationTest extends TestCase
 
         UserValidator::validate($user->toArray());
     }
+
+    public function testUserSenhaFraca()
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->make();
+        $dados = $user->toArray();
+        $dados['password'] = '12345';
+        $dados['password_confirmation'] = $dados['password'];
+
+        UserValidator::validate($dados);
+    }
+
+    public function testUserSenhaNaoConfere()
+    {
+        $this->expectException(ValidationException::class);
+
+        $user = User::factory()->make();
+        $dados = $user->toArray();
+        $dados['password'] = 'admin123';
+        $dados['password_confirmation'] = 'admin1234';
+
+        UserValidator::validate($dados);
+    }
 }

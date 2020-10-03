@@ -20,7 +20,8 @@
                     <tr class="table-header">
                         <th width="20%">Ações</th>
                         <th width="30%">Texto</th>
-                        <th width="20%">Votos</th>
+                        <th width="15%">Votos</th>
+                        <th width="10%"> Criada por</th>
                         <th width="25%">
                             <label for="dropdown" class="btn-dropdown">
                                 Status&nbsp;({{ $filtro['nome'] ?? 'Todos' }})
@@ -61,6 +62,9 @@
                                     {{ $total_votos }}
                                 </td>
                                 <td>
+                                    {{ $registro->user->name }}
+                                </td>
+                                <td>
                                     <a class="btn btn-green" href="{{ route('admin.enquete.atualizar',$registro->id) }}" title="{{ $registro->is_aberta ? "Encerrar enquete" : "Abrir enquete" }}">
                                         <span class="fas {{ $registro->is_aberta ? 'fa-lock-open' : 'fa-lock' }}"></span>
                                         {{ $registro->is_aberta ? "Aberta" : "Encerrada" }}</td>
@@ -69,7 +73,7 @@
                         @endforeach
                     @else
                         <tr>
-                            <td height="56px" colspan="4">Ainda não há enquetes.</td>
+                            <td height="56px" colspan="5">Ainda não há enquetes.</td>
                         </tr>
                     @endif
                 </tbody>
