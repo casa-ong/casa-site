@@ -13,6 +13,8 @@ class Enquete extends Model
         'texto',
         'is_aberta',
         'user_id',
+        'opcao.*',
+        'foto.*',
     ];
 
     public function opcao()

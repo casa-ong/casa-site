@@ -1,17 +1,18 @@
 <?php
 
 namespace App\Validator;
-use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\EnqueteRequest;
 use Illuminate\Support\Facades\Validator;
 
-class UserValidator
+class EnqueteValidator
 {
     public static function validate($data)
     {
-        $request = new CreateUserRequest();
+        $request = new EnqueteRequest();
         $validator = Validator::make($data, $request->rules(), $request->messages());
+
         if(!$validator->errors()->isEmpty()) {
-            throw new ValidationException($validator, "Erro na validação do voluntário.");
+            throw new ValidationException($validator, "Erro na validação da enquete.");
         }
 
         return $validator;
