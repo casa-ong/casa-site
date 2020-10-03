@@ -7,10 +7,12 @@ use App\Models\Enquete;
 use App\Validator\ValidationException;
 use App\Validator\EnqueteValidator;
 use Illuminate\Support\Str;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class EnqueteValidationTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * A basic unit test example.
      *
@@ -70,7 +72,7 @@ class EnqueteValidationTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $enquete = Enquete::factory()->make([
-            'user_id' => 1,
+            'user_id' => 0,
         ]);
 
         EnqueteValidator::validate($enquete->toArray());
