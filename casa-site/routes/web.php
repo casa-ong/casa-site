@@ -56,6 +56,9 @@ Route::get('/sugestao/adicionar', [SugestaoController::class, 'adicionar'])->nam
 Route::post('/sugestao/salvar', [SugestaoController::class, 'salvar'])->name('sugestao.salvar');
 Route::get('/sugestao/verify/{id}/{hash}', [VerificationController::class, 'verifySugestao'])->name('sugestao.verify');
 
+Route::get('/doacao/adicionar', [DoacaoController::class, 'adicionar'])->name('doacao.adicionar');
+Route::post('/doacao/salvar', [DoacaoController::class, 'salvar'])->name('doacao.salvar');
+
 Route::get('/newsletter/adicionar', [NewsletterController::class, 'adicionar'])->name('newsletter.adicionar');
 Route::post('/newsletter/salvar', [NewsletterController::class, 'salvar'])->name('newsletter.salvar');
 Route::get('/newsletter/editar/{id}/{token}', [NewsletterController::class, 'editar'])->name('newsletter.editar');
@@ -121,6 +124,15 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::post('/admin/enquete/salvar', [EnqueteController::class, 'salvar'])->name('admin.enquete.salvar');
     Route::get('/admin/enquete/atualizar/{id}', [EnqueteController::class, 'atualizar'])->name('admin.enquete.atualizar');
     Route::get('/admin/enquete/deletar/{id}', [EnqueteController::class, 'deletar'])->name('admin.enquete.deletar');
+
+    Route::get('/admin/doacoes', [DoacaoController::class, 'index' ])->name('admin.doacoes');
+    Route::get('/admin/doacao/adicionar', [DoacaoController::class, 'adicionar'])->name('admin.doacao.adicionar');
+    Route::post('/admin/doacao/salvar', [DoacaoController::class, 'salvar' ])->name('admin.doacao.salvar');
+    Route::get('/admin/doacao/editar/{id}', [DoacaoController::class, 'editar' ])->name('admin.doacao.editar');
+    Route::put('/admin/doacao/atualizar/{id}', [DoacaoController::class, 'atualizar' ])->name('admin.doacao.atualizar');
+    Route::get('/admin/doacao/deletar/{id}', [DoacaoController::class, 'deletar' ])->name('admin.doacao.deletar');
+
+   
 
     Route::get('/admin/newsletters', [NewsletterController::class, 'index'])->name('admin.newsletters');
 
