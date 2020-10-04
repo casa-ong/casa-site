@@ -17,19 +17,24 @@
     <label for="opcaos">Opções*</label>
     <div class="opcao-group" id="opcaoClone">
         <input class="{{ $errors->has('opcao.1') ? 'error' : '' }}" type="text" name="opcao[]" placeholder="Opção 1 da enquete" value="{{ isset($registro->opcao[0]) ? $registro->opcao[0]->nome : old('opcao.0') }}">
-        <input type="file" name="foto[]">
+        <input class="{{ $errors->has('foto.1') ? 'error' : '' }}" type="file" name="foto[]">
     </div>
     <div class="opcao-group">
         <input class="{{ $errors->has('opcao.2') ? 'error' : '' }}" type="text" name="opcao[]" placeholder="Opção 2 da enquete" value="{{ isset($registro->opcao[1]) ? $registro->opcao[1]->nome : old('opcao.1') }}">
-        <input type="file" name="foto[]" id="">
+        <input class="{{ $errors->has('foto.2') ? 'error' : '' }}" type="file" name="foto[]" id="">
     </div>
     @for ($i = 2; old('opcao.'.$i) != null; $i++)
         <div class="opcao-group">
             <input class="{{ $errors->has('opcao.'.$i) ? 'error' : '' }}" type="text" name="opcao[]" placeholder="Opção 2 da enquete" value="{{ isset($registro->opcao[$i]) ? $registro->opcao[$i]->nome : old('opcao.'.$i) }}">
-            <input type="file" name="foto[]" id="">
+            <input class="{{ $errors->has('foto.'.$i) ? 'error' : '' }}" type="file" name="foto[]" id="">
         </div>
     @endfor
     @error('opcao.*')
+        <span class="invalid-feedback" role="alert">
+            {{ $message }}
+        </span>
+    @enderror
+    @error('foto.*')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>

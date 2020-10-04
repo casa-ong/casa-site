@@ -42,7 +42,7 @@ class EnqueteRequest extends FormRequest
             'opcao.*.required' => 'As opções não podem ser vazias',
             'opcao.*.min' => 'As opções devem ter ao menos 3 letras cada',
             'opcao.*.max' => 'O campo de texto não deve ter mais que 255 letras',
-            'foto.*.image' => 'O arquivo sob validação deve ser uma imagem (jpeg, png, bmp, gif, svg ou webp)',
+            'foto.*.image' => 'Os arquivos das opções devem ser imagens (jpeg, png, bmp, gif, svg ou webp)',
         ];
     }
 }
