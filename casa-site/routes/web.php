@@ -143,11 +143,8 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::get('/admin/despesa/deletar/{id}', [DespesaController::class, 'deletar' ])->name('admin.despesa.deletar');
 
     Route::get('/admin/doacoes', [DoacaoController::class, 'index']) -> name('admin.doacoes');
-    Route::get('admin/doacao/adicionar', [DoacaoController::class, 'adicionar']) -> name('admin.doacao.adicionar');
-    Route::post('/admin/doacao/salvar', [DoacaoController::class, 'salvar' ])->name('admin.doacao.salvar');
-    Route::get('/admin/doacao/editar/{id}', [DoacaoController::class, 'editar' ])->name('admin.doacao.editar');
-    Route::put('/admin/doacao/atualizar/{id}', [DoacaoController::class, 'atualizar' ])->name('admin.doacao.atualizar');
-    Route::get('/admin/doacao/deletar/{id}', [DoacaoController::class, 'deletar' ])->name('admin.doacao.deletar');
+    Route::get('/admin/doacao/ver/{id}', [DoacaoController::class, 'ver' ])->name('admin.doacao.ver');
+    
 });
 
 Auth::routes();
