@@ -144,7 +144,16 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
 
     Route::get('/admin/doacoes', [DoacaoController::class, 'index']) -> name('admin.doacoes');
     Route::get('/admin/doacao/ver/{id}', [DoacaoController::class, 'ver' ])->name('admin.doacao.ver');
-    
+
+    Route::get('/admin/conta_pagamentos', [ContaPagamentoController::class, 'index']) -> name('admin.conta_pagamentos');
+    Route::get('/admin/conta_pagamento/adicionar', [ContaPagamentoController::class, 'adicionar']) -> name('admin.conta_pagamento.adicionar');
+    Route::post('/admin/conta_pagamento/salvar', [ContaPagamentoController::class, 'salvar' ])->name('admin.conta_pagamento.salvar');
+    Route::get('/admin/conta_pagamento/editar/{id}', [ContaPagamentoController::class, 'editar' ])->name('admin.conta_pagamento.editar');
+    Route::put('/admin/conta_pagamento/atualizar/{id}', [ContaPagamentoController::class, 'atualizar' ])->name('admin.conta_pagamento.atualizar');
+    Route::get('/admin/conta_pagamento/deletar/{id}', [ContaPagamentoController::class, 'deletar' ])->name('admin.conta_pagamento.deletar');
+
+
+
 });
 
 Auth::routes();
