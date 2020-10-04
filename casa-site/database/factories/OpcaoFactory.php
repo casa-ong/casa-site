@@ -24,7 +24,7 @@ class OpcaoFactory extends Factory
     {
         return [
             'nome' => $this->faker->name(),
-            'foto' => $this->faker->imageUrl($width = 640, $height = 480),
+            'foto' => null,
             'enquete_id' => Enquete::factory(),
         ];
     }
