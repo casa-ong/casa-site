@@ -24,7 +24,7 @@ class VotarRequest extends FormRequest
     public function rules()
     {
         return [
-            'opcao' => 'required',
+            'opcao' => 'required|exists:opcaos,id',
 	        'g-recaptcha-response' => 'required',
         ];
     }
@@ -32,6 +32,7 @@ class VotarRequest extends FormRequest
     public function messages() {
         return [
             'opcao.required' => 'Você deve escolher uma das opção para votar',
+            'opcao.exists' => 'A opção selecionada não existe, vote nas opções disponíveis',
             'g-recaptcha-response.required' => 'Você deve marcar o campo "Não sou um robô"',
         ];
     }

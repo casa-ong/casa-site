@@ -6,15 +6,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Enquete;
+use App\Models\Opcao;
 
 class EnqueteTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function inicializarArrayEnquete($user_id)
+    public function inicializarArrayEnquete($user_id, $is_aberta = true)
     {
         $enquete = Enquete::factory()
-            ->create();
+            ->hasOpcao(2)
+            ->create([
+                'is_aberta' => $is_aberta,
+            ]);
 
         $dados = $enquete->toArray();
         $dados['user_id'] = $user_id;
@@ -171,6 +175,111 @@ class EnqueteTest extends TestCase
             ->get('admin/enquete/deletar/'.$dados['id'])
             ->assertStatus(302)
             ->assertSessionHas('success');
+    }
+
+    public function testUsuarioVerEnqueteAberta()
+    {
+        $voluntario = User::factory()->create([
+            'admin' => true,
+            'aprovado' => true,
+        ]);
+
+        $dados = $this->inicializarArrayEnquete($voluntario->id);
+
+        $response = $this
+            ->get('/site/enquete/'.$dados['id'])
+            ->assertStatus(200);
+    }
+
+    public function testUsuarioVotaEnqueteAberta()
+    {
+        $voluntario = User::factory()->create([
+            'admin' => true,
+            'aprovado' => true,
+        ]);
+
+        $enquete = $this->inicializarArrayEnquete($voluntario->id);
+        $opcao = Opcao::where('enquete_id', $enquete['id'])->first();
+
+        $dados = [];
+        $dados['opcao'] = $opcao->id;
+
+        $dados['g-recaptcha-response'] = 'any';
+
+        $response = $this
+            ->put('/site/enquete/votar/'.$enquete['id'], $dados)
+            ->assertStatus(302)
+            ->assertSessionHas('success');
+    }
+
+    public function testUsuarioVotaEnqueteAbertaOpcaoInexistente()
+    {
+        $voluntario = User::factory()->create([
+            'admin' => true,
+            'aprovado' => true,
+        ]);
+
+        $enquete = $this->inicializarArrayEnquete($voluntario->id);
+
+        $dados = [];
+        $dados['opcao'] = 0;
+
+        $dados['g-recaptcha-response'] = 'any';
+
+        $response = $this
+            ->put('/site/enquete/votar/'.$enquete['id'], $dados)
+            ->assertStatus(302)
+            ->assertSessionHas('errors');
+    }
+
+    public function testUsuarioVerEnqueteFechada()
+    {
+        $voluntario = User::factory()->create([
+            'admin' => true,
+            'aprovado' => true,
+        ]);
+
+        $dados = $this->inicializarArrayEnquete($voluntario->id, false);
+        $dados['is_aberta'] = false;
+
+        $response = $this
+            ->get('/site/enquete/'.$dados['id'])
+            ->assertStatus(404);
+    }
+
+    public function testUsuarioVotaEnqueteFechada()
+    {
+        $voluntario = User::factory()->create([
+            'admin' => true,
+            'aprovado' => true,
+        ]);
+
+        $enquete = $this->inicializarArrayEnquete($voluntario->id, false);
+        $opcao = Opcao::where('enquete_id', $enquete['id'])->first();
+
+        $dados = [];
+        $dados['opcao'] = $opcao->id;
+
+        $dados['g-recaptcha-response'] = 'any';
+
+        $response = $this
+            ->put('/site/enquete/votar/'.$enquete['id'], $dados)
+            ->assertStatus(405);
+    }
+
+    public function testVoluntarioAdminLogadoVerEnqueteFechada()
+    {
+        $voluntario = User::factory()->create([
+            'admin' => true,
+            'aprovado' => true,
+        ]);
+
+        $dados = $this->inicializarArrayEnquete($voluntario->id);
+
+        $response = $this
+            ->actingAs($voluntario)
+            ->get('/site/enquete/'.$dados['id'])
+            ->assertStatus(200);
     }
     
 }
