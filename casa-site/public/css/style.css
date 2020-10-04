@@ -996,6 +996,28 @@ label.input {
     font-size: 10vw;
 }
 
+.radio-option-doacao {
+    display: flex;
+    flex-flow: row wrap;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+    align-items: center;
+    white-space: normal;
+    width: 200px;
+    margin-right: 1.5em;
+    justify-content: center;
+}
+
+.radio-doacao{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+   
+
+
+}
+
 /* Fim de formulários */
 
 /* Cards logado */

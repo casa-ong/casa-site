@@ -8,12 +8,20 @@
             <h1>Doações</h1>
         </div>
         <div class="item-form">
-            
+            <form action="{{ route('doacao.salvar') }}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                @include('admin.doacoes._form')
 
                 <div class="input-btn">
-                    <input name="proximo" type="" class="btn btn-white" value="Próximo">
+                    <button class="btn btn-green">
+                        Concluir Doação
+                    </button>
                 </div>
+                
             </form>
+
+                
+            
         </div>
     </div>
 </div>

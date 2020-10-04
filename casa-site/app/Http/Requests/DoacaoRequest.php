@@ -28,8 +28,10 @@ class DoacaoRequest extends FormRequest
             'valor' => 'required|numeric',
             'meio_pagamento' => 'required',
             'is_anonimo' => 'required',
+            'comprovante_anexo' => 'required',
             'conta_pagamento_id' => 'nullable|exists:conta_pagamentos,id', 
             'projeto_id' => 'nullable|exists:projetos,id',
+
             ];
     }
 
@@ -42,8 +44,9 @@ class DoacaoRequest extends FormRequest
             'valor.required' => 'O campo valor precisa ser preenchido',
             'valor.numeric' => 'O campo valor precisa ser numérico',
             'meio_pagamento.required' => 'O campo meio de pagemento deve ser preenchido',
-            'is_anonimo.required' => 'O campo anônimo precisa ser marcado',
-            
+            'is_anonimo.required' => 'O campo identificação precisa ser marcado',
+            'comprovante_anexo' => 'O campo comprovante precisa ser preenchido',
+
             ];
     }
 }
