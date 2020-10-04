@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ContaPagamento;
 use App\Models\Projeto;
 use App\Models\Doacao;
+use App\Http\Requests\DoacaoRequest;
 
 class DoacaoController extends Controller
 {
@@ -23,7 +24,7 @@ class DoacaoController extends Controller
 
     public function doacoes() 
     {
-        $registros = $this->doacao>all()->reverse();
+        $registros = $this->doacao->all()->reverse();
         return view('doacoes', compact('registros'));
     }
 
@@ -35,7 +36,7 @@ class DoacaoController extends Controller
 
     public function adicionar() 
     {
-        return view('adicionarDoacao');
+        return view('admin.doacoes.adicionar');
     }
 
     public function salvar(DoacaoRequest $request) 
@@ -44,7 +45,7 @@ class DoacaoController extends Controller
         $dados = $request->all();
 
         $doacao = $this->doacao->create($dados);
-          return redirect()->back()->with('success', 'Doação feita com sucesso!');
+        return redirect()->back()->with('success', 'Doação feita com sucesso!');
     
     }
 }
