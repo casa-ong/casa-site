@@ -48,10 +48,12 @@ class EnqueteController extends Controller
         if(!$registro) {
             throw new ModelNotFoundException;
         } else if(!$registro->is_aberta && Auth::guest()) {
-            return view('errors.404_enquete');
+            return response()
+                ->view('errors.404_enquete', $data = [], 404);
         }
 
-        return view('site.enquetes.enquete', compact('registro'));
+        return response()
+            ->view('site.enquetes.enquete', compact('registro'), 200);
     }
 
     public function votar(VotarRequest $request, $id)
@@ -62,7 +64,8 @@ class EnqueteController extends Controller
         $enquete = $this->enquete->find($id);
 
         if(!$enquete->is_aberta) {
-            return view('errors.404_enquete');
+            return response()
+                ->view('errors.404_enquete', $data = [], 405);
         }
 
         $opcao = $this->opcao->find($dados['opcao']);

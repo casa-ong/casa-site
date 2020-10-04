@@ -14,7 +14,7 @@
         @endif
         @if(!$registro->is_aberta)
             <div class="alert alert-error text-center" onclick="$(this).toggle('hide')">
-                <p>Desculpe, já encerramos as votações para essa enquete.</p>
+                <p>Enquete encerrada!</p>
             </div>
         @endif
         <div class="item-form">
