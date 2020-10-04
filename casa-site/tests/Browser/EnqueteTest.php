@@ -48,23 +48,36 @@ class EnqueteTest extends DuskTestCase
         });
     }
 
-    // public function testUsuarioNaoLogadoVota()
-    // {
-    //     $enquete = Enquete::factory()
-    //         ->hasOpcao(3)
-    //         ->create([
-    //             'is_aberta' => true,
-    //         ]);
-        
-    //     $opcao = Opcao::where('enquete_id', $enquete->id)->first();
+    public function testUsuarioNaoLogadoAcessaFormVotarEnqueteFechada()
+    {
+        $enquete = Enquete::factory()
+            ->hasOpcao(3)
+            ->create([
+                'is_aberta' => false,
+            ]);
 
-    //     $this->browse(function (Browser $browser) use ($enquete, $opcao) {
-    //         $browser->visit('/site/enquete/'.$enquete->id)
-    //             ->click('input[value="'.$opcao->id.'"]')
-    //             ->screenshot('clicou opcao')
-    //             ->assertSee($enquete->texto);
-    //     });
-    // }
+        $this->browse(function (Browser $browser) use ($enquete) {
+            $browser->visit('/site/enquete/'.$enquete->id)
+                ->assertSee('Enquete encerrada');
+        });
+    }
+
+    public function testUsuarioNaoLogadoVota()
+    {
+        $enquete = Enquete::factory()
+            ->hasOpcao(3)
+            ->create([
+                'is_aberta' => true,
+            ]);
+        
+        $opcao = Opcao::where('enquete_id', $enquete->id)->first();
+
+        $this->browse(function (Browser $browser) use ($enquete, $opcao) {
+            $browser->visit('/site/enquete/'.$enquete->id)
+                ->click('input[value="'.$opcao->id.'"]')
+                ->assertSee($enquete->texto);
+        });
+    }
 
     public function testVoluntarioAdminLogadoAcessaFormCriar()
     {
@@ -80,6 +93,20 @@ class EnqueteTest extends DuskTestCase
                 ->press('Entrar')
                 ->visit('/admin/enquete/adicionar')
                 ->assertSee('Criar enquete');
+        });
+    }
+
+    public function testVoluntarioLogadoAcessaFormVotarEnqueteFechada()
+    {
+        $enquete = Enquete::factory()
+            ->hasOpcao(3)
+            ->create([
+                'is_aberta' => false,
+            ]);
+
+        $this->browse(function (Browser $browser) use ($enquete) {
+            $browser->visit('/site/enquete/'.$enquete->id)
+                ->assertSee($enquete->texto);
         });
     }
 

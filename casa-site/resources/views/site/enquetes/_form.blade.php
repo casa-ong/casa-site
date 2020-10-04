@@ -15,13 +15,17 @@
     @enderror
 </div>
 
-<div class="form-group row">	
-    <div class="g-recaptcha {{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}" data-sitekey="{!! env('NOCAPTCHA_SITEKEY', 'NOKEYFOUND') !!}"></div>
-    
-        @if ($errors->has('g-recaptcha-response'))
-            <span class="invalid-feedback" style="display: block;">
-                    {{ $errors->first('g-recaptcha-response') }}
-            </span>      
-        @endif
+@if(env('APP_ENV') == 'testing')
+    <input type="text" name="g-recaptcha-response" value="1" style="visibility: hidden;">
+@else
+    <div class="form-group row">	
+        <div class="g-recaptcha {{$errors->has('g-recaptcha-response') ? ' has-error' : '' }}" data-sitekey="{!! env('NOCAPTCHA_SITEKEY', 'NOKEYFOUND') !!}"></div>
+        
+            @if ($errors->has('g-recaptcha-response'))
+                <span class="invalid-feedback" style="display: block;">
+                        {{ $errors->first('g-recaptcha-response') }}
+                </span>      
+            @endif
 
-</div>
+    </div>
+@endif
