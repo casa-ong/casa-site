@@ -54,4 +54,49 @@ class DoacaoTest extends TestCase
             ->assertSessionHas('success');
     }
 
+    public function testUsuarioEnviaFormSemValor()
+    {
+    
+        $dados = $this->inicializarArrayDoacao();
+        $dados['valor'] = '';
+        $response = $this            
+            ->post('doacao/salvar', $dados)
+            ->assertStatus(302)
+            ->assertSessionHas('errors');
+    }
+
+    public function testUsuarioEnviaFormSemIsAnonimo()
+    {
+    
+        $dados = $this->inicializarArrayDoacao();
+        $dados['is_anonimo'] = '';
+        $response = $this            
+            ->post('doacao/salvar', $dados)
+            ->assertStatus(302)
+            ->assertSessionHas('errors');
+    }
+    
+    public function testUsuarioEnviaFormSemComprovanteAnexo()
+    {
+    
+        $dados = $this->inicializarArrayDoacao();
+        $dados['comprovante_anexo'] = '';
+        $response = $this            
+            ->post('doacao/salvar', $dados)
+            ->assertStatus(302)
+            ->assertSessionHas('errors');
+    }
+
+    public function testUsuarioEnviaFormSemMeioPagamento()
+    {
+    
+        $dados = $this->inicializarArrayDoacao();
+        $dados['meio_pagamento'] = '';
+        $response = $this            
+            ->post('doacao/salvar', $dados)
+            ->assertStatus(302)
+            ->assertSessionHas('errors');
+    }
+    
+
 }
