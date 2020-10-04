@@ -12,7 +12,7 @@ use App\Http\Controllers\SobreController;
 use App\Http\Controllers\SugestaoController;
 use App\Http\Controllers\DoacaoController;
 use App\Http\Controllers\Auth\VerificationController;
-
+use App\Http\Controllers\DespesaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -135,6 +135,19 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
 
     Route::get('/admin/newsletters', [NewsletterController::class, 'index'])->name('admin.newsletters');
 
+    Route::get('/admin/despesas', [DespesaController::class, 'index']) -> name('admin.despesas');
+    Route::get('admin/despesa/adicionar', [DespesaController::class, 'adicionar']) -> name('admin.despesa.adicionar');
+    Route::post('/admin/despesa/salvar', [DespesaController::class, 'salvar' ])->name('admin.despesa.salvar');
+    Route::get('/admin/despesa/editar/{id}', [DespesaController::class, 'editar' ])->name('admin.despesa.editar');
+    Route::put('/admin/despesa/atualizar/{id}', [DespesaController::class, 'atualizar' ])->name('admin.despesa.atualizar');
+    Route::get('/admin/despesa/deletar/{id}', [DespesaController::class, 'deletar' ])->name('admin.despesa.deletar');
+
+    Route::get('/admin/doacoes', [DoacaoController::class, 'index']) -> name('admin.doacoes');
+    Route::get('admin/doacao/adicionar', [DoacaoController::class, 'adicionar']) -> name('admin.doacao.adicionar');
+    Route::post('/admin/doacao/salvar', [DoacaoController::class, 'salvar' ])->name('admin.doacao.salvar');
+    Route::get('/admin/doacao/editar/{id}', [DoacaoController::class, 'editar' ])->name('admin.doacao.editar');
+    Route::put('/admin/doacao/atualizar/{id}', [DoacaoController::class, 'atualizar' ])->name('admin.doacao.atualizar');
+    Route::get('/admin/doacao/deletar/{id}', [DoacaoController::class, 'deletar' ])->name('admin.doacao.deletar');
 });
 
 Auth::routes();

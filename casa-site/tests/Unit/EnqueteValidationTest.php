@@ -8,7 +8,6 @@ use App\Validator\ValidationException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Validator\EnqueteValidator;
 use Illuminate\Support\Str;
-use Illuminate\Http\UploadedFile;
 
 class EnqueteValidationTest extends TestCase
 {
@@ -72,7 +71,7 @@ class EnqueteValidationTest extends TestCase
         $this->expectException(ValidationException::class);
 
         $enquete = Enquete::factory()->make([
-            'user_id' => 1,
+            'user_id' => 0,
         ]);
 
         EnqueteValidator::validate($enquete->toArray());
