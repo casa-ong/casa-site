@@ -96,7 +96,6 @@ class DoacaoTest extends TestCase
             ->post('doacao/salvar', $dados)
             ->assertStatus(302)
             ->assertSessionHas('errors');
-    }
-    
+    }    
 
 }
