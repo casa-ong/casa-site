@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjetoController;
 use App\Http\Controllers\PublicacaoController;
 use App\Http\Controllers\SobreController;
 use App\Http\Controllers\SugestaoController;
+use App\Http\Controllers\DoacaoController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\DespesaController;
 /*
@@ -55,6 +56,9 @@ Route::post('/login/entrar', [LoginController::class, 'entrar'])->name('login.en
 Route::get('/sugestao/adicionar', [SugestaoController::class, 'adicionar'])->name('sugestao.adicionar');
 Route::post('/sugestao/salvar', [SugestaoController::class, 'salvar'])->name('sugestao.salvar');
 Route::get('/sugestao/verify/{id}/{hash}', [VerificationController::class, 'verifySugestao'])->name('sugestao.verify');
+
+Route::get('/doacao/adicionar', [DoacaoController::class, 'adicionar'])->name('doacao.adicionar');
+Route::post('/doacao/salvar', [DoacaoController::class, 'salvar'])->name('doacao.salvar');
 
 Route::get('/newsletter/adicionar', [NewsletterController::class, 'adicionar'])->name('newsletter.adicionar');
 Route::post('/newsletter/salvar', [NewsletterController::class, 'salvar'])->name('newsletter.salvar');
@@ -122,6 +126,13 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::get('/admin/enquete/atualizar/{id}', [EnqueteController::class, 'atualizar'])->name('admin.enquete.atualizar');
     Route::get('/admin/enquete/deletar/{id}', [EnqueteController::class, 'deletar'])->name('admin.enquete.deletar');
 
+    Route::get('/admin/doacoes', [DoacaoController::class, 'index' ])->name('admin.doacoes');
+    Route::get('/admin/doacao/adicionar', [DoacaoController::class, 'adicionar'])->name('admin.doacao.adicionar');
+    Route::post('/admin/doacao/salvar', [DoacaoController::class, 'salvar' ])->name('admin.doacao.salvar');
+    Route::get('/admin/doacao/editar/{id}', [DoacaoController::class, 'editar' ])->name('admin.doacao.editar');
+    Route::put('/admin/doacao/atualizar/{id}', [DoacaoController::class, 'atualizar' ])->name('admin.doacao.atualizar');
+    Route::get('/admin/doacao/deletar/{id}', [DoacaoController::class, 'deletar' ])->name('admin.doacao.deletar');
+
     Route::get('/admin/newsletters', [NewsletterController::class, 'index'])->name('admin.newsletters');
 
     Route::get('/admin/despesas', [DespesaController::class, 'index']) -> name('admin.despesas');
@@ -132,11 +143,17 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::get('/admin/despesa/deletar/{id}', [DespesaController::class, 'deletar' ])->name('admin.despesa.deletar');
 
     Route::get('/admin/doacoes', [DoacaoController::class, 'index']) -> name('admin.doacoes');
-    Route::get('admin/doacao/adicionar', [DoacaoController::class, 'adicionar']) -> name('admin.doacao.adicionar');
-    Route::post('/admin/doacao/salvar', [DoacaoController::class, 'salvar' ])->name('admin.doacao.salvar');
-    Route::get('/admin/doacao/editar/{id}', [DoacaoController::class, 'editar' ])->name('admin.doacao.editar');
-    Route::put('/admin/doacao/atualizar/{id}', [DoacaoController::class, 'atualizar' ])->name('admin.doacao.atualizar');
-    Route::get('/admin/doacao/deletar/{id}', [DoacaoController::class, 'deletar' ])->name('admin.doacao.deletar');
+    Route::get('/admin/doacao/ver/{id}', [DoacaoController::class, 'ver' ])->name('admin.doacao.ver');
+
+    Route::get('/admin/conta_pagamentos', [ContaPagamentoController::class, 'index']) -> name('admin.conta_pagamentos');
+    Route::get('/admin/conta_pagamento/adicionar', [ContaPagamentoController::class, 'adicionar']) -> name('admin.conta_pagamento.adicionar');
+    Route::post('/admin/conta_pagamento/salvar', [ContaPagamentoController::class, 'salvar' ])->name('admin.conta_pagamento.salvar');
+    Route::get('/admin/conta_pagamento/editar/{id}', [ContaPagamentoController::class, 'editar' ])->name('admin.conta_pagamento.editar');
+    Route::put('/admin/conta_pagamento/atualizar/{id}', [ContaPagamentoController::class, 'atualizar' ])->name('admin.conta_pagamento.atualizar');
+    Route::get('/admin/conta_pagamento/deletar/{id}', [ContaPagamentoController::class, 'deletar' ])->name('admin.conta_pagamento.deletar');
+
+
+
 });
 
 Auth::routes();
