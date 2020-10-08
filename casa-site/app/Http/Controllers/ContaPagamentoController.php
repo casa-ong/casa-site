@@ -17,18 +17,27 @@ class ContaPagamentoController extends Controller
         $this->contaPagamento = $contaPagamento;
     } 
 
-    public function sobre() 
+    public function index() 
     {
         $registro = $this->contaPagamento->latest('updated_at')->first();
-        return view('contaPagamento', compact('registro'));
+        if(!isset($registro)) {
+            return view('admin.conta_pagamentos.adicionar');
+        }
+        return view('admin.conta_pagamentos.editar', compact('registro'));
+    }
+
+    public function conta_pagamento() 
+    {
+        $registro = $this->contaPagamento->latest('updated_at')->first();
+        return view('conta_pagamentos', compact('registro'));
     }
 
     public function adicionar() 
     {
-        return view('admin.contaPagamento.adicionar');
+        return view('admin.conta_pagamentos.adicionar');
     }
 
-    public function salvar(SobreRequest $request) 
+    public function salvar(ContaPagamentoRequest $request) 
     {
 
         $request->validated();
@@ -40,18 +49,18 @@ class ContaPagamentoController extends Controller
         
         $contaPagamento->update($dados);
 
-        return redirect()->route('admin.contaPagamento')->with('success', 'Informações adicionadas com sucesso!');
+        return redirect()->route('admin.conta_pagamentos')->with('success', 'Informações adicionadas com sucesso!');
     }
 
      // Método responsavel por abrir a pagina de editar um evento
      public function editar($id) 
      {
-         $registro = $this->contaPagamento->find($id);
-         return view('admin.contaPagamento.editar', compact('registro'));
+         $registro= $this->contaPagamento->find($id);
+         return view('admin.conta_pagamentos.editar', compact('registro'));
      }
  
      // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
-     public function atualizar(SobreRequest $request, $id) 
+     public function atualizar(ContapagamentoRequest $request, $id) 
      {
          $request->validated();
          $dados = $request->all();
@@ -63,6 +72,6 @@ class ContaPagamentoController extends Controller
          $dadosOld->touch();
          $dadosOld->update($dados);
  
-         return redirect()->back()->with('success', 'Informações atualizadas com sucesso!');
+         return redirect()->route('admin.conta_pagamentos')->with('success', 'Informações atualizadas com sucesso!');
      }
 }

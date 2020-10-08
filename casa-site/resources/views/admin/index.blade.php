@@ -47,7 +47,7 @@
                 <span class="fas fa-envelope-open-text"></span>
                 <h2>NewsLetters</h2>
             </a>
-            <a class="admin-card" href="{{ route('admin.sobre') }}">
+            <a class="admin-card" href="{{ route('admin.configuracoes') }}">
                 <span class="fas fa-cog"></span>
                 <h2>Configurações</h2>
             </a>

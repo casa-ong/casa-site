@@ -7,7 +7,19 @@
         <label class="radio-option-doacao">
             <input type="radio" name="meio_pagamento" value="deposito_transferencia">
             <p>Depósito ou Transferência Bancária</p>
+            
+            <ul>
+                <li><b>Nome:</b> {{ $contaPagamentos->nome }}</li>
+                <li><b>CNPJ:</b> {{ $contaPagamentos->cnpj }}</li>
+                <li><b>Banco:</b> {{ $contaPagamentos->banco }}</li>
+                <li><b>Agência:</b> {{ $contaPagamentos->agencia }}</li>
+                <li><b>Operação:</b> {{ $contaPagamentos->operacao }}</li>
+                <li><b>N° da Conta:</b> {{ $contaPagamentos->numero_conta }}</li>
+            </ul>
         </label>
+
+        <div>
+        </div>
 
         <label class="radio-option-doacao">
             <input type="radio" name="meio_pagamento" value="boleto">
