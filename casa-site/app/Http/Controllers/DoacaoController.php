@@ -36,7 +36,8 @@ class DoacaoController extends Controller
 
     public function adicionar() 
     {
-        return view('admin.doacoes.adicionar');
+        $contaPagamentos = $this->contaPagamento->latest('updated_at')->first();
+        return view('admin.doacoes.adicionar', compact('contaPagamentos'));
     }
 
     public function salvar(DoacaoRequest $request) 
