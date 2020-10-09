@@ -1274,6 +1274,105 @@ div.container .list-card a.btn {
 }
 /* Fim de zoom nas imagens de enquete */
 
+/* Floating enquetes */
+.floating {
+    position: fixed;
+    bottom: 0;
+    right: 1em;
+    z-index: 999;
+    width: 340px;
+}
+
+.floating .overlay {
+    background-size: 100%;
+}
+
+.floating-header {
+    display: block;
+    background-color: var(--dark-green);
+    border: 1px solid var(--dark-green);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+.floating-header:hover {
+    background-color: var(--white);
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+.floating-header:hover p {
+    color: var(--dark-green);
+}
+
+.floating {
+    animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
+}
+
+.floating.show {
+    animation: fadeOutToNoneHeight 250ms ease-in-out forwards;
+}
+
+@keyframes fadeInFromNoneHeight {
+    0% {
+        transform: translateY(0);
+    }
+
+    1% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(90%);
+    }
+}
+
+@keyframes fadeOutToNoneHeight {
+    0% {
+        transform: translateY(90%);
+    }
+
+    99% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.floating-header > p {
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: var(--font-semi-bold);
+    padding: 1em;
+    margin: 0;
+}
+
+.floating-body {
+    background-color: var(--white);
+    padding: 1em;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.floating-body .radio-option, .floating-body .radio-option > div{
+    max-height: 50px;
+}
+
+.floating-body .radio-option,
+.floating-body .radio-option input,
+.floating-header {
+    cursor: pointer;
+}
+
+
+.floating-body h2 {
+    font-size: var(--font-18);
+}
+/* Fim de floating enquetes */
+
 /* definicoes de uso geral */
 .column {
     display: flex;
@@ -1441,5 +1540,12 @@ div.input-field.align-center {
 
     .overlay {
         background-size: 100vh;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .floating {
+        right: 0;
+        width: 320px;
     }
 }

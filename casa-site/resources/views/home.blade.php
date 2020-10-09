@@ -111,3 +111,6 @@
     </div>
 
 @endsection
+@section('floating_content')
+    @include('site.enquetes.floating_enquete')
+@endsection

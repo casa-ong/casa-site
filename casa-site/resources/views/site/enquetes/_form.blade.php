@@ -49,6 +49,14 @@
         overlay.addEventListener("click", function() {
             overlay.classList.toggle("open"); 
         });
+
+        let floatingEnquete = document.querySelector(".floating");
+        let header = document.querySelector(".floating-header")
+        if(floatingEnquete && header) {
+            header.addEventListener("click", function() {
+                floatingEnquete.classList.toggle("show");
+            });
+        }
         
     </script>
 
