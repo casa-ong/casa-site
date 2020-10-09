@@ -35,10 +35,10 @@
                     <span class="fa fa-new"></span>
                 </h2>
             </a>
-            <a class="admin-card" href="#">
+            <a class="admin-card" href="{{ route('admin.doacoes') }}">
                 <span class="fas fa-hand-holding-medical"></span>
                 <h2>Doações</h2>
-            </a> 
+            </a>
             <a class="admin-card" href="{{route('admin.despesas')}}">
                 <span class="fas fa-money-bill-alt"></span>
                 <h2>Despesas</h2>
@@ -47,7 +47,7 @@
                 <span class="fas fa-envelope-open-text"></span>
                 <h2>NewsLetters</h2>
             </a>
-            <a class="admin-card" href="{{ route('admin.sobre') }}">
+            <a class="admin-card" href="{{ route('admin.configuracoes') }}">
                 <span class="fas fa-cog"></span>
                 <h2>Configurações</h2>
             </a>

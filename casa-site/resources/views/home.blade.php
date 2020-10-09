@@ -105,7 +105,7 @@
                 <h4>Fazendo uma <br><strong>doação</strong></h4>
             </div>
             <div class="action text-center">
-                <a onclick="window.alert('Aff, essa função ainda está em construção, entre em contato para doar pfv!')" class="btn btn-green">Saiba como</a>
+            <a href="{{ route('doacao.adicionar') }}" class="btn btn-green">Saiba como</a>
             </div>
         </div>        
     </div>

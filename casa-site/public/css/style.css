@@ -996,6 +996,44 @@ label.input {
     font-size: 10vw;
 }
 
+.radio-option-doacao {
+    display: flex;
+    flex-flow: column wrap;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+    align-items: center;
+    white-space: normal;
+    width: 300px;
+    justify-content: center;
+    margin-right: 1em;
+}
+
+.radio-doacao{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+      
+}
+
+.radio-doacao ul{
+    list-style: none;
+    text-align: left;
+    display: none;
+    padding: 0;
+
+}
+
+.radio-doacao input:checked ~ ul{  
+    display: block;
+}
+
+#nome.hide{
+    display: none;
+}
+
+
 /* Fim de formulários */
 
 /* Cards logado */
