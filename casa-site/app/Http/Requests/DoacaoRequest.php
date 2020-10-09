@@ -24,8 +24,8 @@ class DoacaoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'nullable|min:5|max:255',
-            'valor' => 'required|numeric',
+            'nome' => 'required_if:is_anonimo,0|nullable|min:5|max:255',
+            'valor' => 'required|numeric|min:5',
             'meio_pagamento' => 'required',
             'is_anonimo' => 'required',
             'comprovante_anexo' => 'required',
@@ -38,7 +38,7 @@ class DoacaoRequest extends FormRequest
     public function messages() 
     {
         return [
-            'nome.required' => 'O campo nome deve ser preenchido',
+            'nome.required_if' => 'O campo nome deve ser preenchido',
             'nome.min' => 'O campo de nome deve ter no mínimo 5 letras',
             'nome.max' => 'O campo de nome não deve ter mais que 255 letras',
             'valor.required' => 'O campo valor precisa ser preenchido',

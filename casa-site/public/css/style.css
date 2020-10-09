@@ -1029,6 +1029,10 @@ label.input {
     display: block;
 }
 
+#nome.hide{
+    display: none;
+}
+
 
 /* Fim de formulários */
 
