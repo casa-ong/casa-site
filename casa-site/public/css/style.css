@@ -1113,9 +1113,27 @@ table td {
     padding: 0.5em;
 }
 
-table td > span {
+table td > span.fa {
     color: var(--dark-green);
     cursor: pointer;
+}
+
+table td > span.fas.fa-sign-in-alt {
+    color: var(--dark-green);
+}
+
+table td > span.fas.fa-sign-out-alt {
+    color: red;
+}
+
+table td > a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+table td > a:hover {
+    color: var(--dark-green);
+    text-decoration: underline;
 }
 
 tr + tr > td {
@@ -1281,6 +1299,136 @@ div.container .list-card a.btn {
 
 /* Fim de list de noticias, projetos e eventos */
 
+/* Zoom nas imagens de enquete */
+.overlay {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0, 0, 0, 0.8) none 50% / 100vw no-repeat;
+    cursor: pointer;
+    transition: 0.3s;
+    visibility: hidden;
+    opacity: 0;
+    color: #fff;
+}
+
+.overlay.open {
+    visibility: visible;
+    opacity: 1;
+    z-index: 999;
+}
+
+.overlay:after { /* X button icon */
+    content: "\2715";
+    position: absolute;
+    color: var(--main-white);
+    top: 10px;
+    right:20px;
+    font-size: 2em;
+}
+/* Fim de zoom nas imagens de enquete */
+
+/* Floating enquetes */
+.floating {
+    position: fixed;
+    bottom: 0;
+    right: 1em;
+    z-index: 999;
+    width: 340px;
+}
+
+.floating .overlay {
+    background-size: 100%;
+}
+
+.floating-header {
+    display: block;
+    background-color: var(--dark-green);
+    border: 1px solid var(--dark-green);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+.floating-header:hover {
+    background-color: var(--white);
+    transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+.floating-header:hover p {
+    color: var(--dark-green);
+}
+
+.floating {
+    animation: fadeInFromNoneHeight 250ms ease-in-out forwards;
+}
+
+.floating.show {
+    animation: fadeOutToNoneHeight 250ms ease-in-out forwards;
+}
+
+@keyframes fadeInFromNoneHeight {
+    0% {
+        transform: translateY(0);
+    }
+
+    1% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(90%);
+    }
+}
+
+@keyframes fadeOutToNoneHeight {
+    0% {
+        transform: translateY(90%);
+    }
+
+    99% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.floating-header > p {
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: var(--font-semi-bold);
+    padding: 1em;
+    margin: 0;
+}
+
+.floating-body {
+    background-color: var(--white);
+    padding: 1em;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+
+.floating-body .radio-option, .floating-body .radio-option > div{
+    max-height: 50px;
+}
+
+.floating-body .radio-option,
+.floating-body .radio-option input,
+.floating-header {
+    cursor: pointer;
+}
+
+
+.floating-body h2 {
+    font-size: var(--font-18);
+}
+/* Fim de floating enquetes */
+
 /* definicoes de uso geral */
 .column {
     display: flex;
@@ -1444,5 +1592,16 @@ div.input-field.align-center {
     
     .input-btn .btn {
         margin: 0.5em;
+    }
+
+    .overlay {
+        background-size: 100vh;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .floating {
+        right: 0;
+        width: 320px;
     }
 }

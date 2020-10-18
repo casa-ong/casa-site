@@ -5,6 +5,7 @@
 <div class="container">
 @yield('conteudo')
 </div>
+@yield('floating_content')
 
 <footer>
 @include('layout._includes.footer')

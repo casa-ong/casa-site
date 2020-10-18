@@ -14,7 +14,7 @@ class DespesaSeeder extends Seeder
      */
     public function run()
     {
-        Despesa::factory()->create();
-       echo 'Despesa criada com sucesso!';
+        Despesa::factory(10)->create();
+        echo 'Despesa criada com sucesso!';
     }
 }

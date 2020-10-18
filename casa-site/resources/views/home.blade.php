@@ -105,9 +105,30 @@
                 <h4>Fazendo uma <br><strong>doação</strong></h4>
             </div>
             <div class="action text-center">
-            <a href="{{ route('doacao.adicionar') }}" class="btn btn-green">Saiba como</a>
+                <a href="{{ route('doacao.adicionar') }}" class="btn btn-green">Saiba como</a>
             </div>
         </div>        
     </div>
 
+    <div id="contribua" class="anchor item-title mt-1">
+        <h1>Prestação de contas</h1>
+    </div>
+    <div class="item">
+        <div class="card card-big">
+            <div class="card-img">
+                <img src="{{ asset('img/icons/donate.png') }}" alt="Desenho de mão segurando moeda">
+            </div>
+            <div class="card-text">                            
+                <h4><strong>R$ 485,52</strong><br>arrecadados</h4>
+                <p>Investidos em<br><strong>XX projetos</strong></p>
+            </div>
+            <div class="action text-center">
+                <a href="{{ route('site.prestacao_contas') }}" class="btn btn-green">Saiba mais</a>
+            </div>
+        </div>
+    </div>
+
+@endsection
+@section('floating_content')
+    @include('site.enquetes.floating_enquete')
 @endsection

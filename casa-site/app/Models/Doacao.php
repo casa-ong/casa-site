@@ -28,4 +28,16 @@ class Doacao extends Model
     {
         return $this->belongsTo('App\Models\Projeto');
     }
+
+    public function totalArrecadado()
+    {
+        $registros = $this->all();
+
+        $total = 0;
+        foreach($registros as $registro) {
+            $total += $registro->valor;
+        }
+
+        return $total;
+    }
 }

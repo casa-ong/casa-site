@@ -18,8 +18,8 @@
             <table>
                 <thead>
                     <tr class="table-header">
-                        <th width="20%">Ações</th>
-                        <th width="40%">Nome</th>
+                        <th width="10%">Ações</th>
+                        <th width="50%">Nome</th>
                         <th width="20%">Valor</th>
                         <th width="20%">Método de Pagamento</th>
                     </tr>
