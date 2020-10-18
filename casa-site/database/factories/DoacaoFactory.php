@@ -6,6 +6,7 @@ use App\Models\Doacao;
 use App\Models\Projeto;
 use App\Models\ContaPagamento;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Carbon\Carbon;
 
 class DoacaoFactory extends Factory
 {
@@ -30,6 +31,7 @@ class DoacaoFactory extends Factory
             'is_anonimo' => $this->faker->boolean,
             'comprovante_anexo' =>$this->faker->imageUrl($width = 640, $height = 480),
             'conta_pagamento_id' => ContaPagamento::factory(),
+            'created_at' => $this->faker->dateTimeThisYear($max = 'now', $timezone = null)
            // 'projeto_id' => Projeto::factory(),
             
         ];

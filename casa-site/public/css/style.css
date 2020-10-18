@@ -1113,9 +1113,27 @@ table td {
     padding: 0.5em;
 }
 
-table td > span {
+table td > span.fa {
     color: var(--dark-green);
     cursor: pointer;
+}
+
+table td > span.fas.fa-sign-in-alt {
+    color: var(--dark-green);
+}
+
+table td > span.fas.fa-sign-out-alt {
+    color: red;
+}
+
+table td > a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+table td > a:hover {
+    color: var(--dark-green);
+    text-decoration: underline;
 }
 
 tr + tr > td {

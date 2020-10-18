@@ -31,6 +31,7 @@ class DespesaFactory extends Factory
             'valor' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 1000),
             'user_id' => User::factory(),
             'projeto_id' => Projeto::factory(),
+            'created_at' => $this->faker->dateTimeThisYear($max = 'now', $timezone = null)
         ];
     }
 }

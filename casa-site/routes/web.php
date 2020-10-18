@@ -14,6 +14,7 @@ use App\Http\Controllers\DoacaoController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\DespesaController;
 use App\Http\Controllers\ContaPagamentoController;
+use App\Http\Controllers\PrestacaoContaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,7 @@ Route::get('/sugestao/verify/{id}/{hash}', [VerificationController::class, 'veri
 
 Route::get('/doacao/adicionar', [DoacaoController::class, 'adicionar'])->name('doacao.adicionar');
 Route::post('/doacao/salvar', [DoacaoController::class, 'salvar'])->name('doacao.salvar');
+Route::get('/site/prestacao_contas', [PrestacaoContaController::class, 'index'])->name('site.prestacao_contas');
 
 Route::get('/newsletter/adicionar', [NewsletterController::class, 'adicionar'])->name('newsletter.adicionar');
 Route::post('/newsletter/salvar', [NewsletterController::class, 'salvar'])->name('newsletter.salvar');

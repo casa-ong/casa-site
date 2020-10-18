@@ -14,6 +14,6 @@ class DoacaosSeeder extends Seeder
      */
     public function run()
     {
-        Doacao::factory()->create();
+        Doacao::factory(10)->create();
     }
 }
