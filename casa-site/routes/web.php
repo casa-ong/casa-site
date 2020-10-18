@@ -63,6 +63,7 @@ Route::get('/sugestao/verify/{id}/{hash}', [VerificationController::class, 'veri
 Route::get('/doacao/adicionar', [DoacaoController::class, 'adicionar'])->name('doacao.adicionar');
 Route::post('/doacao/salvar', [DoacaoController::class, 'salvar'])->name('doacao.salvar');
 Route::get('/site/prestacao_contas', [PrestacaoContaController::class, 'index'])->name('site.prestacao_contas');
+Route::get('/site/prestacao_contas/{tipo}/{id}', [PrestacaoContaController::class, 'ver'])->name('site.prestacao_conta.ver');
 
 Route::get('/newsletter/adicionar', [NewsletterController::class, 'adicionar'])->name('newsletter.adicionar');
 Route::post('/newsletter/salvar', [NewsletterController::class, 'salvar'])->name('newsletter.salvar');
