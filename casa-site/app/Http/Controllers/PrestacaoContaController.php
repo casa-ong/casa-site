@@ -7,6 +7,8 @@ use App\Models\Doacao;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class PrestacaoContaController extends Controller
 {
@@ -22,12 +24,12 @@ class PrestacaoContaController extends Controller
     {
         $totalArrecadado = $this->doacao->totalArrecadado();
 
-        $registros = DB::select(DB::raw('SELECT id, nome, valor, created_at, "despesa" as tipo
+        $registros = DB::select(DB::raw("SELECT id, nome, valor, created_at, 'despesa' as tipo
                                          FROM despesas
                                          UNION
-                                         SELECT id, nome, valor, created_at, "doacao" as tipo
+                                         SELECT id, nome, valor, created_at, 'doacao' as tipo
                                          FROM doacaos
-                                         ORDER BY created_at desc'
+                                         ORDER BY created_at desc"
         ));
 
         $total = count($registros);
@@ -45,5 +47,24 @@ class PrestacaoContaController extends Controller
             );
 
         return view('site.prestacao_contas.index', compact('registros', 'totalArrecadado'));
+    }
+
+    public function ver($tipo, $id) 
+    {
+        if($tipo === 'doacao'){
+            $registro = $this->doacao->find($id);
+            if(!$registro) {
+                throw new ModelNotFoundException;
+            } 
+            return response()
+                ->view('site.prestacao_contas.prestacao_conta_doacao', compact('registro'), 200);       
+        }else{
+            $registro = $this->despesa->find($id);      
+            if(!$registro) {
+                throw new ModelNotFoundException;
+            } 
+            return response()
+                ->view('site.prestacao_contas.prestacao_conta_despesa', compact('registro'), 200);   
+        }       
     }
 }
