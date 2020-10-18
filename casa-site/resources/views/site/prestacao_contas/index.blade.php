@@ -50,13 +50,13 @@
                                 </td>
                                 <td style="text-align: left;">
                                         @if ($registro->tipo == 'doacao')
-                                            <a href="#">
+                                            <a href="{{ route('site.prestacao_conta.ver', [$registro->tipo, $registro->id] ) }}">
                                                 {{ $registro->nome }}
                                                 doou R$
                                                 {{ $registro->valor }}
                                             </a>
                                         @else
-                                            <a href="#">
+                                        <a href="{{ route('site.prestacao_conta.ver', [$registro->tipo, $registro->id] ) }}">
                                                 {{ $registro->valor }}
                                                 <span style="text-transform: lowercase;">
                                                     {{ $registro->nome }}
