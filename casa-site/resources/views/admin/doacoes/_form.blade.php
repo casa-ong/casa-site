@@ -40,7 +40,7 @@
 
 <div class="input-field">
     <label>Escolha o valor da doação:</label>
-    <input type="number" step="any" name="valor" value="{{ old ('valor') }}">
+    <input {{ isset($registro->valor) ? 'readonly' : ''}} type="number" step="any" name="valor" value="{{ isset($registro->valor) ? $registro->valor : old('valor') }}">
     @error('valor')
     <span class="invalid-feedback" role="alert">
         {{ $message }}
@@ -70,24 +70,29 @@
 
 <div id="nome" class="input-field">
     <label>Nome ou Apelido:</label>
-    <input  type="text" name="nome" value="{{ old ('nome') }}">
+    <input  {{ isset($registro->nome) ? 'readonly' : ''}} type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}">
     @error('nome')
         <span class="invalid-feedback" role="alert">
             {{ $message }}
         </span>
     @enderror
 </div>
+   
+        @if(isset($registro->comprovante_anexo))
+            <a class="btn" href="{{ asset($registro->comprovante_anexo) }}" alt="" download="baixar">Baixar anexo</a>
+        @else
+            <div class="input-field">
+                <label>Anexo Comprovante:</label>
+                <input type="file" name="comprovante_anexo">
+                @error('comprovante_anexo')
+                    <span class="invalid-feedback" role="alert">
+                        {{ $message }}
+                    </span>
+                @enderror
+            
+            </div>
+        @endif   
 
-
-<div class="input-field">
-    <label>Anexo Comprovante:</label>
-    <input type="file" name="comprovante_anexo">
-    @error('comprovante_anexo')
-        <span class="invalid-feedback" role="alert">
-            {{ $message }}
-        </span>
-    @enderror
-</div>
 
 @section('scripts')
 
