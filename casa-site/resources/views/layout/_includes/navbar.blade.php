@@ -19,7 +19,7 @@
         <a class="nav-link" href="{{ route('site.home').'#sobre' }}">Quem somos</a>
         <a class="nav-link rounded" href="{{ route('site.home').'#contribua' }}">Contribua</a>
         @if(Auth::user())
-        @php($user = Auth::user())
+            @php $user = Auth::user() @endphp
             <nav class="nav-logged">
                 
                         @if($user->admin)

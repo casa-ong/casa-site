@@ -1,11 +1,10 @@
 @extends('layout.site')
 @section('titulo', 'Painel de controle | Casa')
-@section('anchor', 'controle')
 
 @section('conteudo')
 <div class="post">
     <div class="content main">
-        <div class="item-title">
+        <div class="item-title anchor" id="controle">
             <h1 class=""><strong>Bem-vindo</strong> ao seu painel de controle, {{ Auth::user()['name'] }}!</h1>
         </div>
         <div class="item" style="border-bottom: 0;">

@@ -1,6 +1,5 @@
 @extends('layout.site')
 @section('titulo', 'Configurações | Casa')
-@section('anchor', 'controle')
 
 @section('conteudo')
 <div class="post">

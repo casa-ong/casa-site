@@ -119,8 +119,8 @@
                 <img src="{{ asset('img/icons/donate.png') }}" alt="Desenho de mão segurando moeda">
             </div>
             <div class="card-text">                            
-                <h4><strong>R$ 485,52</strong><br>arrecadados</h4>
-                <p>Investidos em<br><strong>XX projetos</strong></p>
+                <h4><strong>R$ {{ $totalArrecadado ?? '0,00'}}</strong><br>arrecadados</h4>
+                <p>Investidos em<br><strong>{{ $n_projetos }} projetos</strong></p>
             </div>
             <div class="action text-center">
                 <a href="{{ route('site.prestacao_contas') }}" class="btn btn-green">Saiba mais</a>
