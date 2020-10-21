@@ -18,4 +18,6 @@ yarn-error.log
 /public/img/noticias/*
 /public/img/voluntarios/*
 /public/img/opcaos/*
-
+/public/img/despesas/*
+/public/img/doacao/*
+/img/

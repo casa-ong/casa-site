@@ -3,38 +3,66 @@
 
 
 @php
-setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+    setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+    $user = App\Models\User::find($registro->user_id);
 @endphp
 
-@php
-$user = App\Models\User::find($registro->user_id);
-@endphp
-{{$user != null ? $user->name : ''}}
 @section('conteudo')
 <div class="post">
     <div class="content main">
         <div class="item-title">
-            <h1>Prestação de Conta</h1>
+            <h1>Despesa registrada</h1>
         </div>
         <div>
-            <div class="action text-center">
-                <a type="text" name="descricao" placeholder="Descrição">Foi gasto <strong>{{$registro->valor}} </strong> reais em {{strtolower($registro->nome ?? ' ')}}
-                    declarado por {{ $user->name}} no dia {{ strftime('%d de %B  de %Y', strtotime($registro->created_at)) }}, na descrição do gasto escreveu "{{$registro->descricao}}"".</a>
+            <div class="action">
+                <p>
+                    Foi gasto <strong>R$ {{$registro->valor}}</strong> em <strong>{{strtolower($registro->nome ?? ' ')}}</strong>
+                    declarado por <strong>{{ $user->name}}</strong> no dia <strong>{{ strftime('%d de %B  de %Y', strtotime($registro->created_at)) }}</strong>, 
+                    na descrição do gasto escreveu <strong>"{{$registro->descricao}}"</strong>.
+                </p>
             </div>
         </div>
         <div class="input-field">
-            <label for="nota_fiscal" class="input">Nota fiscal
+            <label for="nota_fiscal" class="input">
                 <div class="banner-preview">
                     <span class="fas fa-image"></span>
-                    <img id="nota-fiscal" src="{{ isset($registro->nota_fiscal) ? asset($registro->nota_fiscal) : '' }}" alt="">                   
+                    <img class="{{ isset($registro->nota_fiscal) ? 'img-zoomable' : '' }}" id="nota-fiscal" src="{{ isset($registro->nota_fiscal) ? asset($registro->nota_fiscal) : '' }}" alt="">                   
+                    <div style="display: none; background: url('{{ isset($registro->nota_fiscal) ? asset($registro->nota_fiscal) : '' }}'); background-size: contain" alt=""></div>
+                    <p>Nota fiscal da despesa</p>
                 </div>
             </label>
-            @error('nota_fiscal')
-            <span class="invalid-feedback" role="alert">
-                {{ $message }}
-            </span>
-            @enderror
         </div>
     </div>
 </div>
+
+{{-- Overlay para mostrar imagens aumentadas --}}
+<div class="overlay"></div>
+@endsection
+
+@section('scripts')
+
+    <script>
+        // Image to Lightbox Overlay 
+        let image = document.querySelector(".img-zoomable");
+        let overlay = document.querySelector(".overlay");
+
+        image.addEventListener("click", function() {
+            overlay.style.backgroundImage = document.querySelector(".img-zoomable ~ div").style.backgroundImage;
+            overlay.classList.toggle("open");
+        });
+
+        overlay.addEventListener("click", function() {
+            overlay.classList.toggle("open"); 
+        });
+
+        let floatingEnquete = document.querySelector(".floating");
+        let header = document.querySelector(".floating-header")
+        if(floatingEnquete && header) {
+            header.addEventListener("click", function() {
+                floatingEnquete.classList.toggle("show");
+            });
+        }
+        
+    </script>
+
 @endsection

@@ -10,19 +10,23 @@ setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 <div class="post">
     <div class="content main">
         <div class="item-title">
-            <h1>Prestação de Conta</h1>
+            <h1>Doação recebida</h1>
         </div>
         <div>
-            <div class="action text-center">
-                <a type="text" name="descricao" placeholder="Descrição">Foi doado <strong>{{$registro->valor}} </strong> reais por {{$registro->is_anonimo ? 'Anônimo' : $registro->nome}}
-                    usando {{$registro->meio_pagamento === 'deposito_transferencia' ? 'depósito ou transferência' :  $registro->meio_pagamento}} no dia {{ strftime('%d de %B  de %Y', strtotime($registro->created_at)) }}.</a>
+            <div class="action">
+                <p>
+                    Foi doado <strong>R$ {{$registro->valor}} </strong> por <strong>{{$registro->is_anonimo ? 'Anônimo' : $registro->nome}}</strong>
+                    usando o meio de pagamento <strong>{{$registro->meio_pagamento === 'deposito_transferencia' ? 'depósito ou transferência' :  $registro->meio_pagamento}}</strong> no dia <strong>{{ strftime('%d de %B  de %Y', strtotime($registro->created_at)) }}</strong>.
+                </p>
             </div>
         </div>
         <div class="input-field">
-            <label for="nota_fiscal" class="input">Comprovante
+            <label for="nota_fiscal" class="input">
                 <div class="banner-preview">
                     <span class="fas fa-image"></span>
-                    <img id="nota-fiscal" src="{{ isset($registro->comprovante_anexo) ? asset($registro->comprovante_anexo) : '' }}" alt="">                   
+                    <img class="{{ isset($registro->comprovante_anexo) ? 'img-zoomable' : '' }}" id="nota-fiscal" src="{{ isset($registro->comprovante_anexo) ? asset($registro->comprovante_anexo) : '' }}" alt="">                   
+                    <div style="display: none; background: url('{{ isset($registro->comprovante_anexo) ? asset($registro->comprovante_anexo) : '' }}'); background-size: contain" alt=""></div>
+                    <p>Comprovante de transação</p>
                 </div>
             </label>
             @error('nota_fiscal')
@@ -33,4 +37,35 @@ setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
         </div>
     </div>
 </div>
+
+{{-- Overlay para mostrar imagens aumentadas --}}
+<div class="overlay"></div>
+@endsection
+
+@section('scripts')
+
+    <script>
+        // Image to Lightbox Overlay 
+        let image = document.querySelector(".img-zoomable");
+        let overlay = document.querySelector(".overlay");
+
+        image.addEventListener("click", function() {
+            overlay.style.backgroundImage = document.querySelector(".img-zoomable ~ div").style.backgroundImage;
+            overlay.classList.toggle("open");
+        });
+
+        overlay.addEventListener("click", function() {
+            overlay.classList.toggle("open"); 
+        });
+
+        let floatingEnquete = document.querySelector(".floating");
+        let header = document.querySelector(".floating-header")
+        if(floatingEnquete && header) {
+            header.addEventListener("click", function() {
+                floatingEnquete.classList.toggle("show");
+            });
+        }
+        
+    </script>
+
 @endsection

@@ -3,7 +3,8 @@
         @if((!Request::is('/')
             && Request::is('admin/*')
             && !Request::is('admin/index'))
-            || Request::is('voluntario/*'))
+            || Request::is('voluntario/*')
+            || Request::is('site/prestacao_contas/*'))
             <a title="Voltar" href="#" class="nav-link" type="button" onclick="history.back()">
                 <span class="fas fa-chevron-left"></span>
             </a>
@@ -19,7 +20,7 @@
         <a class="nav-link" href="{{ route('site.home').'#sobre' }}">Quem somos</a>
         <a class="nav-link rounded" href="{{ route('site.home').'#contribua' }}">Contribua</a>
         @if(Auth::user())
-        @php($user = Auth::user())
+            @php $user = Auth::user() @endphp
             <nav class="nav-logged">
                 
                         @if($user->admin)
