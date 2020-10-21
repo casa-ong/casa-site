@@ -8,6 +8,8 @@ use App\Models\Doacao;
 use DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class PrestacaoContaController extends Controller
 {
@@ -79,5 +81,24 @@ class PrestacaoContaController extends Controller
             );
 
         return view('site.prestacao_contas.index', compact('registros', 'totalArrecadado', 'totalGasto', 'tipo', 'initialDate', 'finalDate'));
+    }
+
+    public function ver($tipo, $id) 
+    {
+        if($tipo === 'doacao'){
+            $registro = $this->doacao->find($id);
+            if(!$registro) {
+                throw new ModelNotFoundException;
+            } 
+            return response()
+                ->view('site.prestacao_contas.prestacao_conta_doacao', compact('registro'), 200);       
+        }else{
+            $registro = $this->despesa->find($id);      
+            if(!$registro) {
+                throw new ModelNotFoundException;
+            } 
+            return response()
+                ->view('site.prestacao_contas.prestacao_conta_despesa', compact('registro'), 200);   
+        }       
     }
 }

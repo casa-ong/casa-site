@@ -3,7 +3,8 @@
         @if((!Request::is('/')
             && Request::is('admin/*')
             && !Request::is('admin/index'))
-            || Request::is('voluntario/*'))
+            || Request::is('voluntario/*')
+            || Request::is('site/prestacao_contas/*'))
             <a title="Voltar" href="#" class="nav-link" type="button" onclick="history.back()">
                 <span class="fas fa-chevron-left"></span>
             </a>

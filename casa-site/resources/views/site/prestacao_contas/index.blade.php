@@ -18,15 +18,6 @@
             </div>
             @endif
         </div>
-        {{-- <div class="title" style="text-align: center;">
-            <p>Total de <br>
-                {!! $tipo != 'despesa' ? '<strong>R$ '.$totalArrecadado.'</strong><br> arrecadados' : '' !!}
-                {!! $tipo == 'all' ? ' e <br>' : '' !!}
-                {!! $tipo != 'doacao' ? '<strong>R$ '.$totalGasto.'</strong><br> gastos' : '' !!}
-            </p>
-        </div> --}}
-
-        
         <div class="item-actions">
             <div class="filter-input row w-100">
                 <div class="action d-flex align-center w-100">
@@ -79,14 +70,14 @@
                                 </td>
                                 <td style="text-align: left;">
                                         @if ($registro->tipo == 'doacao')
-                                            <a href="#">
+                                            <a href="{{ route('site.prestacao_conta.ver', [$registro->tipo, $registro->id] ) }}">
                                                 {{ $registro->nome ?? 'Anônimo' }}
                                                 doou R$
                                                 {{ $registro->valor }}
                                             </a>
                                         @else
-                                            <a href="#">
-                                                {{ $registro->valor }}
+                                        <a href="{{ route('site.prestacao_conta.ver', [$registro->tipo, $registro->id] ) }}">
+                                                R$ {{ $registro->valor }}
                                                 <span style="text-transform: lowercase;">
                                                     {{ $registro->nome }}
                                                 </span>

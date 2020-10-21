@@ -21,7 +21,9 @@
                         <th width="10%">Ações</th>
                         <th width="50%">Nome</th>
                         <th width="20%">Valor</th>
+                        <th width="10%">Aprovada</th>
                         <th width="20%">Método de Pagamento</th>
+                        
                     </tr>
                 </thead>
                 <tbody class="table-body">
@@ -29,12 +31,13 @@
                         @foreach ($registros as $registro)
                             <tr>
                                 <td>
-                                    <a class="btn btn-green" href="#" title="Ver doação">
+                                <a class="btn btn-green" href="{{ route("doacoes.ver",$registro->id)}}" title="Ver doação">
                                         <span class="fas fa-eye"></span>
                                     </a>
                                 </td>
-                                <td>{{ $registro->nome }}</td>
+                                <td>{{ $registro->nome ?? 'Anônimo'}}</td>
                                 <td>{{ $registro->valor }}</td>
+                                <td>{{ $registro->is_aprovado ? 'Sim' : 'Não'}}</td>
                                 <td>{{ $registro->meio_pagamento }}</td>
                             </tr>
                         @endforeach
