@@ -13,6 +13,7 @@ class Doacao extends Model
         'nome',
         'valor',
         'meio_pagamento',
+        'is_aprovado',
         'is_anonimo',
         'comprovante_anexo',
         'conta_pagamento_id',

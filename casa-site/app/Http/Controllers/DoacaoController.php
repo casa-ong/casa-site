@@ -7,6 +7,7 @@ use App\Models\ContaPagamento;
 use App\Models\Projeto;
 use App\Models\Doacao;
 use App\Http\Requests\DoacaoRequest;
+use App\Util\SaveFileUtil;
 
 class DoacaoController extends Controller
 {
@@ -44,9 +45,56 @@ class DoacaoController extends Controller
     {
         $request->validated();
         $dados = $request->all();
-
+        $dados ['is_aprovado'] = 0;
         $doacao = $this->doacao->create($dados);
+
+        if($request->hasFile('comprovante_anexo')) {
+            $dados['comprovante_anexo'] = SaveFileUtil::saveFile(
+                $request->file('comprovante_anexo'),
+                $doacao->id,
+                'img/doacao'
+            );
+        }
+
+        $doacao->update($dados);
+
+
+
+      
         return redirect()->back()->with('success', 'Doação feita com sucesso!');
     
     }
+    // Método responsavel por ver a sugestao como lida 
+    public function ver($id) 
+    {
+        $registro = $this->doacao->find($id);
+        
+        if($registro == null) {
+            throw new ModelNotFoundException;
+        }
+
+        return view('admin.doacoes.ver', compact('registro'));
+    }
+
+    public function aprovar($id) 
+    {
+        $dados = [
+            'is_aprovado' => 1
+        ];
+
+        $registro = $this->doacao->find($id);
+        
+        if($registro == null) {
+            throw new ModelNotFoundException;
+        }
+
+        if($registro && $registro->is_aprovado){
+            return redirect()->back()->withErrors(['doacaoIsAprovado' => 'Doação já foi aprovada.']);
+        }
+
+        $registro->update($dados);
+
+        return redirect()->route('admin.doacoes')->with('success', 'Doação aprovada com sucesso!');
+    }
+
 }
