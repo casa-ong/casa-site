@@ -34,6 +34,7 @@ class PrestacaoContaController extends Controller
                     UNION
                     SELECT id, nome, valor, '' AS user_id, created_at, 'doacao' AS tipo
                     FROM doacaos
+                    WHERE is_aprovado = '1'
                     ORDER BY created_at desc
                   ) AS query";
 
@@ -87,7 +88,7 @@ class PrestacaoContaController extends Controller
     {
         if($tipo === 'doacao'){
             $registro = $this->doacao->find($id);
-            if(!$registro) {
+            if(!$registro || !$registro->is_aprovado) {
                 throw new ModelNotFoundException;
             } 
             return response()

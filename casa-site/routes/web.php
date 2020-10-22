@@ -62,7 +62,6 @@ Route::get('/sugestao/verify/{id}/{hash}', [VerificationController::class, 'veri
 
 Route::get('/doacao/adicionar', [DoacaoController::class, 'adicionar'])->name('doacao.adicionar');
 Route::post('/doacao/salvar', [DoacaoController::class, 'salvar'])->name('doacao.salvar');
-Route::get('/doacao/ver/{id}', [DoacaoController::class, 'ver'])->name('doacoes.ver');
 
 Route::get('/site/prestacao_contas', [PrestacaoContaController::class, 'index'])->name('site.prestacao_contas');
 Route::get('/site/prestacao_contas/{tipo}/{id}', [PrestacaoContaController::class, 'ver'])->name('site.prestacao_conta.ver');
@@ -140,6 +139,7 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified', 'middleware' =
     Route::put('/admin/doacao/atualizar/{id}', [DoacaoController::class, 'atualizar' ])->name('admin.doacao.atualizar');
     Route::get('/admin/doacao/deletar/{id}', [DoacaoController::class, 'deletar' ])->name('admin.doacao.deletar');
     Route::get('/admin/doacao/aprovar/{id}', [DoacaoController::class, 'aprovar'])->name('admin.doacao.aprovar');
+    Route::get('/admin/doacao/ver/{id}', [DoacaoController::class, 'ver'])->name('admin.doacao.ver');
 
     Route::get('/admin/newsletters', [NewsletterController::class, 'index'])->name('admin.newsletters');
 
