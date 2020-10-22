@@ -8,6 +8,7 @@ use App\Models\Projeto;
 use App\Models\Doacao;
 use App\Http\Requests\DoacaoRequest;
 use App\Util\SaveFileUtil;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class DoacaoController extends Controller
 {
@@ -58,9 +59,6 @@ class DoacaoController extends Controller
 
         $doacao->update($dados);
 
-
-
-      
         return redirect()->back()->with('success', 'Doação feita com sucesso!');
     
     }

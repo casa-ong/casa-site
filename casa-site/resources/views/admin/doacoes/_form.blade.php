@@ -5,17 +5,17 @@
     <label>Escolha o método de pagamento:</label>
     <div class="radio-doacao">
         <label class="radio-option-doacao">
-            <input type="radio" name="meio_pagamento" value="deposito_transferencia">
+            <input type="radio" name="meio_pagamento" value="deposito_transferencia" {{ isset($registro->meio_pagamento) ? ($registro->meio_pagamento == 'deposito_transferencia' ? 'checked' : 'disabled') : '' }}>
             <p>Depósito ou Transferência Bancária</p>
            
-            @if(isset($contaPagamentos))
+            @if(isset($contaPagamentos) || isset($registro->conta_pagamento))
                 <ul>
-                    <li><b>Nome:</b> {{ $contaPagamentos->nome }}</li>
-                    <li><b>CNPJ:</b> {{ $contaPagamentos->cnpj }}</li>
-                    <li><b>Banco:</b> {{ $contaPagamentos->banco }}</li>
-                    <li><b>Agência:</b> {{ $contaPagamentos->agencia }}</li>
-                    <li><b>Operação:</b> {{ $contaPagamentos->operacao }}</li>
-                    <li><b>N° da Conta:</b> {{ $contaPagamentos->numero_conta }}</li>
+                    <li><b>Nome:</b> {{ $contaPagamentos->nome ?? $registro->conta_pagamento->nome }}</li>
+                    <li><b>CNPJ:</b> {{ $contaPagamentos->cnpj ?? $registro->conta_pagamento->cnpj }}</li>
+                    <li><b>Banco:</b> {{ $contaPagamentos->banco ?? $registro->conta_pagamento->banco }}</li>
+                    <li><b>Agência:</b> {{ $contaPagamentos->agencia ?? $registro->conta_pagamento->agencia }}</li>
+                    <li><b>Operação:</b> {{ $contaPagamentos->operacao ?? $registro->conta_pagamento->operacao }}</li>
+                    <li><b>N° da Conta:</b> {{ $contaPagamentos->numero_conta ?? $registro->conta_pagamento->numero_conta }}</li>
                 </ul>
             @else
                 <p>Conta bancária indisponível.</p>
@@ -26,7 +26,7 @@
         </div>
 
         <label class="radio-option-doacao">
-            <input disabled type="radio" name="meio_pagamento" value="boleto">
+            <input disabled type="radio" name="meio_pagamento" value="boleto"  {{ isset($registro->meio_pagamento) ? ($registro->meio_pagamento == 'boleto' ? 'checked' : 'disabled') : '' }}>
             <p>Boleto Bancário</p>
             <h4>Indisponível</h4>
         </label>
@@ -52,12 +52,12 @@
     <label>Identificação:</label>
     <div class="radio-doacao">
         <label class="radio-option-doacao">
-            <input id="is_anonimo" type="radio" name="is_anonimo" value="1">
+            <input id="is_anonimo" type="radio" name="is_anonimo" value="1" {{ isset($registro->is_anonimo) ? ($registro->is_anonimo ? 'checked' : 'disabled') : '' }}>
             <p>Anônimo</p>
         </label>
 
         <label class="radio-option-doacao">
-            <input id="is_identified" type="radio" name="is_anonimo" value="0">
+            <input id="is_identified" type="radio" name="is_anonimo" value="0" {{ isset($registro->is_anonimo) ? ($registro->is_anonimo ? 'disabled' : 'checked') : '' }}>
             <p>Identificar</p>
         </label>
     </div>
@@ -68,31 +68,17 @@
     @enderror
 </div>
 
-<div id="nome" class="input-field">
-    <label>Nome ou Apelido:</label>
-    <input  {{ isset($registro->nome) ? 'readonly' : ''}} type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}">
-    @error('nome')
-        <span class="invalid-feedback" role="alert">
-            {{ $message }}
-        </span>
-    @enderror
-</div>
-   
-        @if(isset($registro->comprovante_anexo))
-            <a class="btn" href="{{ asset($registro->comprovante_anexo) }}" alt="" download="baixar">Baixar anexo</a>
-        @else
-            <div class="input-field">
-                <label>Anexo Comprovante:</label>
-                <input type="file" name="comprovante_anexo">
-                @error('comprovante_anexo')
-                    <span class="invalid-feedback" role="alert">
-                        {{ $message }}
-                    </span>
-                @enderror
-            
-            </div>
-        @endif   
-
+@if(isset($registro->is_anonimo) && !$registro->is_anonimo)
+    <div id="nome" class="input-field">
+        <label>Nome ou Apelido:</label>
+        <input  {{ isset($registro->nome) ? 'readonly' : ''}} type="text" name="nome" value="{{ isset($registro->nome) ? $registro->nome : old('nome') }}">
+        @error('nome')
+            <span class="invalid-feedback" role="alert">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
+@endif
 
 @section('scripts')
 

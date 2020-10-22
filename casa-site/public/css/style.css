@@ -636,6 +636,7 @@ a.btn, button.btn, input.btn, label.btn {
     font-family: 'Montserrat', sans-serif;
     font-weight: var(--font-medium);
     transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+    text-align: center;
 }
 
 a.btn.btn-danger {

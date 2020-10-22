@@ -31,7 +31,7 @@
                         @foreach ($registros as $registro)
                             <tr>
                                 <td>
-                                <a class="btn btn-green" href="{{ route("doacoes.ver",$registro->id)}}" title="Ver doação">
+                                <a class="btn btn-green" href="{{ route("admin.doacao.ver",$registro->id) }}" title="Ver doação">
                                         <span class="fas fa-eye"></span>
                                     </a>
                                 </td>

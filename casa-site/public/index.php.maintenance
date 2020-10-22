@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" style="background: var(--bg-color);">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Estamos em manutenção, voltamos logo!</title>
+        
+        <!-- Estilo da pagina -->
+        <link rel="stylesheet" type="text/css" href="./css/style-maintenance.css">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="./img/logos/casa-marca.png">
+        
+        <!-- Icones do Font Awesome -->
+        <script src="https://kit.fontawesome.com/8eafe50798.js" defer crossorigin="anonymous"></script>
+
+        <!-- Font monterrat regular -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+
+    </head>
+
+
+    <body style="display: flex; flex-flow: column wrap; justify-content: space-between; min-height: 100vh;">
+        <header>
+            <div class="header">
+                <img class="banner" src="./img/banner/casa-banner.png" alt="Centro de Apoio Social e Ambiental">
+            </div>
+        </header>
+        <div class="container">
+            <div class="post">
+                <div class="content main text-center">
+                    <h2>Estamos em manutenção, voltamos logo!</h2>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="item">
+                    <p>E-mail: <a href="mailto:contato@casaong.org">
+                        contato@casaong.org
+                    </a></p>
+                <p>&copy; 2020 Todos os direitos reservados.</p>
+            </div>
+        </footer>
+    </body>
+</html>
