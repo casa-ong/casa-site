@@ -11,6 +11,16 @@ setlocale(LC_ALL, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     <div class="content main">
         <div class="item-title">
             <h1>Doação recebida</h1>
+            @if(Session::has('success'))
+                <div class="alert alert-success" onclick="$(this).toggle('hide')">
+                    <p>{{ Session::get('success') }}</p>
+                </div>
+            @endif
+            @if(isset($registro->is_aprovado)) 
+            <div class="alert alert-success">
+                <p>{{ $registro->is_aprovado ? 'Doação confirmada por nossos voluntários!' : 'Doação com confirmação pedente, não se preocupe, confirmaremos em breve!' }}</p>
+            </div>
+            @endif
         </div>
         <div>
             <div class="action">

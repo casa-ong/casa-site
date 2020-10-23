@@ -873,6 +873,19 @@ p.error.error-dark {
     z-index: 999;
 }
 
+.alert-danger p {
+    max-width: 500px;
+    background-color: var(--soft-red);
+    border: 1px solid var(--danger);
+    border-radius: 5px;
+    padding: 1em;
+    margin: 0 auto;
+    color: var(--danger-hover); /* cor da fonte*/
+    font-weight: var(--font-medium);
+    text-align: center;
+    z-index: 999;
+}
+
 .input-checkbox {
     display: flex;
     flex-direction: row;

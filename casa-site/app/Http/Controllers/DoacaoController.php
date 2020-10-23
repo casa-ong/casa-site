@@ -47,6 +47,10 @@ class DoacaoController extends Controller
         $request->validated();
         $dados = $request->all();
         $dados ['is_aprovado'] = 0;
+        if($dados['is_anonimo']) {
+            $dados['nome'] = 'Anônimo';
+        }
+
         $doacao = $this->doacao->create($dados);
 
         if($request->hasFile('comprovante_anexo')) {
@@ -59,7 +63,7 @@ class DoacaoController extends Controller
 
         $doacao->update($dados);
 
-        return redirect()->back()->with('success', 'Doação feita com sucesso!');
+        return redirect()->route('site.prestacao_conta.ver', ['tipo' => 'doacao', 'id' => $doacao->id])->with('success', 'Doação feita com sucesso! A doação aparecerá na prestação de contas assim que for aprovada por nossos voluntários.');
     
     }
     // Método responsavel por ver a sugestao como lida 

@@ -88,7 +88,7 @@ class PrestacaoContaController extends Controller
     {
         if($tipo === 'doacao'){
             $registro = $this->doacao->find($id);
-            if(!$registro || !$registro->is_aprovado) {
+            if(!$registro) {
                 throw new ModelNotFoundException;
             } 
             return response()
