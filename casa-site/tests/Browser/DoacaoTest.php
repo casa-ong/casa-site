@@ -107,10 +107,10 @@ class DoacaoTest extends DuskTestCase
             $browser->visit('/doacao/adicionar')
                 ->click('input[value="deposito_transferencia"]')
                 ->type('valor', '100.00')   
-                ->type('nome', 'Raquel')          
+                ->click('#is_identified[value="0"]')           
                 ->attach('comprovante_anexo', __DIR__ . '/files/arquivo.pdf')
                 ->press('Concluir Doação')
-                ->assertSee('O campo identificação precisa ser marcado');
+                ->assertSee('O campo nome deve ser preenchido');
 
         });
     }

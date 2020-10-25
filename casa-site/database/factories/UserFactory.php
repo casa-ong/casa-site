@@ -35,7 +35,7 @@ class UserFactory extends Factory
             'admin' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'aprovado' => $this->faker->boolean($chanceOfGettingTrue = 50),
             'estado' => Str::random(2),
-            'foto' => UploadedFile::fake()->create('test.png', $kilobytes = 100)
+            'foto' => UploadedFile::fake()->create('test.png', $kilobytes = 1)
         ];
     }
 }

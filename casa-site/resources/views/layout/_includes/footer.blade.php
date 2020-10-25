@@ -1,3 +1,6 @@
+@php
+    $contato = App\Models\Contato::latest('updated_at')->first();
+@endphp
 
         <div class="item-black">
             <form id="news-form"  action="{{ route('newsletter.salvar') }}#newsletter" method="POST" enctype="multipart/form-data">
@@ -24,28 +27,28 @@
         <div class="item">
             <div class="social-icons">
 				
-                @if(isset($sobre->twitter))
-                    <a class="social-icon" href="{{ isset($sobre->twitter) ? $sobre->twitter : '#' }}" target="_blank">
+                @if(isset($contato->twitter))
+                    <a class="social-icon" href="{{ isset($contato->twitter) ? $contato->twitter : '#' }}" target="_blank">
                         <i class="fab fa-twitter"></i>
                     </a>
                 @endif
 
-                @if(isset($sobre->instagram))
-                    <a class="social-icon" href="{{ isset($sobre->instagram) ? $sobre->instagram : '#' }}" target="_blank">
+                @if(isset($contato->instagram))
+                    <a class="social-icon" href="{{ isset($contato->instagram) ? $contato->instagram : '#' }}" target="_blank">
                         <i class="fab fa-instagram"></i>
                     </a>
                 @endif
 
-                @if(isset($sobre->facebook))
-                    <a class="social-icon" href="{{ isset($sobre->facebook) ? $sobre->facebook : '#' }}" target="_blank">
+                @if(isset($contato->facebook))
+                    <a class="social-icon" href="{{ isset($contato->facebook) ? $contato->facebook : '#' }}" target="_blank">
                         <i class="fab fa-facebook"></i>
                     </a>
                 @endif
                 
             </div>
-            @if(isset($sobre->email))
-				<p>E-mail: <a href="mailto:{{ isset($sobre->email) ? $sobre->email : '#' }}">
-                    {{ $sobre->email ?? '' }}
+            @if(isset($contato->email))
+				<p>E-mail: <a href="mailto:{{ isset($contato->email) ? $contato->email : '#' }}">
+                    {{ $contato->email ?? '' }}
                 </a></p>
 			@endif
             <p>&copy; 2020 Todos os direitos reservados.</p>

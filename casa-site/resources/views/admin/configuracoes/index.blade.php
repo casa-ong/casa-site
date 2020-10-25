@@ -16,10 +16,10 @@
                 <span class="fas fa-dollar-sign"></span>
                 <h2>Conta Bancária</h2>
             </a>
-            <a class="admin-card" href="#">
+            {{-- <a class="admin-card" href="#">
                 <span class="fas fa-address-book"></span>
                 <h2>Contatos *Em Breve*</h2>
-            </a>
+            </a> --}}
         </div>
     </div>
 </div>
