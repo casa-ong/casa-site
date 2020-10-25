@@ -29,10 +29,11 @@ class DoacaoFactory extends Factory
             'valor' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 1000),
             'meio_pagamento' => $this->faker->name,
             'is_anonimo' => $this->faker->boolean,
+            'is_aprovado' => $this->faker->boolean,
             'comprovante_anexo' =>$this->faker->imageUrl($width = 640, $height = 480),
             'conta_pagamento_id' => ContaPagamento::factory(),
             'created_at' => $this->faker->dateTimeThisYear($max = 'now', $timezone = null)
-           // 'projeto_id' => Projeto::factory(),
+            // 'projeto_id' => Projeto::factory(),
             
         ];
     }

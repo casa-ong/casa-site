@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Sobre;
 use App\Models\Contato;
-use Validator;
+use App\Util\SaveFileUtil;
 use App\Http\Requests\SobreRequest;
  
 class SobreController extends Controller
@@ -53,23 +52,19 @@ class SobreController extends Controller
         $sobre = $this->sobre->create($dados);
         
         if($request->hasFile('logo')) {
-            $anexo = $request->file('logo');
-            $num = $sobre->id;
-            $dir = 'img/logos';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'logo_'.$num.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['logo'] = $dir.'/'.$nomeAnexo;
+            $dados['logo'] = SaveFileUtil::saveFile(
+                $request->file('logo'),
+                $sobre->id,
+                'img/logos'
+            );
         }
 
         if($request->hasFile('banner')) {
-            $anexo = $request->file('banner');
-            $num = $sobre->id;
-            $dir = 'img/banner';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'banner_'.$num.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['banner'] = $dir.'/'.$nomeAnexo;
+            $dados['banner'] = SaveFileUtil::saveFile(
+                $request->file('banner'),
+                $sobre->id,
+                'img/banner'
+            );
         }
 
         $dados['sobre_id'] = $sobre->id;
@@ -84,7 +79,8 @@ class SobreController extends Controller
     public function editar($id) 
     {
         $registro = $this->sobre->find($id);
-        return view('admin.sobre.editar', compact('registro'));
+        $contato = $this->contato->latest('updated_at')->first();
+        return view('admin.sobre.editar', compact('registro', 'contato'));
     }
 
     // Método responsavel por salvar as informacoes do formulario de edicao no banco de dados
@@ -96,23 +92,19 @@ class SobreController extends Controller
         $dadoSite = $this->sobre->find($id);
 
         if($request->hasFile('logo')) {
-            $anexo = $request->file('logo');
-            $num = $dadoSite->id;
-            $dir = 'img/logos';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'logo_'.$num.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['logo'] = $dir.'/'.$nomeAnexo;
+            $dados['logo'] = SaveFileUtil::saveFile(
+                $request->file('logo'),
+                $dadoSite->id,
+                'img/logos'
+            );
         }
 
         if($request->hasFile('banner')) {
-            $anexo = $request->file('banner');
-            $num = $dadoSite->id;
-            $dir = 'img/banner';
-            $ex = $anexo->guessClientExtension(); //Define a extensao do arquivo
-            $nomeAnexo = 'banner_'.$num.'.'.$ex;
-            $anexo->move($dir, $nomeAnexo);
-            $dados['banner'] = $dir.'/'.$nomeAnexo;
+            $dados['banner'] = SaveFileUtil::saveFile(
+                $request->file('banner'),
+                $dadoSite->id,
+                'img/banner'
+            );
         }
 
         $dados['sobre_id'] = $dadoSite->id;

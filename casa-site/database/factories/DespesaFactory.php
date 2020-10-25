@@ -27,7 +27,7 @@ class DespesaFactory extends Factory
         return [
             'nome' => $this->faker->name,
             'descricao' =>  $this->faker->text($maxNbChars = 200),
-            'nota_fiscal' => UploadedFile::fake()->create('test.png', $kilobytes = 100),
+            'nota_fiscal' => UploadedFile::fake()->create('test.png', $kilobytes = 1),
             'valor' => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 1000),
             'user_id' => User::factory(),
             'projeto_id' => Projeto::factory(),
